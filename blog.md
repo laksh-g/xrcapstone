@@ -18,6 +18,9 @@ A 1 sentence description of what each team member worked on
 - Focus will be on the actual cooking part and not the prep work
   - Boiling, sauteing, baking, plating, garnishing
 - Use realistic recipes with measurements
+- MVP
+  - 2 player co-op
+  - 1 recipe
 
 ### New features/functionality implemented
 - No actual coding has been done
