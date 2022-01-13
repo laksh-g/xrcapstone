@@ -2,6 +2,7 @@
 *Getting started, project ideas*
 
 ### What we have accomplished
+A 1 sentence description of what each team member worked on
 - Johnathon
 - Katherine
 - Laksh
