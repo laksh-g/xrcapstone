@@ -1,5 +1,5 @@
-# Snippet 1
-
+# Weeks 1+2
+*Getting started, project ideas*
 - A 1 sentence description of what each team member worked on
 - A bulleted list of new features/functionality implemented 
 - A bulleted list of specific files the team would like to have reviewed
