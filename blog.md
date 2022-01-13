@@ -13,13 +13,12 @@ A 1 sentence description of what each team member worked on
 - Orders will be completed by coordinating with other players
 - Each player will have a specific role
   - Head chef role will be in charge of receiving orders and giving instructions to the other players
-  - Cooking role will be in charge of cooking the orders, with instructions from the head chef
-  - Plating role will be in charge of plating and garnishing the dish, making sure it looks good before it is served
+  - Station chef will be in charge of cooking the orders, with instructions from the head chef
 - Focus will be on the actual cooking part and not the prep work
   - Boiling, sauteing, baking, plating, garnishing
 - Use realistic recipes with measurements
 - MVP
-  - 2 player co-op
+  - 2-3 player co-op
   - 1 recipe
 
 ### New features/functionality implemented
