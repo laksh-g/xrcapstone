@@ -2,4 +2,4 @@
 
 content here
 
-snippet 1
+[Blog](https://uwrealitylab.github.io/xrcapstone22wi-team5/blog)
