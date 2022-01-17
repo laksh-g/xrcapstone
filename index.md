@@ -33,9 +33,13 @@ VR using Unity and Oculus. In the past, I have worked on different platforms
 including iOS, Android, Web, Windows Platform, and even the Xbox Console. I am
 super excited to work on this idea and bring my experience/skills to the table.
 
-### Name
+### Katherine Cai
 
-Description
+Hello! I am a senior studying Computer Engineering at UW. Over the summer I 
+interned with Ekata, a MasterCard company, where I focused on developing a QA
+automation framework for graph based internal products. I have minimal experience
+with VR and game design, so I am looking forward to learn more about Unity and VR 
+this quarter. 
 
 ## Link to PRD
 
