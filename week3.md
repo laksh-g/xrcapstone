@@ -10,10 +10,14 @@
 ## New features/functionality implemented
 
 - Basic temperature system: temperature has realistic decay and reacts to being at room temp, in a fridge, or on/in a heating element
+- Turnable knobs for kitchen appliances
 
 ## Code review
 
-- No files are in need of review.
+All project code is currently in the 'build' branch. As features are completed, they will be pushed to the 'master' branch.
+
+- bonappetit/Assets/Scripts/Temperature.cs
+- bonappetit/Assets/Scripts/Knob.cs
 
 ## Blocking issues
 
