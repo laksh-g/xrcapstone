@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeatingElement : MonoBehaviour
 {
     public float tempDelta;
-    public StoveKnob s;
+    public Knob s;
     // Start is called before the first frame update
     void Start()
     {

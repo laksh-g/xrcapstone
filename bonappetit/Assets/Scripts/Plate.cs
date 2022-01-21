@@ -10,7 +10,7 @@ public class Plate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        objects = new System.HashSet<MonoBehaviour>();
+        objects = new HashSet<MonoBehaviour>();
     }
 
     // Update is called once per frame

@@ -8,7 +8,7 @@ public class ElementColor : MonoBehaviour
     public Material red;
     public Material yellow;
     public Material off;
-    public StoveKnob s;
+    public Knob s;
     // Start is called before the first frame updates
     void Start()
     {
