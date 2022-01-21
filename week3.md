@@ -1,9 +1,9 @@
-# Weeks 3 - 
+# Week 3 - Project pitch, PRD, project setup
 
 ## What we have accomplished
 
 - Johnathon: Imported new purchased kitchen assets, created new temperature and cooking scripts for dish components, and began work on prefab interactivity with the new assets.
-- Katherine: 
+- Katherine: Finalized MVP and target product, imported color change cooking script, and researched how to implement UI for object information.
 - Laksh: 
 - Hritik: 
 
@@ -13,8 +13,8 @@
 
 ## Code review
 
-- 
+- No files are in need of review.
 
 ## Blocking issues
 
-- 
+- No blockers to report.
