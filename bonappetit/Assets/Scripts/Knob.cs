@@ -7,13 +7,21 @@ public class Knob : MonoBehaviour
 {
     public int val; // 0 - numSettings
     public int numSettings;
+    public Light greenLight;
+    public Light redLight;
+
     private readonly string[] labels4 = {"Off", "Low", "Medium", "High"};
     private readonly string[] labels2 = {"Off", "On"};
+
 
     // Start is called before the first frame update
     void Start()
     {
-    val = 0; // off  
+    val = 0; // off 
+    if (greenLight != null && redLight != null) {
+        redLight.enabled = true;
+        greenLight.enabled = false;
+    }
     }
 
     // Update is called once per frame
@@ -28,8 +36,16 @@ public class Knob : MonoBehaviour
         transform.Rotate(0f, 0f, rotateDegrees);
         if (val == numSettings) {
             val = 0;
+            if (greenLight != null && redLight != null) {
+                greenLight.enabled = false;
+                redLight.enabled = true;
+            }
         } else {
             val++;
+            if (greenLight != null && redLight != null) {
+                redLight.enabled = false;
+                greenLight.enabled = true;
+            }
         }
     }
 

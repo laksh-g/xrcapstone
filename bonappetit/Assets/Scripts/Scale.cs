@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Scale : MonoBehaviour
 {
-    float reading; // in grams
+    public float reading; // in grams
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +36,10 @@ public class Scale : MonoBehaviour
     }
 
     // for UI
-    string GetReading() {
+    public string GetReading() {
+        if (reading >= 1000) {
+            return (reading / 1000f).ToString() + "kg";
+        }
         return reading.ToString() + "g";
     }
 }
