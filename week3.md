@@ -5,7 +5,7 @@
 - Johnathon: Imported new purchased kitchen assets, created new temperature and cooking scripts for dish components, and began work on prefab interactivity with the new assets.
 - Katherine: Finalized MVP and target product, imported color change cooking script, and researched how to implement UI for object information.
 - Laksh: Researched on more assets for kitchen and different food items and started looking into Photon PUN for multiplayer integrations. 
-- Hritik: 
+- Hritik: Looked into how to go about making fries and started working on implementing them. Started with a single cubiod and added different shades to mimic real fries.
 
 ## New features/functionality implemented
 
