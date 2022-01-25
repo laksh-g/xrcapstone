@@ -200,7 +200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   val: 0
-  numSettings: 0
+  numSettings: 4
   greenLight: {fileID: 2332883960071884397}
   redLight: {fileID: 2332883960092177974}
 --- !u!1 &2332883958007039891
@@ -1130,6 +1130,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   val: 0
-  numSettings: 0
+  numSettings: 4
   greenLight: {fileID: 2332883958954269954}
   redLight: {fileID: 2332883960007263693}

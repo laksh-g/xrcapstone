@@ -34,7 +34,7 @@ public class Knob : MonoBehaviour
     {
         float rotateDegrees = 360f / numSettings;
         transform.Rotate(0f, 0f, rotateDegrees);
-        if (val == numSettings) {
+        if (val == numSettings - 1) {
             val = 0;
             if (greenLight != null && redLight != null) {
                 greenLight.enabled = false;
