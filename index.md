@@ -41,9 +41,9 @@ automation framework for graph based internal products. I have minimal experienc
 with VR and game design, so I am looking forward to learn more about Unity and VR 
 this quarter. 
 
-## Link to PRD
+## PRD
 
-Coming soon!
+[Link](https://docs.google.com/document/d/1qiKnid1c8BujVksI3OGwbceG1bKiSeyCJPEgfXp2q0I/edit?usp=sharing)
 
 ## Demo Video
 
