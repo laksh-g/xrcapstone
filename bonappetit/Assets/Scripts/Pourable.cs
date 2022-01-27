@@ -4,35 +4,41 @@ using UnityEngine;
 
 public class Pourable : MonoBehaviour
 {
-    //public int threshold = 90;
-    public float liquidVolume = 750f; // in mL
     public Transform spout = null;
     public GameObject streamPrefab = null;
-    public Material liquidMaterial = null;
-    private float liquidRemaining; // in mL
+    private Material liquidMaterial = null;
     private bool isPouring = false;
     private Stream stream = null;
+    private LiquidContainer thisContainer = null;
 
     // Start is called before the first frame update
     void Start()
     {
-        liquidRemaining = liquidVolume;
+        thisContainer = GetComponent<LiquidContainer>();
     }
 
     void FixedUpdate() {
         if (isPouring) {
-            liquidRemaining -= .1F;
+            print("Pouring");
+            thisContainer.currentVolume = thisContainer.currentVolume - 0.1F;
+            if (stream.container != null && stream.container.currentVolume < stream.container.capacity) {
+                stream.container.liquidMaterial = liquidMaterial;
+                stream.container.currentVolume = Mathf.Min(stream.container.currentVolume + .1F, stream.container.capacity);
+                print("Filling!");
+            }
         }
     }
     // Update is called once per frame
     void Update()
     {
-        float threshold = 100 - 55 * (liquidRemaining / liquidVolume);
-        bool check = CalculatePourAngle() > threshold;
+        float threshold = 100 - 55 * (thisContainer.currentVolume / thisContainer.capacity);
+        bool check = CalculatePourAngle() > threshold && thisContainer.currentVolume > 0f;
+        
         if (isPouring != check) {
 
             isPouring = check; 
             if (isPouring) {
+                liquidMaterial = thisContainer.liquidMaterial;
                 print("Start");
                 stream = createStream();
                 stream.Begin();

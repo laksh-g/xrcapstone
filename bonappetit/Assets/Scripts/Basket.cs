@@ -28,9 +28,13 @@ public class Basket : MonoBehaviour
         if (isCloseTo(hookPosition)) {
             body.isKinematic = true;
             transform.position = hookPosition.position;
+            transform.rotation = hookPosition.rotation;
         } else if (isCloseTo(tubPosition)) {
             body.isKinematic = true;
             transform.position = tubPosition.position;
+            transform.rotation = tubPosition.rotation;
+        } else {
+            body.isKinematic = false;
         }
 
     }

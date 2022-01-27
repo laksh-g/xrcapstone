@@ -10,6 +10,8 @@ public class Stream : MonoBehaviour
 
     private Vector3 target = Vector3.zero;
 
+    public LiquidContainer container = null;
+
     void Awake() {
         line = GetComponent<LineRenderer>();
         splash = GetComponentInChildren<ParticleSystem>();
@@ -49,8 +51,15 @@ public class Stream : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(transform.position, Vector3.down);
 
-        Physics.Raycast(ray, out hit, 2.0f);
-        Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(2.0f);
+        Physics.Raycast(ray, out hit, 10.0f);
+        // check if we are pouring into a fillable
+        LiquidContainer f = hit.collider.GetComponentInParent<LiquidContainer>();
+        if (f != null) {
+            container = f;
+        } else {
+            container = null;
+        }
+        Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(10.0f);
         return endPoint;
     }
 
@@ -87,7 +96,7 @@ public class Stream : MonoBehaviour
         while(gameObject.activeSelf) {
             splash.gameObject.transform.position = target;
             bool isHitting = HasReachedPosition(1, target);
-            splash.gameObject.SetActive(isHitting);
+            splash.gameObject.SetActive(isHitting && container == null);
 
             yield return null;
 
