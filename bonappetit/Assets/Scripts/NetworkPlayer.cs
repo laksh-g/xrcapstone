@@ -28,6 +28,22 @@ public class NetworkPlayer : MonoBehaviour
         headRig = rig.transform.Find("Camera Offset/Main Camera");
         leftHandRig = rig.transform.Find("Camera Offset/LeftHand Controller");
         rightHandRig = rig.transform.Find("Camera Offset/RightHand Controller");
+        if (rig == null)
+        {
+            Debug.Log("No rig 0 component found.");  
+        }
+        if (headRig == null)
+        {
+            Debug.Log("No rig 1 component found.");  
+        }
+        if (leftHandRig == null)
+        {
+            Debug.Log("No rig 2 component found.");  
+        }
+        if (rightHandRig == null)
+        {
+            Debug.Log("No rig 3 component found.");  
+        }
 
         if(photonView.IsMine)
         {
