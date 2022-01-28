@@ -10,7 +10,7 @@ restaurant, and you will need teamwork in order to make the cut!
 
 ### Johnathon Leon Guerrero
 
-<img src="/docs/assets/_DSC3220-Edit.jpg" alt="Johnathon" width="400"/> 
+<img src="docs/assets/_DSC3220-Edit.jpg" alt="Johnathon" width="400"/> 
 
 Hello! I’m a senior in computer engineering at UW currently living close to
 campus. Over the summer, I was an intern for Zillow Group where I focused on
@@ -37,7 +37,7 @@ super excited to work on this idea and bring my experience/skills to the table.
 
 ### Katherine Cai
 
-<img src="/docs/assets/DSC01517_Original.jpg" alt="Katherine" width="400"/> 
+<img src="docs/assets/DSC01517_Original.jpg" alt="Katherine" width="400"/> 
 
 Hello! I am a senior studying Computer Engineering at UW. Over the summer I 
 interned with Ekata, a MasterCard company, where I focused on developing a QA
