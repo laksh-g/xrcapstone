@@ -10,6 +10,8 @@ restaurant, and you will need teamwork in order to make the cut!
 
 ### Johnathon Leon Guerrero
 
+<img src="_DSC3220-Edit.jpg" alt="Johnathon" width="400"/> 
+
 Hello! I’m a senior in computer engineering at UW currently living close to
 campus. Over the summer, I was an intern for Zillow Group where I focused on
 front-end and back-end web development and scripting. My experience working as a
