@@ -21,7 +21,7 @@ design, I’m very excited to bring this vision to life.
 
 ### Laksh Gupta
 
-<img src="/docs/assets/Laksh.jpeg" alt="Laksh" width="400"/> 
+<img src="https://raw.githubusercontent.com/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/Laksh.jpeg" alt="Laksh" width="400"/> 
 
 Heyo! I’m a senior at UW and I love working with new technologies. I’m looking
 forward to working with the new VR/AR technologies and to seeing all kinds of
@@ -29,9 +29,9 @@ new innovations we develop from it. I have some experience working with android
 app development and back-end networking and I am excited to learn more about
 unity development this quarter.
 
-<img src="./docs/assets/hritik.png" alt="Hritik" width="400"/>
-
 ### Hritik Aggarwal
+
+<img src="https://media.githubusercontent.com/media/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/hritik.png" alt="Hritik" width="400"/>
 
 Hi! I am a senior at UW who loves creating new tools and technologies.
 Currently, I am exploring the space of making mobile apps using React Native and
