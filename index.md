@@ -21,6 +21,8 @@ design, I’m very excited to bring this vision to life.
 
 ### Laksh Gupta
 
+<img src="/docs/assets/Laksh.jpeg" alt="Laksh" width="400"/> 
+
 Heyo! I’m a senior at UW and I love working with new technologies. I’m looking
 forward to working with the new VR/AR technologies and to seeing all kinds of
 new innovations we develop from it. I have some experience working with android
