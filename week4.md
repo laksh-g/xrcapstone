@@ -35,6 +35,7 @@
 ## Code review
 
 - https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/1
+- https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/4
 
 ## Blocking issues
 
