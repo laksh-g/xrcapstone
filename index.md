@@ -10,7 +10,7 @@ restaurant, and you will need teamwork in order to make the cut!
 
 ### Johnathon Leon Guerrero
 
-<img src="https://media.githubusercontent.com/media/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/_DSC3220-Edit.jpg" alt="Johnathon" width="400"/> 
+<img src="https://media.githubusercontent.com/media/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/_DSC3220-Edit.jpg" alt="Johnathon" width="400"/>
 
 Hello! I’m a senior in computer engineering at UW currently living close to
 campus. Over the summer, I was an intern for Zillow Group where I focused on
@@ -27,6 +27,8 @@ new innovations we develop from it. I have some experience working with android
 app development and back-end networking and I am excited to learn more about
 unity development this quarter.
 
+<img src="./docs/assets/hritik.png" alt="Hritik" width="400"/>
+
 ### Hritik Aggarwal
 
 Hi! I am a senior at UW who loves creating new tools and technologies.
@@ -37,13 +39,13 @@ super excited to work on this idea and bring my experience/skills to the table.
 
 ### Katherine Cai
 
-<img src="https://media.githubusercontent.com/media/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/DSC01517_Original.jpg" alt="Katherine" width="400"/> 
+<img src="https://media.githubusercontent.com/media/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/DSC01517_Original.jpg" alt="Katherine" width="400"/>
 
-Hello! I am a senior studying Computer Engineering at UW. Over the summer I 
+Hello! I am a senior studying Computer Engineering at UW. Over the summer I
 interned with Ekata, a MasterCard company, where I focused on developing a QA
-automation framework for graph based internal products. I have minimal experience
-with VR and game design, so I am looking forward to learn more about Unity and VR 
-this quarter. 
+automation framework for graph based internal products. I have minimal
+experience with VR and game design, so I am looking forward to learn more about
+Unity and VR this quarter.
 
 ## PRD
 
