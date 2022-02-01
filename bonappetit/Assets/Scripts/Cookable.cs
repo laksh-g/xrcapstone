@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Cookable : MonoBehaviour
 {
-    public float cookedTemp;
+    public float cookedTemp; // in C
     
     // materials for transitions
     public Material raw;
     public Material cooked;
     public Material burnt;
-    public Temperature temp;
-    public MeshRenderer mesh;
+    private Temperature temp;
+    private MeshRenderer mesh;
 
     // Start is called before the first frame update
     void Start()
@@ -30,6 +30,7 @@ public class Cookable : MonoBehaviour
             mesh.material = cooked;
         } else if(temp.tempDelta > 0) {
             // transition between textures
+            mesh.material = raw;
         }
     }
 }

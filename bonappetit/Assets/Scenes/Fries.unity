@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657838, g: 0.49641234, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5097,8 +5097,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 940701}
-  mesh: {fileID: 940703}
 --- !u!114 &940701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10152,8 +10150,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 58756197}
-  mesh: {fileID: 58756199}
 --- !u!114 &58756197
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10469,12 +10465,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e6caba6cb40ee4ba75aea201b9092e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookedTemp: 375
+  cookedTemp: 190
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
-  cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
+  cooked: {fileID: 2100000, guid: 9ee04d8f308171444be8002e97c46ddc, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 212547857}
-  mesh: {fileID: 212547854}
 --- !u!199 &212547860
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -21716,8 +21710,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 1041590694}
-  mesh: {fileID: 1041590696}
 --- !u!114 &1041590694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -26771,8 +26763,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 1132806393}
-  mesh: {fileID: 1132806395}
 --- !u!114 &1132806393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31826,8 +31816,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 1167174411}
-  mesh: {fileID: 1167174413}
 --- !u!114 &1167174411
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32106,7 +32094,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202679909}
   m_LocalRotation: {x: 0.40821788, y: -0.23456968, z: 0.10938163, w: 0.8754261}
-  m_LocalPosition: {x: 0, y: 1.97, z: 0}
+  m_LocalPosition: {x: 0.52, y: 1.09, z: -0.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -37334,8 +37322,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 1316357139}
-  mesh: {fileID: 1316357141}
 --- !u!114 &1316357139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42389,8 +42375,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 1454499076}
-  mesh: {fileID: 1454499078}
 --- !u!114 &1454499076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47951,8 +47935,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 1486466900}
-  mesh: {fileID: 1486466902}
 --- !u!114 &1486466900
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -53006,8 +52988,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 1498143176}
-  mesh: {fileID: 1498143178}
 --- !u!114 &1498143176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58263,8 +58243,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 1708690392}
-  mesh: {fileID: 1708690394}
 --- !u!114 &1708690392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63379,8 +63357,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 1872173740}
-  mesh: {fileID: 1872173742}
 --- !u!114 &1872173740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68434,8 +68410,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 2052706964}
-  mesh: {fileID: 2052706966}
 --- !u!114 &2052706964
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -73489,8 +73463,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 2079581294}
-  mesh: {fileID: 2079581296}
 --- !u!114 &2079581294
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -78544,8 +78516,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 2098402495}
-  mesh: {fileID: 2098402497}
 --- !u!114 &2098402495
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -83680,8 +83650,6 @@ MonoBehaviour:
   raw: {fileID: 2100000, guid: 4001959cb5f2a45eaa21b8c56c743a4d, type: 2}
   cooked: {fileID: 2100000, guid: 7a94d4ce8e15a4d349f281b1a0406faf, type: 2}
   burnt: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
-  temp: {fileID: 2113082331}
-  mesh: {fileID: 2113082333}
 --- !u!114 &2113082331
 MonoBehaviour:
   m_ObjectHideFlags: 0
