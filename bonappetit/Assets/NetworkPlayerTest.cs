@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.XR;
 using Photon.Pun;
-using Unity.XR.CoreUtils;
+using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using Unity.XR.CoreUtils;
 
-public class NetworkPlayer : MonoBehaviour
+
+public class NetworkPlayerTest : MonoBehaviour
 {
+
     public Transform head;
     public Transform leftHand;
     public Transform rightHand;
@@ -20,7 +22,7 @@ public class NetworkPlayer : MonoBehaviour
     private Transform headRig;
     private Transform leftHandRig;
     private Transform rightHandRig;
-    
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,7 +38,7 @@ public class NetworkPlayer : MonoBehaviour
         //     {
         //         item.enabled = false;
         //     }
-        // }
+        // }   
     }
 
     // Update is called once per frame
@@ -51,6 +53,7 @@ public class NetworkPlayer : MonoBehaviour
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.LeftHand), leftHandAnimator);
             UpdateHandAnimation(InputDevices.GetDeviceAtXRNode(XRNode.RightHand), rightHandAnimator);
         }
+        
     }
 
     void UpdateHandAnimation(InputDevice targetDevice, Animator handAnimator)

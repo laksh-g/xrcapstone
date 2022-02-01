@@ -2725,6 +2725,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Network Voice
       objectReference: {fileID: 0}
+    - target: {fileID: 7055180764001168014, guid: fac5570e6f200534e959858d1368fb73, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7055180764001168015, guid: fac5570e6f200534e959858d1368fb73, type: 3}
       propertyPath: m_RootOrder
       value: 32
@@ -2783,7 +2787,7 @@ GameObject:
   - component: {fileID: 1598619584}
   - component: {fileID: 1598619583}
   m_Layer: 0
-  m_Name: Test Network
+  m_Name: Test Network Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3085,6 +3089,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4949837510494428226, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598815579406187026, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6598815579406187027, guid: 9f5a24a380916d14db9775daab4fe333, type: 3}
       propertyPath: m_RootOrder
       value: 21
