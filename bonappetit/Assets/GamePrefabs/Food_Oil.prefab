@@ -11,8 +11,6 @@ GameObject:
   - component: {fileID: 686997801496855848}
   - component: {fileID: 4478670713930041997}
   - component: {fileID: 1856494600994045511}
-  - component: {fileID: 8900316337591967136}
-  - component: {fileID: 6665896254302501323}
   - component: {fileID: 6791816518631796736}
   - component: {fileID: 6791816518631796735}
   - component: {fileID: 875636335}
@@ -88,34 +86,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8900316337591967136
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199113244307201938}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 0
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7326970753776522698, guid: c05e831c1a7cd42409777f8defe5b330, type: 3}
---- !u!114 &6665896254302501323
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199113244307201938}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 09e652d50e2147244a82d7b3374a632e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spout: {fileID: 6665896253822600192}
-  streamPrefab: {fileID: 5238570228697279498, guid: 687fe5b6c1388c34882009636030b3c7, type: 3}
 --- !u!54 &6791816518631796736
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -129,7 +99,7 @@ Rigidbody:
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!114 &6791816518631796735
@@ -212,7 +182,7 @@ MonoBehaviour:
       m_Calls: []
   m_AttachTransform: {fileID: 0}
   m_AttachEaseInTime: 0.15
-  m_MovementType: 2
+  m_MovementType: 0
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -262,10 +232,13 @@ MonoBehaviour:
   currentVolume: 750
   capacity: 750
   isFillable: 0
+  isPourable: 1
   liquidMaterial: {fileID: 2100000, guid: 90623549d4482f042ade35d8a0758e35, type: 2}
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
   liquid: {fileID: 0}
+  spout: {fileID: 6665896253822600192}
+  streamPrefab: {fileID: 5238570228697279498, guid: 687fe5b6c1388c34882009636030b3c7, type: 3}
 --- !u!65 &5920625763027641415
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -9,6 +9,9 @@ TagManager:
   - steak
   - fry
   - scooper
+  - hook
+  - occupied
+  - open
   layers:
   - Default
   - TransparentFX
@@ -16,10 +19,10 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
-  - 
-  - 
+  - Player
+  - Fixtures
+  - Interactables
+  - Hooks
   - 
   - 
   - 
