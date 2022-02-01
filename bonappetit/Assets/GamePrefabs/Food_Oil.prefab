@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6791816518631796736}
   - component: {fileID: 6791816518631796735}
   - component: {fileID: 875636335}
+  - component: {fileID: 2423561798431503717}
   - component: {fileID: 5920625763027641415}
   m_Layer: 0
   m_Name: Food_Oil
@@ -161,7 +162,19 @@ MonoBehaviour:
       m_Calls: []
   m_HoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2423561798431503717}
+        m_TargetAssemblyTypeName: GetInfo, Assembly-CSharp
+        m_MethodName: UpdateTextInfo
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_HoverExited:
     m_PersistentCalls:
       m_Calls: []
@@ -266,6 +279,19 @@ MonoBehaviour:
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
   liquid: {fileID: 0}
+--- !u!114 &2423561798431503717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199113244307201938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe6d14dbb06f459b9de4df8c1882c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: {fileID: 0}
 --- !u!65 &5920625763027641415
 BoxCollider:
   m_ObjectHideFlags: 0

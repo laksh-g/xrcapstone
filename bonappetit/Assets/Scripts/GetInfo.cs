@@ -6,8 +6,7 @@ public class GetInfo : MonoBehaviour
 {
     public GameObject text;
 
-    public void UpdateTextInfo()
-    {
+    public void UpdateTextInfo() {
         text.GetComponent<TextInformation>().UpdateSelected(gameObject);
     }
 }
