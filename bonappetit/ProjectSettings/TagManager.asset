@@ -9,6 +9,9 @@ TagManager:
   - steak
   - fry
   - scooper
+  - hook
+  - occupied
+  - open
   layers:
   - Default
   - TransparentFX

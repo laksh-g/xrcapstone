@@ -5,6 +5,7 @@ using UnityEngine;
 public class Hookable : MonoBehaviour
 {
     [SerializeField] private GameObject hooksFolder;
+    [SerializeField] private float threshold;
     private Rigidbody body;
 
     private Transform[] hooks;
@@ -21,26 +22,39 @@ public class Hookable : MonoBehaviour
     }
 
     public void BeginHold() {
-        body.isKinematic = false;
-        body.detectCollisions = true;
-
+        foreach(Transform hook in hooks) {
+            if (hook.position == transform.position) {
+                hook.gameObject.tag = "open";
+                return;
+            }
+        }
     }
 
     public void EndHold() {
+        Transform match = null;
+        float closestDistance = float.PositiveInfinity;
+        float distanceToHook;
         foreach(Transform hook in hooks) {
-            if (hook != hooksFolder.transform && isCloseTo(hook)) {
-                body.isKinematic = true;
-                transform.position = hook.position;
-                transform.rotation = hook.rotation;
-                return;
+            distanceToHook = CalculateDistance(hook);
+            if (hook != hooksFolder.transform && hook.gameObject.tag == "open" && distanceToHook < threshold
+                && distanceToHook < closestDistance) {
+                match = hook;
             }
+        }
+        
+        if (match != null) {
+            body.isKinematic = true;
+            transform.position = match.position;
+            transform.rotation = match.rotation;
+            match.gameObject.tag = "occupied";
+            return;   
         }
         body.isKinematic = false;
     }
 
-    private bool isCloseTo(Transform target) {
-        return Mathf.Abs(transform.position.x - target.position.x) < .1F 
-        && Mathf.Abs(transform.position.y - target.position.y) < .1F 
-        && Mathf.Abs(transform.position.z - target.position.z) < .1F;
+    private float CalculateDistance(Transform target) {
+        return Mathf.Pow(transform.position.x - target.position.x, 2) + 
+        Mathf.Pow(transform.position.y - target.position.y, 2) +
+        Mathf.Pow(transform.position.z - target.position.z, 2);
     }
 }
