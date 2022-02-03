@@ -5,30 +5,30 @@ using UnityEngine;
 public class Steak : MonoBehaviour
 {
     // metadata used for quality checking
-    public float salt; // in grams
-    public float pepper; // in grams
+    public Seasonable seasoning = null;
     public float restTime; // in seconds
     public bool isResting; // true when steak was just taken off heating source
-
+    public GameObject smokePrefab;
+    private ParticleSystem smokeInstance;
     public Material raw;
     public Material done;
     public Material burnt;
 
     
-    private float searTime = 0;
+    public float searTime = 0;
     private MeshRenderer steakMesh;
 
-    private Temperature temp = null;
+    public Temperature temp = null;
     private HeatingElement heater = null;
-    public readonly float neededRest = 300f; // in seconds
     public readonly float[] donenessTemps = {48, 52, 54, 60, 66, 71}; // in Celsius
-    public readonly string[] donenessLabels = {"Blue", "Rare", "Medium Rare", "Medium", "Medium Well", "Well Done"}; 
+    public static string[] donenessLabels = {"Blue", "Rare", "Medium Rare", "Medium", "Medium Well", "Well Done"}; 
 
     // Start is called before the first frame update
     void Start()
     {
         restTime = 0;
         steakMesh = GetComponent<MeshRenderer>();
+        seasoning = GetComponent<Seasonable>();
         temp = GetComponent<Temperature>();
 
     }
@@ -40,7 +40,16 @@ public class Steak : MonoBehaviour
         if (heater != null) {
             if (heater.s.val == 3) {
                 searTime += Time.deltaTime * 4;
+                if (smokeInstance == null) {
+                    smokeInstance = Instantiate(smokePrefab, transform.position, Quaternion.Euler(-90, 0, 0), transform).GetComponent<ParticleSystem>();
+                }
+            } else if (smokeInstance != null) {
+                smokeInstance.Stop();
+                Destroy(smokeInstance);
             }
+        } else if (smokeInstance != null) {
+            smokeInstance.Stop();
+            Destroy(smokeInstance);
         }
         if (searTime <= 120) {
             steakMesh.material = raw;
@@ -59,17 +68,27 @@ public class Steak : MonoBehaviour
     }
 
     void OnTriggerExit(Collider other) {
-        heater = null;
-        isResting = true;
+        if (heater != null) {
+            isResting = true;
+            heater = null;
+        }
     }
 
     public string GetDonenessLabel() {
-        for (int i = donenessLabels.Length; i >= 0; i--) {
+        int d = GetDonenessValue();
+        if (d == -1) {
+            return "Raw";
+        }
+        return donenessLabels[d];
+    }
+
+    public int GetDonenessValue() {
+        for (int i = donenessLabels.Length - 1; i >= 0; i--) {
             if (temp.maxTemp > donenessTemps[i]) {
-                return donenessLabels[i];
+                return i;
             }
         }
-        return "Raw";
+        return -1;
     }
 
 
