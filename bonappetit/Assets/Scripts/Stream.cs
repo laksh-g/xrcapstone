@@ -53,8 +53,8 @@ public class Stream : MonoBehaviour
 
         Physics.Raycast(ray, out hit, 10.0f);
         // check if we are pouring into a fillable
-        LiquidContainer f = hit.collider.GetComponentInParent<LiquidContainer>();
-        if (f != null) {
+        LiquidContainer f = hit.collider.isTrigger? hit.collider.GetComponentInParent<LiquidContainer>() : null;
+        if (f != null && f.isFillable) {
             container = f;
         } else {
             container = null;

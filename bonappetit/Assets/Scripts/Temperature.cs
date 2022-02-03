@@ -9,36 +9,32 @@ public class Temperature : MonoBehaviour
     public float maxTemp;
     public bool inFridge;
     public float k = .25F; // heat transfer coefficient * surface area
+    private HeatingElement heater;
     // Start is called before the first frame update
     void Start()
     {
        temp = 72;
        inFridge = false; 
-       tempDelta = ambientDelta();
     }
 
     void Update() {
-    }
-
-    void FixedUpdate()
-    {
-        tempDelta = ambientDelta();
-        temp = temp + tempDelta; 
-        maxTemp = System.Math.Max(maxTemp, temp);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        HeatingElement h = other.GetComponent<HeatingElement>();
-        if (h != null) {
-            tempDelta = h.tempDelta;
+        if (heater != null) {
+            tempDelta = heater.tempDelta;
+        } else {
+            tempDelta = ambientDelta();
         }
+        temp += tempDelta * Time.deltaTime;
+        maxTemp = System.Math.Max(maxTemp, temp); 
+    }
+
+    void OnTriggerEnter(Collider other) {
+        heater = other.GetComponent<HeatingElement>();
     }
 
     private void OnTriggerExit(Collider other)
     {
         
-        tempDelta = ambientDelta();
+        heater = null;
     }
 
     // Following Newton's law of cooling
