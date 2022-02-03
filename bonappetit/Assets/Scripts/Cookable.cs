@@ -28,7 +28,7 @@ public class Cookable : MonoBehaviour
         }
         else if(temp.maxTemp >= cookedTemp) {
             mesh.material = cooked;
-        } else if(temp.tempDelta > 0) {
+        } else {
             // transition between textures
             mesh.material = raw;
         }

@@ -10,8 +10,8 @@ public class Knob : MonoBehaviour
     public Light greenLight;
     public Light redLight;
 
-    private readonly string[] labels4 = {"Off", "Low", "Medium", "High"};
-    private readonly string[] labels2 = {"Off", "On"};
+    public readonly string[] labels4 = {"Off", "Low", "Medium", "High"};
+    public readonly string[] labels2 = {"Off", "On"};
 
 
     // Start is called before the first frame update

@@ -13,12 +13,12 @@ public class Temperature : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       temp = 72;
+       temp = 21;
        inFridge = false; 
     }
 
     void Update() {
-        if (heater != null) {
+        if (heater != null && heater.s.val != 0) {
             tempDelta = heater.tempDelta;
         } else {
             tempDelta = ambientDelta();
