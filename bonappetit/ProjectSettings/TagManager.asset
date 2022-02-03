@@ -9,9 +9,13 @@ TagManager:
   - steak
   - fry
   - scooper
-  - hook
   - occupied
   - open
+  - salt
+  - pepper
+  - parsley
+  - order
+  - conductor
   layers:
   - Default
   - TransparentFX

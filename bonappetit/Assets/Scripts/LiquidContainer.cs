@@ -85,8 +85,7 @@ public class LiquidContainer : MonoBehaviour
                 }
                 liquidMesh.enabled = true;
                 // a + (b - a) * t
-                float newY = liquidStart.position.y + (liquidEnd.position.y - liquidStart.position.y) * getPercentage();
-                liquid.transform.position = new Vector3(liquid.transform.position.x, newY, liquid.transform.position.z);
+                liquid.transform.position = Vector3.Lerp(liquidStart.position, liquidEnd.position, getPercentage());
             } else {
                 liquidMesh.enabled = false;
             }

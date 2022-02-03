@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class Fries : MonoBehaviour
 {
+    public Seasonable seasoning;
     public Temperature temp;
-    public ParticleSystem bubbles;
+    private ParticleSystem bubbles;
     public bool isCooking;
     private HeatingElement heater;
     private System.Single maxRate = 30f;
@@ -18,6 +19,7 @@ public class Fries : MonoBehaviour
     {
         temp = GetComponent<Temperature>();
         bubbles = GetComponent<ParticleSystem>();
+        seasoning = GetComponent<Seasonable>();
         isCooking = false;
     }
 
@@ -75,7 +77,7 @@ public class Fries : MonoBehaviour
     {
         if (other.gameObject.name == "Oil")
         {
-            bubbles.Pause();
+            bubbles.Stop();
             heater = null;
             isCooking = false;
         }

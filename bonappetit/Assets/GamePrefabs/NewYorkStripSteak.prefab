@@ -16,6 +16,10 @@ GameObject:
   - component: {fileID: 6042504406796886623}
   - component: {fileID: 6042504406796886618}
   - component: {fileID: 6042504406796886616}
+  - component: {fileID: 1792274202}
+  - component: {fileID: 1792274211}
+  - component: {fileID: 2117395240662184660}
+  - component: {fileID: 8553633505314298475}
   m_Layer: 8
   m_Name: NewYorkStripSteak
   m_TagString: Untagged
@@ -115,7 +119,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
 --- !u!114 &6042504406796886623
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,13 +132,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94627d1329bd2ce4fabf42bfc913d619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  salt: 0
-  pepper: 0
+  seasoning: {fileID: 0}
   restTime: 0
   isResting: 0
+  smokePrefab: {fileID: 8565349758713262666, guid: 292aba2ee9dd54740bf0600a7b3933d8, type: 3}
   raw: {fileID: 2100000, guid: 3c341abd3a432b040a0a81852ef73197, type: 2}
   done: {fileID: 2100000, guid: c62073dd134af8149bedde5a6846ec42, type: 2}
   burnt: {fileID: 2100000, guid: 124f111f752e50045a81f0bfadcedd27, type: 2}
+  searTime: 0
+  temp: {fileID: 0}
 --- !u!114 &6042504406796886618
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -267,3 +273,69 @@ MonoBehaviour:
   maxTemp: 0
   inFridge: 0
   k: 0.25
+--- !u!114 &1792274202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6043800102597769233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db88ea5d32dadce4d9d74eb47387f81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  salt: 0
+  pepper: 0
+  parsley: 0
+--- !u!114 &1792274211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6043800102597769233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf1e77bbc0bf1448b843c3d44b013c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2117395240662184660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6043800102597769233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: 8553633505314298475}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &8553633505314298475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6043800102597769233}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3

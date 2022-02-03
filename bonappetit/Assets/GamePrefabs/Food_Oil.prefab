@@ -15,6 +15,8 @@ GameObject:
   - component: {fileID: 6791816518631796735}
   - component: {fileID: 875636335}
   - component: {fileID: 5920625763027641415}
+  - component: {fileID: -2318934157505414924}
+  - component: {fileID: -6440155506866223442}
   m_Layer: 0
   m_Name: Food_Oil
   m_TagString: Untagged
@@ -237,6 +239,8 @@ MonoBehaviour:
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
   liquid: {fileID: 0}
+  variablePourRate: 0
+  pourRateMultiplier: 1
   spout: {fileID: 6665896253822600192}
   streamPrefab: {fileID: 5238570228697279498, guid: 687fe5b6c1388c34882009636030b3c7, type: 3}
 --- !u!65 &5920625763027641415
@@ -252,6 +256,45 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.10153196, y: 0.36422646, z: 0.10153196}
   m_Center: {x: 0, y: 0.18210128, z: 0}
+--- !u!114 &-2318934157505414924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199113244307201938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents:
+  - {fileID: -6440155506866223442}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-6440155506866223442
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 199113244307201938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &6665896253822600199
 GameObject:
   m_ObjectHideFlags: 0
