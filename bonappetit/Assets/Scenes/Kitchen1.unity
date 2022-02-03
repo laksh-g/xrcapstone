@@ -5254,9 +5254,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 485033045}
     m_Modifications:
+    - target: {fileID: 305413973504065154, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 51
+      objectReference: {fileID: 0}
+    - target: {fileID: 1405579090866642964, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2237064396519724436, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 53
+      objectReference: {fileID: 0}
     - target: {fileID: 2837636868733079083, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
       propertyPath: m_Name
       value: Prop_Stove
+      objectReference: {fileID: 0}
+    - target: {fileID: 2854773664119194226, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2968220616931951306, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 47
       objectReference: {fileID: 0}
     - target: {fileID: 3182531037902361745, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
       propertyPath: m_RootOrder
@@ -5301,6 +5321,34 @@ PrefabInstance:
     - target: {fileID: 3182531037902361745, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3211870334621523083, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 43
+      objectReference: {fileID: 0}
+    - target: {fileID: 4041600589748619184, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 44
+      objectReference: {fileID: 0}
+    - target: {fileID: 4752476162113220741, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 52
+      objectReference: {fileID: 0}
+    - target: {fileID: 6226731103922404046, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 48
+      objectReference: {fileID: 0}
+    - target: {fileID: 6526283311796161725, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 42
+      objectReference: {fileID: 0}
+    - target: {fileID: 7515878110229891014, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 7733091100293383396, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: sceneViewId
+      value: 49
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
