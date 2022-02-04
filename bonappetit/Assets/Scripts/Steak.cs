@@ -14,6 +14,10 @@ public class Steak : MonoBehaviour
     public Material done;
     public Material burnt;
 
+    public AudioClip sizzle;
+
+    private AudioSource a;
+
     
     public float searTime = 0;
     private MeshRenderer steakMesh;

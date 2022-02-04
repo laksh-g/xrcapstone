@@ -38,6 +38,7 @@ public class TurnInZone : MonoBehaviour
             (score, comments) = gm.EvaluateOrder(contents, orderNum);
             print(score + " " + comments);
             foreach (Plate child in contents) {
+                contents.Remove(child);
                 Destroy(child.gameObject);
             }
         }
