@@ -1,4 +1,4 @@
-# Week 4 - Basic features, liquid physics,
+# Week 4 - Interactable kitchen, liquid physics, french fries
 
 ## What we have accomplished
 
