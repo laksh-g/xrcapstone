@@ -23,7 +23,6 @@
 
 ## Code review
 - GameManager.cs: https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/7
-- 
 ## Blocking issues
 
 - Multiplayer functionality: There is currently an issue where an interactable object can only be 'owned' by one person per session. This results in multiple copies of the same object being in different places for different players.
