@@ -5,7 +5,8 @@
 - Johnathon: Introduced basic sound effects, seasoning, fry spawner, smoke
   effect, game manager object and gameplay logistics, and created the final
   scene for the MVP kitchen
-- Katherine:
+- Katherine: Finished object information ui to be attached to each player and 
+  work in multiplayer.
 - Laksh:
 - Hritik: Finished pushing fries to the master repo. Started working on
   ticketing system.
@@ -21,6 +22,8 @@
   turned in
 - Smoke effect! Smoke is produced when searing a steak
 - Seasoning and shakers! Salt, pepper, and parsley shakers are now available
+- Object information UI! Get temperature, salt levels, and more information about 
+  objects
 
 ## Bug Fixes
 
@@ -33,6 +36,8 @@
 ## Code review
 
 - GameManager.cs: https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/7
+- GetInfo.cs: https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/9
+- TextInformation.cs: https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/9
 
 ## Blocking issues
 
