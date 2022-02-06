@@ -47,6 +47,13 @@ public class LiquidContainer : MonoBehaviour
                 stream.container.currentVolume = Mathf.Min(stream.container.currentVolume + pourRate, stream.container.capacity);
                 print("Filling!");
             }
+
+            if (stream.foodItem != null) {
+                if (tag == "truffle oil") {
+                    stream.foodItem.truffleOil += pourRate;
+                }
+
+            }
         }
 
         if (scooper != null && currentVolume > 0f && scooper.currentVolume < scooper.capacity) {

@@ -8,6 +8,9 @@ public class GameManager : MonoBehaviour
     public int coversCompleted;
     public Transform ticketSpawn;
     public GameObject ticketPrefab;
+    public GameObject startButton;
+
+    public Clock clock = null;
     private float timer;
     private float score;
     private bool isActive;
@@ -15,18 +18,39 @@ public class GameManager : MonoBehaviour
     private Hashtable openOrders = new Hashtable();  
     private readonly int MAX_ORDERS = 3;
 
+    private static int GAME_LENGTH = 600;
+
+    private float startTime;
+
     // Start is called before the first frame update
     void Start()
     {
         InvokeRepeating("DrawOrder", 0f, 20f);
+    }
+
+    public void StartGame() {
+        InvokeRepeating("DrawOrder", 0f, 20f);
         isActive = true;
+        Destroy(startButton);
+        startButton = null;
+        startTime = (float) PhotonNetwork.Time;
+        clock.startTime = startTime;
+        /*if (PhotonNetwork.CurrentRoom != null) {
+            ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
+            ht["startTime"] = startTime;
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+        }*/
+    }
+
+    void EndGame() {
+        // send everyone to the game over screen
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isActive) {
-            timer += Time.deltaTime;
+        if (isActive && PhotonNetwork.Time - startTime > GAME_LENGTH) {
+            EndGame();
         }
     }
 

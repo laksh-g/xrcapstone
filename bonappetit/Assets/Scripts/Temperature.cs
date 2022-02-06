@@ -9,7 +9,7 @@ public class Temperature : MonoBehaviour
     public float maxTemp;
     public bool inFridge;
     public float k = .25F; // heat transfer coefficient * surface area
-    private HeatingElement heater;
+    public HeatingElement heater = null;
     // Start is called before the first frame update
     void Start()
     {

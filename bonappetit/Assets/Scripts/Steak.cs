@@ -56,9 +56,9 @@ public class Steak : MonoBehaviour
             Destroy(smokeInstance);
         }
         if (searTime <= 120) {
-            steakMesh.material = raw;
+            steakMesh.material.Lerp(raw, done, searTime/120);
         } else if (searTime <= 180){
-            steakMesh.material = done;
+            steakMesh.material.Lerp(done, burnt, (searTime - 120)/60);
         } else {
             steakMesh.material = burnt;
         }
