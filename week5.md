@@ -7,7 +7,8 @@
   scene for the MVP kitchen
 - Katherine: Finished object information ui to be attached to each player and 
   work in multiplayer.
-- Laksh:
+- Laksh: Finished Network Player prefabs textures, fixed photon Voice, implemented
+- room joining screen.
 - Hritik: Finished pushing fries to the master repo. Started working on
   ticketing system.
 
@@ -24,6 +25,8 @@
 - Seasoning and shakers! Salt, pepper, and parsley shakers are now available
 - Object information UI! Get temperature, salt levels, and more information about 
   objects
+- New UI at the start of the game to join rooms and select your roles. 
+- Voice chat implemented 
 
 ## Bug Fixes
 
@@ -32,6 +35,7 @@
   reliable
 - Fixed bug with ladle not updating correctly
 - Increased player movement speed
+- Fixed Voice chat bug
 
 ## Code review
 
