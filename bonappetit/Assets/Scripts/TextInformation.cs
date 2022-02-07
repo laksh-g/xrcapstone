@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-using UnityEditor;
 using TMPro;
 
 public class TextInformation : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI text;
+    private TextMeshProUGUI text;
     private GameObject selectedObject;
 
     // Start is called before the first frame update
@@ -29,12 +26,17 @@ public class TextInformation : MonoBehaviour
 
     public void UpdateSelected(GameObject obj)
     {
-        selectedObject = obj;
+        if (obj.tag != null && obj.tag != "Untagged") 
+        {
+            selectedObject = obj;
+        }
     }
 
     void UpdateText() 
     {
-        text.text = "Item: " + selectedObject.name + '\n';
+        //text.text = "Item: " + selectedObject.name + '\n';
+        string tag = selectedObject.tag;
+        text.text = "Item: " + char.ToUpper(tag[0]) + tag.Substring(1) + '\n';
 
         var temp = selectedObject.GetComponent<Temperature>();
         if (temp != null) {
@@ -64,7 +66,6 @@ public class TextInformation : MonoBehaviour
 
         var bearnaise = selectedObject.GetComponent<Bearnaise>();
         if (bearnaise != null) {
-            //text.text += "Volume: " + selectedObject.GetComponent<LiquidContainer>().currentVolume.ToString("F2") + " g" + '\n'; // or oz
             //text.text += "Heating time: " + bearnaise.???? + " s" + '\n';
         }
 
@@ -78,7 +79,5 @@ public class TextInformation : MonoBehaviour
             //text.text += "Capacity: " + liquidContainer.capacity.ToString("F0") + " mL" + '\n';
             text.text += "Current volume: " + liquidContainer.currentVolume.ToString("F0") + " mL" + '\n';
         }
-
     }
-
 }
