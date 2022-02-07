@@ -19,7 +19,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public List<DefaultRoom> defaultRooms;
 
-    public GameObject roomUI;
+    public GameObject selectRoles;
 
     public void ConnectedToServer()
     {
@@ -38,7 +38,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         Debug.Log("Lobby Joined");
-        roomUI.SetActive(true);
+        selectRoles.SetActive(true);
     }
 
     public void InitializeRoom(int defaultRoomIndex)

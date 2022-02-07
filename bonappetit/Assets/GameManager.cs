@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -25,6 +26,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //PhotonNetwork.AutomaticallySyncScene = true; 
     }
 
     public void StartGame() {
@@ -43,6 +45,11 @@ public class GameManager : MonoBehaviour
 
     void EndGame() {
         // send everyone to the game over screen
+        if(PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("Endgame");
+        }
+
     }
 
     // Update is called once per frame
