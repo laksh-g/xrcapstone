@@ -12,7 +12,7 @@ public class Clock : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        t = GetComponent<TextMeshPro>();
+        t = GetComponentInChildren<TextMeshPro>();
         t.text = (GAME_LENGTH / 60).ToString("00") + ":" + (GAME_LENGTH % 60).ToString("00");
     }
 
