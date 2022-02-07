@@ -11,7 +11,7 @@ public class GetInfo : MonoBehaviour
     XRBaseInteractable baseInteractable;
 
     //public void UpdateTextInfo() {
-        //text.GetComponent<TextInformation>().UpdateSelected(gameObject);
+    //text.GetComponent<TextInformation>().UpdateSelected(gameObject);
     //}
 
     protected void OnEnable()
@@ -29,7 +29,7 @@ public class GetInfo : MonoBehaviour
     protected virtual void OnHoverEntered(HoverEnterEventArgs args)
     {
         // get left hand controller
-        text = args.interactor.gameObject.transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject;
+        text = args.interactorObject.transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject;
         text.GetComponent<TextInformation>().UpdateSelected(gameObject);
     }
 }
