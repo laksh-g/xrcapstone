@@ -5,7 +5,7 @@ using TMPro;
 
 public class TextInformation : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI text;
+    private TextMeshProUGUI text;
     private GameObject selectedObject;
 
     // Start is called before the first frame update
@@ -34,9 +34,9 @@ public class TextInformation : MonoBehaviour
 
     void UpdateText() 
     {
-        text.text = "Item: " + selectedObject.name + '\n';
+        //text.text = "Item: " + selectedObject.name + '\n';
         string tag = selectedObject.tag;
-        text.text += "Tag: " + char.ToUpper(tag[0]) + tag.Substring(1) + '\n';
+        text.text = "Item: " + char.ToUpper(tag[0]) + tag.Substring(1) + '\n';
 
         var temp = selectedObject.GetComponent<Temperature>();
         if (temp != null) {
@@ -79,7 +79,5 @@ public class TextInformation : MonoBehaviour
             //text.text += "Capacity: " + liquidContainer.capacity.ToString("F0") + " mL" + '\n';
             text.text += "Current volume: " + liquidContainer.currentVolume.ToString("F0") + " mL" + '\n';
         }
-
     }
-
 }
