@@ -33,4 +33,14 @@ public class Cookable : MonoBehaviour
             mesh.material.Lerp(raw, cooked, temp.maxTemp / cookedTemp);
         }
     }
+
+    public string GetStatus() {
+        if (temp.maxTemp >= cookedTemp * 1.15F) {
+            return "Overdone";
+        }
+        if (temp.maxTemp >= cookedTemp) {
+            return "Done";
+        }
+        return "Underdone";
+    }
 }

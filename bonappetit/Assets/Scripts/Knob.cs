@@ -31,12 +31,6 @@ public class Knob : MonoBehaviour
     }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    
-    }
-
     public void RotateKnob()
     {
         float rotateDegrees = 360f / numSettings;

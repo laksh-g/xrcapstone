@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     private float startTime;
 
+    public bool startGame = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,11 +38,11 @@ public class GameManager : MonoBehaviour
         startButton = null;
         startTime = (float) PhotonNetwork.Time;
         clock.startTime = startTime;
-        /*if (PhotonNetwork.CurrentRoom != null) {
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
             ht["startTime"] = startTime;
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-        }*/
+        }
     }
 
     void EndGame() {
@@ -57,6 +59,10 @@ public class GameManager : MonoBehaviour
     {
         if (isActive && PhotonNetwork.Time - startTime > GAME_LENGTH) {
             EndGame();
+        }
+
+        if (startGame && !isActive) {
+            StartGame();
         }
     }
 
@@ -76,7 +82,7 @@ public class GameManager : MonoBehaviour
         return score;
     }
 
-    public (float, string) EvaluateOrder(HashSet<Plate> plates, int orderNum) {
+    public (float, string) EvaluateOrder(HashSet<GameObject> plates, int orderNum) {
         if (!openOrders.ContainsKey(orderNum)) {
             return (0f, "Old order sent, wasted food");
         }
@@ -90,7 +96,7 @@ public class GameManager : MonoBehaviour
         float currScore;
         HashSet<Orderable> remainingCovers = new HashSet<Orderable>(order.contents);
         Orderable closestMatch;
-        foreach (Plate p in plates) {
+        foreach (GameObject p in plates) {
             closestMatch = null;
             maxScore = 0;
             foreach (Orderable o in remainingCovers) {
@@ -179,7 +185,7 @@ public class GameManager : MonoBehaviour
             b = new BearnaiseOrder();
             hasSauce = Random.Range(0, 1) > .20;
         }
-        public (float, string) Evaluate(Plate p) {
+        public (float, string) Evaluate(GameObject p) {
             float total = 0;
             string comments = "";
             Steak steak = null;

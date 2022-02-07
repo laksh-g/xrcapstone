@@ -33,7 +33,7 @@ public class Clock : MonoBehaviourPunCallbacks
 
     private string Text() {
         float time = (float) PhotonNetwork.Time;
-        float time_elapsed = GAME_LENGTH - (float) PhotonNetwork.Time - startTime;
+        float time_elapsed = GAME_LENGTH - ((float) PhotonNetwork.Time - startTime);
         int minutes = (int) time_elapsed / 60;
         int seconds = (int) time_elapsed % 60;
         return (minutes.ToString("00") + ":" + seconds.ToString("00"));

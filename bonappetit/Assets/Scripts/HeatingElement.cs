@@ -5,7 +5,7 @@ using UnityEngine;
 public class HeatingElement : MonoBehaviour
 {
     public float tempDelta;
-    public Knob s;
+    public Knob s = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -13,7 +13,7 @@ public class HeatingElement : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
+    { if (s != null) {
         if (s.numSettings == 4) {
             switch(s.val) {
                 case(0):
@@ -39,5 +39,6 @@ public class HeatingElement : MonoBehaviour
                 break;
             }
         }
+    }
     }
 }

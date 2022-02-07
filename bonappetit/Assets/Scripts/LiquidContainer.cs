@@ -44,6 +44,10 @@ public class LiquidContainer : MonoBehaviour
             currentVolume = Mathf.Max(0f, currentVolume - pourRate);
             if (stream.container != null && stream.container.currentVolume < stream.container.capacity) {
                 stream.container.liquidMaterial = liquidMaterial;
+                if (tag == "bearnaise" && stream.container.gameObject.GetComponent<Bearnaise>() == null) {
+                    stream.container.gameObject.tag = "bearnaise";
+                    stream.container.gameObject.AddComponent<Bearnaise>();
+                }
                 stream.container.currentVolume = Mathf.Min(stream.container.currentVolume + pourRate, stream.container.capacity);
                 print("Filling!");
             }

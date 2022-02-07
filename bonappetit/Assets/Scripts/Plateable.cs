@@ -16,7 +16,8 @@ public class Plateable : MonoBehaviour
             joint.connectedBody = other.GetComponentInParent<Rigidbody>();
             joint.breakForce = Mathf.Infinity;
             joint.enableCollision = true;
-            transform.parent = other.transform.parent;
+            print(other.transform);
+            transform.parent = other.transform.parent == null ? other.transform : other.transform.parent;
         }
     }
 
