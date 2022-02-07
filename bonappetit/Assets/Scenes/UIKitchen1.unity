@@ -186,25 +186,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewYorkStripSteak
       objectReference: {fileID: 0}
+    - target: {fileID: 6043800102597769233, guid: 5b6c236d38c59d6439b5f26c293e9802, type: 3}
+      propertyPath: m_TagString
+      value: steak
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b6c236d38c59d6439b5f26c293e9802, type: 3}
---- !u!1 &6041397 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6043800102597769233, guid: 5b6c236d38c59d6439b5f26c293e9802, type: 3}
-  m_PrefabInstance: {fileID: 6041396}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &6041398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6041397}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe6d14dbb06f459b9de4df8c1882c76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &14351194
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -365,25 +352,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewYorkStripSteak (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 6043800102597769233, guid: 5b6c236d38c59d6439b5f26c293e9802, type: 3}
+      propertyPath: m_TagString
+      value: steak
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b6c236d38c59d6439b5f26c293e9802, type: 3}
---- !u!1 &74367505 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6043800102597769233, guid: 5b6c236d38c59d6439b5f26c293e9802, type: 3}
-  m_PrefabInstance: {fileID: 74367504}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &74367506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 74367505}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe6d14dbb06f459b9de4df8c1882c76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &119356676
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1300,6 +1274,8 @@ GameObject:
   - component: {fileID: 304835820}
   - component: {fileID: 304835819}
   - component: {fileID: 304835818}
+  - component: {fileID: 304835822}
+  - component: {fileID: 304835823}
   m_Layer: 0
   m_Name: LeftHand Controller
   m_TagString: Untagged
@@ -1795,6 +1771,30 @@ MonoBehaviour:
       m_Flags: 0
     m_Reference: {fileID: 7779212132400271959, guid: c348712bda248c246b8c49b3db54643f, type: 3}
   m_ButtonPressPoint: 0.5
+--- !u!114 &304835822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304835816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fe6d14dbb06f459b9de4df8c1882c76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &304835823
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 304835816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22a5c5026900a4fd6bba64b3011197f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &307035846
 GameObject:
   m_ObjectHideFlags: 0
@@ -3945,25 +3945,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewYorkStripSteak (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 6043800102597769233, guid: 5b6c236d38c59d6439b5f26c293e9802, type: 3}
+      propertyPath: m_TagString
+      value: steak
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5b6c236d38c59d6439b5f26c293e9802, type: 3}
---- !u!1 &965708952 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6043800102597769233, guid: 5b6c236d38c59d6439b5f26c293e9802, type: 3}
-  m_PrefabInstance: {fileID: 965708951}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &965708953
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 965708952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9fe6d14dbb06f459b9de4df8c1882c76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &993956569
 GameObject:
   m_ObjectHideFlags: 0
@@ -7289,6 +7276,23 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1911500325}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1912395967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1462338288725113100, guid: 0f989777ac8fe4f02939eff421baa775, type: 3}
+  m_PrefabInstance: {fileID: 1035301720}
+  m_PrefabAsset: {fileID: 0}
+--- !u!225 &1912395971
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1912395967}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 0
+  m_BlocksRaycasts: 0
+  m_IgnoreParentGroups: 0
 --- !u!1 &1938359311
 GameObject:
   m_ObjectHideFlags: 0
