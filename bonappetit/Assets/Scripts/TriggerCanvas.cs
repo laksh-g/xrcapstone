@@ -16,7 +16,7 @@ public class TriggerCanvas : MonoBehaviour
     void Start()
     {
         device = InputDevices.GetDeviceAtXRNode(XRNode.LeftHand);
-        canvasGroup = gameObject.transform.GetChild(0).gameObject.GetComponent<CanvasGroup>();
+        canvasGroup = GetComponent<CanvasGroup>();
         isShowing = canvasGroup.alpha >= 1;
     }
 
