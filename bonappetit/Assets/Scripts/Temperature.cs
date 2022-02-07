@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Temperature : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+public class Temperature : MonoBehaviour, IPunObservable
 {
+    [SerializeField]
     public float temp;
+
     public float tempDelta;
     public float maxTemp;
     public bool inFridge;
@@ -18,7 +23,7 @@ public class Temperature : MonoBehaviour
     }
 
     void Update() {
-        if (heater != null && heater.s.val != 0) {
+        if (heater != null && heater.s != null && heater.s.val != 0) {
             tempDelta = heater.tempDelta;
         } else {
             tempDelta = ambientDelta();
@@ -48,6 +53,18 @@ public class Temperature : MonoBehaviour
 
     float tempInC() {
         return temp;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(temp);
+        }
+        else
+        {
+            temp = (int)stream.ReceiveNext();
+        }
     }
 
 
