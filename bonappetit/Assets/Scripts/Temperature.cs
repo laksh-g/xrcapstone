@@ -63,7 +63,7 @@ public class Temperature : MonoBehaviour, IPunObservable
         }
         else
         {
-            temp = (int)stream.ReceiveNext();
+            temp = (float)stream.ReceiveNext();
         }
     }
 
