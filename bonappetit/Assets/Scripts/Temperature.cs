@@ -11,6 +11,8 @@ public class Temperature : MonoBehaviour, IPunObservable
     public float temp;
 
     public float tempDelta;
+
+    [SerializeField]
     public float maxTemp;
     public bool inFridge;
     public float k = .25F; // heat transfer coefficient * surface area
@@ -60,10 +62,12 @@ public class Temperature : MonoBehaviour, IPunObservable
         if (stream.IsWriting)
         {
             stream.SendNext(temp);
+            stream.SendNext(maxTemp);
         }
         else
         {
             temp = (float)stream.ReceiveNext();
+            maxTemp = (float)stream.ReceiveNext();
         }
     }
 
