@@ -27,7 +27,7 @@ public class Steak : MonoBehaviour, IPunObservable
     private MeshRenderer steakMesh;
 
     public Temperature temp = null;
-    [SerializeField]
+
     private HeatingElement heater = null;
     public readonly float[] donenessTemps = {48, 52, 54, 60, 66, 71}; // in Celsius
     public static string[] donenessLabels = {"Blue", "Rare", "Medium Rare", "Medium", "Medium Well", "Well Done"}; 
@@ -113,13 +113,11 @@ public class Steak : MonoBehaviour, IPunObservable
         {
             stream.SendNext(isResting);
             stream.SendNext(searTime);
-            stream.SendNext(heater);
         }
         else
         {
             isResting = (bool)stream.ReceiveNext();
             searTime = (float)stream.ReceiveNext();
-            heater = (HeatingElement)stream.ReceiveNext();
         }
     }
 
