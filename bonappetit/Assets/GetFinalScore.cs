@@ -26,7 +26,9 @@ public class GetFinalScore : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        tm.text = finalScore.ToString();
+        //tm.text = finalScore.ToString();
+        int score = (int) PhotonNetwork.CurrentRoom.CustomProperties["score"];
+        tm.text = score.ToString();
     }
 
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)

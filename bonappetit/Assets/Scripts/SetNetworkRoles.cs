@@ -26,11 +26,11 @@ public class SetNetworkRoles : MonoBehaviourPunCallbacks
         // DefaultRoom roomSettings = nm.getRoomSettings(roomIndex);
         // PhotonNetwork.LoadLevel(roomSettings.sceneIndex);
         // nm.InitializeRoom(roomIndex);
-        if(role == "Head Chef"){
-            Debug.Log("Assigned Master Client");
-            PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
-        }
         PhotonNetwork.NickName = role;
+        // if(role == "Head Chef"){
+        //     Debug.Log("Assigned Master Client");
+        //     PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+        // }
         roomsUI.SetActive(true);
         Debug.Log($"Set role to {PhotonNetwork.NickName}");
     }   

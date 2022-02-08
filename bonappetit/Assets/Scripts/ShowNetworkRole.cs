@@ -37,6 +37,7 @@ public class ShowNetworkRole : MonoBehaviourPunCallbacks
             return;
         }
         tm.text = PhotonNetwork.NickName;
+        Debug.Log(PhotonNetwork.NickName);
         //PhotonPlayer owner = photonView.owner;
 
         // if (owner != null)
