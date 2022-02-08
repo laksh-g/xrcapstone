@@ -50,6 +50,7 @@ public class GameManager : MonoBehaviour
         // send everyone to the game over screen
         Debug.Log("End Game");
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
+            Debug.Log("Final score: " + GetScore());
             ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
             ht["score"] = GetScore();
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
