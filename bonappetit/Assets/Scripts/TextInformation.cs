@@ -45,8 +45,7 @@ public class TextInformation : MonoBehaviour
 
         var cook = selectedObject.GetComponent<Cookable>();
         if (cook != null) {
-            // text.text += "Cook Status: " + cook.??? + '\n';
-            // cookable needs a way for me to get status
+            text.text += "Cook Status: " + cook.GetStatus() + '\n';
         }
 
         var steak = selectedObject.GetComponent<Steak>();
@@ -66,7 +65,7 @@ public class TextInformation : MonoBehaviour
 
         var bearnaise = selectedObject.GetComponent<Bearnaise>();
         if (bearnaise != null) {
-            //text.text += "Heating time: " + bearnaise.???? + " s" + '\n';
+            text.text += "Heating time: " + bearnaise.heatingTime + " s" + '\n';
         }
 
         var knob = selectedObject.GetComponent<Knob>();

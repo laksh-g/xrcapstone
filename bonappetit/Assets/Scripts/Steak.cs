@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Steak : MonoBehaviour
 {
     // metadata used for quality checking
     public Seasonable seasoning = null;
     public float restTime; // in seconds
+    [SerializeField]
     public bool isResting; // true when steak was just taken off heating source
     public GameObject smokePrefab;
     private ParticleSystem smokeInstance;
@@ -18,11 +20,12 @@ public class Steak : MonoBehaviour
 
     private AudioSource a;
 
-    
+    [SerializeField]
     public float searTime = 0;
     private MeshRenderer steakMesh;
 
     public Temperature temp = null;
+    [SerializeField]
     private HeatingElement heater = null;
     public readonly float[] donenessTemps = {48, 52, 54, 60, 66, 71}; // in Celsius
     public static string[] donenessLabels = {"Blue", "Rare", "Medium Rare", "Medium", "Medium Well", "Well Done"}; 
@@ -34,6 +37,7 @@ public class Steak : MonoBehaviour
         steakMesh = GetComponent<MeshRenderer>();
         seasoning = GetComponent<Seasonable>();
         temp = GetComponent<Temperature>();
+        a = GetComponent<AudioSource>();
 
     }
 
@@ -42,8 +46,11 @@ public class Steak : MonoBehaviour
             restTime += Time.deltaTime * 4;
         }
         if (heater != null && heater.s != null) {
+            if (heater.s.val > 0 && !a.isPlaying) {a.Play();}
+            a.volume = .5f;
             if (heater.s.val == 3) {
                 searTime += Time.deltaTime * 4;
+                a.volume = 1f;
                 if (smokeInstance == null) {
                     smokeInstance = Instantiate(smokePrefab, transform.position, Quaternion.Euler(-90, 0, 0), transform).GetComponent<ParticleSystem>();
                 }
@@ -52,8 +59,11 @@ public class Steak : MonoBehaviour
                 Destroy(smokeInstance);
             }
         } else if (smokeInstance != null) {
+            if (a.isPlaying) {a.Stop();}
             smokeInstance.Stop();
             Destroy(smokeInstance);
+        } else if (a.isPlaying) {
+            a.Stop();
         }
         if (searTime <= 120) {
             steakMesh.material.Lerp(raw, done, searTime/120);
@@ -93,6 +103,22 @@ public class Steak : MonoBehaviour
             }
         }
         return -1;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(isResting);
+            stream.SendNext(searTime);
+            stream.SendNext(heater);
+        }
+        else
+        {
+            isResting = (bool)stream.ReceiveNext();
+            searTime = (float)stream.ReceiveNext();
+            heater = (HeatingElement)stream.ReceiveNext();
+        }
     }
 
 

@@ -1,9 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class LiquidContainer : MonoBehaviour
 {
+    [SerializeField]
     public float currentVolume = 0; // in mL
     public float capacity = 0; // in mL
     public bool isFillable = false;
@@ -136,5 +138,17 @@ public class LiquidContainer : MonoBehaviour
 
     void OnTriggerExit(Collider other) {
         scooper = null;
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(currentVolume);
+        }
+        else
+        {
+            currentVolume = (float)stream.ReceiveNext();
+        }
     }
 }

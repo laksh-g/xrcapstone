@@ -5,6 +5,7 @@ using UnityEngine;
 public class Fries : MonoBehaviour
 {
     public Seasonable seasoning;
+    private AudioSource a = null;
     public Temperature temp;
     private ParticleSystem bubbles;
     public bool isCooking;
@@ -21,25 +22,7 @@ public class Fries : MonoBehaviour
         bubbles = GetComponent<ParticleSystem>();
         seasoning = GetComponent<Seasonable>();
         isCooking = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        // Debug.Log("im updating");
-        // // var emission = bubbles.emission;
-
-        // Debug.Log(bubbles.gameObject.name);
-
-        // // var tempCurve = em.enabled;
-        // // tempCurve.constant = 100;
-
-        // // bubbles.emission.enabled = true;
-        // // bubbles.emission.rate = 5f;
-        // if (isCooking)
-        // {
-        //     Debug.Log("im cooking");
-        // }
+        a = GetComponent<AudioSource>();
     }
 
     void OnTriggerEnter(Collider other)
@@ -48,6 +31,7 @@ public class Fries : MonoBehaviour
         if (other.gameObject.name == "Oil" && temp.tempDelta > 0)
         {
             bubbles.Play();
+            if (!a.isPlaying) {a.Play();}
             heater = other.GetComponent<HeatingElement>();
             isCooking = true;
         }
@@ -58,6 +42,7 @@ public class Fries : MonoBehaviour
         Debug.Log("Staying");
         if (other.gameObject.name == "Oil" && temp.tempDelta > 0)
         {
+            if (!a.isPlaying) {a.Play(); }
             if (!bubbles.isPlaying)
             {
                 bubbles.Play();
@@ -77,6 +62,7 @@ public class Fries : MonoBehaviour
     {
         if (other.gameObject.name == "Oil")
         {
+            if (a.isPlaying) {a.Stop();}
             bubbles.Stop();
             heater = null;
             isCooking = false;

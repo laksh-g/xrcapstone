@@ -25,6 +25,10 @@ public class GameManager : MonoBehaviour
 
     public bool startGame = false;
 
+    public AudioClip startGameSound;
+
+    public AudioSource a = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +36,8 @@ public class GameManager : MonoBehaviour
     }
 
     public void StartGame() {
-        InvokeRepeating("DrawOrder", 0f, 20f);
+        InvokeRepeating("DrawNewOrder", 0f, 20f);
+        a.PlayOneShot(startGameSound);
         isActive = true;
         Destroy(startButton);
         startButton = null;
@@ -48,7 +53,9 @@ public class GameManager : MonoBehaviour
     void EndGame() {
         // send everyone to the game over screen
         Debug.Log("End Game");
-        PhotonNetwork.LoadLevel("Endgame");
+        if (PhotonNetwork.IsMasterClient) {
+            PhotonNetwork.LoadLevel("Endgame");
+        }
 
     }
 
@@ -71,9 +78,17 @@ public class GameManager : MonoBehaviour
             orderNum++;
             Order newOrder = new Order(orderNum);
             openOrders.Add(orderNum, newOrder);
-
+            a.PlayOneShot(startGameSound);
             createTicket(newOrder);
         }
+    }
+
+    public void DrawFeedback(int orderNum, string comments) {
+        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, Quaternion.identity);
+
+        newTicket.GetComponent<Printable>().orderNum = orderNum;
+        newTicket.GetComponent<Printable>().orderString = comments;
+        newTicket.tag = "feedback";
     }
 
     public void RedrawLastOrder()
@@ -84,6 +99,13 @@ public class GameManager : MonoBehaviour
         createTicket(order);
     }
 
+    public void RedrawAllOrders() {
+        foreach(Order ticket in openOrders) {
+            Destroy(ticket.gObj);
+            createTicket(ticket);
+        }
+    }
+
     public bool canMakeMore()
     {
         return openOrders.Count < MAX_ORDERS;
@@ -91,7 +113,7 @@ public class GameManager : MonoBehaviour
 
     private void createTicket(Order newOrder)
     {
-        GameObject newTicket = Instantiate(ticketPrefab, ticketSpawn.position, Quaternion.identity);
+        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, Quaternion.identity);
 
         newTicket.GetComponent<Printable>().orderNum = newOrder.orderNum;
         newTicket.GetComponent<Printable>().orderString = newOrder.ToString();
@@ -106,12 +128,12 @@ public class GameManager : MonoBehaviour
 
     public (float, string) EvaluateOrder(HashSet<GameObject> plates, int orderNum) {
         if (!openOrders.ContainsKey(orderNum)) {
-            return (0f, "Old order sent, wasted food");
+            return (0f, "Comments: Old order sent, wasted food");
         }
         Order order = (Order)openOrders[orderNum];
         print("Received order" + order);
         float total = 0;
-        string orderComments = "";
+        string orderComments = "Comments: ";
         float maxScore;
         string matchComments = "";
         string plateComments = "";
@@ -154,6 +176,7 @@ public class GameManager : MonoBehaviour
         total /= order.partySize;
         score = (score + total) / 2;
         coversCompleted += order.partySize;
+        DrawFeedback(orderNum, orderComments);
         openOrders.Remove(orderNum);
         return (total, orderComments);
     }
@@ -168,7 +191,7 @@ public class GameManager : MonoBehaviour
         {
             this.orderNum = orderNum;
 
-            float rand = Random.Range(0, 1);
+            float rand = Random.Range(0f, 1f);
             if (rand < .1)
             {
                 partySize = 1;
@@ -233,7 +256,7 @@ public class GameManager : MonoBehaviour
             s = new SteakOrder();
             f = new FryOrder();
             b = new BearnaiseOrder();
-            hasSauce = Random.Range(0, 1) > .20;
+            hasSauce = Random.Range(0f, 1f) > .20;
         }
         public (float, string) Evaluate(GameObject p) {
             float total = 0;
@@ -366,10 +389,10 @@ public class GameManager : MonoBehaviour
 
         public FryOrder()
         {
-            float rand = Random.Range(0, 1);
+            float rand = Random.Range(0f, 1f);
             noSalt = rand < .80 ? false : true;
             noParsley = rand > .1 ? false : true;
-            rand = Random.Range(0, 1);
+            rand = Random.Range(0f, 1f);
             extraCrispy = rand > .8 ? true : false;
         }
 

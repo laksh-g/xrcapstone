@@ -11,18 +11,24 @@ public class Dispenser : MonoBehaviour
     public float timeout = 10;
     public bool isActivated = false;
     private bool isTimeout = false;
-        
+    
+    private AudioSource a = null;
+    public AudioClip dispenseSound = null;
     private float timer = 0;
     // Start is called before the first frame update
     void Start()
     {
-        
+        a = GetComponent<AudioSource>();
+        if (a == null) {
+            a = gameObject.AddComponent<AudioSource>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if(isActivated) {
+            a.PlayOneShot(dispenseSound);
             Dispense();
             isActivated = false;
             isTimeout = true;

@@ -20,6 +20,16 @@ TagManager:
   - ladle
   - ramekin
   - fry basket
+  - order_desc_label
+  - order_num_label
+  - reprint_button
+  - print_button
+  - knob
+  - grill
+  - frier
+  - heater
+  - fry dispenser
+  - stove
   layers:
   - Default
   - TransparentFX
