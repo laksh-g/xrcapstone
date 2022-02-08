@@ -565,8 +565,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dispensePoint: {fileID: 4986996718280079315}
-  dispensablePrefab: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
-  batchSize: 20
+  dispensablePrefab: {fileID: 318547095010741454, guid: 7cbb46de6b54ecf40be877f588174634, type: 3}
+  batchSize: 2
   timeout: 10
   isActivated: 0
   dispenseSound: {fileID: 8300000, guid: bc6650797ba0f0c43a75c7d9a111fd6a, type: 3}
