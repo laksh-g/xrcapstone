@@ -8,13 +8,13 @@ using Photon.Realtime;
 public class Temperature : MonoBehaviour, IPunObservable
 {
     [SerializeField]
-    public float temp;
+    public float temp = 21;
 
     public float tempDelta;
 
     [SerializeField]
     public float maxTemp;
-    public bool inFridge;
+    public bool inFridge = false;
     public float k = .25F; // heat transfer coefficient * surface area
     public HeatingElement heater = null;
     // Start is called before the first frame update

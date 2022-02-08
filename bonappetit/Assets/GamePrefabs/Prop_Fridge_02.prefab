@@ -708,8 +708,8 @@ GameObject:
   - component: {fileID: 3158798008742906212}
   - component: {fileID: 3158798008742906215}
   - component: {fileID: 3158798008742906214}
-  - component: {fileID: 3158798008742906209}
   - component: {fileID: 3158798008742906208}
+  - component: {fileID: 5170764864900641011}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -804,12 +804,27 @@ Rigidbody:
   m_Mass: 1
   m_Drag: 0
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3158798008742906209
+--- !u!138 &3158798008742906208
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158798008742906210}
+  m_ConnectedBody: {fileID: 3158798008759971071}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!114 &5170764864900641011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -818,7 +833,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3158798008742906210}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f3ab4a7e9ed85942aad730f212a2322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -924,21 +939,7 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!138 &3158798008742906208
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3158798008742906210}
-  m_ConnectedBody: {fileID: 3158798008759971071}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  grabSound: {fileID: 0}
 --- !u!1 &3158798008819138534
 GameObject:
   m_ObjectHideFlags: 0
@@ -952,8 +953,8 @@ GameObject:
   - component: {fileID: 3158798008819138536}
   - component: {fileID: 3158798008819138539}
   - component: {fileID: 3158798008819138538}
-  - component: {fileID: 3158798008819138533}
   - component: {fileID: 3158798008819138532}
+  - component: {fileID: 4845121101719938410}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -1053,7 +1054,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3158798008819138533
+--- !u!138 &3158798008819138532
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158798008819138534}
+  m_ConnectedBody: {fileID: 3158798009020533800}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!114 &4845121101719938410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1062,7 +1078,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3158798008819138534}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f3ab4a7e9ed85942aad730f212a2322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -1168,21 +1184,7 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!138 &3158798008819138532
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3158798008819138534}
-  m_ConnectedBody: {fileID: 3158798009020533800}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  grabSound: {fileID: 0}
 --- !u!1 &3158798009949586740
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,8 +1198,8 @@ GameObject:
   - component: {fileID: 3158798009949586750}
   - component: {fileID: 3158798009949586745}
   - component: {fileID: 3158798009949586744}
-  - component: {fileID: 3158798009949586747}
   - component: {fileID: 3158798009949586746}
+  - component: {fileID: 2254773221621548542}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: Untagged
@@ -1297,7 +1299,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3158798009949586747
+--- !u!138 &3158798009949586746
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158798009949586740}
+  m_ConnectedBody: {fileID: 3158798010431434273}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!114 &2254773221621548542
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1306,7 +1323,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3158798009949586740}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f3ab4a7e9ed85942aad730f212a2322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -1412,21 +1429,7 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!138 &3158798009949586746
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3158798009949586740}
-  m_ConnectedBody: {fileID: 3158798010431434273}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  grabSound: {fileID: 0}
 --- !u!1 &3158798010634359556
 GameObject:
   m_ObjectHideFlags: 0
@@ -1440,8 +1443,8 @@ GameObject:
   - component: {fileID: 3158798010634359566}
   - component: {fileID: 3158798010634359561}
   - component: {fileID: 3158798010634359560}
-  - component: {fileID: 3158798010634359563}
   - component: {fileID: 3158798010634359562}
+  - component: {fileID: 2212617826859447680}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1541,7 +1544,22 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &3158798010634359563
+--- !u!138 &3158798010634359562
+FixedJoint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3158798010634359556}
+  m_ConnectedBody: {fileID: 3158798008888376047}
+  m_ConnectedArticulationBody: {fileID: 0}
+  m_BreakForce: Infinity
+  m_BreakTorque: Infinity
+  m_EnableCollision: 0
+  m_EnablePreprocessing: 1
+  m_MassScale: 1
+  m_ConnectedMassScale: 1
+--- !u!114 &2212617826859447680
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1550,7 +1568,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3158798010634359556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0ad34abafad169848a38072baa96cdb2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4f3ab4a7e9ed85942aad730f212a2322, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_InteractionManager: {fileID: 0}
@@ -1656,21 +1674,7 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
---- !u!138 &3158798010634359562
-FixedJoint:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3158798010634359556}
-  m_ConnectedBody: {fileID: 3158798008888376047}
-  m_ConnectedArticulationBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_EnableCollision: 0
-  m_EnablePreprocessing: 1
-  m_MassScale: 1
-  m_ConnectedMassScale: 1
+  grabSound: {fileID: 0}
 --- !u!1 &3872875107804080108
 GameObject:
   m_ObjectHideFlags: 0

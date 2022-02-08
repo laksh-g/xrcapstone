@@ -9,12 +9,15 @@ public class Shaker : MonoBehaviour
     Rigidbody r = null;
 
     private ParticleSystem p = null;
+    private AudioSource a = null;
+    public AudioClip shakeSound = null;
     private readonly float pourRate = 0.05f; // in grams
     // Start is called before the first frame update
     void Start()
     {
         r = GetComponent<Rigidbody>();
         p = GetComponentInChildren<ParticleSystem>();
+        a = GetComponent<AudioSource>();
     }
 
     void FixedUpdate() {
@@ -40,6 +43,7 @@ public class Shaker : MonoBehaviour
             if (isPouring != check) {
                 isPouring = check; 
                 if (isPouring) {
+                    a.PlayOneShot(shakeSound);
                     print("Pouring!");
                     p.Play();
                 } else {

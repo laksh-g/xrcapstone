@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Pan : MonoBehaviour
 {
+    
     HeatingElement thisHeater = null;
     HeatingElement otherHeater = null;
     // Start is called before the first frame update

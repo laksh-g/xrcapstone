@@ -6,8 +6,6 @@ public class Plateable : MonoBehaviour
 {
     private Transform cachedParent = null;
     private FixedJoint joint = null;
-    // Start is called before the first frame update
-
     void OnTriggerEnter (Collider other) {
         if(other.gameObject.tag == "plate" && joint == null) {
             print("Acquired plate");
@@ -20,10 +18,6 @@ public class Plateable : MonoBehaviour
             transform.parent = other.transform.parent == null ? other.transform : other.transform.parent;
         }
     }
-
-    //void OnTriggerStay(Collider other) {
-     //   OnTriggerEnter(other);
-    //}
 
     public void Unstick() {
         if (joint != null) {

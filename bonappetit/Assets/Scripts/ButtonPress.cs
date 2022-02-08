@@ -9,16 +9,20 @@ public class ButtonPress : MonoBehaviour
     private TicketMaster parent;
     public Material matOn;
     public Material matOff;
+    private AudioSource a = null;
+    public AudioClip buttonSound = null;
 
     void Start()
     {
         initPos = transform.position;
         mesh = GetComponent<MeshRenderer>();
         parent = GetComponent<Transform>().parent.gameObject.GetComponent<TicketMaster>();
+        a = GetComponentInParent<AudioSource>();
     }
 
     public void SelectEffectEnter()
     {
+        a.PlayOneShot(buttonSound);
         transform.position = new Vector3(initPos.x, initPos.y - 0.01f, initPos.z);
         mesh.material = matOn;
     }

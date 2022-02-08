@@ -13,9 +13,17 @@ public class TicketMaster : MonoBehaviour
     public bool hasNewOrder;
     public GameManager gm;
 
+    private AudioSource a = null;
+    public AudioClip dispenseSound = null;
+
     void Start()
     {
         isWait = false;
+        a = GetComponent<AudioSource>();
+    }
+
+    public void PlayTicketSound() {
+        a.PlayOneShot(dispenseSound);
     }
 
     public IEnumerator printNewTicket()
@@ -25,7 +33,7 @@ public class TicketMaster : MonoBehaviour
 
         isWait = true;
         turnRedLighOn();
-        gm.DrawNewOrder();
+        gm.RedrawAllOrders();
         yield return new WaitForSeconds(2);
         turnLighOff();
         isWait = false;

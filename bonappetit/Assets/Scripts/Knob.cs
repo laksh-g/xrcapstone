@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
 
 public class Knob : MonoBehaviour
 {
+    [SerializeField]
     public int val; // 0 - numSettings
     public int numSettings;
     public Light greenLight;
@@ -24,6 +26,9 @@ public class Knob : MonoBehaviour
     void Start()
     {
     a = GetComponent<AudioSource>();
+    if (a == null) {
+        a = gameObject.AddComponent<AudioSource>();
+    }
     val = 0; // off 
     if (greenLight != null && redLight != null) {
         redLight.enabled = true;
@@ -61,5 +66,17 @@ public class Knob : MonoBehaviour
         }
 
         return val.ToString();
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(val);
+        }
+        else
+        {
+            val = (int)stream.ReceiveNext();
+        }
     }
 }
