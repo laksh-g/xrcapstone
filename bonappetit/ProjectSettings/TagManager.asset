@@ -16,12 +16,10 @@ TagManager:
   - parsley
   - order
   - conductor
-  - print_button
-  - order_num_label
-  - order_desc_label
-  - order_light
-  - surface
-  - reprint_button
+  - truffle oil
+  - ladle
+  - ramekin
+  - fry basket
   layers:
   - Default
   - TransparentFX

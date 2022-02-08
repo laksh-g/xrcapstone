@@ -57,11 +57,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3076193224301785251, guid: 8d76e82ae309f834385eb55006ab035f, type: 3}
       propertyPath: m_Name
-      value: Pepper
+      value: Pepper Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3076193224301785251, guid: 8d76e82ae309f834385eb55006ab035f, type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 3076193224301785251, guid: 8d76e82ae309f834385eb55006ab035f, type: 3}
+      propertyPath: m_TagString
+      value: pepper
       objectReference: {fileID: 0}
     - target: {fileID: 3076193224301785253, guid: 8d76e82ae309f834385eb55006ab035f, type: 3}
       propertyPath: m_Materials.Array.data[0]

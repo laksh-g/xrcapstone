@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Photon.Realtime;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -8,6 +9,9 @@ public class GameManager : MonoBehaviour
     public int coversCompleted;
     public Transform ticketSpawn;
     public GameObject ticketPrefab;
+    public GameObject startButton;
+
+    public Clock clock = null;
     private float timer;
     private float score;
     private bool isActive;
@@ -15,19 +19,50 @@ public class GameManager : MonoBehaviour
     private Hashtable openOrders = new Hashtable();
     private readonly int MAX_ORDERS = 3;
 
+    private static int GAME_LENGTH = 600;
+
+    private float startTime;
+
+    public bool startGame = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        // InvokeRepeating("DrawNewOrder", 0f, 20f);
+        //PhotonNetwork.AutomaticallySyncScene = true; 
+    }
+
+    public void StartGame() {
+        InvokeRepeating("DrawOrder", 0f, 20f);
         isActive = true;
+        Destroy(startButton);
+        startButton = null;
+        startTime = (float) PhotonNetwork.Time;
+        clock.startTime = startTime;
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
+            ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
+            ht["startTime"] = startTime;
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+        }
+    }
+
+    void EndGame() {
+        // send everyone to the game over screen
+        if(PhotonNetwork.IsMasterClient)
+        {
+            PhotonNetwork.LoadLevel("Endgame");
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isActive)
-        {
-            timer += Time.deltaTime;
+        if (isActive && PhotonNetwork.Time - startTime > GAME_LENGTH) {
+            EndGame();
+        }
+
+        if (startGame && !isActive) {
+            StartGame();
         }
     }
 
@@ -71,10 +106,8 @@ public class GameManager : MonoBehaviour
         return score;
     }
 
-    public (float, string) EvaluateOrder(HashSet<Plate> plates, int orderNum)
-    {
-        if (!openOrders.ContainsKey(orderNum))
-        {
+    public (float, string) EvaluateOrder(HashSet<GameObject> plates, int orderNum) {
+        if (!openOrders.ContainsKey(orderNum)) {
             return (0f, "Old order sent, wasted food");
         }
         Order order = (Order)openOrders[orderNum];
@@ -87,8 +120,7 @@ public class GameManager : MonoBehaviour
         float currScore;
         HashSet<Orderable> remainingCovers = new HashSet<Orderable>(order.contents);
         Orderable closestMatch;
-        foreach (Plate p in plates)
-        {
+        foreach (GameObject p in plates) {
             closestMatch = null;
             maxScore = 0;
             foreach (Orderable o in remainingCovers)
@@ -205,8 +237,7 @@ public class GameManager : MonoBehaviour
             b = new BearnaiseOrder();
             hasSauce = Random.Range(0, 1) > .20;
         }
-        public (float, string) Evaluate(Plate p)
-        {
+        public (float, string) Evaluate(GameObject p) {
             float total = 0;
             string comments = "";
             Steak steak = null;

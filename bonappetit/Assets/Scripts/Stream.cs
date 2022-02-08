@@ -12,6 +12,8 @@ public class Stream : MonoBehaviour
 
     public LiquidContainer container = null;
 
+    public Seasonable foodItem = null;
+
     void Awake() {
         line = GetComponent<LineRenderer>();
         splash = GetComponentInChildren<ParticleSystem>();
@@ -58,6 +60,12 @@ public class Stream : MonoBehaviour
             container = f;
         } else {
             container = null;
+        }
+        Seasonable s = hit.collider.GetComponent<Seasonable>();
+        if (s != null) {
+            foodItem = s;
+        } else {
+            foodItem = null;
         }
         Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(10.0f);
         return endPoint;

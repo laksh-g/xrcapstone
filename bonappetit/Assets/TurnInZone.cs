@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class TurnInZone : MonoBehaviour
 {
     public GameManager gm = null;
 
-    public HashSet<Plate> contents = new HashSet<Plate>();
+    public HashSet<GameObject> contents = new HashSet<GameObject>();
     public bool activate = false;
     // Start is called before the first frame update
     void Start()
@@ -24,10 +25,14 @@ public class TurnInZone : MonoBehaviour
 
     void OnTriggerEnter(Collider other) {
         if (other.tag == "plate") {
-            contents.Add(other.gameObject.GetComponent<Plate>());
+            GameObject p = other.gameObject;
+            if (p == null) {
+                print("can't harvest plate");
+            }
+            contents.Add(p);
         }
         if (other.tag == "order") {
-            TurnIn(other.GetComponent<Printable>().orderNum);
+            TurnIn(other.gameObject.GetComponent<Printable>().orderNum);
         }
     }
 
@@ -37,15 +42,16 @@ public class TurnInZone : MonoBehaviour
         if (contents != null && contents.Count > 0) {
             (score, comments) = gm.EvaluateOrder(contents, orderNum);
             print(score + " " + comments);
-            foreach (Plate child in contents) {
-                Destroy(child.gameObject);
+            foreach (GameObject child in contents.ToList()) {
+                contents.Remove(child);
+                Destroy(child);
             }
         }
     }
 
     void OnTriggerExit(Collider other) {
         if (other.tag == "plate") {
-            contents.Remove(other.GetComponent<Plate>());
+            contents.Remove(other.gameObject);
         }
     }
 }

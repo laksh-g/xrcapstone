@@ -27,10 +27,20 @@ public class Cookable : MonoBehaviour
             mesh.material = burnt;
         }
         else if(temp.maxTemp >= cookedTemp) {
-            mesh.material = cooked;
+            mesh.material.Lerp(cooked, burnt, (temp.maxTemp - cookedTemp) / (cookedTemp * .15f));
         } else {
             // transition between textures
-            mesh.material = raw;
+            mesh.material.Lerp(raw, cooked, temp.maxTemp / cookedTemp);
         }
+    }
+
+    public string GetStatus() {
+        if (temp.maxTemp >= cookedTemp * 1.15F) {
+            return "Overdone";
+        }
+        if (temp.maxTemp >= cookedTemp) {
+            return "Done";
+        }
+        return "Underdone";
     }
 }
