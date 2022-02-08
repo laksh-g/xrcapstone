@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7205445888798353007}
   - component: {fileID: 5897051721000968733}
   - component: {fileID: 5233907655166867629}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: order desc
   m_TagString: order_desc_label
   m_Icon: {fileID: 0}
@@ -243,7 +243,8 @@ GameObject:
   - component: {fileID: 6908693205398306171}
   - component: {fileID: 3574935898561670647}
   - component: {fileID: 5406759344964749146}
-  m_Layer: 0
+  - component: {fileID: 2619507647506718056}
+  m_Layer: 8
   m_Name: Ticket
   m_TagString: order
   m_Icon: {fileID: 0}
@@ -389,7 +390,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 1
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 2619507647506718056}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -509,6 +511,22 @@ MonoBehaviour:
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
   grabSound: {fileID: 0}
+--- !u!114 &2619507647506718056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3568234082089902276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 1
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &6611112774987117735
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +539,7 @@ GameObject:
   - component: {fileID: 4137567510632947324}
   - component: {fileID: 271257366472836394}
   - component: {fileID: 6836978519051398307}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Order title
   m_TagString: order_num_label
   m_Icon: {fileID: 0}
