@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Transform ticketSpawn;
     public GameObject ticketPrefab;
     public GameObject startButton;
+    public XRInteractionManager im = null;
 
     public Clock clock = null;
     private float timer;
@@ -31,6 +33,9 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //PhotonNetwork.AutomaticallySyncScene = true; 
+        if (PhotonNetwork.IsMasterClient) {
+            im.enabled = true;
+        }
     }
 
     public void StartGame() {
@@ -51,7 +56,10 @@ public class GameManager : MonoBehaviour
     void EndGame() {
         // send everyone to the game over screen
         Debug.Log("End Game");
-        if (PhotonNetwork.IsMasterClient) {
+        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
+            ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
+            ht["score"] = GetScore();
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
             PhotonNetwork.LoadLevel("Endgame");
         }
 

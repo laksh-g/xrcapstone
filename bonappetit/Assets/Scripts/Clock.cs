@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using TMPro;
+using UnityEngine.XR.Interaction.Toolkit;
 public class Clock : MonoBehaviourPunCallbacks
 {
     public float startTime = -1;
+
+    public bool gameIsActive = false;
     private TextMeshPro t = null;
 
     public static int GAME_LENGTH = 240;
+
+    public XRInteractionManager im = null;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +25,8 @@ public class Clock : MonoBehaviourPunCallbacks
     void Update()
     {
         if (startTime != -1) {
+            gameIsActive = true;
+            im.enabled = true;
             t.text = Text();
         }
     }

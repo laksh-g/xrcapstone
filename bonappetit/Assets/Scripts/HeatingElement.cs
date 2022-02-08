@@ -20,13 +20,13 @@ public class HeatingElement : MonoBehaviour
                 tempDelta = 0f;
                 break;
                 case(1):
-                tempDelta = .5f;
+                tempDelta = .1f;
                 break;
                 case(2):
-                tempDelta = 1f;
+                tempDelta = .5f;
                 break;
                 case(3):
-                tempDelta = 3f;
+                tempDelta = 1f;
                 break;
             }
         } else if (s.numSettings == 2) {
