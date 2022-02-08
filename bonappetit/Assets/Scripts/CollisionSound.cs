@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollisionSound : MonoBehaviour
 {
     private AudioSource a;
-    public AudioClip collisionSound;
+    public AudioClip collisionSound = null;
     // Start is called before the first frame update
 
     void Awake() {
@@ -16,6 +16,8 @@ public class CollisionSound : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
-        a.PlayOneShot(collisionSound);
+        if (collisionSound != null) {
+            a.PlayOneShot(collisionSound);
+        }
     }
 }
