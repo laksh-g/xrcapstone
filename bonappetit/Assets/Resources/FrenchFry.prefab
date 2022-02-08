@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6916423068611073260}
   - component: {fileID: 6916423068611073262}
   - component: {fileID: 6916423068611073263}
+  - component: {fileID: 2121258233264979130}
   - component: {fileID: 6916423068611073256}
   - component: {fileID: 6916423068611073257}
   - component: {fileID: 6916423068611073258}
@@ -155,6 +156,22 @@ MonoBehaviour:
   seasoning: {fileID: 0}
   temp: {fileID: 0}
   isCooking: 0
+--- !u!114 &2121258233264979130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6916423068611073265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db88ea5d32dadce4d9d74eb47387f81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  salt: 0
+  pepper: 0
+  parsley: 0
+  truffleOil: 0
 --- !u!198 &6916423068611073256
 ParticleSystem:
   m_ObjectHideFlags: 0
