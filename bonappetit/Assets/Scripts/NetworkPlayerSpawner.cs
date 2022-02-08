@@ -14,10 +14,10 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     public Transform STransform;
     public Transform RTransform;
 
-    private GameObject textGo;
-    private TMP_Text tm;
-    public bool DisableOnOwnObjects;
-    private PhotonView photonView;
+    // private GameObject textGo;
+    // private TMP_Text tm;
+    // public bool DisableOnOwnObjects;
+    // private PhotonView photonView;
 
     public override void OnJoinedRoom()
     {
@@ -42,24 +42,24 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", HCTransform.position, HCTransform.rotation);
         }
 
-        photonView = GetComponent<PhotonView>();
-        if (tm == null) //wenn textmesh
-        {
-            textGo = spawnedPlayerPrefab.GetComponentInChildren<TMP_Text>().gameObject;
-            tm = textGo.GetComponent<TMP_Text>();
-        }
+        // photonView = GetComponent<PhotonView>();
+        // if (tm == null) //wenn textmesh
+        // {
+        //     textGo = spawnedPlayerPrefab.GetComponentInChildren<TMP_Text>().gameObject;
+        //     tm = textGo.GetComponent<TMP_Text>();
+        // }
 
-        bool showInfo = !this.DisableOnOwnObjects || photonView.IsMine;
-        if (textGo != null)
-        {
-            textGo.SetActive(showInfo);
-        }
-        if (!showInfo)
-        {
-            return;
-        }
+        // bool showInfo = !this.DisableOnOwnObjects || photonView.IsMine;
+        // if (textGo != null)
+        // {
+        //     textGo.SetActive(showInfo);
+        // }
+        // if (!showInfo)
+        // {
+        //     return;
+        // }
 
-        tm.text = PhotonNetwork.NickName;
+        // tm.text = PhotonNetwork.NickName;
     }
 
     public override void OnLeftRoom()
