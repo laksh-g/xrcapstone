@@ -4,18 +4,32 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 
+
 public class SetNetworkRoles : MonoBehaviourPunCallbacks
 {
-    public GameObject roomUI;
-
+    public NetworkManager nm;
+    public GameObject selectRoles;
+    private int roomIndex;
     void Start()
     {
         //SetNickname()
     }
 
-    public void SetNickname(string role)
+    public void setRoomIndex(int index)
     {
-        roomUI.SetActive(true);
+        roomIndex = index;
+        selectRoles.SetActive(true);
+    }
+
+    public void SetNickname(string role)
+    {   
+        DefaultRoom roomSettings = nm.getRoomSettings(roomIndex);
+        PhotonNetwork.LoadLevel(roomSettings.sceneIndex);
+        nm.InitializeRoom(roomIndex);
+        if(role == "Head Chef"){
+            Debug.Log("Assigned Master Client");
+            PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+        }
         PhotonNetwork.NickName = role;
         Debug.Log($"Set role to {PhotonNetwork.NickName}");
     }   

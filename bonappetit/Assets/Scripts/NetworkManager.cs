@@ -19,7 +19,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public List<DefaultRoom> defaultRooms;
 
-    public GameObject selectRoles;
+    public GameObject roomsUI;
 
     public void ConnectedToServer()
     {
@@ -38,16 +38,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     {
         base.OnJoinedLobby();
         Debug.Log("Lobby Joined");
-        selectRoles.SetActive(true);
+        roomsUI.SetActive(true);
     }
 
-    public void InitializeRoom(int defaultRoomIndex)
+    public DefaultRoom getRoomSettings(int idx){
+        return defaultRooms[idx];
+    }
+
+    public DefaultRoom InitializeRoom(int defaultRoomIndex)
     {
         DefaultRoom roomSettings = defaultRooms[defaultRoomIndex];
 
         // Loading the rooms
-        PhotonNetwork.LoadLevel(roomSettings.sceneIndex);
-
+        //PhotonNetwork.LoadLevel(roomSettings.sceneIndex);
         // Creating the rooms
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = (byte)roomSettings.maxPlayer;
@@ -55,6 +58,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         roomOptions.IsOpen = true;
 
         PhotonNetwork.JoinOrCreateRoom(roomSettings.Name, roomOptions, TypedLobby.Default);
+
+        return roomSettings;
     }
 
     public override void OnJoinedRoom()
