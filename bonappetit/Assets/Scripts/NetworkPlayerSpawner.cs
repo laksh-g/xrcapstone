@@ -29,6 +29,8 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
             rig.RotateAroundCameraUsingOriginUp(-90);
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", RTransform.position, RTransform.rotation);
         } else{
+            PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+            
             rig.MoveCameraToWorldLocation(HCTransform.position);
             rig.RotateAroundCameraUsingOriginUp(180);
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", HCTransform.position, HCTransform.rotation);
