@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("Final score: " + GetScore());
             ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
             ht["score"] = GetScore();
+            ht["covers"] = coversCompleted;
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
             PhotonNetwork.LoadLevel("Endgame");
         }
@@ -65,6 +66,10 @@ public class GameManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient) {
             im.enabled = true;
+            gameObject.SetActive(true);
+        } else {
+            im.enabled = false;
+            gameObject.SetActive(false);
         }
         if (isActive && PhotonNetwork.Time - startTime > Clock.GAME_LENGTH) {
             EndGame();
