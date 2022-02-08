@@ -6695,6 +6695,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 52
       objectReference: {fileID: 0}
+    - target: {fileID: 7674705407205792937, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
+      propertyPath: m_TagString
+      value: knob
+      objectReference: {fileID: 0}
     - target: {fileID: 7733091100293383396, guid: 08efa402f9819dd408a5950c7c0f5ed2, type: 3}
       propertyPath: sceneViewId
       value: 42

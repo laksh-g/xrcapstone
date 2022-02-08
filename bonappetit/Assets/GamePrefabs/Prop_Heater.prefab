@@ -818,7 +818,7 @@ GameObject:
   - component: {fileID: 3646510841472798491}
   m_Layer: 0
   m_Name: Prop_Heater
-  m_TagString: Untagged
+  m_TagString: heater
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -947,7 +947,7 @@ GameObject:
   - component: {fileID: 1179192419}
   m_Layer: 0
   m_Name: Prop_Heater_p06
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2039,7 +2039,7 @@ GameObject:
   - component: {fileID: 8749157721840087458}
   - component: {fileID: 8749157721840087470}
   - component: {fileID: 8785774194998350440}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FrontLeftSauce
   m_TagString: bearnaise
   m_Icon: {fileID: 0}
@@ -2182,7 +2182,8 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   observableSearch: 2
-  ObservedComponents: []
+  ObservedComponents:
+  - {fileID: 8749157721840087470}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -2728,7 +2729,7 @@ GameObject:
   - component: {fileID: 1493399662}
   m_Layer: 0
   m_Name: Prop_Heater_p07
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

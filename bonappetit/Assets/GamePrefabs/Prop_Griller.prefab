@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 1704973562}
   m_Layer: 0
   m_Name: Prop_Griller_p03
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1114,7 +1114,7 @@ GameObject:
   - component: {fileID: 2332883958067928513}
   m_Layer: 0
   m_Name: Prop_Griller
-  m_TagString: Untagged
+  m_TagString: grill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1222,7 +1222,7 @@ GameObject:
   - component: {fileID: 1407331813}
   m_Layer: 0
   m_Name: Prop_Griller_p02
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -2358,7 +2358,7 @@ GameObject:
   - component: {fileID: 1781778082}
   m_Layer: 0
   m_Name: Prop_Stove_p04
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2678,7 +2678,7 @@ GameObject:
   - component: {fileID: 4350956363720732670}
   m_Layer: 0
   m_Name: Prop_Stove
-  m_TagString: Untagged
+  m_TagString: stove
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2804,7 +2804,7 @@ GameObject:
   - component: {fileID: 602962153}
   m_Layer: 0
   m_Name: Prop_Stove_p07
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3263,7 +3263,7 @@ GameObject:
   - component: {fileID: 1922767462}
   m_Layer: 0
   m_Name: Prop_Stove_p03
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3589,7 +3589,7 @@ GameObject:
   - component: {fileID: 1019786139}
   m_Layer: 0
   m_Name: Prop_Stove_p06
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4049,7 +4049,7 @@ GameObject:
   - component: {fileID: 2036628511}
   m_Layer: 0
   m_Name: Prop_Stove_p05
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4642,7 +4642,7 @@ GameObject:
   - component: {fileID: 1653268999}
   m_Layer: 0
   m_Name: Prop_Stove_p02
-  m_TagString: Untagged
+  m_TagString: knob
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
