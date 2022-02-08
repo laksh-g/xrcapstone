@@ -47,10 +47,8 @@ public class GameManager : MonoBehaviour
 
     void EndGame() {
         // send everyone to the game over screen
-        if(PhotonNetwork.IsMasterClient)
-        {
-            PhotonNetwork.LoadLevel("Endgame");
-        }
+        Debug.Log("End Game");
+        PhotonNetwork.LoadLevel("Endgame");
 
     }
 

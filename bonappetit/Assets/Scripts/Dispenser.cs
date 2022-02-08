@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Dispenser : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class Dispenser : MonoBehaviour
     public void Dispense() {
         if (!isTimeout) {
             for(int i = 0; i < batchSize; i++) {
-                Instantiate(dispensablePrefab, dispensePoint.position, Quaternion.identity);
+                PhotonNetwork.Instantiate(dispensablePrefab.name, dispensePoint.position, Quaternion.identity);
             }
             isTimeout = true;
         }

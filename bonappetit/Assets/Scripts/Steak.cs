@@ -41,7 +41,7 @@ public class Steak : MonoBehaviour
         if (isResting) {
             restTime += Time.deltaTime * 4;
         }
-        if (heater != null) {
+        if (heater != null && heater.s != null) {
             if (heater.s.val == 3) {
                 searTime += Time.deltaTime * 4;
                 if (smokeInstance == null) {
