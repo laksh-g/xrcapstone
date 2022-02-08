@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311918, g: 0.3807398, b: 0.35872716, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -141,6 +141,7 @@ GameObject:
   - component: {fileID: 87619666}
   - component: {fileID: 87619665}
   - component: {fileID: 87619669}
+  - component: {fileID: 87619670}
   m_Layer: 0
   m_Name: StartButton
   m_TagString: Untagged
@@ -315,6 +316,28 @@ MonoBehaviour:
   m_OnDeactivate:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &87619670
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 87619664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 49
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &87718377
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10731,7 +10754,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: Dishes
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3986659891384003375, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
+    - {fileID: 3986659892278659388, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
+    - {fileID: 3986659891758007444, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
+    - {fileID: 3986659892359322442, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
+    - {fileID: 3986659891626733321, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
+    - {fileID: 3986659893091393345, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
+    - {fileID: 3986659892176755085, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
+    - {fileID: 3986659892614036789, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
+    - {fileID: 3986659892045006646, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5d68793f9ac0b50429794e10ec0d44a0, type: 3}
 --- !u!4 &7157818864018400059 stripped
 Transform:
