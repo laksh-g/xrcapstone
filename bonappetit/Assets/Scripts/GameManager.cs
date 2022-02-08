@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
         InvokeRepeating("DrawNewOrder", 0f, 20f);
         a.PlayOneShot(startGameSound);
         isActive = true;
-        Destroy(startButton);
+        PhotonNetwork.Destroy(startButton);
         startButton = null;
         startTime = (float) PhotonNetwork.Time;
         clock.startTime = startTime;
@@ -72,10 +72,8 @@ public class GameManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient) {
             im.enabled = true;
-            gameObject.SetActive(true);
         } else {
             im.enabled = false;
-            gameObject.SetActive(false);
         }
         if (isActive && PhotonNetwork.Time - startTime > Clock.GAME_LENGTH) {
             EndGame();
