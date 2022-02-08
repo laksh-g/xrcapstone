@@ -29,6 +29,8 @@ public class GameManager : MonoBehaviour
 
     public AudioSource a = null;
 
+    private bool endgame = false;
+
     // Start is called before the first frame update
 
     public void StartGame() {
@@ -48,17 +50,21 @@ public class GameManager : MonoBehaviour
 
     void EndGame() {
         // send everyone to the game over screen
-        Debug.Log("End Game");
-        PhotonNetwork.AutomaticallySyncScene = true;
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
-            Debug.Log("Final score: " + GetScore());
-            ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
-            ht["score"] = GetScore();
-            ht["covers"] = coversCompleted;
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+        if(!endgame)
+        {
+            Debug.Log("End Game");
+            PhotonNetwork.AutomaticallySyncScene = true;
+            if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
+                Debug.Log("Final score: " + GetScore());
+                ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
+		ht["covers"] = coversCompleted;
+                ht["score"] = GetScore();
+                PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+                
+            }
             PhotonNetwork.LoadLevel("Endgame");
+            endgame = true;
         }
-
     }
 
     // Update is called once per frame
