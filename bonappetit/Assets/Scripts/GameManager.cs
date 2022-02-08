@@ -30,13 +30,6 @@ public class GameManager : MonoBehaviour
     public AudioSource a = null;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        //PhotonNetwork.AutomaticallySyncScene = true; 
-        if (PhotonNetwork.IsMasterClient) {
-            im.enabled = true;
-        }
-    }
 
     public void StartGame() {
         InvokeRepeating("DrawNewOrder", 0f, 20f);
@@ -68,6 +61,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (PhotonNetwork.IsMasterClient) {
+            im.enabled = true;
+        }
         if (isActive && PhotonNetwork.Time - startTime > Clock.GAME_LENGTH) {
             EndGame();
         }
