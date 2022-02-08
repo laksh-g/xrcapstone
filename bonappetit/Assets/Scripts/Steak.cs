@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class Steak : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+public class Steak : MonoBehaviour, IPunObservable
 {
     // metadata used for quality checking
     public Seasonable seasoning = null;

@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class Seasonable : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+public class Seasonable : MonoBehaviour, IPunObservable
 {
     [SerializeField]
     public float salt = 0;
@@ -14,7 +16,7 @@ public class Seasonable : MonoBehaviour
     [SerializeField]
     public float truffleOil = 0;
 
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
         {

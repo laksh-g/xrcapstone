@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
 
-public class Plateable : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+public class Plateable : MonoBehaviour, IPunObservable
 {
     private Transform cachedParent = null;
+    [SerializeField]
     private FixedJoint joint = null;
     void OnTriggerEnter (Collider other) {
         if(other.gameObject.tag == "plate" && joint == null) {
@@ -34,6 +38,17 @@ public class Plateable : MonoBehaviour
         joint = null;
     }
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting)
+        {
+            stream.SendNext(joint);
+        }
+        else
+        {
+            joint = (FixedJoint)stream.ReceiveNext();
+        }
+    }
 }
 
 
