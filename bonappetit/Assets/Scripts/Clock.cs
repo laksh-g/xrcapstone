@@ -8,7 +8,7 @@ public class Clock : MonoBehaviourPunCallbacks
     public float startTime = -1;
     private TextMeshPro t = null;
 
-    public static int GAME_LENGTH = 600;
+    public static int GAME_LENGTH = 240;
     // Start is called before the first frame update
     void Start()
     {

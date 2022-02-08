@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 345119933922773441}
   - component: {fileID: 2234941406605446496}
   - component: {fileID: 1205486837215240635}
+  - component: {fileID: 7472255097216119803}
   m_Layer: 8
   m_Name: FrenchFry
   m_TagString: fry
@@ -5109,3 +5110,20 @@ MonoBehaviour:
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
+  grabSound: {fileID: 0}
+--- !u!114 &7472255097216119803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6916423068611073265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db88ea5d32dadce4d9d74eb47387f81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  salt: 0
+  pepper: 0
+  parsley: 0
+  truffleOil: 0

@@ -19,8 +19,6 @@ public class GameManager : MonoBehaviour
     private Hashtable openOrders = new Hashtable();
     private readonly int MAX_ORDERS = 3;
 
-    private static int GAME_LENGTH = 600;
-
     private float startTime;
 
     public bool startGame = false;
@@ -62,7 +60,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isActive && PhotonNetwork.Time - startTime > GAME_LENGTH) {
+        if (isActive && PhotonNetwork.Time - startTime > Clock.GAME_LENGTH) {
             EndGame();
         }
 
