@@ -266,7 +266,7 @@ public class GameManager : MonoBehaviour
         }
         public (float, string) Evaluate(GameObject p) {
             float total = 0;
-            string comments = "";
+            string comments = "SteakFrites: ";
             Steak steak = null;
             HashSet<Fries> fries = new HashSet<Fries>();
             Fries currFry = null;
