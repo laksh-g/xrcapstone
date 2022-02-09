@@ -13,7 +13,7 @@ public class Plateable : MonoBehaviour
             joint = gameObject.AddComponent<FixedJoint>();
             joint.connectedBody = other.GetComponentInParent<Rigidbody>();
             joint.breakForce = Mathf.Infinity;
-            joint.enableCollision = true;
+            joint.enableCollision = false;
             print(other.transform);
             transform.parent = other.transform.parent == null ? other.transform : other.transform.parent;
         }
@@ -27,6 +27,7 @@ public class Plateable : MonoBehaviour
             joint = null;
         }
     }
+    
     void OnJointBreak(float breakforce) {
         print("Lost plate");
         transform.parent = cachedParent;

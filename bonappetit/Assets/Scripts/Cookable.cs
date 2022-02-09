@@ -10,27 +10,52 @@ public class Cookable : MonoBehaviour
     public Material raw;
     public Material cooked;
     public Material burnt;
-    private Temperature temp;
-    private MeshRenderer mesh;
+    public bool isCollection = false;
+    private Temperature temp = null;
+    private MeshRenderer mesh = null;
+    private MeshRenderer[] meshes = null;
 
     // Start is called before the first frame update
     void Start()
     {
         temp = GetComponent<Temperature>();
         mesh = GetComponent<MeshRenderer>();
+        if (isCollection) {
+            meshes = GetComponentsInChildren<MeshRenderer>();
+        } else {
+            mesh = GetComponent<MeshRenderer>();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
         if(temp.maxTemp >= cookedTemp * 1.15F) {
-            mesh.material = burnt;
+            if (isCollection) {
+                foreach(MeshRenderer m in meshes) {
+                    m.material = burnt;
+                }
+            } else {
+                mesh.material = burnt;
+            }
         }
         else if(temp.maxTemp >= cookedTemp) {
-            mesh.material.Lerp(cooked, burnt, (temp.maxTemp - cookedTemp) / (cookedTemp * .15f));
+            if (isCollection) {
+                foreach(MeshRenderer m in meshes) {
+                    m.material.Lerp(cooked, burnt, (temp.maxTemp - cookedTemp) / (cookedTemp * .15f));
+                }
+            } else {
+                mesh.material.Lerp(cooked, burnt, (temp.maxTemp - cookedTemp) / (cookedTemp * .15f));
+            }
         } else {
+            if (isCollection) {
+                foreach(MeshRenderer m in meshes) {
+                    m.material.Lerp(raw, cooked, temp.maxTemp / cookedTemp);
+                }
+            } else {
             // transition between textures
             mesh.material.Lerp(raw, cooked, temp.maxTemp / cookedTemp);
+            }
         }
     }
 

@@ -108,7 +108,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 199632876706975490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cce5585c9936db34cb571149f8221c6d, type: 3}
   m_Name: 
@@ -683,6 +683,10 @@ PrefabInstance:
     - target: {fileID: 7955632741032637072, guid: fc51fc6ffd01a634dbe5e6005af37a74, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 7955632741032637072, guid: fc51fc6ffd01a634dbe5e6005af37a74, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc51fc6ffd01a634dbe5e6005af37a74, type: 3}

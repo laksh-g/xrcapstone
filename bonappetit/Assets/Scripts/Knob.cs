@@ -4,7 +4,8 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
 
-public class Knob : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+public class Knob : MonoBehaviour, IPunObservable
 {
     [SerializeField]
     public int val; // 0 - numSettings

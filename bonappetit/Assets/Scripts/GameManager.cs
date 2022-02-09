@@ -29,13 +29,15 @@ public class GameManager : MonoBehaviour
 
     public AudioSource a = null;
 
+    private bool endgame = false;
+
     // Start is called before the first frame update
 
     public void StartGame() {
         InvokeRepeating("DrawNewOrder", 0f, 20f);
         a.PlayOneShot(startGameSound);
         isActive = true;
-        Destroy(startButton);
+        PhotonNetwork.Destroy(startButton);
         startButton = null;
         startTime = (float) PhotonNetwork.Time;
         clock.startTime = startTime;
@@ -48,14 +50,21 @@ public class GameManager : MonoBehaviour
 
     void EndGame() {
         // send everyone to the game over screen
-        Debug.Log("End Game");
-        if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
-            ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
-            ht["score"] = GetScore();
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+        if(!endgame)
+        {
+            Debug.Log("End Game");
+            PhotonNetwork.AutomaticallySyncScene = true;
+            if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
+                Debug.Log("Final score: " + GetScore());
+                ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
+		ht["covers"] = coversCompleted;
+                ht["score"] = GetScore();
+                PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+                
+            }
             PhotonNetwork.LoadLevel("Endgame");
+            endgame = true;
         }
-
     }
 
     // Update is called once per frame
@@ -63,6 +72,8 @@ public class GameManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient) {
             im.enabled = true;
+        } else {
+            im.enabled = false;
         }
         if (isActive && PhotonNetwork.Time - startTime > Clock.GAME_LENGTH) {
             EndGame();
@@ -264,7 +275,7 @@ public class GameManager : MonoBehaviour
             float total = 0;
             string comments = "SteakFrites: ";
             Steak steak = null;
-            HashSet<Fries> fries = new HashSet<Fries>();
+            bool hasFries = false;
             Fries currFry = null;
             Bearnaise sauce = null;
             bool hasSteak = false;
@@ -285,7 +296,10 @@ public class GameManager : MonoBehaviour
                 currFry = target.GetComponent<Fries>();
                 if (currFry != null)
                 {
-                    fries.Add(currFry);
+                    (tempVal, tempString) = f.Evaluate(currFry);
+                    total += tempVal;
+                    comments += tempString;
+                    hasFries = true;
                     continue;
                 }
                 sauce = target.GetComponent<Bearnaise>();
@@ -301,14 +315,16 @@ public class GameManager : MonoBehaviour
                     comments += tempString;
                 }
             }
-            (tempVal, tempString) = f.Evaluate(fries);
-            total += tempVal;
-            comments += tempString;
 
             if (hasSteak == false)
             {
                 total = 0;
                 comments += "Missing steak";
+            }
+
+            if (!hasFries) {
+                total = 0;
+                comments += "Missing fries";
             }
             return ((total / 3), comments);
         }
@@ -398,64 +414,43 @@ public class GameManager : MonoBehaviour
             extraCrispy = rand > .8 ? true : false;
         }
 
-        public (float, string) Evaluate(HashSet<Fries> f)
+        public (float, string) Evaluate(Fries f)
         {
             string comments = "Fries: ";
             float total = 5;
-            float parsley = 0;
-            float salt = 0;
-            int numBurntFries = 0;
-            int numRawFries = 0;
-            foreach (Fries fry in f)
-            {
-                parsley += fry.seasoning.parsley;
-                salt += fry.seasoning.salt;
-                if (fry.temp.maxTemp > 190 * 1.15f)
-                {
-                    numBurntFries += 1;
-                }
-                else if (fry.temp.maxTemp < 190f)
-                {
-                    numRawFries += 1;
+
+            if (f.temp.maxTemp > 190 * 1.15f) {
+                if(!extraCrispy) {
+                    total -= 1;
+                    comments += "Fries overcooked, ";
                 }
             }
-
-            if (f.Count < 130 / 8)
+            if (f.temp.maxTemp < 190)
             {
                 total -= 2;
-                comments += "Not enough fries, ";
+                comments += "Undercooked fries, ";
             }
-            if (numRawFries > 3)
-            {
-                total -= 1;
-                comments += "Order contained raw fries, ";
-            }
-            if (numBurntFries > f.Count / 2 && !extraCrispy)
-            {
-                total -= 1;
-                comments += "Fries overcooked, ";
-            }
-            if (parsley < 5f && !noParsley)
+            if (f.seasoning.parsley < 5f && !noParsley)
             {
                 total -= .5f;
                 comments += "Not enough parsley, ";
             }
-            else if (parsley > 0f && noParsley)
+            else if (f.seasoning.parsley > 0f && noParsley)
             {
                 total -= .5f;
                 comments += "Order contained parsley, ";
             }
-            if (salt < 5f && !noSalt)
+            if (f.seasoning.salt < 5f && !noSalt)
             {
                 total -= .5f;
                 comments += "Not enough salt, ";
             }
-            else if (salt > 8f && !noSalt)
+            else if (f.seasoning.salt > 8f && !noSalt)
             {
                 total -= .5f;
                 comments += "Too salty, ";
             }
-            else if (salt > 0f && noSalt)
+            else if (f.seasoning.salt > 0f && noSalt)
             {
                 total -= .5f;
                 comments += "Order contained salt, ";

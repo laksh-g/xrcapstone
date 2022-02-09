@@ -63,8 +63,12 @@ public class LiquidContainer : MonoBehaviour
         }
 
         if (scooper != null && currentVolume > 0f && scooper.currentVolume < scooper.capacity) {
+            scooper.liquidMaterial = liquidMaterial;
             currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
             scooper.currentVolume = Mathf.Min(scooper.currentVolume + scoopRate, scooper.capacity);
+            if (tag == "bearnaise") {
+                    scooper.gameObject.tag = "bearnaise";
+                }
         }
     }
 

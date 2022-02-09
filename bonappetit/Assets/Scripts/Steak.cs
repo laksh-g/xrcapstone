@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using Photon.Realtime;
 
-public class Steak : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+public class Steak : MonoBehaviour, IPunObservable
 {
     // metadata used for quality checking
     public Seasonable seasoning = null;
@@ -25,7 +27,7 @@ public class Steak : MonoBehaviour
     private MeshRenderer steakMesh;
 
     public Temperature temp = null;
-    [SerializeField]
+
     private HeatingElement heater = null;
     public readonly float[] donenessTemps = {48, 52, 54, 60, 66, 71}; // in Celsius
     public static string[] donenessLabels = {"Blue", "Rare", "Medium Rare", "Medium", "Medium Well", "Well Done"}; 
@@ -111,13 +113,11 @@ public class Steak : MonoBehaviour
         {
             stream.SendNext(isResting);
             stream.SendNext(searTime);
-            stream.SendNext(heater);
         }
         else
         {
             isResting = (bool)stream.ReceiveNext();
             searTime = (float)stream.ReceiveNext();
-            heater = (HeatingElement)stream.ReceiveNext();
         }
     }
 

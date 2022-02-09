@@ -12,6 +12,9 @@ public class Bearnaise : MonoBehaviour
     void Start() {
         container = GetComponent<LiquidContainer>();
         temp = GetComponent<Temperature>();
+        if (temp == null) {
+            temp = gameObject.AddComponent<Temperature>();
+        }
     }
 
     void Update() {
