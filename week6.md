@@ -3,7 +3,7 @@
 ## What we have accomplished
 
 - Johnathon: Finished adding sound effects for collisions and cooking, redesigned kitchen, added in-game clock, dialed in cooking times, and helped set up the game manager and object serialization to be used for multiplayer
-- Katherine: 
+- Katherine: Finished object information UI with added toggle feature, created recipe posters for players to follow.
 - Laksh: Finished adding rooms and network features, added XR grab interactables for network and back to menu features. Helped serializing data to be synced over the network. Implemented end game screen and scores display.
 - Hritik:
 
@@ -19,6 +19,8 @@
 - Players teleport to their respective stations based on their roles.
 - Object characteristics (like temp, amount of salt etc.) update over the network.
 - End game screen where head chef can view the final score for the game.
+- Object information ui can be toggled.
+- Recipe posters provide players cooking instructions.
 
 ## Bug Fixes
 
@@ -35,6 +37,7 @@
 - GameManager.cs: https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/20
 - CollisionSound.cs: https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/18
 - NetworkPlayerSpawner.cs https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/16
+- TriggerCanvas.cs https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/11
 
 ## Blocking issues
 - Multiplayer: Serialized fields record different values for different players.
