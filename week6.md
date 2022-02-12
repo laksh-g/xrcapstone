@@ -4,7 +4,7 @@
 
 - Johnathon: Finished adding sound effects for collisions and cooking, redesigned kitchen, added in-game clock, dialed in cooking times, and helped set up the game manager and object serialization to be used for multiplayer
 - Katherine: 
-- Laksh: 
+- Laksh: Finished adding rooms and network features, added XR grab interactables for network and back to menu features. Helped serializing data to be synced over the network. Implemented end game screen and scores display.
 - Hritik:
 
 ## New features/functionality implemented
@@ -15,6 +15,10 @@
 - End-game screen! See your team's score and total covers completed after service is over.
 - Real-time feedback! After sending in an order, another ticket is printed telling the head chef how it was.
 - Bearnaise sauce! Add sauce to a saucepan then heat it up to get it ready to serve.
+- XR Grab interactables now sync over the network
+- Players teleport to their respective stations based on their roles.
+- Object characteristics (like temp, amount of salt etc.) update over the network.
+- End game screen where head chef can view the final score for the game.
 
 ## Bug Fixes
 
@@ -22,12 +26,16 @@
 - Steak cooking has been slowed to allow for proper time to sear before reaching cooked temps
 - Spawned-in objects now spawn in for all players
 - Reduced plated object collisions so plates should freak out less now
+- Fixed bug with XR grab interactables not syncing over network
+- Fixed serializing datafields
+- Fixed network voice bug.
 
 ## Code review
 
 - GameManager.cs: https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/20
 - CollisionSound.cs: https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/18
+- NetworkPlayerSpawner.cs https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/16
 
 ## Blocking issues
 - Multiplayer: Serialized fields record different values for different players.
-- 
+- Multiplayer: Master client always gets assigned to the first player to join the room.
