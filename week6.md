@@ -5,7 +5,7 @@
 - Johnathon: Finished adding sound effects for collisions and cooking, redesigned kitchen, added in-game clock, dialed in cooking times, and helped set up the game manager and object serialization to be used for multiplayer
 - Katherine: Finished object information UI with added toggle feature, created recipe posters for players to follow.
 - Laksh: Finished adding rooms and network features, added XR grab interactables for network and back to menu features. Helped serializing data to be synced over the network. Implemented end game screen and scores display.
-- Hritik:
+- Hritik: Finished creating the ticketing system and incorporating it with the main application. Also did testing with other memebers to check the current app and do bug fixing.
 
 ## New features/functionality implemented
 
