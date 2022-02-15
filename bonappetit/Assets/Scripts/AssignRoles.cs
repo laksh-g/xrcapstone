@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
+using TMPro;
 
 public class AssignRoles : MonoBehaviourPunCallbacks
 {
@@ -11,11 +12,13 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     public Button RotisseurButton;
     public Button SaucierButton;
 
+    public Button StartGame;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartGame.interactable = false;
     }
 
     // Update is called once per frame
@@ -23,20 +26,26 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
-            if(ht.ContainsKey("RotisseurRole")){
+            if(ht.ContainsKey("RotisseurRole") && (int)ht["RotisseurRole"] != -1){
                 RotisseurButton.interactable = false;
+                RotisseurButton.GetComponentInChildren<TMP_Text>().text = ((int)ht["RotisseurRole"]).ToString();
             } else {
                 RotisseurButton.interactable = true;
+                RotisseurButton.GetComponentInChildren<TMP_Text>().text = "Rotisseur";
             }
-            if(ht.ContainsKey("SaucierRole")){
+            if(ht.ContainsKey("SaucierRole") && (int)ht["SaucierRole"] != -1){
                 SaucierButton.interactable = false;
+                SaucierButton.GetComponentInChildren<TMP_Text>().text = ((int)ht["SaucierRole"]).ToString();
             } else {
                 SaucierButton.interactable = true;
+                SaucierButton.GetComponentInChildren<TMP_Text>().text = "Saucier";
             }
-            if(ht.ContainsKey("HeadChefRole")){
+            if(ht.ContainsKey("HeadChefRole") && (int)ht["HeadChefRole"] != -1){
                 HeadChefButton.interactable = false;
+                HeadChefButton.GetComponentInChildren<TMP_Text>().text = ((int)ht["HeadChefRole"]).ToString();
             } else {
                 HeadChefButton.interactable = true;
+                HeadChefButton.GetComponentInChildren<TMP_Text>().text = "Head Chef";
             }
         }
     }
@@ -59,7 +68,8 @@ public class AssignRoles : MonoBehaviourPunCallbacks
                 if(name != role) {
                     if(ht.ContainsKey(name) && (int) ht[name] == PhotonNetwork.LocalPlayer.ActorNumber) {
                         Debug.Log(string.Format("Removed role {0} with player actor number {1}.", name, ht[name]));
-                        ht.Remove(name);
+                        //ht.Remove(name);
+                        ht[name] = -1;
                     }
                 }
             }
@@ -68,6 +78,12 @@ public class AssignRoles : MonoBehaviourPunCallbacks
             ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
             playerCustomProps["role"] = role;
             PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProps);
+
+            if(role == "HeadChefRole"){
+                StartGame.interactable = true;
+            }else{
+                StartGame.interactable = false;
+            }
         }
     }
 }

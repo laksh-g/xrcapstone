@@ -29,7 +29,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     void Awake()
     {
         // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
-        //PhotonNetwork.AutomaticallySyncScene = true;
+        PhotonNetwork.AutomaticallySyncScene = true;
     }
 
     void Update()
@@ -111,6 +111,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         {
             roomName += chars[Random.Range(0, chars.Length)];
         }
+
+        //################################
+        // Debug statements : remember to remove
+        roomName = "AAAA";
+        //################################
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 10;
         roomOptions.IsVisible = false;  // not possible to join randomly
@@ -126,7 +131,11 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void JoinRoom()
     {
-        string roomName = joinInput.GetComponent<TMP_InputField>().text;
+        //string roomName = joinInput.GetComponent<TMP_InputField>().text;
+        //################################
+        // Debug statements : remember to remove
+        string roomName = "AAAA";
+        //################################
         Debug.Log("Trying to join room " + roomName);
         PhotonNetwork.JoinRoom(roomName.ToUpper());
     }

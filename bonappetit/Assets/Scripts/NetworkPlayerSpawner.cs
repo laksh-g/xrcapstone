@@ -70,6 +70,8 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     {
         XROrigin rig = FindObjectOfType<XROrigin>();
 
+        PhotonNetwork.AutomaticallySyncScene = false;
+
         // Testing new spawnner
 
         ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
