@@ -15,6 +15,7 @@ public class ReturnToLobby : MonoBehaviourPunCallbacks
 
         if (isPressed)
         {
+            //PhotonNetwork.LeaveRoom();
             PhotonNetwork.Disconnect();
             PhotonNetwork.LoadLevel(0);
         }
