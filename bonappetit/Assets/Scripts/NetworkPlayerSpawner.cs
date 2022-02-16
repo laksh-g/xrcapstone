@@ -22,9 +22,12 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         base.OnJoinedRoom();
-        
-        XROrigin rig = FindObjectOfType<XROrigin>();
 
+        //Debug.Log("Entered Room method");
+        //XROrigin rig = FindObjectOfType<XROrigin>();
+
+        // Testing new spawnner
+        /*
         if (PhotonNetwork.NickName == "Saucier"){
             rig.MoveCameraToWorldLocation(STransform.position);
             rig.RotateAroundCameraUsingOriginUp(90);
@@ -41,6 +44,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
             rig.RotateAroundCameraUsingOriginUp(180);
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", HCTransform.position, HCTransform.rotation);
         }
+        */
 
         // photonView = GetComponent<PhotonView>();
         // if (tm == null) //wenn textmesh
@@ -60,6 +64,37 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         // }
 
         // tm.text = PhotonNetwork.NickName;
+    }
+
+    void Start()
+    {
+        XROrigin rig = FindObjectOfType<XROrigin>();
+
+        PhotonNetwork.AutomaticallySyncScene = false;
+
+        // Testing new spawnner
+
+        ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
+
+        Debug.Log(playerCustomProps["role"]);
+        Debug.Log((string) playerCustomProps["role"]);
+
+        if ((string) playerCustomProps["role"] == "SaucierRole"){
+            rig.MoveCameraToWorldLocation(STransform.position);
+            rig.RotateAroundCameraUsingOriginUp(90);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", STransform.position, STransform.rotation);
+
+        }else if ((string) playerCustomProps["role"] == "RotisseurRole"){
+            rig.MoveCameraToWorldLocation(RTransform.position);
+            rig.RotateAroundCameraUsingOriginUp(-90);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", RTransform.position, RTransform.rotation);
+        } else{
+            PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+            
+            rig.MoveCameraToWorldLocation(HCTransform.position);
+            rig.RotateAroundCameraUsingOriginUp(180);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", HCTransform.position, HCTransform.rotation);
+        }
     }
 
     public override void OnLeftRoom()
