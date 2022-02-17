@@ -53,16 +53,15 @@ public class GameManager : MonoBehaviour
         if(!endgame)
         {
             Debug.Log("End Game");
-            //PhotonNetwork.AutomaticallySyncScene = true;
+            PhotonNetwork.AutomaticallySyncScene = true;
             if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
                 Debug.Log("Final score: " + GetScore());
                 ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
-		ht["covers"] = coversCompleted;
+		        ht["covers"] = coversCompleted;
                 ht["score"] = GetScore();
                 PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-                
+                PhotonNetwork.LoadLevel("Endgame");
             }
-            PhotonNetwork.LoadLevel("Endgame");
             endgame = true;
         }
     }
