@@ -11,10 +11,10 @@ public class LiquidContainer : MonoBehaviour
     public bool isFillable = false;
     public bool isPourable = false;
     public Material liquidMaterial = null;
+    public GameObject liquid = null;
     [Header("Fillable Settings")]
     public Transform liquidStart = null;
     public Transform liquidEnd = null;
-    public GameObject liquid = null;
     [Header("Pourable Settings")]
     public bool variablePourRate = false;
     public int pourRateMultiplier = 1;
@@ -32,10 +32,12 @@ public class LiquidContainer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (isFillable) {
+        if (liquid != null) {
             liquidMesh = liquid.GetComponent<MeshRenderer>();
-            liquidMesh.enabled = false;
-            liquid.transform.position = liquidStart.position;
+            if (isFillable) {
+                liquidMesh.enabled = false;
+                liquid.transform.position = liquidStart.position;
+            }
         }
     }
 
@@ -67,8 +69,8 @@ public class LiquidContainer : MonoBehaviour
             currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
             scooper.currentVolume = Mathf.Min(scooper.currentVolume + scoopRate, scooper.capacity);
             if (tag == "bearnaise") {
-                    scooper.gameObject.tag = "bearnaise";
-                }
+                scooper.gameObject.tag = "bearnaise";
+            }
         }
     }
 
@@ -95,11 +97,12 @@ public class LiquidContainer : MonoBehaviour
 
         }
 
+        if (liquidMesh != null && liquidMaterial != null && liquidMesh.material != liquidMaterial) {
+            liquidMesh.material = liquidMaterial;
+        }
+
         if(isFillable) {
             if (getPercentage() > 0.1) {
-                if (liquidMaterial != null && liquidMesh.material != liquidMaterial) {
-                    liquidMesh.material = liquidMaterial;
-                }
                 liquidMesh.enabled = true;
                 // a + (b - a) * t
                 liquid.transform.position = Vector3.Lerp(liquidStart.position, liquidEnd.position, getPercentage());
@@ -133,8 +136,8 @@ public class LiquidContainer : MonoBehaviour
         return baseRate * 5 * pourRateMultiplier * (CalculatePourAngle() / 180); 
     }
 
-    void OnTriggerStay(Collider other) {
-        if (isFillable && other.tag == "scooper") {
+    void OnTriggerEnter(Collider other) {
+        if (other.tag == "scooper") {
             scooper = other.GetComponentInParent<LiquidContainer>();
             scooper.liquidMaterial = liquidMaterial;
         }

@@ -331,7 +331,7 @@ public class GameManager : MonoBehaviour
 
         public override string ToString()
         {
-            return "Steak Frites\n" + (hasSauce ? "" : "- NO BEARNAISE\n") + s.ToString() + f.ToString();
+            return "Steak Frites\n" + (hasSauce ? "- BEARNAISE ON SIDE\n" : "- NO BEARNAISE\n") + s.ToString() + f.ToString();
         }
     }
 

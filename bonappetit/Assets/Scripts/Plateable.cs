@@ -9,12 +9,18 @@ public class Plateable : MonoBehaviour
     void OnTriggerEnter (Collider other) {
         if(other.gameObject.tag == "plate" && joint == null) {
             print("Acquired plate");
+            // set rotation to match plate
+            var euler = other.transform.rotation.eulerAngles;
+            transform.rotation = Quaternion.Euler(euler.x, 0, euler.z);
+            // move to y position of the plate
+            transform.position = new Vector3(transform.position.x, other.transform.position.y, transform.position.z);
+            //gameObject.GetComponent<Rigidbody>().isKinematic = true;
+
             cachedParent = transform.parent;
             joint = gameObject.AddComponent<FixedJoint>();
             joint.connectedBody = other.GetComponentInParent<Rigidbody>();
             joint.breakForce = Mathf.Infinity;
-            joint.enableCollision = false;
-            print(other.transform);
+            //gameObject.GetComponent<Rigidbody>().enabled = false;
             transform.parent = other.transform.parent == null ? other.transform : other.transform.parent;
         }
     }
@@ -24,15 +30,10 @@ public class Plateable : MonoBehaviour
             print("Unstuck from plate");
             transform.parent = cachedParent;
             Destroy(joint);
+            //gameObject.GetComponent<Rigidbody>().detectCollisions = true;
+            //gameObject.GetComponent<Rigidbody>().isKinematic = false;
             joint = null;
         }
-    }
-    
-    void OnJointBreak(float breakforce) {
-        print("Lost plate");
-        transform.parent = cachedParent;
-        Destroy(joint);
-        joint = null;
     }
 
 }

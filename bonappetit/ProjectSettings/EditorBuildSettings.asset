@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Lobby.unity
     guid: ac8aea04d78c62941987ecf1be3992c3
   - enabled: 1
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Fries.unity
     guid: 8962219c844ab46eb88cdf9ed5d2a77b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Endgame.unity
     guid: 5dbc2a183d1995c49891ad687943edab
   m_configObjects:
