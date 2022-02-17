@@ -134,12 +134,13 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         //string roomName = joinInput.GetComponent<TMP_InputField>().text;
         //################################
         // Debug statements : remember to remove
+        Debug.Log("Pressed Join room button");
         string roomName = "AAAA";
         //################################
         Debug.Log("Trying to join room " + roomName);
         PhotonNetwork.JoinRoom(roomName.ToUpper());
     }
-
+    
     public void LeaveRoom()
     {
         Debug.Log("Leaving room.");

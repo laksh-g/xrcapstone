@@ -82,7 +82,8 @@ public class AssignRoles : MonoBehaviourPunCallbacks
             if(role == "HeadChefRole"){
                 StartGame.interactable = true;
             }else{
-                StartGame.interactable = false;
+                //StartGame.interactable = false;
+                StartGame.interactable = true;
             }
         }
     }
