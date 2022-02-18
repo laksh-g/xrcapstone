@@ -3,7 +3,7 @@
 ## What we have accomplished
 
 - Johnathon:
-- Katherine:
+- Katherine: Started developing a tutorial/tips system. The tutorial system will walk the user through the roles and explain the game mechanics. 
 - Laksh:
 - Hritik:
 
