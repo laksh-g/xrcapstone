@@ -30,6 +30,7 @@ TagManager:
   - heater
   - fry dispenser
   - stove
+  - soup bowl
   layers:
   - Default
   - TransparentFX

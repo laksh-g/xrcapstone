@@ -27,7 +27,7 @@ public class LiquidContainer : MonoBehaviour
     private LiquidContainer scooper = null;
 
     private readonly float baseRate = 0.5f; // the base pour rate
-    private readonly float scoopRate = 4.0f; // the rate which liquid can be scooped from this object
+    private readonly float scoopRate = 20.0f; // the rate which liquid can be scooped from this object
 
     // Start is called before the first frame update
     void Start()
