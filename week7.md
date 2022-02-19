@@ -5,7 +5,7 @@
 - Johnathon:
 - Katherine: Started developing a tutorial/tips system. The tutorial system will walk the user through the roles and explain the game mechanics. 
 - Laksh:
-- Hritik:
+- Hritik: Started fixing bugs that were reported from user testing and working on adding new features as noted in the MVP bugs section.
 
 ## New features/functionality implemented
 
