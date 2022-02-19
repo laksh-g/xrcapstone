@@ -50,7 +50,7 @@ public class Steak : MonoBehaviour, IPunObservable
         if (heater != null && heater.s != null) {
             if (heater.s.val > 0 && !a.isPlaying) {a.Play();}
             a.volume = .5f;
-            if (heater.s.val == 3) {
+            if ((heater.s.val == 3 && heater.s.numSettings == 4) || (heater.s.val == 1 && heater.s.numSettings == 2)) {
                 searTime += Time.deltaTime * 4;
                 a.volume = 1f;
                 if (smokeInstance == null) {

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Bearnaise : MonoBehaviour
 {
     public LiquidContainer container;
-    public float heatingTime = 0;
     public bool isSeparated = false;
     public Temperature temp;
     public static float SEPARATION_TEMP = 75f;
@@ -20,9 +19,6 @@ public class Bearnaise : MonoBehaviour
     void Update() {
         if (isSeparated = false && temp.maxTemp > 75f) {
             isSeparated = true;
-        }
-        if (temp.heater != null) {
-            heatingTime += Time.deltaTime;
         }
     }
 }
