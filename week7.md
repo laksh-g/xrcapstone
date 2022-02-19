@@ -21,7 +21,7 @@
 - Held objects should be less jittery now
 
 ## Code review
-Plateable.cs 
+- Plateable.cs: https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/22
 
 
 ## Blocking issues
