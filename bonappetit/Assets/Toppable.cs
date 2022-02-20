@@ -7,12 +7,16 @@ public class Toppable : MonoBehaviour
     public Transform toppingLocation = null;
     private bool taken = false;
     
+    void Update() {
+
+    }
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.tag == "bread" && !taken) {
+        Rigidbody rb = other.gameObject.GetComponent<Rigidbody>();
+        if (!taken && rb != null) {
             taken = true;
-            other.gameObject.transform.position = toppingLocation.position;
-            other.gameObject.transform.parent = gameObject.transform;
             Destroy(other.gameObject.GetComponent<Rigidbody>());
+            other.gameObject.transform.position = toppingLocation.position;
+            other.gameObject.transform.parent = toppingLocation.parent;
         }
     }
 }

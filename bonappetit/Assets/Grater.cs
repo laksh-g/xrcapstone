@@ -30,7 +30,7 @@ public class Grater : MonoBehaviour
                 isPouring = check; 
                 if (isPouring) {
                     a.PlayOneShot(shakeSound);
-                    print("Pouring!");
+                    Debug.Log("Grating!");
                     p.Play();
                 } else {
                     p.Stop();
@@ -49,20 +49,27 @@ public class Grater : MonoBehaviour
         return false;
     }
 
-    void OnTriggerStay(Collider other) {
-        gratedObj = other.gameObject.GetComponent<Rigidbody>();
+    void OnTriggerEnter(Collider other) {
+        if (other.gameObject.tag == "gruyere") {
+            gratedObj = other.gameObject.GetComponent<Rigidbody>();
+            Debug.Log("Grater registered object: " + gratedObj.tag);
+        }
+        
     }
+    
 
     void OnTriggerExit(Collider other) {
-        gratedObj = null;
+        if (gratedObj != null) {
+            gratedObj = null;
+        }
     }
     void FixedUpdate()
     {
         if (isPouring) {
             CheckHit();
-            if (target != null) {
-                if (tag == "parmesan") {
-                    target.salt += pourRate;
+            if (target != null && gratedObj != null) {
+                if (gratedObj.tag == "gruyere") {
+                    target.gruyere += pourRate;
                 }
             }
         }
