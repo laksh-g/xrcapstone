@@ -31,10 +31,16 @@ public class GameManager : MonoBehaviour
 
     private bool endgame = false;
 
+    void Start() {
+        // StartGame();
+        // Invoke("RedrawLastOrder", 10);
+        // Invoke("RedrawAllOrders", 20);
+    }
+
     // Start is called before the first frame update
 
     public void StartGame() {
-        InvokeRepeating("DrawNewOrder", 0f, 20f);
+        InvokeRepeating("createStartingOrders", 0f, 10f);
         a.PlayOneShot(startGameSound);
         isActive = true;
         PhotonNetwork.Destroy(startButton);
@@ -84,10 +90,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DrawNewOrder()
+    public void createStartingOrders() {
+        StartCoroutine(DrawNewOrder());
+    }
+
+    public IEnumerator DrawNewOrder()
     {
         if (canMakeMore())
         {
+            if (openOrders.Count > 0) {
+                moveTray();
+                yield return new WaitForSeconds(5);
+            }
+
             orderNum++;
             Order newOrder = new Order(orderNum);
             openOrders.Add(orderNum, newOrder);
@@ -107,15 +122,61 @@ public class GameManager : MonoBehaviour
     public void RedrawLastOrder()
     {
         Order order = (Order)openOrders[orderNum];
-        Destroy(order.gObj);
+        order.gObj.transform.position = ticketSpawn.position;
+    }
 
-        createTicket(order);
+    public void moveTray()
+    {
+        foreach(Order ticket in openOrders.Values) {
+            Vector3 startPos = ticket.gObj.transform.position;
+
+            Vector3 endPos = new Vector3(
+                ticket.gObj.transform.position.x - .3f,
+                ticket.gObj.transform.position.y,
+                ticket.gObj.transform.position.z
+            );
+
+            // Update Order Receipt Transform Property
+            ticket.gObj.GetComponent<OrderReceipt>().cachedPosition += 1;
+
+            // animate
+            if (ticket.gObj.GetComponent<OrderReceipt>().isStuck) {
+                StartCoroutine(MoveObject(ticket.gObj.transform, startPos, endPos));
+            }
+        }
+    }
+
+    IEnumerator MoveObject(Transform t, Vector3 startPos, Vector3 endPos)
+    {
+        float rate = 1 / 5f;
+        float i = 0f;
+        while (i < 1.0)
+        {
+            i += Time.deltaTime * rate;
+            t.position = Vector3.Lerp(startPos, endPos, i);
+            yield return new WaitForSeconds(0);
+        }
     }
 
     public void RedrawAllOrders() {
-        foreach(Order ticket in openOrders) {
-            Destroy(ticket.gObj);
-            createTicket(ticket);
+        List<int> arr = new List<int>();
+        foreach (int num in openOrders.Keys) {
+            arr.Add(num);
+        }
+
+        arr.Sort();
+        int index = arr.Count;
+
+        for (int i = index - 1; i >= 0; i--) {
+            Order ticket = (Order) openOrders[arr[i]];
+
+            ticket.gObj.transform.position = new Vector3(
+                ticketSpawn.position.x - (.3f * (index - 1 - i)),
+                ticketSpawn.position.y,
+                ticketSpawn.position.z
+            );
+
+            ticket.gObj.transform.rotation = ticketSpawn.rotation;
         }
     }
 
@@ -126,7 +187,8 @@ public class GameManager : MonoBehaviour
 
     private void createTicket(Order newOrder)
     {
-        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, Quaternion.identity);
+        // TODO : Change back!!
+        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, ticketSpawn.rotation);
 
         newTicket.GetComponent<Printable>().orderNum = newOrder.orderNum;
         newTicket.GetComponent<Printable>().orderString = newOrder.ToString();

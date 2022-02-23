@@ -30,6 +30,9 @@ TagManager:
   - heater
   - fry dispenser
   - stove
+  - order_receipt_container
+  - ticket_line
+  - ticket_spawner
   layers:
   - Default
   - TransparentFX
