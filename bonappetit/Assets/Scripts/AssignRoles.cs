@@ -81,8 +81,10 @@ public class AssignRoles : MonoBehaviourPunCallbacks
 
             if(role == "HeadChefRole"){
                 StartGame.interactable = true;
+                PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
             }else{
                 StartGame.interactable = false;
+                //StartGame.interactable = true;
             }
         }
     }
