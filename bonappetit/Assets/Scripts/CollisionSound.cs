@@ -6,7 +6,7 @@ public class CollisionSound : MonoBehaviour
 {
     private AudioSource a;
     public AudioClip collisionSound = null;
-    // Start is called before the first frame update
+    private float threshold = 1.5f;
 
     void Awake() {
         a = GetComponent<AudioSource>();
@@ -16,8 +16,9 @@ public class CollisionSound : MonoBehaviour
     }
 
     void OnCollisionEnter(Collision other) {
-        if (collisionSound != null) {
+        if (collisionSound != null && other.relativeVelocity.magnitude > threshold) {
             a.PlayOneShot(collisionSound);
+            Debug.Log("Collision sounded with magnitude:" + other.relativeVelocity.magnitude);
         }
     }
 }

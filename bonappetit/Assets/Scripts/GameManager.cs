@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
 
     public void StartGame() {
-        InvokeRepeating("DrawNewOrder", 0f, 20f);
+        InvokeRepeating("createStartingOrders", 0f, 10f);
         a.PlayOneShot(startGameSound);
         isActive = true;
         PhotonNetwork.Destroy(startButton);
@@ -83,10 +83,19 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void DrawNewOrder()
+    public void createStartingOrders() {
+        StartCoroutine(DrawNewOrder());
+    }
+
+    public IEnumerator DrawNewOrder()
     {
         if (canMakeMore())
         {
+            if (openOrders.Count > 0) {
+                moveTray();
+                yield return new WaitForSeconds(5);
+            }
+
             orderNum++;
             Order newOrder = new Order(orderNum);
             openOrders.Add(orderNum, newOrder);
@@ -106,15 +115,61 @@ public class GameManager : MonoBehaviour
     public void RedrawLastOrder()
     {
         Order order = (Order)openOrders[orderNum];
-        Destroy(order.gObj);
+        order.gObj.transform.position = ticketSpawn.position;
+    }
 
-        createTicket(order);
+    public void moveTray()
+    {
+        foreach(Order ticket in openOrders.Values) {
+            Vector3 startPos = ticket.gObj.transform.position;
+
+            Vector3 endPos = new Vector3(
+                ticket.gObj.transform.position.x - .3f,
+                ticket.gObj.transform.position.y,
+                ticket.gObj.transform.position.z
+            );
+
+            // Update Order Receipt Transform Property
+            ticket.gObj.GetComponent<OrderReceipt>().cachedPosition += 1;
+
+            // animate
+            if (ticket.gObj.GetComponent<OrderReceipt>().isStuck) {
+                StartCoroutine(MoveObject(ticket.gObj.transform, startPos, endPos));
+            }
+        }
+    }
+
+    IEnumerator MoveObject(Transform t, Vector3 startPos, Vector3 endPos)
+    {
+        float rate = 1 / 5f;
+        float i = 0f;
+        while (i < 1.0)
+        {
+            i += Time.deltaTime * rate;
+            t.position = Vector3.Lerp(startPos, endPos, i);
+            yield return new WaitForSeconds(0);
+        }
     }
 
     public void RedrawAllOrders() {
-        foreach(Order ticket in openOrders) {
-            Destroy(ticket.gObj);
-            createTicket(ticket);
+        List<int> arr = new List<int>();
+        foreach (int num in openOrders.Keys) {
+            arr.Add(num);
+        }
+
+        arr.Sort();
+        int index = arr.Count;
+
+        for (int i = index - 1; i >= 0; i--) {
+            Order ticket = (Order) openOrders[arr[i]];
+
+            ticket.gObj.transform.position = new Vector3(
+                ticketSpawn.position.x - (.3f * (index - 1 - i)),
+                ticketSpawn.position.y,
+                ticketSpawn.position.z
+            );
+
+            ticket.gObj.transform.rotation = ticketSpawn.rotation;
         }
     }
 
@@ -125,7 +180,8 @@ public class GameManager : MonoBehaviour
 
     private void createTicket(Order newOrder)
     {
-        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, Quaternion.identity);
+        // TODO : Change back!!
+        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, ticketSpawn.rotation);
 
         newTicket.GetComponent<Printable>().orderNum = newOrder.orderNum;
         newTicket.GetComponent<Printable>().orderString = newOrder.ToString();
@@ -157,9 +213,9 @@ public class GameManager : MonoBehaviour
             maxScore = 0;
             foreach (Orderable o in remainingCovers)
             {
-                if (o is SteakFrites)
+                if (o is SteakFritesOrder)
                 {
-                    (currScore, plateComments) = ((SteakFrites)o).Evaluate(p);
+                    (currScore, plateComments) = ((SteakFritesOrder)o).Evaluate(p);
                 }
                 else { currScore = 0; plateComments = "Bad type"; }
                 maxScore = Mathf.Max(maxScore, currScore);
@@ -234,7 +290,7 @@ public class GameManager : MonoBehaviour
         private Orderable GenerateDish()
         {
             // expand when we add new dishes
-            return new SteakFrites();
+            return new SteakFritesOrder();
         }
 
         public override string ToString()
@@ -256,14 +312,92 @@ public class GameManager : MonoBehaviour
         public override string ToString() { return ""; }
     }
 
-    private class SteakFrites : Orderable
+    private class OnionSoupOrder : Orderable {
+        bool hasBread = true;
+        public OnionSoupOrder() {
+            hasBread = Random.Range(0f, 1f) > .10;
+        }
+
+        public override string ToString()
+        {
+            return "French Onion Soup\n" + (hasBread ? "" : "-MODIFICATION: NO BREAD\n");
+        }
+
+        public (float, string) Evaluate(GameObject p) {
+            float total = 0;
+            bool foundBread = false;
+            string comments = "Onion soup: ";
+
+            // evaluate bread
+            foreach (Transform child in p.transform) {
+                GameObject target = child.gameObject;
+                if (target.tag == "bread") {
+                    foundBread = true;
+                    break;
+                }
+            }
+            if ((foundBread && hasBread) || (!foundBread && !hasBread)) {
+                total += 5;
+            } else {
+                total += 0;
+                comments += foundBread ? "didn't leave out bread, " : "forgot bread, ";
+            }
+
+            // evaluate cheese and parsley
+            Seasonable s = p.GetComponent<Seasonable>();
+            if (s == null) {
+                Debug.Log("Couldn't find seasonable on french onion soup");
+            } else {
+                if (s.gruyere >= 10) {
+                    total += 5;
+                } else {
+                    total += 2;
+                    comments += "not enough cheese, ";
+                }
+                if (s.parsley >= 2) {
+                    total += 5;
+                } else {
+                    total += 2;
+                    comments += "not enough parsley, ";
+                }
+            }
+
+            // evaluate soup
+            LiquidContainer l = p.GetComponent<LiquidContainer>();
+            if (l = null) {
+                Debug.Log("Couldn't find liquid container on onion soup");
+            } else {
+                if (p.tag == "frenchonionsoup" && l.currentVolume >= 500) {
+                    total += 5;
+                } else if (p.tag == "frenchonionsoup" && l.currentVolume < 500 && l.currentVolume > 0) {
+                    total += 3;
+                    comments += "not enough soup, ";
+                } else {
+                    total += 0;
+                    comments += "wrong or missing soup, ";
+                }
+            }
+
+            // evaluate toastiness
+            Cheese c = p.GetComponentInChildren<Cheese>();
+            if (c.toastingTime >= 10) {
+                total += 5;
+            } else {
+                total += 2;
+                comments += "not toasted enough, ";
+            }
+
+            return (total / 4, comments);
+        }
+    }
+    private class SteakFritesOrder : Orderable
     {
         SteakOrder s = null;
         FryOrder f = null;
         BearnaiseOrder b = null;
         bool hasSauce = true;
 
-        public SteakFrites()
+        public SteakFritesOrder()
         {
             s = new SteakOrder();
             f = new FryOrder();
@@ -330,7 +464,7 @@ public class GameManager : MonoBehaviour
 
         public override string ToString()
         {
-            return "Steak Frites\n" + (hasSauce ? "" : "- NO BEARNAISE\n") + s.ToString() + f.ToString();
+            return "Steak Frites\n" + (hasSauce ? "- BEARNAISE ON SIDE\n" : "- NO BEARNAISE\n") + s.ToString() + f.ToString();
         }
     }
 

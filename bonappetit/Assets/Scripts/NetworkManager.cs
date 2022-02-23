@@ -26,6 +26,9 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public GameObject joinInput;
 
+    public GameObject JoinRoomScreen;
+    public GameObject PreGameLobby;
+
     void Awake()
     {
         // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
@@ -93,14 +96,19 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public override void OnJoinedRoom()
     {
         Debug.Log("Joined a Room");
+        //set correct game objects
+        //connectGameMenu.SetActive(false);
+        JoinRoomScreen.SetActive(false);
+        PreGameLobby.SetActive(true);
+        createdRoomCode.text = "<b>Room Code:</b> " + PhotonNetwork.CurrentRoom.Name;
         base.OnJoinedRoom();
     }
 
-    public override void OnPlayerEnteredRoom(Player newPlayer)
-    {
-        Debug.Log("A new player joined the room.");
-        base.OnPlayerEnteredRoom(newPlayer);
-    }
+    // public override void OnPlayerEnteredRoom(Player newPlayer)
+    // {
+    //     Debug.Log("A new player joined the room.");
+    //     base.OnPlayerEnteredRoom(newPlayer);
+    // }
 
     public void CreateRoom()
     {
@@ -114,28 +122,29 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
         //################################
         // Debug statements : remember to remove
-        roomName = "AAAA";
+        //roomName = "BBBB";
         //################################
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 10;
-        roomOptions.IsVisible = false;  // not possible to join randomly
+        roomOptions.IsVisible = true;  // possible to join randomly
         roomOptions.IsOpen = true;  // let others join
 
         // Set text
-        createdRoomCode.text = "<b>Room Code:</b> " + roomName;
+        //createdRoomCode.text = "<b>Room Code:</b> " + roomName;
 
         // Create and join room
         Debug.Log("Creating and joining room " + roomName);
         PhotonNetwork.CreateRoom(roomName, roomOptions, TypedLobby.Default);
     }
 
+    //REDUNDANT ++++++ REMOVE
     public void JoinRoom()
     {
         //string roomName = joinInput.GetComponent<TMP_InputField>().text;
         //################################
         // Debug statements : remember to remove
         Debug.Log("Pressed Join room button");
-        string roomName = "AAAA";
+        string roomName = "BBBB";
         //################################
         Debug.Log("Trying to join room " + roomName);
         PhotonNetwork.JoinRoom(roomName.ToUpper());
@@ -157,6 +166,5 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("Disconnecting Photon.");
         PhotonNetwork.Disconnect();
     }
-    
     
 }
