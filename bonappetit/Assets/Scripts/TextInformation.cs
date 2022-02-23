@@ -65,7 +65,7 @@ public class TextInformation : MonoBehaviour
 
         var bearnaise = selectedObject.GetComponent<Bearnaise>();
         if (bearnaise != null) {
-            text.text += "Heating time: " + bearnaise.heatingTime + " s" + '\n';
+            text.text += "Status: " + (bearnaise.isSeparated ? "Separated\n" : "Good\n");
         }
 
         var knob = selectedObject.GetComponent<Knob>();

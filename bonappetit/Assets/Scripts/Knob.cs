@@ -13,9 +13,9 @@ public class Knob : MonoBehaviour, IPunObservable
     public Light greenLight;
     public Light redLight;
 
-    public AudioClip on;
+    public AudioClip on = null;
 
-    public AudioClip off;
+    public AudioClip off = null;
 
     private AudioSource a;
 
@@ -26,9 +26,11 @@ public class Knob : MonoBehaviour, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-    a = GetComponent<AudioSource>();
-    if (a == null) {
-        a = gameObject.AddComponent<AudioSource>();
+    if (on != null) {
+        a = GetComponent<AudioSource>();
+        if (a == null) {
+            a = gameObject.AddComponent<AudioSource>();
+        }
     }
     val = 0; // off 
     if (greenLight != null && redLight != null) {

@@ -11,10 +11,10 @@ public class LiquidContainer : MonoBehaviour
     public bool isFillable = false;
     public bool isPourable = false;
     public Material liquidMaterial = null;
+    public GameObject liquid = null;
     [Header("Fillable Settings")]
     public Transform liquidStart = null;
     public Transform liquidEnd = null;
-    public GameObject liquid = null;
     [Header("Pourable Settings")]
     public bool variablePourRate = false;
     public int pourRateMultiplier = 1;
@@ -26,22 +26,28 @@ public class LiquidContainer : MonoBehaviour
 
     private LiquidContainer scooper = null;
 
+    public  Temperature temperature = null;
     private readonly float baseRate = 0.5f; // the base pour rate
-    private readonly float scoopRate = 4.0f; // the rate which liquid can be scooped from this object
+    private readonly float scoopRate = 20.0f; // the rate which liquid can be scooped from this object
 
     // Start is called before the first frame update
     void Start()
     {
-        if (isFillable) {
+        if (liquid != null) {
             liquidMesh = liquid.GetComponent<MeshRenderer>();
-            liquidMesh.enabled = false;
-            liquid.transform.position = liquidStart.position;
+            if (isFillable) {
+                liquidMesh.enabled = false;
+                liquid.transform.position = liquidStart.position;
+            }
+        }
+        temperature = GetComponent<Temperature>();
+        if (temperature == null) {
+            temperature = gameObject.AddComponent<Temperature>();
         }
     }
 
     void FixedUpdate() {
         if (isPourable && isPouring) {
-            print("Pouring");
             float pourRate = CalculatePourRate();
             currentVolume = Mathf.Max(0f, currentVolume - pourRate);
             if (stream.container != null && stream.container.currentVolume < stream.container.capacity) {
@@ -49,9 +55,11 @@ public class LiquidContainer : MonoBehaviour
                 if (tag == "bearnaise" && stream.container.gameObject.GetComponent<Bearnaise>() == null) {
                     stream.container.gameObject.tag = "bearnaise";
                     stream.container.gameObject.AddComponent<Bearnaise>();
+                } else if (tag == "frenchonionsoup") {
+                    stream.container.gameObject.tag = "frenchonionsoup";
                 }
+                stream.container.temperature.temp = (temperature.temp + stream.container.temperature.temp) / 2;
                 stream.container.currentVolume = Mathf.Min(stream.container.currentVolume + pourRate, stream.container.capacity);
-                print("Filling!");
             }
 
             if (stream.foodItem != null) {
@@ -67,8 +75,11 @@ public class LiquidContainer : MonoBehaviour
             currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
             scooper.currentVolume = Mathf.Min(scooper.currentVolume + scoopRate, scooper.capacity);
             if (tag == "bearnaise") {
-                    scooper.gameObject.tag = "bearnaise";
-                }
+                scooper.gameObject.tag = "bearnaise";
+            } else if (tag == "frenchonionsoup") {
+                scooper.gameObject.tag = "frenchonionsoup";
+            }
+            scooper.temperature.temp = (temperature.temp + scooper.temperature.temp) / 2;
         }
     }
 
@@ -95,11 +106,12 @@ public class LiquidContainer : MonoBehaviour
 
         }
 
+        if (liquidMesh != null && liquidMaterial != null && liquidMesh.material != liquidMaterial) {
+            liquidMesh.material = liquidMaterial;
+        }
+
         if(isFillable) {
             if (getPercentage() > 0.1) {
-                if (liquidMaterial != null && liquidMesh.material != liquidMaterial) {
-                    liquidMesh.material = liquidMaterial;
-                }
                 liquidMesh.enabled = true;
                 // a + (b - a) * t
                 liquid.transform.position = Vector3.Lerp(liquidStart.position, liquidEnd.position, getPercentage());
@@ -133,8 +145,8 @@ public class LiquidContainer : MonoBehaviour
         return baseRate * 5 * pourRateMultiplier * (CalculatePourAngle() / 180); 
     }
 
-    void OnTriggerStay(Collider other) {
-        if (isFillable && other.tag == "scooper") {
+    void OnTriggerEnter(Collider other) {
+        if (other.tag == "scooper") {
             scooper = other.GetComponentInParent<LiquidContainer>();
             scooper.liquidMaterial = liquidMaterial;
         }
