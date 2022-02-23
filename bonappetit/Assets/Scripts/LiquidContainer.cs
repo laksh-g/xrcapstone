@@ -26,6 +26,7 @@ public class LiquidContainer : MonoBehaviour
 
     private LiquidContainer scooper = null;
 
+    public  Temperature temperature = null;
     private readonly float baseRate = 0.5f; // the base pour rate
     private readonly float scoopRate = 20.0f; // the rate which liquid can be scooped from this object
 
@@ -39,11 +40,14 @@ public class LiquidContainer : MonoBehaviour
                 liquid.transform.position = liquidStart.position;
             }
         }
+        temperature = GetComponent<Temperature>();
+        if (temperature == null) {
+            temperature = gameObject.AddComponent<Temperature>();
+        }
     }
 
     void FixedUpdate() {
         if (isPourable && isPouring) {
-            print("Pouring");
             float pourRate = CalculatePourRate();
             currentVolume = Mathf.Max(0f, currentVolume - pourRate);
             if (stream.container != null && stream.container.currentVolume < stream.container.capacity) {
@@ -51,9 +55,11 @@ public class LiquidContainer : MonoBehaviour
                 if (tag == "bearnaise" && stream.container.gameObject.GetComponent<Bearnaise>() == null) {
                     stream.container.gameObject.tag = "bearnaise";
                     stream.container.gameObject.AddComponent<Bearnaise>();
+                } else if (tag == "frenchonionsoup") {
+                    stream.container.gameObject.tag = "frenchonionsoup";
                 }
+                stream.container.temperature.temp = (temperature.temp + stream.container.temperature.temp) / 2;
                 stream.container.currentVolume = Mathf.Min(stream.container.currentVolume + pourRate, stream.container.capacity);
-                print("Filling!");
             }
 
             if (stream.foodItem != null) {
@@ -70,7 +76,10 @@ public class LiquidContainer : MonoBehaviour
             scooper.currentVolume = Mathf.Min(scooper.currentVolume + scoopRate, scooper.capacity);
             if (tag == "bearnaise") {
                 scooper.gameObject.tag = "bearnaise";
+            } else if (tag == "frenchonionsoup") {
+                scooper.gameObject.tag = "frenchonionsoup";
             }
+            scooper.temperature.temp = (temperature.temp + scooper.temperature.temp) / 2;
         }
     }
 

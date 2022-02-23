@@ -33,6 +33,9 @@ TagManager:
   - soup bowl
   - grater
   - gruyere
+  - torch
+  - bread
+  - frenchonionsoup
   layers:
   - Default
   - TransparentFX
@@ -43,7 +46,7 @@ TagManager:
   - Player
   - Fixtures
   - Interactables
-  - Hooks
+  - Plated
   - 
   - 
   - 

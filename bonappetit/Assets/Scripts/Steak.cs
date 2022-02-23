@@ -14,9 +14,9 @@ public class Steak : MonoBehaviour, IPunObservable
     public bool isResting; // true when steak was just taken off heating source
     public GameObject smokePrefab;
     private ParticleSystem smokeInstance;
-    public Material raw;
-    public Material done;
-    public Material burnt;
+    public Transform raw;
+    public Transform done;
+    public Transform burnt;
 
     public AudioClip sizzle;
 
@@ -40,6 +40,9 @@ public class Steak : MonoBehaviour, IPunObservable
         seasoning = GetComponent<Seasonable>();
         temp = GetComponent<Temperature>();
         a = GetComponent<AudioSource>();
+        raw = transform.Find("Uncooked");
+        done = transform.Find("Cooked");
+        burnt = transform.Find("Burnt");
 
     }
 
@@ -68,11 +71,17 @@ public class Steak : MonoBehaviour, IPunObservable
             a.Stop();
         }
         if (searTime <= 120) {
-            steakMesh.material = raw;
+            raw.gameObject.SetActive(true);
+            done.gameObject.SetActive(false);
+            burnt.gameObject.SetActive(false);
         } else if (searTime <= 180){
-            steakMesh.material = done;
+            raw.gameObject.SetActive(false);
+            done.gameObject.SetActive(true);
+            burnt.gameObject.SetActive(false);
         } else {
-            steakMesh.material = burnt;
+            raw.gameObject.SetActive(false);
+            done.gameObject.SetActive(false);
+            burnt.gameObject.SetActive(true);
         }
 
 

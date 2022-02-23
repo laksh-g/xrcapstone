@@ -57,6 +57,7 @@ public class Stream : MonoBehaviour
         // check if we are pouring into a fillable
         LiquidContainer f = hit.collider.isTrigger? hit.collider.GetComponentInParent<LiquidContainer>() : null;
         if (f != null && f.isFillable) {
+            Debug.Log("Stream registered container " + f.tag);
             container = f;
         } else {
             container = null;

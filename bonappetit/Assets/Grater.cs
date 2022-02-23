@@ -14,7 +14,7 @@ public class Grater : MonoBehaviour
     private Rigidbody gratedObj = null;
     private AudioSource a = null;
     public AudioClip shakeSound = null;
-    private readonly float pourRate = 0.05f; // in grams
+    private readonly float pourRate = 0.2f; // in grams
     // Start is called before the first frame update
     void Start()
     {
@@ -79,7 +79,7 @@ public class Grater : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(p.transform.position, Vector3.down);
         Physics.Raycast(ray, out hit, 10.0f);
-        Seasonable s = hit.collider.GetComponent<Seasonable>();
+        Seasonable s = hit.collider.GetComponentInParent<Seasonable>();
         if (s != null) {
             target = s;
         } else {

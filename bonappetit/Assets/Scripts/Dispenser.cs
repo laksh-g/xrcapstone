@@ -7,6 +7,7 @@ public class Dispenser : MonoBehaviour
 {
     public Transform dispensePoint = null;
     public GameObject dispensablePrefab = null;
+    public bool offlineMode = false;
     public int batchSize = 20;
     public float timeout = 10;
     public bool isActivated = false;
@@ -48,7 +49,11 @@ public class Dispenser : MonoBehaviour
     public void Dispense() {
         if (!isTimeout) {
             for(int i = 0; i < batchSize; i++) {
-                PhotonNetwork.Instantiate(dispensablePrefab.name, dispensePoint.position, Quaternion.identity);
+                if (offlineMode) {
+                    Instantiate(dispensablePrefab, dispensePoint.position, Quaternion.identity);
+                } else {
+                    PhotonNetwork.Instantiate(dispensablePrefab.name, dispensePoint.position, Quaternion.identity);
+                }
             }
             isTimeout = true;
         }

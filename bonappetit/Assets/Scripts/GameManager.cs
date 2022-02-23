@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
             if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
                 Debug.Log("Final score: " + GetScore());
                 ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
-		ht["covers"] = coversCompleted;
+		        ht["covers"] = coversCompleted;
                 ht["score"] = GetScore();
                 PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
                 
@@ -158,9 +158,9 @@ public class GameManager : MonoBehaviour
             maxScore = 0;
             foreach (Orderable o in remainingCovers)
             {
-                if (o is SteakFrites)
+                if (o is SteakFritesOrder)
                 {
-                    (currScore, plateComments) = ((SteakFrites)o).Evaluate(p);
+                    (currScore, plateComments) = ((SteakFritesOrder)o).Evaluate(p);
                 }
                 else { currScore = 0; plateComments = "Bad type"; }
                 maxScore = Mathf.Max(maxScore, currScore);
@@ -235,7 +235,7 @@ public class GameManager : MonoBehaviour
         private Orderable GenerateDish()
         {
             // expand when we add new dishes
-            return new SteakFrites();
+            return new SteakFritesOrder();
         }
 
         public override string ToString()
@@ -257,14 +257,92 @@ public class GameManager : MonoBehaviour
         public override string ToString() { return ""; }
     }
 
-    private class SteakFrites : Orderable
+    private class OnionSoupOrder : Orderable {
+        bool hasBread = true;
+        public OnionSoupOrder() {
+            hasBread = Random.Range(0f, 1f) > .10;
+        }
+
+        public override string ToString()
+        {
+            return "French Onion Soup\n" + (hasBread ? "" : "-MODIFICATION: NO BREAD\n");
+        }
+
+        public (float, string) Evaluate(GameObject p) {
+            float total = 0;
+            bool foundBread = false;
+            string comments = "Onion soup: ";
+
+            // evaluate bread
+            foreach (Transform child in p.transform) {
+                GameObject target = child.gameObject;
+                if (target.tag == "bread") {
+                    foundBread = true;
+                    break;
+                }
+            }
+            if ((foundBread && hasBread) || (!foundBread && !hasBread)) {
+                total += 5;
+            } else {
+                total += 0;
+                comments += foundBread ? "didn't leave out bread, " : "forgot bread, ";
+            }
+
+            // evaluate cheese and parsley
+            Seasonable s = p.GetComponent<Seasonable>();
+            if (s == null) {
+                Debug.Log("Couldn't find seasonable on french onion soup");
+            } else {
+                if (s.gruyere >= 10) {
+                    total += 5;
+                } else {
+                    total += 2;
+                    comments += "not enough cheese, ";
+                }
+                if (s.parsley >= 2) {
+                    total += 5;
+                } else {
+                    total += 2;
+                    comments += "not enough parsley, ";
+                }
+            }
+
+            // evaluate soup
+            LiquidContainer l = p.GetComponent<LiquidContainer>();
+            if (l = null) {
+                Debug.Log("Couldn't find liquid container on onion soup");
+            } else {
+                if (p.tag == "frenchonionsoup" && l.currentVolume >= 500) {
+                    total += 5;
+                } else if (p.tag == "frenchonionsoup" && l.currentVolume < 500 && l.currentVolume > 0) {
+                    total += 3;
+                    comments += "not enough soup, ";
+                } else {
+                    total += 0;
+                    comments += "wrong or missing soup, ";
+                }
+            }
+
+            // evaluate toastiness
+            Cheese c = p.GetComponentInChildren<Cheese>();
+            if (c.toastingTime >= 10) {
+                total += 5;
+            } else {
+                total += 2;
+                comments += "not toasted enough, ";
+            }
+
+            return (total / 4, comments);
+        }
+    }
+    private class SteakFritesOrder : Orderable
     {
         SteakOrder s = null;
         FryOrder f = null;
         BearnaiseOrder b = null;
         bool hasSauce = true;
 
-        public SteakFrites()
+        public SteakFritesOrder()
         {
             s = new SteakOrder();
             f = new FryOrder();

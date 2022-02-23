@@ -16,7 +16,7 @@ public class Temperature : MonoBehaviour, IPunObservable
     public float maxTemp;
     private bool inFridge = false;
     private float k = .02F; // heat transfer coefficient * surface area
-    private HeatingElement heater = null;
+    public HeatingElement heater = null;
 
     private float restTime = 0; // temp will continue to rise for a period after coming off heat
     private bool isResting = false;

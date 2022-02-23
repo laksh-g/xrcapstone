@@ -6,36 +6,58 @@ public class Plateable : MonoBehaviour
 {
     private Transform cachedParent = null;
 
-    private FixedJoint joint = null;
+    private bool connected = false;
 
+    private Transform point = null;
 
-    void FixedUpdate() {
-        if (joint != null && CalculatePlateAngle(transform.parent) > 60) {
+    private Transform _transform;
+    private Rigidbody _rb;
+
+    private XRGrabNetworkInteractable _grab;
+
+    void Awake() {
+        _transform = GetComponent<Transform>();
+        _rb = GetComponent<Rigidbody>();
+        _grab = GetComponent<XRGrabNetworkInteractable>();
+    }
+
+    void Update() {
+        if (connected && CalculatePlateAngle(point.parent.parent) > 60) {
             Unstick();
+        } else if (connected) {
+            _transform.SetPositionAndRotation(point.position, point.rotation);
         }
     }
     void OnTriggerEnter (Collider other) {
-        if(other.gameObject.tag == "plate" && joint == null && CalculatePlateAngle(other.transform) < 10) {
-            Debug.Log("Acquired plate");
-            // set rotation to match plate
-            var euler = other.transform.rotation.eulerAngles;
-            transform.rotation = Quaternion.Euler(euler.x, 0, euler.z);
-            // move to y position of the plate
-            transform.position = new Vector3(transform.position.x, other.transform.position.y, transform.position.z);
-            cachedParent = transform.parent;
-            joint = gameObject.AddComponent<FixedJoint>();
-            joint.connectedBody = other.GetComponentInParent<Rigidbody>();
-            joint.breakForce = Mathf.Infinity;
-            transform.parent = other.transform.parent == null ? other.transform : other.transform.parent;
+        if(!connected && other.gameObject.tag == "plate" 
+        && CalculatePlateAngle(other.transform) < 10 ) {
+            Transform[] transforms = other.gameObject.GetComponentsInChildren<Transform>();
+            foreach (Transform t in transforms) {
+                if (t.CompareTag(tag)) {
+                    _rb.isKinematic = true;
+                    gameObject.layer = 9; // set to plated layer to disable collisions
+                    connected = true;
+                    point = t;
+                    t.tag = "occupied"; // set the tag so other objects don't try to stick here
+                    cachedParent = _transform.parent;
+                    _transform.parent = other.transform.parent;
+                    Debug.Log(tag + " acquired plate");
+                    break;
+                }
+            }
+            Debug.Log(tag + " Failed to acquire plate");
         }
     }
 
     public void Unstick() {
-        if (joint != null) {
-            Debug.Log("Unstuck from plate");
-            transform.parent = cachedParent;
-            Destroy(joint);
-            joint = null;
+        if (connected) {
+            Debug.Log(tag +  " unstuck from plate");
+            connected = false;
+            point.tag = tag; // reset tag
+            point = null;
+            gameObject.layer = 8; // set back to interactable layer
+            _rb.isKinematic = false;
+            _transform.parent = cachedParent;
         }
     }
 
