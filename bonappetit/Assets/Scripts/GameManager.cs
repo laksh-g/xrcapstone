@@ -31,12 +31,6 @@ public class GameManager : MonoBehaviour
 
     private bool endgame = false;
 
-    void Start() {
-        // StartGame();
-        // Invoke("RedrawLastOrder", 10);
-        // Invoke("RedrawAllOrders", 20);
-    }
-
     // Start is called before the first frame update
 
     public void StartGame() {

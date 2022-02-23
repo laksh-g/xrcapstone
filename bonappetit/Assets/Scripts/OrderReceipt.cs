@@ -17,16 +17,12 @@ public class OrderReceipt : MonoBehaviour
 
     private Rigidbody rb;
 
-    
-
     void Start()
     {
         isStuck = true;
         cachedPosition = 0;
         orderInfo = GetComponent<Printable>();
         rb = GetComponent<Rigidbody>();
-
-        float ht = 0f;
 
         foreach (Transform child in gameObject.transform)
         {
@@ -35,17 +31,11 @@ public class OrderReceipt : MonoBehaviour
             {
                 orderNum = target.GetComponent<TextMeshPro>();
                 orderNum.text = "Order No. " + orderInfo.orderNum;
-
-                orderNum.ForceMeshUpdate();
-                ht += orderNum.GetRenderedValues().y;
             }
             else if (target.tag == "order_desc_label")
             {
                 orderDesc = target.GetComponent<TextMeshPro>();
                 orderDesc.text = orderInfo.orderString;
-
-                orderDesc.ForceMeshUpdate();
-                ht += orderDesc.GetRenderedValues().y;
             }
         }
 
@@ -53,24 +43,29 @@ public class OrderReceipt : MonoBehaviour
         {
             GameObject target = child.gameObject;
             if (target.tag == "order_receipt_container") {
-                
-                if (ht > 0) {
+                int lines = orderInfo.orderString.Split('\n').Length - 1;
+                if (lines > 10) {
                     ScaleAround(
                         target,
                         new Vector3(0f, 0f, 0.36f),
-                        new Vector3(1f, 1f, (1.1f + (ht)))
+                        new Vector3(1f, 1f, 1f + (lines - 10) * 0.1f)
+                    );
+
+                    BoxCollider containerBC = gameObject.GetComponent<BoxCollider>();
+                    BoxCollider targetBC = target.GetComponent<BoxCollider>();
+                    
+                    containerBC.size = new Vector3(
+                        targetBC.size.x,
+                        targetBC.size.y,
+                        targetBC.size.z
+                    );
+
+                    containerBC.center = new Vector3(
+                        targetBC.center.x,
+                        targetBC.center.y,
+                        targetBC.center.z
                     );
                 }
-
-                Debug.Log("CARD");
-                Debug.Log(ht);
-                // z >>
-                // Debug.Log(target.GetComponent<Renderer>().bounds.center);
-                // // z >>
-                // Debug.Log(target.GetComponent<Renderer>().bounds.extents);
-                // Debug.Log(target.GetComponent<Renderer>().bounds.max);
-                // Debug.Log();
-                // Debug.Log(target.GetComponent<Renderer>().bounds.size);
             }
         }
     }
