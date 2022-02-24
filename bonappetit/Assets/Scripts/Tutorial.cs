@@ -43,7 +43,8 @@ public class Tutorial : MonoBehaviour
                                              GameObject.Find("Prop_Griller_p03") });
         highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Griller_p03") });
         highlightObjs.Add(new GameObject[] { plate });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Frier_p02") });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Frier_p02"), 
+                                             GameObject.Find("Prop_Frier (1)") });
         highlightObjs.Add(new GameObject[] { GameObject.Find("FryDispenser (1)"),
                                              GameObject.Find("FryDispenser (2)"),
                                              GameObject.Find("FryDispenser (3)"),
