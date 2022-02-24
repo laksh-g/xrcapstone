@@ -73,12 +73,12 @@ public class Tutorial : MonoBehaviour
             "Step 8: Place the fry basket back in the frier and turn on the frier to cook the fries. \n\nTIP: Some knobs only have 2 settings, some have 4.",
             "Step 9: Let the fries cook until they reach 190C or 219C for extra crispy. Then garnish with 4g of salt and 4g of parsley.",
             "Step 10: Plate it with the steak. \n\nTIP: When turning in an order, all the components have to be on the same plate.",
-            "Step 11: Cook the bearnaise sauce! Grab a sauce pan and a ladle. \n\nTIP: There are additional ladles and ramekins in the drawers.",
+            "Step 11: Cook the bearnaise sauce! Grab a sauce pan and a ladle. \n\nTIP: There are additional ladles in the drawers.",
             "Step 12: Sauce is located in the heater. Ladle 1.5 scoops of Bearnaise sauce into the sauce pan.",
             "Step 13: Heat the sauce until 60C. Turn on the stove with the knobs.",
             "Step 14: Pour the sauce into a ramekin. Ramekins are stored in drawers. Then plate it with the steak and fries.",
             "Step 15: To serve the dish, place it on the flashing tables. \n\nTIP: This is the head chef's role. Once the order ticket is placed on the table, all the dishes on the table will be served.",
-            "Congratulations! You have successfully cooked steak frites!"
+            "Congratulations!!! \nYou have successfully cooked steak frites! \n\nTIP: Press the left menu button to return to menu."
         };
 
         startColor = new ArrayList();
