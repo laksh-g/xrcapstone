@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
 		        ht["covers"] = coversCompleted;
                 ht["score"] = GetScore();
                 PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-                PhotonNetwork.LoadLevel("Endgame");
+                PhotonNetwork.LoadLevel("NewEndgame");
             }
             endgame = true;
         }
