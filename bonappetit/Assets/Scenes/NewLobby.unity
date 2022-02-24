@@ -5208,7 +5208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a12e6ffa96fe31e43a9c9d7cc6cde0f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SceneName: Endgame
+  SceneName: NewEndgame
 --- !u!1 &1137611525
 GameObject:
   m_ObjectHideFlags: 0
