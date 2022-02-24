@@ -26,6 +26,8 @@ public class Plateable : MonoBehaviour
             Unstick();
         } else if (connected) {
             _transform.SetPositionAndRotation(point.position, point.rotation);
+        } else if (_rb.isKinematic == true) {
+            Unstick();
         }
     }
     void OnTriggerEnter (Collider other) {
@@ -55,7 +57,7 @@ public class Plateable : MonoBehaviour
             connected = false;
             point.tag = tag; // reset tag
             point = null;
-            gameObject.layer = 9; // set back to interactable layer
+            gameObject.layer = 9; // set back to food layer
             _rb.isKinematic = false;
             _transform.parent = cachedParent;
         }
