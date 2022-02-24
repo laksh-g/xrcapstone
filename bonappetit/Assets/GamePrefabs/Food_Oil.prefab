@@ -122,13 +122,14 @@ MonoBehaviour:
   isFillable: 0
   isPourable: 1
   liquidMaterial: {fileID: 2100000, guid: 90623549d4482f042ade35d8a0758e35, type: 2}
+  liquid: {fileID: 0}
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
-  liquid: {fileID: 0}
   variablePourRate: 0
   pourRateMultiplier: 1
   spout: {fileID: 6665896253822600192}
   streamPrefab: {fileID: 5238570228697279498, guid: 687fe5b6c1388c34882009636030b3c7, type: 3}
+  temperature: {fileID: 0}
 --- !u!65 &5920625763027641415
 BoxCollider:
   m_ObjectHideFlags: 0

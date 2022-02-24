@@ -259,25 +259,17 @@ public class GameManager : MonoBehaviour
             this.orderNum = orderNum;
 
             float rand = Random.Range(0f, 1f);
-            if (rand < .1)
+            if (rand < .2)
             {
                 partySize = 1;
             }
-            else if (rand < .5)
+            else if (rand < .7)
             {
                 partySize = 2;
             }
-            else if (rand < .75)
-            {
-                partySize = 3;
-            }
-            else if (rand < .95)
-            {
-                partySize = 4;
-            }
             else
             {
-                partySize = 6;
+                partySize = 3;
             }
 
             for (int i = 0; i < partySize; i++)
@@ -407,56 +399,52 @@ public class GameManager : MonoBehaviour
             float total = 0;
             string comments = "SteakFrites: ";
             Steak steak = null;
-            bool hasFries = false;
-            Fries currFry = null;
+            Fries fry = null;
             Bearnaise sauce = null;
-            bool hasSteak = false;
             float tempVal = 0;
             string tempString = "";
             foreach (Transform child in p.transform)
             {
                 GameObject target = child.gameObject;
-                steak = target.GetComponent<Steak>();
-                if (steak != null)
-                {
-                    (tempVal, tempString) = s.Evaluate(steak);
-                    total += tempVal;
-                    comments += tempString;
-                    hasSteak = true;
-                    continue;
+                if (steak == null) {
+                    steak = target.GetComponent<Steak>();
                 }
-                currFry = target.GetComponent<Fries>();
-                if (currFry != null)
-                {
-                    (tempVal, tempString) = f.Evaluate(currFry);
-                    total += tempVal;
-                    comments += tempString;
-                    hasFries = true;
-                    continue;
+                if (fry == null) {
+                    fry = target.GetComponent<Fries>();
                 }
-                sauce = target.GetComponent<Bearnaise>();
-                if ((sauce != null && !hasSauce) || (sauce == null && hasSauce))
-                {
-                    total += 1f;
-                    comments += hasSauce ? "forgot sauce, " : "added sauce when requested not to, ";
-                }
-                else if (sauce != null)
-                {
-                    (tempVal, tempString) = b.Evaluate(sauce);
-                    total += tempVal;
-                    comments += tempString;
+                if (sauce == null) {
+                    sauce = target.GetComponent<Bearnaise>();
                 }
             }
 
-            if (hasSteak == false)
+            if (steak != null)
             {
-                total = 0;
-                comments += "Missing steak";
+                (tempVal, tempString) = s.Evaluate(steak);
+                total += tempVal;
+                comments += tempString;
+            } else {
+                total += 0;
+                comments += "missing steak, ";
             }
 
-            if (!hasFries) {
-                total = 0;
-                comments += "Missing fries";
+            if (fry != null) {
+                (tempVal, tempString) = f.Evaluate(fry);
+                total += tempVal;
+                comments += tempString;
+            } else {
+                total += 0;
+                comments += "missing fries, ";
+            }
+
+            if (sauce != null) {
+                (tempVal, tempString) = b.Evaluate(sauce);
+                total += tempVal;
+                comments += tempString;
+            } else if (!hasSauce) {
+                total += 5;
+            } else {
+                total += 0;
+                comments += "forgot sauce, ";
             }
             return ((total / 3), comments);
         }
@@ -483,7 +471,7 @@ public class GameManager : MonoBehaviour
             if (doneness == -1)
             {
                 result = 0;
-                comments = "raw steak inedible, ";
+                comments = "steak was still mooin ";
                 return (result, comments);
             }
             if (doneness != expectedDoneness)
@@ -554,38 +542,38 @@ public class GameManager : MonoBehaviour
             if (f.temp.maxTemp > 190 * 1.15f) {
                 if(!extraCrispy) {
                     total -= 1;
-                    comments += "Fries overcooked, ";
+                    comments += "overcooked, ";
                 }
             }
             if (f.temp.maxTemp < 190)
             {
                 total -= 2;
-                comments += "Undercooked fries, ";
+                comments += "undercooked, ";
             }
-            if (f.seasoning.parsley < 5f && !noParsley)
+            if (f.seasoning.parsley < 4f && !noParsley)
             {
                 total -= .5f;
-                comments += "Not enough parsley, ";
+                comments += "not enough parsley, ";
             }
             else if (f.seasoning.parsley > 0f && noParsley)
             {
                 total -= .5f;
-                comments += "Order contained parsley, ";
+                comments += "parsley allergy ignored, ";
             }
-            if (f.seasoning.salt < 5f && !noSalt)
+            if (f.seasoning.salt < 4f && !noSalt)
             {
                 total -= .5f;
-                comments += "Not enough salt, ";
+                comments += "under salted, ";
             }
             else if (f.seasoning.salt > 8f && !noSalt)
             {
                 total -= .5f;
-                comments += "Too salty, ";
+                comments += "too salty, ";
             }
             else if (f.seasoning.salt > 0f && noSalt)
             {
                 total -= .5f;
-                comments += "Order contained salt, ";
+                comments += "no salt request was ignored ";
             }
             return (Mathf.Max(0f, total), comments);
 
@@ -606,18 +594,13 @@ public class GameManager : MonoBehaviour
             string comments = "Bearnaise: ";
             if (b.container.currentVolume < 100)
             {
-                comments += "Not enough, ";
+                comments += "not enough sauce, ";
                 total -= 1;
             }
-            if (b.temp.maxTemp > Bearnaise.SEPARATION_TEMP)
+            if (b.isSeparated)
             {
                 comments += "sauce separated, ";
-                total -= 1;
-            }
-            if (b.temp.temp < 37)
-            {
-                comments += "cold, ";
-                total -= 1;
+                total -= 2;
             }
             return (total, comments);
 

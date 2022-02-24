@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Photon.Pun;
 
 public class TurnInZone : MonoBehaviour
 {
@@ -33,6 +34,7 @@ public class TurnInZone : MonoBehaviour
         }
         if (other.tag == "order") {
             TurnIn(other.gameObject.GetComponent<Printable>().orderNum);
+            PhotonNetwork.Destroy(other.gameObject);
         }
     }
 
@@ -44,7 +46,7 @@ public class TurnInZone : MonoBehaviour
             print(score + " " + comments);
             foreach (GameObject child in contents.ToList()) {
                 contents.Remove(child);
-                Destroy(child);
+                PhotonNetwork.Destroy(child);
             }
         }
     }
