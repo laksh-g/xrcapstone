@@ -104,7 +104,12 @@ public class GameManager : MonoBehaviour
     }
 
     public void DrawFeedback(int orderNum, string comments) {
-        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, Quaternion.identity);
+        Vector3 pos = new Vector3(
+            ticketSpawn.position.x + .35f,
+            ticketSpawn.position.y,
+            ticketSpawn.position.z
+        );
+        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, pos, ticketSpawn.rotation);
 
         newTicket.GetComponent<Printable>().orderNum = orderNum;
         newTicket.GetComponent<Printable>().orderString = comments;
