@@ -64,7 +64,7 @@ public class Tutorial : MonoBehaviour
 
         tutorialText = new string[] { 
             "Step 1: Cook a steak! Get a steak from the fridge.",
-            "Step 2: Place the steak down and season it with 7g of salt and 5g of pepper. \n\nTIP: Salt and pepper come out from the top of the shakers.",
+            "Step 2: Place the steak on the counter and season it with 7g of salt and 5g of pepper. \n\nTIP: Salt and pepper come out from the top of the shakers.",
             "Step 3: Place the steak on the griller and turn knob to highest setting to sear the steak. \n\nTIP: Hovering over items with the left controller will give you more information about the item. Hover over the knob with the left controller to see the current setting.",
             "Step 4: Let the steak sear for 120s, then turn knob to medium setting and cook until steak is at the desired doneness. \n\nTIP: The steak will visually change when it is correctly seared. Use the object information panel to see the doneness.",
             "Step 5: Let the steak rest for 180s and plate it up. \n\nTIP: The rotisseur role is only in charge of cooking steaks. The saucier cooks the fries and bearnaise sauce.",
