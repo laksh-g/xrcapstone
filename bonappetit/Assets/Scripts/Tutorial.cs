@@ -23,7 +23,7 @@ public class Tutorial : MonoBehaviour
     GameObject fries;
     GameObject plate;
     GameObject saucepan;
-    GameObject ramekin;
+    //GameObject ramekin;
 
     // Start is called before the first frame update
     void Start()
@@ -31,8 +31,7 @@ public class Tutorial : MonoBehaviour
         textInfo = GameObject.Find("ObjectInformation").GetComponent<TextInformation>();
         saucepan = GameObject.Find("Sauce pan (1)");
         plate = GameObject.Find("Prop_Plate_02 (1)");
-        ramekin = GameObject.Find("Ramekin (4)");
-        ramekin.GetComponent<Renderer>().material.color = Color.yellow;
+        //ramekin = GameObject.Find("Ramekin (4)");
 
         highlightObjs = new ArrayList();
         highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Fridge_02_p03"),
@@ -59,25 +58,25 @@ public class Tutorial : MonoBehaviour
         highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Heater_p04"),
                                              GameObject.Find("Prop_Heater") });
         highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Stove") });
-        highlightObjs.Add(new GameObject[] { plate, ramekin });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_06_p03"), plate });
         highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_01 (1)"),
                                              GameObject.Find("Prop_KitchenTable_01") });
 
         tutorialText = new string[] { 
             "Step 1: Cook a steak! Get a steak from the fridge.",
-            "Step 2: Salt and pepper the steak. \n\nTIP: Salt and pepper come out from the top of the shakers.",
+            "Step 2: Place the steak down and season it with 7g of salt and 5g of pepper. \n\nTIP: Salt and pepper come out from the top of the shakers.",
             "Step 3: Place the steak on the griller and turn knob to highest setting to sear the steak. \n\nTIP: Hovering over items with the left controller will give you more information about the item. Hover over the knob with the left controller to see the current setting.",
-            "Step 4: Let the steak sear for 2 minutes, then turn knob to medium setting and cook until steak is at the desired doneness. \n\nTIP: The steak will visually change when it is correctly seared. Use the object information panel to see the doneness.",
-            "Step 5: Let the steak rest for 3 minutes and plate it up. \n\nTIP: The rotisseur role is only in charge of cooking steaks. The saucier cooks the fries and bearnaise sauce.",
+            "Step 4: Let the steak sear for 120s, then turn knob to medium setting and cook until steak is at the desired doneness. \n\nTIP: The steak will visually change when it is correctly seared. Use the object information panel to see the doneness.",
+            "Step 5: Let the steak rest for 180s and plate it up. \n\nTIP: The rotisseur role is only in charge of cooking steaks. The saucier cooks the fries and bearnaise sauce.",
             "Step 6: Cook some fries! Grab a fry basket out of the frier.",
             "Step 7: Hold the fry basket under the fry dispenser and press the red button to get some fries. \n\nTIP: There is a cooldown for dispensing fries.",
             "Step 8: Place the fry basket back in the frier and turn on the frier to cook the fries. \n\nTIP: Some knobs only have 2 settings, some have 4.",
-            "Step 9: Let the fries cook until they reach 190C or 219C for extra crispy. Then garnish with salt and parsley.",
+            "Step 9: Let the fries cook until they reach 190C or 219C for extra crispy. Then garnish with 4g of salt and 4g of parsley.",
             "Step 10: Plate it with the steak. \n\nTIP: When turning in an order, all the components have to be on the same plate.",
             "Step 11: Cook the bearnaise sauce! Grab a sauce pan and a ladle. \n\nTIP: There are additional ladles and ramekins in the drawers.",
             "Step 12: Sauce is located in the heater. Ladle 1.5 scoops of Bearnaise sauce into the sauce pan.",
-            "Step 13: Heat the sauce over low heat until 60C.",
-            "Step 14: Pour the sauce into a ramekin, then plate it with the steak and fries.",
+            "Step 13: Heat the sauce until 60C. Turn on the stove with the knobs.",
+            "Step 14: Pour the sauce into a ramekin. Ramekins are stored in drawers. Then plate it with the steak and fries.",
             "Step 15: To serve the dish, place it on the flashing tables. \n\nTIP: This is the head chef's role. Once the order ticket is placed on the table, all the dishes on the table will be served.",
             "Congratulations! You have successfully cooked steak frites!"
         };
