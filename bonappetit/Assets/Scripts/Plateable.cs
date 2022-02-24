@@ -35,7 +35,7 @@ public class Plateable : MonoBehaviour
             foreach (Transform t in transforms) {
                 if (t.CompareTag(tag)) {
                     _rb.isKinematic = true;
-                    gameObject.layer = 9; // set to plated layer to disable collisions
+                    gameObject.layer = 10; // set to plated layer to disable collisions
                     connected = true;
                     point = t;
                     t.tag = "occupied"; // set the tag so other objects don't try to stick here
@@ -55,7 +55,7 @@ public class Plateable : MonoBehaviour
             connected = false;
             point.tag = tag; // reset tag
             point = null;
-            gameObject.layer = 8; // set back to interactable layer
+            gameObject.layer = 9; // set back to interactable layer
             _rb.isKinematic = false;
             _transform.parent = cachedParent;
         }
