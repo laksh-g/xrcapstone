@@ -238,6 +238,7 @@ MonoBehaviour:
   pepper: 0
   parsley: 0
   truffleOil: 0
+  gruyere: 0
 --- !u!114 &7085089323787246872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5203,8 +5204,6 @@ MonoBehaviour:
   temp: 21
   tempDelta: 0
   maxTemp: 0
-  inFridge: 0
-  k: 0.02
   heater: {fileID: 0}
 --- !u!1001 &565414717732514005
 PrefabInstance:

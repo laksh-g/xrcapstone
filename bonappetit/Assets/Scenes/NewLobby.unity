@@ -6768,7 +6768,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1664113895}
   - component: {fileID: 1664113894}
-  - component: {fileID: 1664113896}
   - component: {fileID: 1664113897}
   m_Layer: 0
   m_Name: Network Manager
@@ -6819,25 +6818,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1664113896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1664113893}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 58d355aa6dc48434695fe53d2312b9a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  defaultRooms: []
-  connectGameMenu: {fileID: 1675834913}
-  connectingScreen: {fileID: 1611265264}
-  createdRoomCode: {fileID: 1043767399}
-  joinInput: {fileID: 0}
-  JoinRoomScreen: {fileID: 1845047971}
-  PreGameLobby: {fileID: 1097227948}
 --- !u!114 &1664113897
 MonoBehaviour:
   m_ObjectHideFlags: 0

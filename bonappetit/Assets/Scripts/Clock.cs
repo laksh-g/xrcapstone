@@ -11,7 +11,7 @@ public class Clock : MonoBehaviourPunCallbacks
     public bool gameIsActive = false;
     private TextMeshPro t = null;
 
-    public static int GAME_LENGTH = 600;
+    public static int GAME_LENGTH = 10;
 
     public XRInteractionManager im = null;
     // Start is called before the first frame update
@@ -19,6 +19,7 @@ public class Clock : MonoBehaviourPunCallbacks
     {
         t = GetComponentInChildren<TextMeshPro>();
         t.text = (GAME_LENGTH / 60).ToString("00") + ":" + (GAME_LENGTH % 60).ToString("00");
+        PhotonNetwork.AutomaticallySyncScene = false;
     }
 
     // Update is called once per frame
@@ -28,6 +29,9 @@ public class Clock : MonoBehaviourPunCallbacks
             gameIsActive = true;
             im.enabled = true;
             t.text = Text();
+        }
+        if ((int)(GAME_LENGTH - ((float) PhotonNetwork.Time - startTime)) == 1) {
+            PhotonNetwork.AutomaticallySyncScene = true;
         }
     }
 
