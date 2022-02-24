@@ -7,6 +7,9 @@ public class TextInformation : MonoBehaviour
 {
     private TextMeshProUGUI text;
     private GameObject selectedObject;
+    private string tutorialText;
+    private string debugText;
+    readonly string defaultText = "Hover over an item for more info\nToggle with X";
 
     // Start is called before the first frame update
     void Start()
@@ -17,9 +20,22 @@ public class TextInformation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        text.text = "";
+        if (tutorialText != null)
+        {
+            text.text += tutorialText + '\n' + '\n';
+        }
+        if (debugText != null)
+        {
+            text.text += debugText + '\n' + '\n';
+        }
         if (selectedObject != null) 
         {
             UpdateText();
+        }
+        else
+        {
+            text.text += defaultText;
         }
 
     }
@@ -34,9 +50,9 @@ public class TextInformation : MonoBehaviour
 
     void UpdateText() 
     {
-        //text.text = "Item: " + selectedObject.name + '\n';
-        string tag = selectedObject.tag;
-        text.text = "Item: " + char.ToUpper(tag[0]) + tag.Substring(1) + '\n';
+        //text.text += "Name: " + selectedObject.name + '\n';
+        string tagStr = selectedObject.tag;
+        text.text += "Item: " + char.ToUpper(tagStr[0]) + tagStr.Substring(1) + '\n';
 
         var temp = selectedObject.GetComponent<Temperature>();
         if (temp != null) {
@@ -78,5 +94,15 @@ public class TextInformation : MonoBehaviour
             //text.text += "Capacity: " + liquidContainer.capacity.ToString("F0") + " mL" + '\n';
             text.text += "Current volume: " + liquidContainer.currentVolume.ToString("F0") + " mL" + '\n';
         }
+    }
+
+    public void DebugText(string txt)
+    {
+        debugText = txt;
+    }
+
+    public void TutorialText(string txt)
+    {
+        tutorialText = txt;
     }
 }
