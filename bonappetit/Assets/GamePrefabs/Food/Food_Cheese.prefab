@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2011168440539330097}
   - component: {fileID: 2011168440539330096}
   - component: {fileID: 2011168440539330099}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Food_Cheese
   m_TagString: gruyere
   m_Icon: {fileID: 0}

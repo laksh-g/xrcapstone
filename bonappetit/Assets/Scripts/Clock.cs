@@ -11,7 +11,7 @@ public class Clock : MonoBehaviourPunCallbacks
     public bool gameIsActive = false;
     private TextMeshPro t = null;
 
-    public static int GAME_LENGTH = 10;
+    public static int GAME_LENGTH = 600;
 
     public XRInteractionManager im = null;
     // Start is called before the first frame update

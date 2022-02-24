@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 3010052638963382522}
   - component: {fileID: 1375506165142218487}
   - component: {fileID: 137290389}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Fries
   m_TagString: fry
   m_Icon: {fileID: 0}
@@ -5072,6 +5072,7 @@ MonoBehaviour:
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 608692678872829872}
   - {fileID: 3010052638963382522}
   - {fileID: 137290389}
   sceneViewId: 0
@@ -5264,6 +5265,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (12)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &6351434000427924536 stripped
@@ -5329,6 +5334,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry (19)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
@@ -5396,6 +5405,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (13)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &4833423481829930717 stripped
@@ -5461,6 +5474,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
@@ -5528,6 +5545,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (18)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &9094208283096244463 stripped
@@ -5593,6 +5614,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry (9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
@@ -5660,6 +5685,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &8469699280731044545 stripped
@@ -5725,6 +5754,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry (16)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
@@ -5792,6 +5825,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &7199684792110303568 stripped
@@ -5857,6 +5894,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
@@ -5924,6 +5965,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (14)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &1551760070193710363 stripped
@@ -5989,6 +6034,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry (15)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
@@ -6056,6 +6105,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &1523094058465593032 stripped
@@ -6121,6 +6174,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry (11)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
@@ -6188,6 +6245,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (10)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &1381014751951024789 stripped
@@ -6253,6 +6314,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
@@ -6320,6 +6385,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (7)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &4000386948731528606 stripped
@@ -6385,6 +6454,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
@@ -6452,6 +6525,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: FrenchFry (17)
       objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
 --- !u!4 &3830658650939903014 stripped
@@ -6517,6 +6594,10 @@ PrefabInstance:
     - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
       propertyPath: m_Name
       value: FrenchFry
+      objectReference: {fileID: 0}
+    - target: {fileID: 6916423068611073265, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9c048609d5e1dad4cac513f9ef9dd087, type: 3}

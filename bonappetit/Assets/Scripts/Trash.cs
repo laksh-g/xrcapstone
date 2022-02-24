@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Photon.Pun;
 
 public class Trash : MonoBehaviour
 {
     public bool specificTrash = false;
     public string[] acceptedTags = null;
     // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     void OnTriggerEnter(Collider other) {
+        if (other.tag == "order") {
+            // don't destroy orders because those assets are reused
+            return;
+        }
         if (specificTrash) {
             if (acceptedTags.Contains(other.gameObject.tag)) {
-                Destroy(other.gameObject);
+                PhotonNetwork.Destroy(other.gameObject);
             }
         } else {
-            Destroy(other.gameObject);
+            PhotonNetwork.Destroy(other.gameObject);
         }
     }
 }

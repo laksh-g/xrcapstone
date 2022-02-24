@@ -76,9 +76,10 @@ public class Grater : MonoBehaviour
     }
 
     private void CheckHit() {
+        int layerMask = (1 << 9) | (1 << 10); // only cast against layers 9 and 10
         RaycastHit hit;
         Ray ray = new Ray(p.transform.position, Vector3.down);
-        Physics.Raycast(ray, out hit, 10.0f);
+        Physics.Raycast(ray, out hit, 10.0f, layerMask);
         Seasonable s = hit.collider.GetComponentInParent<Seasonable>();
         if (s != null) {
             target = s;
