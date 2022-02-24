@@ -137,7 +137,7 @@ public class Tutorial : MonoBehaviour
             else if (step == 14)
             {
                 var table = GameObject.Find("Prop_KitchenTable_01 (1)");
-                if (plate.transform.position.z <= table.transform.position.z + 0.5 && plate.transform.position.z >= table.transform.position.z - 0.5)
+                if (plate.transform.position.z <= table.transform.position.z + 0.5 && plate.transform.position.z >= table.transform.position.z - 0.5 && !IsHolding("plate", true))
                 {
                     UpdateStep();
                 }
@@ -145,13 +145,11 @@ public class Tutorial : MonoBehaviour
 
         }
 
-
         /*
         string debugt = "right: " + (rightSelect != null ? rightSelect.name + ":" + rightSelect.tag + ":" : "null") + '\n' +
                         "left: " + (leftSelect != null ? leftSelect.name : "null") + '\n' +
                         "step = " + step;
         textInfo.DebugText(debugt);*/
-
     }
 
     void Blink(GameObject[] objs)
