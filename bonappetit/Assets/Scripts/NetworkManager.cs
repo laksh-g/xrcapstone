@@ -149,7 +149,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         Debug.Log("Trying to join room " + roomName);
         PhotonNetwork.JoinRoom(roomName.ToUpper());
     }
-
+    
     public void LeaveRoom()
     {
         Debug.Log("Leaving room.");
