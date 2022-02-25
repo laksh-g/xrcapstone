@@ -65,3 +65,4 @@ Coming soon!
 - [Week 5](https://uwrealitylab.github.io/xrcapstone22wi-team5/week5)
 - [Week 6](https://uwrealitylab.github.io/xrcapstone22wi-team5/week6)
 - [Week 7](https://uwrealitylab.github.io/xrcapstone22wi-team5/week7)
+- [Week 8](https://uwrealitylab.github.io/xrcapstone22wi-team5/week8)
