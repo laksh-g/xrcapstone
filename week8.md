@@ -10,6 +10,7 @@
 ## New features/functionality implemented
 - Soup bowls! These will be handy for one of our upcoming dishes.
 - Gruyere cheese! You can shred and melt this stuff. Great for a certain type of soup...
+- New steak appearance! We thought that the hyperrealistic appearance seemed odd for the low-poly style, so we gave steaks a new look.
 
 ## Bug Fixes
 - Plating has been significantly improved, however some bugs regarding turn in are still present with the new system
