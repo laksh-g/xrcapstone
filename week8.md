@@ -5,7 +5,7 @@
 - Johnathon: Created a roadmap for the rest of the quarter, laid groundwork for new french onion soup dish, implemented plating improvements, and worked on fixing more gameplay bugs from the MVP demo.
 - Katherine:
 - Laksh:
-- Hritik:
+- Hritik: Fixed ticketing bugs, added the new ticket rail that allows users to easily manage tickets, and worked on other bugs/testing for user testing activity.
 
 ## New features/functionality implemented
 - Soup bowls! These will be handy for one of our upcoming dishes.
