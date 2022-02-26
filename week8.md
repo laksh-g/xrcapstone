@@ -3,7 +3,7 @@
 ## What we have accomplished
 
 - Johnathon: Created a roadmap for the rest of the quarter, laid groundwork for new french onion soup dish, implemented plating improvements, and worked on fixing more gameplay bugs from the MVP demo.
-- Katherine: Created a tutorial scene that highlighting objects and lead players through the steps of cooking steak frites.
+- Katherine: Created a tutorial scene that highlighted objects and led players through the steps of cooking steak frites.
 - Laksh:
 - Hritik: Fixed ticketing bugs, added the new ticket rail that allows users to easily manage tickets, and worked on other bugs/testing for user testing activity.
 
