@@ -8,8 +8,6 @@ public class StoveFire : MonoBehaviour
     public Transform lowTransform;
     public Transform midTransform;
     public Transform highTransform;
-    public Light lowLight;
-    public Light highLight;
     public Material lowFireMaterial;
     public Material highFireMaterial;
 
@@ -39,27 +37,19 @@ public class StoveFire : MonoBehaviour
             cachedSetting = element.s.val;
             switch(cachedSetting) {
                 case(0):
-                    lowLight.enabled = false;
-                    highLight.enabled = false;
                     fireMesh.enabled = false;
                 break;
                 case(1):
-                lowLight.enabled = true;
-                highLight.enabled = false;
                 fireMesh.material = lowFireMaterial;
                 fire.transform.position = lowPos;
                 fireMesh.enabled = true;
                 break;
                 case(2):
-                lowLight.enabled = false;
-                highLight.enabled =true;
                 fireMesh.material = highFireMaterial;
                 fire.transform.position = midPos;
                 fireMesh.enabled = true;
                 break;
                 case(3):
-                lowLight.enabled = false;
-                highLight.enabled = true;
                 fireMesh.material = highFireMaterial;
                 fire.transform.position = highPos;
                 fireMesh.enabled = true;

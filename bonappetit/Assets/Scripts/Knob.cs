@@ -10,8 +10,8 @@ public class Knob : MonoBehaviour, IPunObservable
     [SerializeField]
     public int val; // 0 - numSettings
     public int numSettings;
-    public Light greenLight;
-    public Light redLight;
+    public IndicatorLight greenLight;
+    public IndicatorLight redLight;
 
     public AudioClip on = null;
 
@@ -34,8 +34,8 @@ public class Knob : MonoBehaviour, IPunObservable
     }
     val = 0; // off 
     if (greenLight != null && redLight != null) {
-        redLight.enabled = true;
-        greenLight.enabled = false;
+        redLight.on = true;
+        greenLight.on = false;
     }
     }
 
@@ -47,15 +47,15 @@ public class Knob : MonoBehaviour, IPunObservable
             a.PlayOneShot(off);
             val = 0;
             if (greenLight != null && redLight != null) {
-                greenLight.enabled = false;
-                redLight.enabled = true;
+                greenLight.on = false;
+                redLight.on = true;
             }
         } else {
             val++;
             a.PlayOneShot(on);
             if (greenLight != null && redLight != null) {
-                redLight.enabled = false;
-                greenLight.enabled = true;
+                redLight.on = false;
+                greenLight.on = true;
             }
         }
     }

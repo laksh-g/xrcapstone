@@ -31,7 +31,7 @@ public class Temperature : MonoBehaviour, IPunObservable
             restTime = 0;
         }
 
-        if (heater != null) {
+        if (heater != null && heater.s != null) {
             if (heater.s.val == 0 && cachedVal > 0) {
                 isResting = true;
             } else if (isResting && heater.s.val > 0) {
@@ -48,7 +48,7 @@ public class Temperature : MonoBehaviour, IPunObservable
     private float SetDelta() {
         if (isResting) {
             return restDelta();
-        } else if (heater != null && heater.s != null) {
+        } else if (heater != null) {
             return heaterDelta();
         }
         return ambientDelta();
@@ -56,6 +56,9 @@ public class Temperature : MonoBehaviour, IPunObservable
     }
 
     private float heaterDelta() {
+        if (heater.s == null) {
+            return 4f;
+        }
         if (heater.s.val == 0) {
             return ambientDelta();
         } else if(heater.isOvenlike) {
@@ -85,7 +88,7 @@ public class Temperature : MonoBehaviour, IPunObservable
     }
     void OnTriggerEnter(Collider other) {
         heater = other.GetComponent<HeatingElement>();
-        if (heater != null && heater.s.val != 0) {
+        if (heater != null && (heater.s == null || heater.s.val != 0)) {
             isResting = false;
             restTime = 0;
         }
