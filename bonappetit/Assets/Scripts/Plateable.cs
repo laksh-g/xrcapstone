@@ -35,6 +35,7 @@ public class Plateable : MonoBehaviour
         && CalculatePlateAngle(other.transform) < 10 ) {
             Transform[] transforms = other.gameObject.GetComponentsInChildren<Transform>();
             foreach (Transform t in transforms) {
+                Debug.Log("found hook for " + t.tag);
                 if (t.CompareTag(tag)) {
                     _rb.isKinematic = true;
                     gameObject.layer = 10; // set to plated layer to disable collisions
@@ -47,7 +48,7 @@ public class Plateable : MonoBehaviour
                     break;
                 }
             }
-            Debug.Log(tag + " Failed to acquire plate");
+            Debug.Log(tag + " failed to find appropriate plate hook");
         }
     }
 

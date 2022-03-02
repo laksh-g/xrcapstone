@@ -39,6 +39,9 @@ TagManager:
   - order_receipt_container
   - ticket_line
   - ticket_spawner
+  - oil
+  - crab_cake
+  - sprouts
   layers:
   - Default
   - TransparentFX
