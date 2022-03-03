@@ -33,40 +33,42 @@ public class Tutorial : MonoBehaviour
         plate = GameObject.Find("Prop_Plate_02 (1)");
         //ramekin = GameObject.Find("Ramekin (4)");
 
-        highlightObjs = new ArrayList();
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Fridge_02_p03"),
-                                             GameObject.Find("Tray of steaks") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Salt Shaker"),
-                                             GameObject.Find("Pepper Variant") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Griller").transform.GetChild(5).GetChild(0).gameObject,
-                                             GameObject.Find("Prop_Griller_p03") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Griller_p03") });
-        highlightObjs.Add(new GameObject[] { plate });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Frier_p02"), 
-                                             GameObject.Find("Prop_Frier (1)") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("FryDispenser (1)"),
-                                             GameObject.Find("FryDispenser (2)"),
-                                             GameObject.Find("FryDispenser (3)"),
-                                             GameObject.Find("FryDispenser Button") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Frier (1)"),
-                                             GameObject.Find("Prop_Frier_p04") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Parsley Variant"),
-                                             GameObject.Find("Salt Shaker (1)") });
-        highlightObjs.Add(new GameObject[] { plate });
-        highlightObjs.Add(new GameObject[] { saucepan, 
-                                             GameObject.Find("Ladle 1").transform.GetChild(0).gameObject });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Heater_p04"),
-                                             GameObject.Find("Prop_Heater") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Stove") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_06_p03"), plate });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_01 (1)"),
-                                             GameObject.Find("Prop_KitchenTable_01") });
+        highlightObjs = new ArrayList
+        {
+            new GameObject[] { GameObject.Find("Prop_Fridge_02_p03"),
+                               GameObject.Find("Tray of steaks") },
+            new GameObject[] { GameObject.Find("Salt Shaker"),
+                               GameObject.Find("Pepper Variant") },
+            new GameObject[] { GameObject.Find("Prop_Griller").transform.GetChild(4).GetChild(0).gameObject,
+                               GameObject.Find("Prop_Griller_p03") },
+            new GameObject[] { GameObject.Find("Prop_Griller_p03") },
+            new GameObject[] { plate },
+            new GameObject[] { GameObject.Find("Prop_Frier_p02"),
+                               GameObject.Find("Prop_Frier (1)") },
+            new GameObject[] { GameObject.Find("FryDispenser (1)"),
+                               GameObject.Find("FryDispenser (2)"),
+                               GameObject.Find("FryDispenser (3)"),
+                               GameObject.Find("FryDispenser Button") },
+            new GameObject[] { GameObject.Find("Prop_Frier (1)"),
+                               GameObject.Find("Prop_Frier_p04") },
+            new GameObject[] { GameObject.Find("Parsley Variant"),
+                               GameObject.Find("Salt Shaker (1)") },
+            new GameObject[] { plate },
+            new GameObject[] { saucepan,
+                               GameObject.Find("Ladle 1").transform.GetChild(0).gameObject },
+            new GameObject[] { GameObject.Find("Prop_Heater_p04"),
+                               GameObject.Find("Prop_Heater") },
+            new GameObject[] { GameObject.Find("Prop_Stove") },
+            new GameObject[] { GameObject.Find("Prop_KitchenTable_06_p03"), plate },
+            new GameObject[] { GameObject.Find("Prop_KitchenTable_01 (1)"),
+                               GameObject.Find("Prop_KitchenTable_01") }
+        };
 
         tutorialText = new string[] { 
-            "Step 1: Cook a steak! Get a steak from the fridge.",
+            "Step 1: Cook a steak! Get a steak from the fridge. Press and hold the grip button to grab objects. Grab and pull the fridge handle to open the fridge. \n\n TIP: You can also open drawers!",
             "Step 2: Place the steak on the counter and season it with 7g of salt and 5g of pepper. \n\nTIP: Salt and pepper come out from the top of the shakers.",
-            "Step 3: Place the steak on the griller and turn knob to highest setting to sear the steak. \n\nTIP: Hovering over items with the left controller will give you more information about the item. Hover over the knob with the left controller to see the current setting.",
-            "Step 4: Let the steak sear for 120s, then turn knob to medium setting and cook until steak is at the desired doneness. \n\nTIP: The steak will visually change when it is correctly seared. Use the object information panel to see the doneness.",
+            "Step 3: Place the steak on the griller and turn knob to highest setting to sear the steak. Press and release the grip button to turn the knob. \n\nTIP: Hovering over items with the left controller will give you information about the item. Hover over the knob with the left controller to see the current setting.",
+            "Step 4: Let the steak sear for 120s, then turn knob to medium setting and cook until steak is at the desired doneness. \n\nTIP: Hover over the steak with the left controller to check its doneness in the object information panel.",
             "Step 5: Let the steak rest for 180s and plate it up. \n\nTIP: The rotisseur role is only in charge of cooking steaks. The saucier cooks the fries and bearnaise sauce.",
             "Step 6: Cook some fries! Grab a fry basket out of the frier.",
             "Step 7: Hold the fry basket under the fry dispenser and press the red button to get some fries. \n\nTIP: There is a cooldown for dispensing fries.",
@@ -78,7 +80,7 @@ public class Tutorial : MonoBehaviour
             "Step 13: Heat the sauce until 60C. Turn on the stove with the knobs.",
             "Step 14: Pour the sauce into a ramekin. Ramekins are stored in drawers. Then plate it with the steak and fries.",
             "Step 15: To serve the dish, place it on the flashing tables. \n\nTIP: This is the head chef's role. Once the order ticket is placed on the table, all the dishes on the table will be served.",
-            "Congratulations!!! \nYou have successfully cooked steak frites! \n\nTIP: Press the left menu button to return to menu."
+            "Congratulations!!! \nYou have successfully cooked steak frites! \n\nTIP: You can press the left menu button to return to the lobby at any time."
         };
 
         startColor = new ArrayList();
@@ -101,11 +103,11 @@ public class Tutorial : MonoBehaviour
 
             if ((step == 0 && IsHolding("steak", true)) ||
                 (step == 1 && steak.GetComponent<Steak>().seasoning.salt > 0f && steak.GetComponent<Steak>().seasoning.pepper > 0f) ||
-                (step == 2 && steak.GetComponent<Steak>().searTime > 5) ||
+                (step == 2 && steak.GetComponent<Steak>().searTime > 10) ||
                 (step == 3 && steak.GetComponent<Steak>().searTime > 120 && IsHolding(steak.name)) ||
                 (step == 4 && IsPlated(plate, "steak")) ||
                 (step == 5 && IsHolding("fry basket", true)) ||
-                (step == 6 && IsHolding("fry basket", true) && IsHolding("FryDispenser Button")) ||
+                (step == 6 && IsHolding("FryDispenser Button")) ||
                 (step == 7 && IsHolding("Prop_Frier_p04")) || 
                 (step == 9 && IsPlated(plate, "fry")) ||
                 (step == 10 && IsHolding("Ladle 1") && IsHolding("Sauce pan (1)")) ||
