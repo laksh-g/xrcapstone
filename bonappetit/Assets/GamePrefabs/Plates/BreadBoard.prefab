@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1383971222}
   m_Layer: 8
   m_Name: Oil
-  m_TagString: oil
+  m_TagString: olive oil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -172,6 +172,7 @@ GameObject:
   - component: {fileID: 5941260480123903876}
   - component: {fileID: 8080513093163346387}
   - component: {fileID: 5088712239739547066}
+  - component: {fileID: 6399011591319067828}
   m_Layer: 8
   m_Name: BreadBoard
   m_TagString: plate
@@ -402,3 +403,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   label: Bread Board
   desc: Used for table bread.
+--- !u!114 &6399011591319067828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3540755914063722139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

@@ -5,7 +5,6 @@ using UnityEngine;
 public class Torch : MonoBehaviour
 {
     public bool isOn = false;
-    private HeatingElement h = null;
     public MeshRenderer fire = null;
     public Light fireLight = null;
     private Knob k = null;
@@ -21,6 +20,8 @@ public class Torch : MonoBehaviour
         fire.enabled = false;
         fireLight.enabled = false;
     }
+
+    void Update() {if (isOn && fire.enabled == false) {FireActivate();}}
     public void FireActivate() {
         k.val = 1;
         startSource.PlayOneShot(startSound);

@@ -15,46 +15,52 @@ public class Cookable : MonoBehaviour
     private MeshRenderer mesh = null;
     private MeshRenderer[] meshes = null;
 
+    private bool isStaticMaterial = false;
+
     // Start is called before the first frame update
     void Start()
     {
         temp = GetComponent<Temperature>();
-        mesh = GetComponent<MeshRenderer>();
         if (isCollection) {
             meshes = GetComponentsInChildren<MeshRenderer>();
         } else {
             mesh = GetComponent<MeshRenderer>();
+        }
+        if (burnt == null || cooked == null || raw == null) {
+            isStaticMaterial = true;
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(temp.maxTemp >= cookedTemp * 1.15F) {
-            if (isCollection) {
-                foreach(MeshRenderer m in meshes) {
-                    m.material = burnt;
+        if (!isStaticMaterial) {
+            if(temp.maxTemp >= cookedTemp * 1.15F) {
+                if (isCollection) {
+                    foreach(MeshRenderer m in meshes) {
+                        m.material = burnt;
+                    }
+                } else {
+                    mesh.material = burnt;
                 }
-            } else {
-                mesh.material = burnt;
             }
-        }
-        else if(temp.maxTemp >= cookedTemp) {
-            if (isCollection) {
-                foreach(MeshRenderer m in meshes) {
-                    m.material.Lerp(cooked, burnt, (temp.maxTemp - cookedTemp) / (cookedTemp * .15f));
+            else if(temp.maxTemp >= cookedTemp) {
+                if (isCollection) {
+                    foreach(MeshRenderer m in meshes) {
+                        m.material.Lerp(cooked, burnt, (temp.maxTemp - cookedTemp) / (cookedTemp * .15f));
+                    }
+                } else {
+                    mesh.material.Lerp(cooked, burnt, (temp.maxTemp - cookedTemp) / (cookedTemp * .15f));
                 }
             } else {
-                mesh.material.Lerp(cooked, burnt, (temp.maxTemp - cookedTemp) / (cookedTemp * .15f));
-            }
-        } else {
-            if (isCollection) {
-                foreach(MeshRenderer m in meshes) {
-                    m.material.Lerp(raw, cooked, temp.maxTemp / cookedTemp);
+                if (isCollection) {
+                    foreach(MeshRenderer m in meshes) {
+                        m.material.Lerp(raw, cooked, temp.maxTemp / cookedTemp);
+                    }
+                } else {
+                // transition between textures
+                mesh.material.Lerp(raw, cooked, temp.maxTemp / cookedTemp);
                 }
-            } else {
-            // transition between textures
-            mesh.material.Lerp(raw, cooked, temp.maxTemp / cookedTemp);
             }
         }
     }

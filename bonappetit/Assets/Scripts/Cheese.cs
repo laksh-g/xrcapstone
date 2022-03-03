@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cheese : MonoBehaviour
 {
     public float toastingTime = 0;
-    private Temperature _temp = null;
+    public Temperature _temp = null;
     private Transform _transform = null;
     private Seasonable _seasoning = null;
     private MeshRenderer _mesh = null;
@@ -14,9 +14,9 @@ public class Cheese : MonoBehaviour
     public Transform start = null;
     public Transform end = null;
 
-    public Material startMaterial = null;
+    //public Material startMaterial = null;
 
-    public Material endMaterial = null;
+    //public Material endMaterial = null;
 
     private AudioSource _audio = null;
     private ParticleSystem _smoke = null;

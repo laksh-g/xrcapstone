@@ -39,14 +39,18 @@ TagManager:
   - order_receipt_container
   - ticket_line
   - ticket_spawner
-  - oil
   - crab_cake
   - sprouts
+  - breast
+  - wing
+  - vegetables
+  - olive oil
+  - oil
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Spawner
   - Water
   - UI
   - Player
