@@ -42,7 +42,7 @@ public class TimerKnob : MonoBehaviour
         }
     }
 
-    void Activated() {
+    public void Activated() {
         if (!isActive) {
             isActive = true;
             redLight.on = true;

@@ -17,7 +17,7 @@ public class OvenClock : MonoBehaviour
 
     private AudioSource a = null;
 
-    private AudioClip timerSound = null;
+    public AudioClip timerSound = null;
 
     // Start is called before the first frame update
     void Start()
