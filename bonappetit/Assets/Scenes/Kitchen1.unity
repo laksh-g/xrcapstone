@@ -8197,6 +8197,14 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 18
       objectReference: {fileID: 0}
+    - target: {fileID: 5010263726475336007, guid: fb24f7451ae3791458b531936d29eca8, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1339124458}
+    - target: {fileID: 5010263726475336007, guid: fb24f7451ae3791458b531936d29eca8, type: 3}
+      propertyPath: m_SelectEntered.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 7561879717836028192, guid: fb24f7451ae3791458b531936d29eca8, type: 3}
       propertyPath: sceneViewId
       value: 20
@@ -8214,6 +8222,11 @@ PrefabInstance:
 --- !u!4 &1339124457 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 114355950904106878, guid: fb24f7451ae3791458b531936d29eca8, type: 3}
+  m_PrefabInstance: {fileID: 1339124456}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1339124458 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8386338419537588348, guid: fb24f7451ae3791458b531936d29eca8, type: 3}
   m_PrefabInstance: {fileID: 1339124456}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1348051095
