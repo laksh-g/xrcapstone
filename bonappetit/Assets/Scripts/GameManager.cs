@@ -402,23 +402,22 @@ public class GameManager : MonoBehaviour
         }
         public (float, string) Evaluate(GameObject p) {
             float total = 0;
-            string comments = "SteakFrites: ";
+            string comments = "Steak Frites: ";
             Steak steak = null;
             Fries fry = null;
-            Bearnaise sauce = null;
+            LiquidContainer bearnaise = null;
+        
             float tempVal = 0;
             string tempString = "";
             foreach (Transform child in p.transform)
             {
                 GameObject target = child.gameObject;
-                if (steak == null) {
+                if (steak == null && target.tag == "steak") {
                     steak = target.GetComponent<Steak>();
-                }
-                if (fry == null) {
+                } else if (fry == null && target.tag == "fry") {
                     fry = target.GetComponent<Fries>();
-                }
-                if (sauce == null) {
-                    sauce = target.GetComponent<Bearnaise>();
+                } else if (bearnaise == null && target.tag == "bearnaise") {
+                    bearnaise = target.GetComponent<LiquidContainer>();
                 }
             }
 
@@ -441,8 +440,8 @@ public class GameManager : MonoBehaviour
                 comments += "missing fries, ";
             }
 
-            if (sauce != null) {
-                (tempVal, tempString) = b.Evaluate(sauce);
+            if (bearnaise != null) {
+                (tempVal, tempString) = b.Evaluate(bearnaise);
                 total += tempVal;
                 comments += tempString;
             } else if (!hasSauce) {
@@ -471,7 +470,7 @@ public class GameManager : MonoBehaviour
         public (float, string) Evaluate(Steak s)
         {
             int result = 5;
-            string comments = "Steak: ";
+            string comments = "Steak notes: ";
             int doneness = s.GetDonenessValue();
             if (doneness == -1)
             {
@@ -541,7 +540,7 @@ public class GameManager : MonoBehaviour
 
         public (float, string) Evaluate(Fries f)
         {
-            string comments = "Fries: ";
+            string comments = "Fries notes: ";
             float total = 5;
 
             if (f.temp.maxTemp > 190 * 1.15f) {
@@ -591,24 +590,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private class BearnaiseOrder : Orderable
-    {
-        public (float, string) Evaluate(Bearnaise b)
-        {
+    private class BearnaiseOrder : Orderable {
+        public (float, string) Evaluate(LiquidContainer b) {
             float total = 5;
-            string comments = "Bearnaise: ";
-            if (b.container.currentVolume < 100)
-            {
-                comments += "not enough sauce, ";
-                total -= 1;
-            }
-            if (b.isSeparated)
-            {
-                comments += "sauce separated, ";
-                total -= 2;
+            string comments = "";
+            if (b.currentVolume < 100) {
+                total -= 3;
+                comments += "Bearnaise notes: not enough sauce ";
             }
             return (total, comments);
-
         }
     }
 }

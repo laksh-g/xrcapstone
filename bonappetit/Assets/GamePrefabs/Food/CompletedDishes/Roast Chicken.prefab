@@ -314,6 +314,8 @@ PrefabInstance:
     - {fileID: 5635790641078239970, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
     - {fileID: 7304596927457408156, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
     - {fileID: 2159954693251376535, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
+    - {fileID: 485523254622101148, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
+    - {fileID: 102035540070145374, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
 --- !u!4 &5585562397402895263 stripped
 Transform:
@@ -399,6 +401,8 @@ PrefabInstance:
     - {fileID: 5635790641078239970, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
     - {fileID: 7304596927457408156, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
     - {fileID: 2159954693251376535, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
+    - {fileID: 485523254622101148, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
+    - {fileID: 102035540070145374, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
 --- !u!4 &5585562398743808925 stripped
 Transform:
@@ -472,6 +476,9 @@ PrefabInstance:
     - {fileID: 2704831576824083711, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
     - {fileID: 2813223372128504082, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
     - {fileID: 4619819247645236558, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
+    - {fileID: 994197961452226840, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
+    - {fileID: 501666002165724705, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
+    - {fileID: 8381575663307270696, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
 --- !u!4 &4728904084607935447 stripped
 Transform:
@@ -549,6 +556,7 @@ PrefabInstance:
     - {fileID: 6548677937525328087, guid: 69a993d74909697418be080e373ca0c1, type: 3}
     - {fileID: 495631342812424119, guid: 69a993d74909697418be080e373ca0c1, type: 3}
     - {fileID: 3544110889103524015, guid: 69a993d74909697418be080e373ca0c1, type: 3}
+    - {fileID: 6461895670914590230, guid: 69a993d74909697418be080e373ca0c1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 69a993d74909697418be080e373ca0c1, type: 3}
 --- !u!4 &2463584625655132155 stripped
 Transform:
