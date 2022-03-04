@@ -51,34 +51,18 @@ public class LiquidContainer : MonoBehaviour
             float pourRate = CalculatePourRate();
             currentVolume = Mathf.Max(0f, currentVolume - pourRate);
             if (stream.container != null && stream.container.currentVolume < stream.container.capacity) {
-                stream.container.liquidMaterial = liquidMaterial;
-                if (tag == "bearnaise" && stream.container.gameObject.GetComponent<Bearnaise>() == null) {
-                    stream.container.gameObject.tag = "bearnaise";
-                    stream.container.gameObject.AddComponent<Bearnaise>();
-                } else if (tag == "frenchonionsoup") {
-                    stream.container.gameObject.tag = "frenchonionsoup";
-                }
+                stream.container.liquidMaterial = liquidMaterial; // inherit material
+                stream.container.gameObject.tag = tag; // inherit tag
                 stream.container.temperature.temp = (temperature.temp + stream.container.temperature.temp) / 2;
                 stream.container.currentVolume = Mathf.Min(stream.container.currentVolume + pourRate, stream.container.capacity);
-            }
-
-            if (stream.foodItem != null) {
-                if (tag == "truffle oil") {
-                    stream.foodItem.truffleOil += pourRate;
-                }
-
             }
         }
 
         if (scooper != null && currentVolume > 0f && scooper.currentVolume < scooper.capacity) {
-            scooper.liquidMaterial = liquidMaterial;
+            scooper.liquidMaterial = liquidMaterial; // inherit material
             currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
             scooper.currentVolume = Mathf.Min(scooper.currentVolume + scoopRate, scooper.capacity);
-            if (tag == "bearnaise") {
-                scooper.gameObject.tag = "bearnaise";
-            } else if (tag == "frenchonionsoup") {
-                scooper.gameObject.tag = "frenchonionsoup";
-            }
+            scooper.gameObject.tag = tag; // inherit tag
             scooper.temperature.temp = (temperature.temp + scooper.temperature.temp) / 2;
         }
     }

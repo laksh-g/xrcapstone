@@ -12,8 +12,6 @@ public class Stream : MonoBehaviour
 
     public LiquidContainer container = null;
 
-    public Seasonable foodItem = null;
-
     void Awake() {
         line = GetComponent<LineRenderer>();
         splash = GetComponentInChildren<ParticleSystem>();
@@ -51,22 +49,20 @@ public class Stream : MonoBehaviour
 
     private Vector3 findEndPoint() {
         RaycastHit hit;
+        RaycastHit containerHit;
         Ray ray = new Ray(transform.position, Vector3.down);
-
+        Ray containerRay = new Ray(transform.position, Vector3.down);
+        int layerMask = (1 << 9) | (1 << 10); // only cast against layers 9 and 10
+        layerMask = ~layerMask; // nevermind, cast against everything besides layers 9 and 10
         Physics.Raycast(ray, out hit, 10.0f);
-        // check if we are pouring into a fillable
-        LiquidContainer f = hit.collider.isTrigger? hit.collider.GetComponentInParent<LiquidContainer>() : null;
+        Physics.Raycast(containerRay, out containerHit, 10.0f, layerMask);
+        // check if container ray hit a fillable
+        LiquidContainer f = containerHit.collider.isTrigger? containerHit.collider.GetComponentInParent<LiquidContainer>() : null;
         if (f != null && f.isFillable) {
             Debug.Log("Stream registered container " + f.tag);
             container = f;
         } else {
             container = null;
-        }
-        Seasonable s = hit.collider.GetComponent<Seasonable>();
-        if (s != null) {
-            foodItem = s;
-        } else {
-            foodItem = null;
         }
         Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(10.0f);
         return endPoint;

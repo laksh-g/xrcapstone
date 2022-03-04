@@ -5,7 +5,7 @@ using UnityEngine;
 public class Cheese : MonoBehaviour
 {
     public float toastingTime = 0;
-    private Temperature _temp = null;
+    public Temperature _temp = null;
     private Transform _transform = null;
     private Seasonable _seasoning = null;
     private MeshRenderer _mesh = null;
@@ -14,9 +14,9 @@ public class Cheese : MonoBehaviour
     public Transform start = null;
     public Transform end = null;
 
-    public Material startMaterial = null;
+    //public Material startMaterial = null;
 
-    public Material endMaterial = null;
+    //public Material endMaterial = null;
 
     private AudioSource _audio = null;
     private ParticleSystem _smoke = null;
@@ -43,15 +43,15 @@ public class Cheese : MonoBehaviour
             _audio.Stop();
             _smoke.Stop();
         }
-        if(_mesh.enabled == false && _seasoning.gruyere > 0) {
-            _mesh.material = startMaterial;
+        if(_mesh.enabled == false && _seasoning.gruyere > 5) {
+            //_mesh.material = startMaterial;
             _mesh.enabled = true;
         }
-        _mesh.material.Lerp(startMaterial, endMaterial, Mathf.Min(toastingTime / 10, 1));
-        _transform.position = Vector3.Lerp(start.position, end.position, getPercentage());
-    }
-
-    private float getPercentage() {
-        return Mathf.Min(_seasoning.gruyere / 10, 1);
+        if (toastingTime > 0) {
+            float percentDone = Mathf.Min(toastingTime / 10, 1);
+            _transform.localScale = Vector3.Lerp(start.localScale, end.localScale, percentDone);
+            _transform.position = Vector3.Lerp(start.position, end.position, percentDone);
+            //_mesh.material.Lerp(startMaterial, endMaterial, percentDone);
+        }
     }
 }
