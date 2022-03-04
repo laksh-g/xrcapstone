@@ -1882,7 +1882,7 @@ GameObject:
   - component: {fileID: 5071429644328289829}
   m_Layer: 8
   m_Name: FrontLeftSauce (2)
-  m_TagString: bearnaise
+  m_TagString: frenchonionsoup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1928,7 +1928,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0406de481412e3f4aacdd7bd43f018a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1979,7 +1979,7 @@ MonoBehaviour:
   capacity: 10000
   isFillable: 0
   isPourable: 0
-  liquidMaterial: {fileID: 2100000, guid: 4be1aeaa1ccdb564890ce997741d93ec, type: 2}
+  liquidMaterial: {fileID: 2100000, guid: 0406de481412e3f4aacdd7bd43f018a4, type: 2}
   liquid: {fileID: 7546722366285480882}
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
@@ -2408,7 +2408,7 @@ GameObject:
   - component: {fileID: 6707343332104942817}
   m_Layer: 8
   m_Name: FrontLeftSauce (1)
-  m_TagString: bearnaise
+  m_TagString: frenchonionsoup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2454,7 +2454,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 0406de481412e3f4aacdd7bd43f018a4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2505,7 +2505,7 @@ MonoBehaviour:
   capacity: 10000
   isFillable: 0
   isPourable: 0
-  liquidMaterial: {fileID: 2100000, guid: 4be1aeaa1ccdb564890ce997741d93ec, type: 2}
+  liquidMaterial: {fileID: 2100000, guid: 0406de481412e3f4aacdd7bd43f018a4, type: 2}
   liquid: {fileID: 8611059396678241240}
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
