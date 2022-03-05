@@ -6,7 +6,7 @@ https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=shari
 
 - Johnathon: Created and implemented 4 new dishes, added item spawners, added oven appliance, and upgraded render pipeline to URP.
 - Katherine: Updated steak frites tutorial scene with feedback from peer testings, and incorporated the new item spawners and render pipeline that Johnathon created. 
-- Laksh:
+- Laksh: Updated Lobby with new graphics, fixed some serialization issues with items syncing over network
 - Hritik:
 
 ## New features/functionality implemented
@@ -20,6 +20,7 @@ https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=shari
 ## Bug Fixes
 - Moving between heating elements now registers correctly
 - Pans and frying baskets use the plating script now in order to fix issues of items falling through hitboxes
+- Item properties now sync better over network.
 
 ## Code review 
 
