@@ -249,9 +249,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cookedTemp: 74
+  isSearable: 1
+  side1: {fileID: 650791144855890311}
+  side2: {fileID: 735935964033988375}
+  seared: {fileID: 2100000, guid: 9888a4cfc2b06ea49ac60aaf5896ef75, type: 2}
+  desiredSearTime: 10
+  searTime: 0
   raw: {fileID: 2100000, guid: 39bcc10c328b3694fa773551d9816e94, type: 2}
   cooked: {fileID: 2100000, guid: ee9013f83b4ef4948b82249094620423, type: 2}
-  burnt: {fileID: 2100000, guid: 4009e6d5f82646f4797540e137bfed63, type: 2}
+  burnt: {fileID: 2100000, guid: 0a05d24e514bb8a4d9b22770bf7585d3, type: 2}
   isCollection: 0
 --- !u!114 &3501166712591762372
 MonoBehaviour:
@@ -412,6 +418,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9072029206541856643, guid: 443139443b6275442bcab6ec43c867cb, type: 3}
   m_PrefabInstance: {fileID: 7252323424605863275}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &650791144855890311 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7903112163072054508, guid: 443139443b6275442bcab6ec43c867cb, type: 3}
+  m_PrefabInstance: {fileID: 7252323424605863275}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &5859330311604107258
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -425,22 +436,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.3559256, y: 1.0205935, z: 5.490226}
   m_Center: {x: -0.3767513, y: 0.5102815, z: 0}
---- !u!114 &7978463991084487570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299551727060863058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb19b3d4af0a5a34ba21aa2cfecb42fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desiredSearTime: 60
-  raw: {fileID: 2100000, guid: 39bcc10c328b3694fa773551d9816e94, type: 2}
-  cooked: {fileID: 2100000, guid: 9888a4cfc2b06ea49ac60aaf5896ef75, type: 2}
-  burnt: {fileID: 2100000, guid: 0a05d24e514bb8a4d9b22770bf7585d3, type: 2}
 --- !u!1001 &7465824140236465147
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -528,6 +523,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9072029206541856643, guid: 443139443b6275442bcab6ec43c867cb, type: 3}
   m_PrefabInstance: {fileID: 7465824140236465147}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &735935964033988375 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7903112163072054508, guid: 443139443b6275442bcab6ec43c867cb, type: 3}
+  m_PrefabInstance: {fileID: 7465824140236465147}
+  m_PrefabAsset: {fileID: 0}
 --- !u!65 &8931602197863011354
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -541,19 +541,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5.3559256, y: 1.0205935, z: 5.490226}
   m_Center: {x: -0.3767513, y: 0.5102815, z: 0}
---- !u!114 &8371488277798908915
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1240299333006497474}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb19b3d4af0a5a34ba21aa2cfecb42fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  desiredSearTime: 60
-  raw: {fileID: 2100000, guid: 39bcc10c328b3694fa773551d9816e94, type: 2}
-  cooked: {fileID: 2100000, guid: 9888a4cfc2b06ea49ac60aaf5896ef75, type: 2}
-  burnt: {fileID: 2100000, guid: 0a05d24e514bb8a4d9b22770bf7585d3, type: 2}
