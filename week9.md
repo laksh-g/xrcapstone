@@ -3,7 +3,7 @@
 ## What we have accomplished
 
 - Johnathon: Created and implemented 4 new dishes, added item spawners, added oven appliance, and upgraded render pipeline to URP.
-- Katherine:
+- Katherine: Updated steak frites tutorial scene with feedback from peer testings, and incorporated the new item spawners and render pipeline that Johnathon created. 
 - Laksh:
 - Hritik:
 
@@ -13,6 +13,8 @@
 - Oven! A new kitchen appliance featuring cooking timers for chicken and bread
 - Fry timer! The knob on the frier now works as a timer for perfect crispy fries
 - Item spawners! All foods, plates, and tools now are produced using item spawners to limit the amount of objects in the scene
+- Tutorial is updated to include new features created this week
+
 ## Bug Fixes
 - Moving between heating elements now registers correctly
 - Pans and frying baskets use the plating script now in order to fix issues of items falling through hitboxes
