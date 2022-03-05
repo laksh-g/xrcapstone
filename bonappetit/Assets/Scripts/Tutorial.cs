@@ -7,8 +7,9 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Tutorial : MonoBehaviour
 {
-    ArrayList highlightObjs;
-    ArrayList startColor;
+    List<GameObject[]> highlightObjs;
+    List<Color> startColor;
+    List<Renderer> currRenders;
     string[] tutorialText;
 
     int step = 0;
@@ -22,74 +23,81 @@ public class Tutorial : MonoBehaviour
     GameObject steak;
     GameObject fries;
     GameObject plate;
-    GameObject saucepan;
-    //GameObject ramekin;
+    GameObject ramekin;
 
     // Start is called before the first frame update
     void Start()
     {
         textInfo = GameObject.Find("ObjectInformation").GetComponent<TextInformation>();
-        saucepan = GameObject.Find("Sauce pan (1)");
-        plate = GameObject.Find("Prop_Plate_02 (1)");
-        //ramekin = GameObject.Find("Ramekin (4)");
 
-        highlightObjs = new ArrayList();
+        highlightObjs = new List<GameObject[]>();
         highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Fridge_02_p03"),
-                                             GameObject.Find("Tray of steaks") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Salt Shaker"),
-                                             GameObject.Find("Pepper Variant") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Griller").transform.GetChild(5).GetChild(0).gameObject,
+                                             GameObject.Find("Prop_Fridge_02_p02"),
+                                             GameObject.Find("SteakSpawner").transform.Find("Prop_Tray (1)").gameObject });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("SpiceSpawner (1)").transform.Find("Shaker (1)").gameObject,
+                                             GameObject.Find("SpiceSpawner (1)").transform.Find("Pepper Variant").gameObject,
+                                             GameObject.Find("SpiceSpawner (1)").transform.Find("Spice Box (1)").gameObject,
+                                             GameObject.Find("CuttingBoard") });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Griller").transform.Find("Hitbox").gameObject,
                                              GameObject.Find("Prop_Griller_p03") });
         highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Griller_p03") });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("StonePlateSpawner") });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("BasketSpawner (1)") });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("FrySpawner"),
+                                             GameObject.Find("Prop_KitchenCabinet_03") });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Frier (1)") });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("SpiceSpawner").transform.Find("Shaker (1)").gameObject,
+                                             GameObject.Find("SpiceSpawner").transform.Find("Parsley Variant").gameObject,
+                                             GameObject.Find("SpiceSpawner").transform.Find("Spice Box (1)").gameObject,
+                                             GameObject.Find("CuttingBoard (2)") });
         highlightObjs.Add(new GameObject[] { plate });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Frier_p02"), 
-                                             GameObject.Find("Prop_Frier (1)") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("FryDispenser (1)"),
-                                             GameObject.Find("FryDispenser (2)"),
-                                             GameObject.Find("FryDispenser (3)"),
-                                             GameObject.Find("FryDispenser Button") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Frier (1)"),
-                                             GameObject.Find("Prop_Frier_p04") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Parsley Variant"),
-                                             GameObject.Find("Salt Shaker (1)") });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("RamekinSpawner"),
+                                             GameObject.Find("Prop_KitchenTable_06").transform.Find("Prop_KitchenTable_06_p04").gameObject });
+        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Heater_p04") });
         highlightObjs.Add(new GameObject[] { plate });
-        highlightObjs.Add(new GameObject[] { saucepan, 
-                                             GameObject.Find("Ladle 1").transform.GetChild(0).gameObject });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Heater_p04"),
-                                             GameObject.Find("Prop_Heater") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Stove") });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_06_p03"), plate });
-        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_01 (1)"),
-                                             GameObject.Find("Prop_KitchenTable_01") });
-
-        tutorialText = new string[] { 
-            "Step 1: Cook a steak! Get a steak from the fridge.",
-            "Step 2: Place the steak on the counter and season it with 7g of salt and 5g of pepper. \n\nTIP: Salt and pepper come out from the top of the shakers.",
-            "Step 3: Place the steak on the griller and turn knob to highest setting to sear the steak. \n\nTIP: Hovering over items with the left controller will give you more information about the item. Hover over the knob with the left controller to see the current setting.",
-            "Step 4: Let the steak sear for 120s, then turn knob to medium setting and cook until steak is at the desired doneness. \n\nTIP: The steak will visually change when it is correctly seared. Use the object information panel to see the doneness.",
-            "Step 5: Let the steak rest for 180s and plate it up. \n\nTIP: The rotisseur role is only in charge of cooking steaks. The saucier cooks the fries and bearnaise sauce.",
-            "Step 6: Cook some fries! Grab a fry basket out of the frier.",
-            "Step 7: Hold the fry basket under the fry dispenser and press the red button to get some fries. \n\nTIP: There is a cooldown for dispensing fries.",
-            "Step 8: Place the fry basket back in the frier and turn on the frier to cook the fries. \n\nTIP: Some knobs only have 2 settings, some have 4.",
-            "Step 9: Let the fries cook until they reach 190C or 219C for extra crispy. Then garnish with 4g of salt and 4g of parsley.",
-            "Step 10: Plate it with the steak. \n\nTIP: When turning in an order, all the components have to be on the same plate.",
-            "Step 11: Cook the bearnaise sauce! Grab a sauce pan and a ladle. \n\nTIP: There are additional ladles in the drawers.",
-            "Step 12: Sauce is located in the heater. Ladle 1.5 scoops of Bearnaise sauce into the sauce pan.",
-            "Step 13: Heat the sauce until 60C. Turn on the stove with the knobs.",
-            "Step 14: Pour the sauce into a ramekin. Ramekins are stored in drawers. Then plate it with the steak and fries.",
-            "Step 15: To serve the dish, place it on the flashing tables. \n\nTIP: This is the head chef's role. Once the order ticket is placed on the table, all the dishes on the table will be served.",
-            "Congratulations!!! \nYou have successfully cooked steak frites! \n\nTIP: Press the left menu button to return to menu."
+        highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_01") });
+                                             
+        tutorialText = new string[] {
+            "Step 1: Cook a steak! Get a steak from the fridge. \n\n TIP: Press and hold the grip button to grab objects. Grab and pull the fridge handle to open the fridge.",
+            "Step 2: Place the steak on the cutting board and season it with 7g of salt and 5g of pepper. \n\nTIP: Salt and pepper come out from the top of the shakers.",
+            "Step 3: Place the steak on the griller and turn knob to highest setting to sear the steak. Press and release the grip button to turn the knob. \n\nTIP: Hovering over items with the left controller will give you information about the item. Hover over the knob with the left controller to see the current setting.",
+            "Step 4: Let the steak sear for 120s, then turn knob to medium setting and cook until steak is at the desired doneness. \n\nTIP: Hover over the steak with the left controller to check its doneness in the object information panel.",
+            "Step 5: Let the steak rest for 180s and plate it up. \n\nTIP: The rotisseur role is in charge of cooking steaks. The saucier role is in charge fries and bearnaise sauce.",
+            "Step 6: Cook some fries! Grab a fry basket. \n\nTIP: The station for fries is on the other side of the kitchen",
+            "Step 7: Grab some fries out of the kitchen cabinet and place them in the fry basket.",
+            "Step 8: Place the fry basket back in the frier and click the knob to cook the fries. \n\nTIP: Some knobs are on a timer. Wait for the timer to finish for fully cooked fries!",
+            "Step 9: When the timer goes off, pour the fries out of the fry basket and garnish with 4g of salt and 4g of parsley. \n\nTIP: Fries cannot be grabbed out of the fry basket. Instead, tilt the fry basket to pour the fries out.",
+            "Step 10: Plate the fries with the steak. \n\nTIP: When turning in an order, all the components have to be on the same plate.",
+            "Step 11: Plate the bearnaise sauce! Grab a ramekin and a ladle. \n\nTIP: Additional cooking tools can be found in drawers.",
+            "Step 12: Sauce is located in the heater. Ladle 1 scoop of bearnaise sauce into a ramekin.",
+            "Step 13: Plate the bearnaise with the steak and fries.",
+            "Step 14: To serve the dish, place it on the flashing tables. \n\nTIP: Serving is the head chef's role.",
+            "Congratulations!!! \nYou have successfully cooked steak frites! \n\nTIP: You can press the left menu button to return to the lobby."
         };
 
-        startColor = new ArrayList();
-        foreach (var obj in (GameObject[])highlightObjs[step])
+        startColor = new List<Color>();
+        currRenders = new List<Renderer>();
+        foreach (var obj in highlightObjs[step])
         {
-            startColor.Add(obj.GetComponent<Renderer>().material.color);
-        }
+            if (obj == null)
+                continue;
 
+            if (obj.GetComponent<Renderer>() != null)
+            {
+                startColor.Add(obj.GetComponent<Renderer>().material.color);
+                currRenders.Add(obj.GetComponent<Renderer>());
+            }
+
+            Renderer[] renders = obj.GetComponentsInChildren<Renderer>();
+            foreach (Renderer r in renders)
+            {
+                startColor.Add(r.material.color);
+                currRenders.Add(r);
+            }
+        }
+        
         elapsed = blinkTime;
         textInfo.TutorialText("Steak Frites Tutorial\n" + tutorialText[step]);
-
     }
 
     // Update is called once per frame
@@ -97,24 +105,25 @@ public class Tutorial : MonoBehaviour
     {
         if (step < highlightObjs.Count)
         {
-            Blink((GameObject[])highlightObjs[step]);
+            Blink();
 
             if ((step == 0 && IsHolding("steak", true)) ||
                 (step == 1 && steak.GetComponent<Steak>().seasoning.salt > 0f && steak.GetComponent<Steak>().seasoning.pepper > 0f) ||
-                (step == 2 && steak.GetComponent<Steak>().searTime > 5) ||
+                (step == 2 && steak.GetComponent<Steak>().searTime > 60) ||
                 (step == 3 && steak.GetComponent<Steak>().searTime > 120 && IsHolding(steak.name)) ||
                 (step == 4 && IsPlated(plate, "steak")) ||
                 (step == 5 && IsHolding("fry basket", true)) ||
-                (step == 6 && IsHolding("fry basket", true) && IsHolding("FryDispenser Button")) ||
+                (step == 6 && IsHolding("fry", true)) ||
                 (step == 7 && IsHolding("Prop_Frier_p04")) || 
+                (step == 8 && fries != null && fries.GetComponent<Fries>().seasoning.salt > 0f && fries.GetComponent<Fries>().seasoning.parsley > 0f) ||
                 (step == 9 && IsPlated(plate, "fry")) ||
-                (step == 10 && IsHolding("Ladle 1") && IsHolding("Sauce pan (1)")) ||
-                (step == 11 && saucepan.GetComponent<LiquidContainer>().currentVolume >= 100) ||
-                (step == 12 && saucepan.GetComponent<LiquidContainer>().temperature.temp >= 60) ||
-                (step == 13 && IsPlated(plate, "bearnaise")))
+                (step == 10 && IsHolding("ladle", true) && IsHolding("ramekin", true)) ||
+                (step == 11 && ramekin.GetComponent<LiquidContainer>().currentVolume >= 80) ||
+                (step == 12 && IsPlated(plate, "bearnaise")))
             {
                 UpdateStep();
             }
+            /*
             else if (step == 8)
             {
                 if (fries == null)
@@ -133,8 +142,8 @@ public class Tutorial : MonoBehaviour
                 {
                     UpdateStep();
                 }
-            }
-            else if (step == 14)
+            }*/
+            else if (step == 13)
             {
                 var table = GameObject.Find("Prop_KitchenTable_01 (1)");
                 if (plate.transform.position.z <= table.transform.position.z + 0.5 && plate.transform.position.z >= table.transform.position.z - 0.5 && !IsHolding("plate", true))
@@ -152,13 +161,14 @@ public class Tutorial : MonoBehaviour
         textInfo.DebugText(debugt);*/
     }
 
-    void Blink(GameObject[] objs)
+    void Blink()
     {
         elapsed += Time.deltaTime;
-        for (int i = 0; i < objs.Length; i++)
+
+        for (int i = 0; i < startColor.Count; i++)
         {
-            Color currentColor = Color.Lerp((Color)startColor[i], Color.yellow, Mathf.Cos(elapsed / blinkTime) * 0.7f + 0.3f);
-            objs[i].GetComponent<Renderer>().material.color = currentColor;
+            Color currentColor = Color.Lerp(startColor[i], Color.yellow, Mathf.Cos(elapsed / blinkTime) * 0.7f + 0.3f);
+            currRenders[i].material.color = currentColor;
         }
     }
 
@@ -191,28 +201,35 @@ public class Tutorial : MonoBehaviour
 
     void UpdateStep()
     {
-        var objs = (GameObject[])highlightObjs[step];
-        for (int i = 0; i < objs.Length; i++)
+        for (int i = 0; i < startColor.Count; i++)
         {
-            if (objs[i] == null)
-                continue;
-
-            objs[i].GetComponent<Renderer>().material.color = (Color)startColor[i];
+            currRenders[i].material.color = startColor[i];
         }
 
         step++;
         elapsed = blinkTime;
         startColor.Clear();
+        currRenders.Clear();
+
         if (step < highlightObjs.Count) 
         {
-            foreach (var obj in (GameObject[])highlightObjs[step])
+            foreach (var obj in highlightObjs[step])
             {
                 if (obj == null)
-                {
-                    startColor.Add(null);
                     continue;
+
+                if (obj.GetComponent<Renderer>() != null)
+                {
+                    startColor.Add(obj.GetComponent<Renderer>().material.color);
+                    currRenders.Add(obj.GetComponent<Renderer>());
                 }
-                startColor.Add(obj.GetComponent<Renderer>().material.color);
+
+                Renderer[] renders = obj.GetComponentsInChildren<Renderer>();
+                foreach (var r in renders)
+                {
+                    startColor.Add(r.material.color);
+                    currRenders.Add(r);
+                }
             }
         }
 
@@ -235,13 +252,22 @@ public class Tutorial : MonoBehaviour
             rightSelect = interactableObj;
         }
 
-        if (interactableObj.tag.Equals("steak") && (steak == null || steak.GetComponent<Steak>().seasoning.salt <= 0))
+        if (interactableObj.tag.Equals("steak"))
         {
             steak = interactableObj;
-        } 
+        }
         else if (interactableObj.tag.Equals("fry") && (fries == null || (fries.GetComponent<Fries>().seasoning.salt <= 0f && fries.GetComponent<Fries>().seasoning.parsley <= 0f)))
         {
             fries = interactableObj;
+        }
+        else if (interactableObj.tag.Equals("plate"))
+        {
+            plate = interactableObj;
+            UpdatePlate(plate);
+        }
+        else if (interactableObj.tag.Equals("ramekin"))
+        {
+            ramekin = interactableObj;
         }
     }
 
@@ -259,5 +285,11 @@ public class Tutorial : MonoBehaviour
         {
             rightSelect = null;
         }
+    }
+
+    public void UpdatePlate(GameObject p)
+    {
+        highlightObjs[9] = new GameObject[] { plate };
+        highlightObjs[12] = new GameObject[] { plate };
     }
 }
