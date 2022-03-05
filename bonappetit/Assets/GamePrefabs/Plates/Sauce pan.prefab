@@ -109,8 +109,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6140f9d08a3eb0d4db104ef706181098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempDelta: 0
   s: {fileID: 0}
+  isOvenlike: 0
+  temperatureSettings: []
 --- !u!1 &3802629008541566740
 GameObject:
   m_ObjectHideFlags: 0
@@ -454,8 +455,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6140f9d08a3eb0d4db104ef706181098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tempDelta: 0
   s: {fileID: 0}
+  isOvenlike: 0
+  temperatureSettings: []
 --- !u!1 &5188108953759392806
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,6 +726,7 @@ GameObject:
   - component: {fileID: 5188108953710022723}
   - component: {fileID: 5188108953710022726}
   - component: {fileID: 1021946080224804642}
+  - component: {fileID: 3332382384024169541}
   m_Layer: 8
   m_Name: Sauce pan
   m_TagString: Untagged
@@ -844,6 +847,7 @@ MonoBehaviour:
   pourRateMultiplier: 3
   spout: {fileID: 5188108953759392807}
   streamPrefab: {fileID: 5238570228697279498, guid: 687fe5b6c1388c34882009636030b3c7, type: 3}
+  temperature: {fileID: 0}
 --- !u!114 &5188108953710022781
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1024,6 +1028,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionSound: {fileID: 8300000, guid: 7084a467d9c43764c955f0245b6c9ee8, type: 3}
+--- !u!114 &3332382384024169541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6960566638086842915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cc65977595c2bd4cb215582d53020d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hasDrippings: 0
+  hasShallots: 0
+  hasWine: 0
+  shallotTransform: {fileID: 0}
+  _temp: {fileID: 0}
+  sauceMaterial: {fileID: 0}
 --- !u!1 &7049987200308557172
 GameObject:
   m_ObjectHideFlags: 0

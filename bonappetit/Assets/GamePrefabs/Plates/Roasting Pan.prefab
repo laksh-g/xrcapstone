@@ -508,7 +508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a054def107a4ea42a3fd91652ef614d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drippingMaterial: {fileID: 2100000, guid: 9888a4cfc2b06ea49ac60aaf5896ef75, type: 2}
+  drippingMaterial: {fileID: 2100000, guid: ee9013f83b4ef4948b82249094620423, type: 2}
 --- !u!1 &780429356051510452
 GameObject:
   m_ObjectHideFlags: 0
