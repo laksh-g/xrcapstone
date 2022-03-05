@@ -60,8 +60,10 @@ public class Temperature : MonoBehaviour, IPunObservable
             return 4f;
         }
         if (heater.s.val == 0) {
+            Debug.Log("registering ambient");
             return ambientDelta();
         } else if(heater.isOvenlike) {
+            Debug.Log("registering oven with setting " + 1);
             return delta(heater.temperatureSettings[heater.s.val]);
         } else if (heater.s.numSettings == 4) {
             switch(heater.s.val) {
@@ -87,19 +89,23 @@ public class Temperature : MonoBehaviour, IPunObservable
         return delta(maxTemp + 5);
     }
     void OnTriggerEnter(Collider other) {
-        heater = other.GetComponent<HeatingElement>();
-        if (heater != null && (heater.s == null || heater.s.val != 0)) {
-            isResting = false;
-            restTime = 0;
+        if (other.tag == "heater") {
+            heater = other.GetComponent<HeatingElement>();
+            if (heater != null && (heater.s == null || heater.s.val != 0)) {
+                isResting = false;
+                restTime = 0;
+            }
         }
+        Debug.Log("entered area " + other.tag);
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (heater != null) {
+        if (heater != null && other.gameObject == heater.gameObject) {
             isResting = true;
+            heater = null;
         }
-        heater = null;
+        Debug.Log("left area " + other.tag);
     }
 
     // Following Newton's law of cooling

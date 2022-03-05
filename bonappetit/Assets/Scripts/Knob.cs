@@ -8,7 +8,7 @@ using Photon.Pun;
 public class Knob : MonoBehaviour, IPunObservable
 {
     [SerializeField]
-    public int val; // 0 - numSettings
+    public int val = 0; // 0 - numSettings
     public int numSettings;
     public IndicatorLight greenLight;
     public IndicatorLight redLight;
@@ -32,7 +32,6 @@ public class Knob : MonoBehaviour, IPunObservable
             a = gameObject.AddComponent<AudioSource>();
         }
     }
-    val = 0; // off 
     if (greenLight != null && redLight != null) {
         redLight.on = true;
         greenLight.on = false;

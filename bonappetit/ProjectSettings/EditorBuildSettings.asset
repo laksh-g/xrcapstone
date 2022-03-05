@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewLobby.unity
     guid: 72b5d3d49ee4c65488cc6b233fe19d6c
   - enabled: 0
