@@ -66,11 +66,11 @@ public class Tutorial : MonoBehaviour
             "Step 6: Cook some fries! Grab a fry basket. \n\nTIP: The station for fries is on the other side of the kitchen",
             "Step 7: Grab some fries out of the kitchen cabinet and place them in the fry basket.",
             "Step 8: Place the fry basket back in the frier and click the knob to cook the fries. \n\nTIP: Some knobs are on a timer. Wait for the timer to finish for fully cooked fries!",
-            "Step 9: When the timer goes off, take the fries out and garnish with 4g of salt and 4g of parsley.",
-            "Step 10: Plate it with the steak. \n\nTIP: When turning in an order, all the components have to be on the same plate.",
+            "Step 9: When the timer goes off, pour the fries out of the fry basket and garnish with 4g of salt and 4g of parsley. \n\nTIP: Fries cannot be grabbed out of the fry basket. Instead, tilt the fry basket to pour the fries out.",
+            "Step 10: Plate the fries with the steak. \n\nTIP: When turning in an order, all the components have to be on the same plate.",
             "Step 11: Plate the bearnaise sauce! Grab a ramekin and a ladle. \n\nTIP: Additional cooking tools can be found in drawers.",
             "Step 12: Sauce is located in the heater. Ladle 1 scoop of bearnaise sauce into a ramekin.",
-            "Step 13: Plate it with the steak and fries.",
+            "Step 13: Plate the bearnaise with the steak and fries.",
             "Step 14: To serve the dish, place it on the flashing tables. \n\nTIP: Serving is the head chef's role.",
             "Congratulations!!! \nYou have successfully cooked steak frites! \n\nTIP: You can press the left menu button to return to the lobby."
         };
