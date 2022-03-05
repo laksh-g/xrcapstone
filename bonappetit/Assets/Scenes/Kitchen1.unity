@@ -530,7 +530,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7555670161457662644, guid: 99a7074e6e4e49240b515064f249e3ce, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7555670161457662644, guid: 99a7074e6e4e49240b515064f249e3ce, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4709,7 +4709,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &876581701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5592,7 +5592,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1200281378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6234,7 +6234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1307120843
 Transform:
   m_ObjectHideFlags: 0
@@ -6494,14 +6494,6 @@ PrefabInstance:
     - target: {fileID: 782947443592857028, guid: fb24f7451ae3791458b531936d29eca8, type: 3}
       propertyPath: m_Name
       value: Prop_Frier (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 4412710478428222370, guid: fb24f7451ae3791458b531936d29eca8, type: 3}
-      propertyPath: sceneViewId
-      value: 43
-      objectReference: {fileID: 0}
-    - target: {fileID: 5081815626997236113, guid: fb24f7451ae3791458b531936d29eca8, type: 3}
-      propertyPath: sceneViewId
-      value: 87
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fb24f7451ae3791458b531936d29eca8, type: 3}
@@ -8620,6 +8612,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2332883958007039891, guid: d35e3febd5e049143bf8257f41c01b90, type: 3}
+      propertyPath: m_TagString
+      value: heater
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332883958007039891, guid: d35e3febd5e049143bf8257f41c01b90, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -8630,6 +8626,10 @@ PrefabInstance:
     - target: {fileID: 2332883959166913844, guid: d35e3febd5e049143bf8257f41c01b90, type: 3}
       propertyPath: val
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2332883959553538811, guid: d35e3febd5e049143bf8257f41c01b90, type: 3}
+      propertyPath: m_TagString
+      value: heater
       objectReference: {fileID: 0}
     - target: {fileID: 2332883959553538811, guid: d35e3febd5e049143bf8257f41c01b90, type: 3}
       propertyPath: m_StaticEditorFlags

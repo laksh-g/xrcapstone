@@ -589,6 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matOn: {fileID: 2100000, guid: 14eff2e2f350aa64ba8192a5d3e44c4d, type: 2}
   matOff: {fileID: 2100000, guid: 5f13d14a93238ba44a368a33ea21f908, type: 2}
+  buttonSound: {fileID: 0}
 --- !u!65 &7555670160128811808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1081,7 +1082,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: cecee8164302dc444a2e2710f43f6560, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1135,6 +1136,7 @@ MonoBehaviour:
   matOff: {fileID: 2100000, guid: a06f78e6aaae3fd4c90f2718d4aa259c, type: 2}
   hasNewOrder: 1
   gm: {fileID: 0}
+  dispenseSound: {fileID: 0}
 --- !u!1 &7555670161634924835
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,6 +1343,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   matOn: {fileID: 2100000, guid: 14eff2e2f350aa64ba8192a5d3e44c4d, type: 2}
   matOff: {fileID: 2100000, guid: 5f13d14a93238ba44a368a33ea21f908, type: 2}
+  buttonSound: {fileID: 0}
 --- !u!146 &7555670161634925274
 WheelCollider:
   m_ObjectHideFlags: 0
