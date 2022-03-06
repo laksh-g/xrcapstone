@@ -7,7 +7,7 @@ https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=shari
 - Johnathon: Created and implemented 4 new dishes, added item spawners, added oven appliance, and upgraded render pipeline to URP.
 - Katherine: Updated steak frites tutorial scene with feedback from peer testings, and incorporated the new item spawners and render pipeline that Johnathon created. 
 - Laksh: Updated Lobby with new graphics, fixed some serialization issues with items syncing over network
-- Hritik:
+- Hritik: Fixed ticketing system color issues, starting working on saving and displaying user scores
 
 ## New features/functionality implemented
 - New dishes! Crab cakes, table bread, roasted chicken, and French onion soup have all been added to the game
