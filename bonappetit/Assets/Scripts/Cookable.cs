@@ -5,6 +5,15 @@ using UnityEngine;
 public class Cookable : MonoBehaviour
 {
     public float cookedTemp; // in C
+
+    public bool isSearable;
+
+    public MeshRenderer side1;
+    public MeshRenderer side2;
+
+    public Material seared = null;
+    public float desiredSearTime = 10;
+    public  float searTime = 0;
     
     // materials for transitions
     public Material raw;
@@ -63,6 +72,22 @@ public class Cookable : MonoBehaviour
                 }
             }
         }
+
+        if (isSearable) {
+            if (temp.heater != null && temp.heater.s.val == temp.heater.s.numSettings - 1) {
+                searTime += Time.deltaTime;
+            }
+            if (searTime > desiredSearTime * 1.5) {
+                side1.material = burnt;
+                side2.material = burnt;
+            } else if (searTime > desiredSearTime) {
+                side1.material.Lerp(seared, burnt, (searTime - desiredSearTime) / (desiredSearTime * .5f));
+                side2.material.Lerp(seared, burnt, (searTime - desiredSearTime) / (desiredSearTime * .5f));
+            } else {
+                side1.material.Lerp(raw, seared, searTime / desiredSearTime);
+                side2.material.Lerp(raw, seared, searTime / desiredSearTime);
+            }
+        }
     }
 
     public string GetStatus() {
@@ -73,5 +98,15 @@ public class Cookable : MonoBehaviour
             return "Done";
         }
         return "Underdone";
+    }
+
+    public string GetSearStatus() {
+        if (searTime > desiredSearTime * 1.5) {
+            return "Burnt";
+        } else if (searTime > desiredSearTime) {
+            return "Good";
+        } else {
+            return "Underdone";
+        }
     }
 }
