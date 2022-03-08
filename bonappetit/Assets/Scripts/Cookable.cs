@@ -44,7 +44,7 @@ public class Cookable : MonoBehaviour
     void Update()
     {
         if (!isStaticMaterial) {
-            if(temp.maxTemp >= cookedTemp * 1.15F) {
+            if(temp.maxTemp >= cookedTemp * 1.33F) {
                 if (isCollection) {
                     foreach(MeshRenderer m in meshes) {
                         m.material = burnt;
@@ -91,7 +91,7 @@ public class Cookable : MonoBehaviour
     }
 
     public string GetStatus() {
-        if (temp.maxTemp >= cookedTemp * 1.15F) {
+        if (temp.maxTemp >= cookedTemp * 1.33F) {
             return "Overdone";
         }
         if (temp.maxTemp >= cookedTemp) {
