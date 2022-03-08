@@ -73,7 +73,7 @@ public class GameManager : MonoBehaviour
         } else {
             im.enabled = false;
         }
-        if (isActive && PhotonNetwork.Time - startTime > Clock.GAME_LENGTH) {
+        if (isActive && PhotonNetwork.Time - startTime > Clock.getGameLength()) {
             EndGame();
         }
 

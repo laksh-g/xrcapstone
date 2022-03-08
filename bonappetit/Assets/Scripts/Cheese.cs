@@ -35,7 +35,7 @@ public class Cheese : MonoBehaviour
     void Update()
     {
         h = _temp.heater;
-        if (h != null && _mesh.enabled == true && h.tag == "torch" && h.s.val == 1) {
+        if (h != null && _mesh.enabled == true && h.s.val == 1) {
             _audio.Play();
             _smoke.Play();
             toastingTime += Time.deltaTime;
