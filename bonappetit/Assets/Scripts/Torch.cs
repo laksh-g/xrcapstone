@@ -18,7 +18,7 @@ public class Torch : MonoBehaviour
         fire.SetActive(false);
     }
 
-    void Update() {if (isOn && fire.activeSelf == false) {FireActivate();} if(!isOn && fire.activeSelf == true) {FireDeactivate();}}
+    //void Update() {if (isOn && fire.activeSelf == false) {FireActivate();} if(!isOn && fire.activeSelf == true) {FireDeactivate();}}
     public void FireActivate() {
         k.val = 1;
         startSource.PlayOneShot(startSound);
