@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Tutorial : MonoBehaviour
 {
-    public TutorialType tutType;
+    public TutorialType tutorialType;
 
     List<GameObject[]> highlightObjs;
     List<Color> startColor;
@@ -45,7 +45,7 @@ public class Tutorial : MonoBehaviour
 
         highlightObjs = new List<GameObject[]>();
 
-        if (tutType.Equals(TutorialType.steakFrites))
+        if (tutorialType.Equals(TutorialType.steakFrites))
         {
             highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Fridge_02_p03"),
                                                  GameObject.Find("Prop_Fridge_02_p02"),
@@ -94,27 +94,27 @@ public class Tutorial : MonoBehaviour
 
             header = "Steak Frites Tutorial\n";
         }
-        else if (tutType.Equals(TutorialType.frenchOnion))
+        else if (tutorialType.Equals(TutorialType.frenchOnion))
         {
             highlightObjs.Add(new GameObject[] { GameObject.Find("SoupBowlSpawner"),
                 GameObject.Find("Prop_KitchenTable_06").transform.Find("Prop_KitchenTable_06_p04").gameObject });
             highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_Heater_p05") });
+            highlightObjs.Add(new GameObject[] { GameObject.Find("SoupBreadSpawner"),
+                GameObject.Find("Prop_KitchenCabinet_03") });
             highlightObjs.Add(new GameObject[] { GameObject.Find("CheeseSpawner"),
                 GameObject.Find("Prop_KitchenCabinet_03"),
                 GameObject.Find("Prop_KitchenTable_06").transform.Find("Prop_KitchenTable_06_p03").gameObject });
             highlightObjs.Add(new GameObject[] { plate });
-            highlightObjs.Add(new GameObject[] { GameObject.Find("SoupBreadSpawner"),
-                GameObject.Find("Prop_KitchenCabinet_03") });
             highlightObjs.Add(new GameObject[] { GameObject.Find("Torch") });
             highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_01") });
 
             tutorialText = new string[]
             {
                 "Step 1: Let's cook some french onion soup! Grab a bowl from the dishes table and a ladle from the drawer in the right side of the kitchen. \n\nTIP: Press and hold the grip button to grab objects. Grab and pull the drawer handle to open the drawer.",
-                "Step 2: Soup is located in the right side of the heater. Ladle the soup into the bowl until full.",
-                "Step 3: Place the bowl down on the counter. Grab a grater from the middle drawer and cheese from the kitchen cabinet.",
-                "Step 4: Grate the cheese over the bowl of soup. To grate, hold the grater steady and gently rub the cheese along the top of the grater. \n\nTIP: Grating the cheese gently is key.",
-                "Step 5: Grab a piece of bread from the kitchen cabinet and drop it in the soup bowl.",
+                "Step 2: Soup is located in the right side of the heater. Ladle the soup into the bowl until full, about 450mL.",
+                "Step 3: Grab a piece of bread from the kitchen cabinet and drop it in the soup bowl.",
+                "Step 4: Place the bowl down on the counter. Grab a grater from the middle drawer and cheese from the kitchen cabinet.",
+                "Step 5: Grate the cheese over the bowl of soup. To grate, hold the grater steady and gently rub the cheese along the top of the grater. \n\nTIP: Grating the cheese gently is key.",
                 "Step 6: Grab the torch and torch the bowl of french onion soup until the cheese melts. \n\nTIP: The cheese should visibly flatten when melted.",
                 "Step 7: To serve the dish, place it on the flashing table.",
                 "Congratulations!!! \nYou have successfully cooked french onion soup! \n\nTIP: You can press the left menu button to return to the lobby."
@@ -160,7 +160,7 @@ public class Tutorial : MonoBehaviour
         {
             Blink();
 
-            switch (tutType)
+            switch (tutorialType)
             {
                 case TutorialType.steakFrites:
                     UpdateSteakFrites();
@@ -200,26 +200,6 @@ public class Tutorial : MonoBehaviour
         {
             UpdateStep();
         }
-        /*
-        else if (step == 8)
-        {
-            if (fries == null)
-            {
-                GameObject[] allFries = GameObject.FindGameObjectsWithTag("fry");
-                foreach (GameObject f in allFries)
-                {
-                    if (f.GetComponent<Temperature>().heater != null)
-                    {
-                        fries = f;
-                        break;
-                    }
-                }
-            }
-            else if (fries.GetComponent<Fries>().seasoning.salt > 0f && fries.GetComponent<Fries>().seasoning.parsley > 0f)
-            {
-                UpdateStep();
-            }
-        }*/
         else if (step == 13)
         {
             var table = GameObject.Find("Prop_KitchenTable_01 (1)");
@@ -233,10 +213,10 @@ public class Tutorial : MonoBehaviour
     void UpdateFrenchOnion()
     {
         if ((step == 0 && IsHolding("ladle", true) && IsHolding("Soup bowl")) ||
-            (step == 1 && plate.GetComponent<LiquidContainer>() != null && plate.GetComponent<LiquidContainer>().currentVolume >= 300) ||
-            (step == 2 && IsHolding("grater", true) && IsHolding("gruyere", true)) ||
-            (step == 3 && plate.GetComponent<Seasonable>() != null && plate.GetComponent<Seasonable>().gruyere >= 5) ||
-            (step == 4 && IsPlated(plate, "Bread")) ||
+            (step == 1 && plate.GetComponent<LiquidContainer>() != null && plate.GetComponent<LiquidContainer>().currentVolume >= 400) ||
+            (step == 2 && IsPlated(plate, "Bread")) ||
+            (step == 3 && IsHolding("grater", true) && IsHolding("gruyere", true)) ||
+            (step == 4 && plate.GetComponent<Seasonable>() != null && plate.GetComponent<Seasonable>().gruyere >= 5) ||
             (step == 5 && plate.GetComponentInChildren<Cheese>() != null && plate.GetComponentInChildren<Cheese>().toastingTime >= 10))
         {
             UpdateStep();
@@ -416,7 +396,7 @@ public class Tutorial : MonoBehaviour
 
     public void UpdatePlate(GameObject p)
     {
-        switch (tutType)
+        switch (tutorialType)
         {
             case TutorialType.steakFrites:
                 highlightObjs[9][highlightObjs[9].Length - 1] = plate;
@@ -426,8 +406,6 @@ public class Tutorial : MonoBehaviour
                 break;
             case TutorialType.frenchOnion:
                 highlightObjs[3] = new GameObject[] { plate };
-                break;
-            default:
                 break;
         }
 

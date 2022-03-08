@@ -12581,6 +12581,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1031192270675306287, guid: 46b864706e444ee48add5282550eb173, type: 3}
+      propertyPath: sceneViewId
+      value: 93
+      objectReference: {fileID: 0}
     - target: {fileID: 1176004632272122131, guid: 46b864706e444ee48add5282550eb173, type: 3}
       propertyPath: m_Name
       value: Torch

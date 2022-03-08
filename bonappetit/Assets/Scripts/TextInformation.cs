@@ -10,8 +10,10 @@ public class TextInformation : MonoBehaviour
     private GameObject selectedObject;
     private string tutorialText;
     private string debugText;
+
     readonly string defaultText = "Hover over an item for more info\nToggle with X";
-    readonly Dictionary<string, List<string>> hookNames = new Dictionary<string, List<string>> { 
+    readonly Dictionary<string, List<string>> hookNames = new Dictionary<string, List<string>> 
+    { 
         { "Stone Plate", new List<string> { "Sauce", "Fries", "Steak" } },
         { "Soup Bowl", new List<string> { "Bread" } },
         { "Appetizer Plate", new List<string> { "Crab", "Crab2", "SproutLoc" } },
@@ -19,6 +21,15 @@ public class TextInformation : MonoBehaviour
         { "Bread Board", new List<string> { "Bread", "Oil" } }
     };
     readonly List<string> liquidNames = new List<string> { "Sauce", "Soup" };
+    readonly Dictionary<string, List<string>> foodSeasonings = new Dictionary<string, List<string>>
+    {
+        { "steak", new List<string> { "salt", "pepper" } },
+        { "fry", new List<string> { "salt", "parsley" } },
+        { "breast", new List<string> { "salt", "pepper", "parsley" } },
+        { "wing", new List<string> { "salt", "pepper", "parsley" } },
+        { "vegetables", new List<string> { "salt", "pepper" } },
+        { "frenchonionsoup", new List<string> { "gruyere" } }
+    };
 
     // Start is called before the first frame update
     void Start()
@@ -78,7 +89,7 @@ public class TextInformation : MonoBehaviour
 
         if (tagStr.Equals("plate") || ChildHasTag(selectedObject, "plate"))
         {
-            string plateType = "Stone Plate";
+            string plateType = "";
             if (desc != null)
             {
                 plateType = desc.label;
@@ -125,6 +136,46 @@ public class TextInformation : MonoBehaviour
 
                 text.text += "Currently contains components: " + String.Join(", ", occupied.ToArray()) + '\n';
                 text.text += "Missing components: " + String.Join(", ", missing.ToArray()) + '\n';
+
+                var seasonables = selectedObject.gameObject.GetComponentsInChildren<Seasonable>();
+                foreach (var s in seasonables)
+                {
+                    if (foodSeasonings.TryGetValue(s.tag, out List<string> seasoning))
+                    {
+                        List<string> missingSeasoning = new List<string>();
+                        foreach (var str in seasoning)
+                        {
+                            switch (str)
+                            {
+                                case "salt":
+                                    if (s.salt <= 0)
+                                        missingSeasoning.Add("salt");
+                                    break;
+                                case "pepper":
+                                    if (s.pepper <= 0)
+                                        missingSeasoning.Add("pepper");
+                                    break;
+                                case "parsley":
+                                    if (s.parsley <= 0)
+                                        missingSeasoning.Add("parsley");
+                                    break;
+                                case "gruyere":
+                                    if (s.gruyere <= 0)
+                                        missingSeasoning.Add("gruyere");
+                                    break;
+                                case "truffle oil":
+                                    if (s.truffleOil <= 0)
+                                        missingSeasoning.Add("truffle oil");
+                                    break;
+                            }
+                        }
+                        if (missingSeasoning.Count > 0)
+                        {
+                            // change tags to be more readable friendly
+                            text.text += s.tag + " is missing " + String.Join(", ", missingSeasoning.ToArray()) + ".\n";
+                        }
+                    }
+                }
             }
         }
         else
@@ -147,15 +198,15 @@ public class TextInformation : MonoBehaviour
                 text.text += "Sear Time: " + steak.searTime.ToString("F0") + " s" + '\n';
                 text.text += "Rest time: " + steak.restTime.ToString("F0") + " s" + '\n';
                 text.text += "Doneness: " + steak.GetDonenessLabel() + '\n';
-                text.text += "Salt: " + steak.seasoning.salt.ToString("F2") + " g" + '\n';
-                text.text += "Pepper: " + steak.seasoning.pepper.ToString("F2") + " g" + '\n';
+                text.text += "Salt: " + steak.seasoning.salt.ToString("F1") + " g" + '\n';
+                text.text += "Pepper: " + steak.seasoning.pepper.ToString("F1") + " g" + '\n';
             }
 
             var fries = selectedObject.GetComponent<Fries>();
             if (fries != null)
             {
-                text.text += "Salt: " + fries.seasoning.salt.ToString("F2") + " g" + '\n';
-                text.text += "Parsley: " + fries.seasoning.parsley.ToString("F2") + " g" + '\n';
+                text.text += "Salt: " + fries.seasoning.salt.ToString("F1") + " g" + '\n';
+                text.text += "Parsley: " + fries.seasoning.parsley.ToString("F1") + " g" + '\n';
             }
 
             var bearnaise = selectedObject.GetComponent<Bearnaise>();
