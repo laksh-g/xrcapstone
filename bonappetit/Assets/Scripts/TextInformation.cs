@@ -134,8 +134,11 @@ public class TextInformation : MonoBehaviour
                     }
                 }
 
-                text.text += "Currently contains components: " + String.Join(", ", occupied.ToArray()) + '\n';
-                text.text += "Missing components: " + String.Join(", ", missing.ToArray()) + '\n';
+                // text.text += "Currently contains components: " + String.Join(", ", occupied.ToArray()) + '\n';
+                if (missing.Count > 0)
+                {
+                    text.text += "Missing components: " + String.Join(", ", missing.ToArray()) + '\n';
+                }
 
                 var seasonables = selectedObject.gameObject.GetComponentsInChildren<Seasonable>();
                 foreach (var s in seasonables)
@@ -172,7 +175,7 @@ public class TextInformation : MonoBehaviour
                         if (missingSeasoning.Count > 0)
                         {
                             // change tags to be more readable friendly
-                            text.text += s.tag + " is missing " + String.Join(", ", missingSeasoning.ToArray()) + ".\n";
+                            text.text += char.ToUpper(s.tag[0]) + s.tag.Substring(1) + " is missing " + String.Join(", ", missingSeasoning.ToArray()) + ".\n";
                         }
                     }
                 }

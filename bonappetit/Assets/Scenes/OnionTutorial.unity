@@ -2214,16 +2214,16 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 243325960}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 7.7184668}
+  m_LocalPosition: {x: 0, y: 0, z: 4.771}
   m_LocalScale: {x: 0.0049, y: 0.0049, z: 0.0049}
   m_Children:
   - {fileID: 1435445117}
-  m_Father: {fileID: 1916830925}
-  m_RootOrder: 5
+  m_Father: {fileID: 0}
+  m_RootOrder: 50
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -9.852706, y: 9.749185}
+  m_AnchoredPosition: {x: -3.918, y: 1.562}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &243325962
@@ -12654,7 +12654,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1916830925
 Transform:
   m_ObjectHideFlags: 0
@@ -12671,7 +12671,6 @@ Transform:
   - {fileID: 1423448979}
   - {fileID: 667615711}
   - {fileID: 1031866350}
-  - {fileID: 243325961}
   m_Father: {fileID: 707643253}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12790,9 +12789,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Torch (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1176004632272122131, guid: 46b864706e444ee48add5282550eb173, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1176004632272122150, guid: 46b864706e444ee48add5282550eb173, type: 3}
       propertyPath: m_RootOrder
-      value: 50
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 1176004632272122150, guid: 46b864706e444ee48add5282550eb173, type: 3}
       propertyPath: m_LocalScale.x
@@ -12844,6 +12847,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1176004632272122150, guid: 46b864706e444ee48add5282550eb173, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1176004632272122153, guid: 46b864706e444ee48add5282550eb173, type: 3}
+      propertyPath: isOn
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1176004632272122159, guid: 46b864706e444ee48add5282550eb173, type: 3}

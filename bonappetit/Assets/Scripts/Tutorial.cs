@@ -169,7 +169,7 @@ public class Tutorial : MonoBehaviour
                     UpdateFrenchOnion();
                     break;
                 default:
-                    textInfo.DebugText("Error: tutType default");
+                    textInfo.DebugText("Error: tutorialType default. Tutorial not found");
                     break;
             }
 
@@ -228,11 +228,6 @@ public class Tutorial : MonoBehaviour
             {
                 UpdateStep();
             }
-        }
-        if (plate.GetComponentInChildren<Cheese>() != null)
-        {
-            var chez = plate.GetComponentInChildren<Cheese>();
-            textInfo.DebugText("toast time: " + chez.toastingTime + " temp: " + chez._temp);
         }
     }
 
@@ -405,7 +400,7 @@ public class Tutorial : MonoBehaviour
                 //highlightObjs[12] = new GameObject[] { plate };
                 break;
             case TutorialType.frenchOnion:
-                highlightObjs[3] = new GameObject[] { plate };
+                highlightObjs[4] = new GameObject[] { plate };
                 break;
         }
 
