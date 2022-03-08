@@ -124,6 +124,7 @@ GameObject:
   - component: {fileID: 8045356283111714977}
   - component: {fileID: 1276041193962443260}
   - component: {fileID: 6670018830278779279}
+  - component: {fileID: 8709792136186485122}
   m_Layer: 8
   m_Name: StonePlate
   m_TagString: plate
@@ -393,6 +394,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.3978755, y: 0.03, z: 0.40401337}
   m_Center: {x: -0.000000029802322, y: 0.02, z: 0}
+--- !u!114 &8709792136186485122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4115634655358768203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 205441cb8da75384e98ebec1708f51b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: Stone Plate
+  desc: Used for Steak Frites.
 --- !u!1 &7541072012951659185
 GameObject:
   m_ObjectHideFlags: 0
