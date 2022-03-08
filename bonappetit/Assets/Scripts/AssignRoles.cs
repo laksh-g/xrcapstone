@@ -13,12 +13,13 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     public Button SaucierButton;
 
     public Button StartGame;
-
+    public Button RoomSettings;
 
     // Start is called before the first frame update
     void Start()
     {
         StartGame.interactable = false;
+        RoomSettings.interactable = false;
     }
 
     // Update is called once per frame
@@ -81,9 +82,11 @@ public class AssignRoles : MonoBehaviourPunCallbacks
 
             if(role == "HeadChefRole"){
                 StartGame.interactable = true;
+                RoomSettings.interactable = true;
                 PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
             }else{
                 StartGame.interactable = false;
+                RoomSettings.interactable = false;
                 //StartGame.interactable = true;
             }
         }

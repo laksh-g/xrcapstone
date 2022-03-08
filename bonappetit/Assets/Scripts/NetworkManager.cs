@@ -27,7 +27,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject joinInput;
 
     public GameObject JoinRoomScreen;
-    public GameObject PreGameLobby;
+    public GameObject RoomSettings;
 
     void Awake()
     {
@@ -48,7 +48,17 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public void StartGame()
     {
-        PhotonNetwork.LoadLevel(1);
+        if (PhotonNetwork.CurrentRoom != null) {
+            ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
+            Debug.Log((string) ht["difficulty"]);
+            if((string) ht["difficulty"] == "Cafe Kitchen"){
+                PhotonNetwork.LoadLevel("CafeKitchen");
+            }else if((string) ht["difficulty"] == "Restaurant Kitchen"){
+                PhotonNetwork.LoadLevel("RestaurantKitchen");
+            }else if((string) ht["difficulty"] == "Fine Dining Kitchen"){
+                PhotonNetwork.LoadLevel("FineDiningKitchen");
+            }
+        }
     }
 
     public void ConnectedToServer()
@@ -99,7 +109,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         //set correct game objects
         //connectGameMenu.SetActive(false);
         JoinRoomScreen.SetActive(false);
-        PreGameLobby.SetActive(true);
+        RoomSettings.SetActive(true);
         createdRoomCode.text = "<b>Room Code:</b> " + PhotonNetwork.CurrentRoom.Name;
         base.OnJoinedRoom();
     }
