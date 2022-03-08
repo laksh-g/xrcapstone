@@ -28,6 +28,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
 
     public GameObject JoinRoomScreen;
     public GameObject RoomSettings;
+    public GameObject FoodDisplay;
 
     void Awake()
     {
@@ -110,6 +111,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         //connectGameMenu.SetActive(false);
         JoinRoomScreen.SetActive(false);
         RoomSettings.SetActive(true);
+        FoodDisplay.SetActive(true);
         createdRoomCode.text = "<b>Room Code:</b> " + PhotonNetwork.CurrentRoom.Name;
         base.OnJoinedRoom();
     }
