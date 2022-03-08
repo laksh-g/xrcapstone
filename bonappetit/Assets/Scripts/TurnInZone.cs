@@ -25,7 +25,7 @@ public class TurnInZone : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.tag == "plate") {
+        if (other.gameObject.GetComponent<Dish>() != null) {
             GameObject p = other.gameObject;
             if (p == null) {
                 print("can't harvest plate");
