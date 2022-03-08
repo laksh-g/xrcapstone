@@ -57,12 +57,14 @@ public class Stream : MonoBehaviour
         Physics.Raycast(ray, out hit, 10.0f);
         Physics.Raycast(containerRay, out containerHit, 10.0f, layerMask);
         // check if container ray hit a fillable
-        LiquidContainer f = containerHit.collider.isTrigger? containerHit.collider.GetComponentInParent<LiquidContainer>() : null;
-        if (f != null && f.isFillable) {
-            Debug.Log("Stream registered container " + f.tag);
-            container = f;
-        } else {
-            container = null;
+        if (containerHit.collider != null) {
+            LiquidContainer f = containerHit.collider.isTrigger? containerHit.collider.GetComponentInParent<LiquidContainer>() : null;
+            if (f != null && f.isFillable) {
+                Debug.Log("Stream registered container " + f.tag);
+                container = f;
+            } else {
+                container = null;
+            }
         }
         Vector3 endPoint = hit.collider ? hit.point : ray.GetPoint(10.0f);
         return endPoint;
