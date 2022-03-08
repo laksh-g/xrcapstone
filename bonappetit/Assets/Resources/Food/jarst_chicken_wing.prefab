@@ -249,6 +249,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cookedTemp: 74
+  isSearable: 0
+  side1: {fileID: 0}
+  side2: {fileID: 0}
+  seared: {fileID: 0}
+  desiredSearTime: 10
+  searTime: 0
   raw: {fileID: 2100000, guid: f977cdd29652beb4995063b003e70c73, type: 2}
   cooked: {fileID: 2100000, guid: 9888a4cfc2b06ea49ac60aaf5896ef75, type: 2}
   burnt: {fileID: 2100000, guid: 0a05d24e514bb8a4d9b22770bf7585d3, type: 2}
@@ -290,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ee5e7a8aa8a29b49ae1c062de1518ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  temp: 21
+  temp: 4
   tempDelta: 0
   maxTemp: 0
   heater: {fileID: 0}

@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3658332310797343929}
   - component: {fileID: 720959380810839579}
   - component: {fileID: 1886178252685553420}
+  - component: {fileID: 5605942316296676502}
   m_Layer: 9
   m_Name: Table bread
   m_TagString: bread
@@ -314,3 +315,26 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &5605942316296676502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5081479549258363810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0e6caba6cb40ee4ba75aea201b9092e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cookedTemp: 60
+  isSearable: 0
+  side1: {fileID: 0}
+  side2: {fileID: 0}
+  seared: {fileID: 0}
+  desiredSearTime: 10
+  searTime: 0
+  raw: {fileID: 0}
+  cooked: {fileID: 0}
+  burnt: {fileID: 0}
+  isCollection: 0

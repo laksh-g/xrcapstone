@@ -48,13 +48,13 @@ public class Steak : MonoBehaviour, IPunObservable
 
     void Update() {
         if (isResting) {
-            restTime += Time.deltaTime * 4;
+            restTime += Time.unscaledDeltaTime;
         }
         if (heater != null && heater.s != null) {
             if (heater.s.val > 0 && !a.isPlaying) {a.Play();}
             a.volume = .5f;
             if ((heater.s.val == 3 && heater.s.numSettings == 4) || (heater.s.val == 1 && heater.s.numSettings == 2)) {
-                searTime += Time.deltaTime * 4;
+                searTime += Time.deltaTime;
                 a.volume = 1f;
                 if (smokeInstance == null) {
                     smokeInstance = Instantiate(smokePrefab, transform.position, Quaternion.Euler(-90, 0, 0), transform).GetComponent<ParticleSystem>();
@@ -70,11 +70,11 @@ public class Steak : MonoBehaviour, IPunObservable
         } else if (a.isPlaying) {
             a.Stop();
         }
-        if (searTime <= 120) {
+        if (searTime <= 30) {
             raw.gameObject.SetActive(true);
             done.gameObject.SetActive(false);
             burnt.gameObject.SetActive(false);
-        } else if (searTime <= 180){
+        } else if (searTime <= 45){
             raw.gameObject.SetActive(false);
             done.gameObject.SetActive(true);
             burnt.gameObject.SetActive(false);
