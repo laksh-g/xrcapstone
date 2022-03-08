@@ -5,37 +5,30 @@ using UnityEngine;
 public class Torch : MonoBehaviour
 {
     public bool isOn = false;
-    public MeshRenderer fire = null;
-    public Light fireLight = null;
-    private Knob k = null;
-    public AudioClip startSound;
+    public GameObject fire = null;
 
+    public Knob k = null;
+    public AudioClip startSound;
     public AudioSource startSource = null;
     private AudioSource playSource = null;
     // Start is called before the first frame update
     void Start()
     {
-        k = GetComponent<Knob>();
         playSource = GetComponent<AudioSource>();
-        fire.enabled = false;
-        fireLight.enabled = false;
+        fire.SetActive(false);
     }
 
-    void Update() {if (isOn && fire.enabled == false) {FireActivate();}}
+    void Update() {if (isOn && fire.activeSelf == false) {FireActivate();} if(!isOn && fire.activeSelf == true) {FireDeactivate();}}
     public void FireActivate() {
         k.val = 1;
         startSource.PlayOneShot(startSound);
         playSource.Play();
-        fire.enabled = true;
-        fireLight.enabled = true;
-        
+        fire.SetActive(true);
     }
 
     public void FireDeactivate() {
         k.val = 0;
         playSource.Stop();
-        fire.enabled = false;
-        fireLight.enabled = false;
-        
+        fire.SetActive(false);
     }
 }
