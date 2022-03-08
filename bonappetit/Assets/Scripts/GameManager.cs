@@ -57,6 +57,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("End Game");
             if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
                 Debug.Log("Final score: " + GetScore());
+                updatePlayerStats();
                 ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
 		        ht["covers"] = coversCompleted;
                 ht["score"] = GetScore();
@@ -65,6 +66,21 @@ public class GameManager : MonoBehaviour
             }
             endgame = true;
         }
+    }
+
+    void updatePlayerStats() {
+        float curr_score = GetScore();
+        float high_score = PlayerPrefs.GetFloat("HighScore");
+
+        if (curr_score > high_score) {
+            PlayerPrefs.SetFloat("HighScore", curr_score);
+        }
+
+        float games_played = PlayerPrefs.GetFloat("TotalGamesPlayed");
+        PlayerPrefs.SetFloat("TotalGamesPlayed", games_played + 1);
+        
+        float games_score = PlayerPrefs.GetFloat("TotalGamesScore");
+        PlayerPrefs.SetFloat("TotalGamesScore", games_score + curr_score);
     }
 
     // Update is called once per frame
