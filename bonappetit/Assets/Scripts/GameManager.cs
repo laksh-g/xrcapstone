@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
 
     private bool endgame = false;
 
+    private bool[] menu = {true, true, true, true, true};
+
     // Start is called before the first frame update
 
     public void StartGame() {
@@ -55,6 +57,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("End Game");
             if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
                 Debug.Log("Final score: " + GetScore());
+                updatePlayerStats();
                 ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
 		        ht["covers"] = coversCompleted;
                 ht["score"] = GetScore();
@@ -63,6 +66,21 @@ public class GameManager : MonoBehaviour
             }
             endgame = true;
         }
+    }
+
+    void updatePlayerStats() {
+        float curr_score = GetScore();
+        float high_score = PlayerPrefs.GetFloat("HighScore");
+
+        if (curr_score > high_score) {
+            PlayerPrefs.SetFloat("HighScore", curr_score);
+        }
+
+        float games_played = PlayerPrefs.GetFloat("TotalGamesPlayed");
+        PlayerPrefs.SetFloat("TotalGamesPlayed", games_played + 1);
+        
+        float games_score = PlayerPrefs.GetFloat("TotalGamesScore");
+        PlayerPrefs.SetFloat("TotalGamesScore", games_score + curr_score);
     }
 
     // Update is called once per frame
@@ -96,7 +114,7 @@ public class GameManager : MonoBehaviour
             }
 
             orderNum++;
-            Order newOrder = new Order(orderNum);
+            Order newOrder = new Order(orderNum, true, menu);
             openOrders.Add(orderNum, newOrder);
             a.PlayOneShot(startGameSound);
             createTicket(newOrder);
@@ -203,7 +221,7 @@ public class GameManager : MonoBehaviour
             return (0f, "Comments: Old order sent, wasted food");
         }
         Order order = (Order)openOrders[orderNum];
-        print("Received order" + order);
+        Debug.Log("Received order" + order);
         float total = 0;
         string orderComments = "Comments: ";
         float maxScore;
@@ -215,11 +233,21 @@ public class GameManager : MonoBehaviour
         foreach (GameObject p in plates) {
             closestMatch = null;
             maxScore = 0;
+            Dish info = p.GetComponent<Dish>();
             foreach (Orderable o in remainingCovers)
             {
-                if (o is SteakFritesOrder)
+               
+                if (o is SteakFritesOrder && info.dishID == "steakfrites")
                 {
                     (currScore, plateComments) = ((SteakFritesOrder)o).Evaluate(p);
+                } else if (o is OnionSoupOrder && info.dishID == "onionsoup") {
+                    (currScore, plateComments) = ((OnionSoupOrder)o).Evaluate(p);
+                } else if (o is TableBreadOrder && info.dishID == "tablebread") {
+                    (currScore, plateComments) = ((TableBreadOrder)o).Evaluate(p);
+                } else if (o is CrabCakeOrder && info.dishID == "crabcakes") {
+                    (currScore, plateComments) = ((CrabCakeOrder)o).Evaluate(p);
+                } else if (o is RoastChickenOrder && info.dishID == "roastChicken") {
+                    (currScore, plateComments) = ((RoastChickenOrder)o).Evaluate(p);
                 }
                 else { currScore = 0; plateComments = "Bad type"; }
                 maxScore = Mathf.Max(maxScore, currScore);
@@ -259,34 +287,46 @@ public class GameManager : MonoBehaviour
         public int partySize;
         public List<Orderable> contents = new List<Orderable>();
         public GameObject gObj;
-        public Order(int orderNum)
+        public Order(int orderNum, bool singleTicket, bool[] menu)
         {
             this.orderNum = orderNum;
-
-            float rand = Random.Range(0f, 1f);
-            if (rand < .2)
-            {
-                partySize = 1;
-            }
-            else if (rand < .7)
-            {
-                partySize = 2;
-            }
-            else
-            {
-                partySize = 3;
+            partySize = 1;
+            if (!singleTicket) {
+                float rand = Random.Range(0f, 1f);
+                if (rand > .5)
+                {
+                    partySize = 2;
+                } else if (rand > .8)
+                {
+                    partySize = 3;
+                }
             }
 
             for (int i = 0; i < partySize; i++)
             {
-                contents.Add(GenerateDish());
+                contents.Add(GenerateDish(menu));
             }
         }
 
-        private Orderable GenerateDish()
+        private Orderable GenerateDish(bool[] menu)
         {
-            // expand when we add new dishes
-            return new SteakFritesOrder();
+            List<Orderable> dishPool = new List<Orderable>();
+            if (menu[0]) {
+                dishPool.Add(new TableBreadOrder());
+            }
+            if (menu[1]) {
+                dishPool.Add(new OnionSoupOrder());
+            }
+            if (menu[2]) {
+                dishPool.Add(new CrabCakeOrder());
+            }
+            if (menu[3]) {
+                dishPool.Add(new SteakFritesOrder());
+            }
+            if (menu[4]) {
+                dishPool.Add(new RoastChickenOrder());
+            }
+            return dishPool[Random.Range(0,dishPool.Count - 1)];
         }
 
         public override string ToString()
@@ -599,6 +639,209 @@ public class GameManager : MonoBehaviour
                 comments += "Bearnaise notes: not enough sauce ";
             }
             return (total, comments);
+        }
+    }
+
+    private class CrabCakeOrder : Orderable {
+        public CrabCakeOrder() {
+        }
+
+        public (float, string) Evaluate(GameObject p) {
+        
+            float total = 0;
+            string comments = "Crab cakes notes: ";
+            int crabCakesFound = 0;
+            bool foundSprouts = false;
+            foreach (Transform t in p.transform) {
+                if (t.tag == "crab_cake") {
+                    float itemTotal = 5;
+                    crabCakesFound += 1;
+                    Cookable c = t.gameObject.GetComponent<Cookable>();
+                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    if (c.searTime < c.desiredSearTime) {
+                        comments += "under seared, ";
+                        itemTotal -= 1;
+                    } else if (c.searTime > c.desiredSearTime * 1.5) {
+                        comments += "over seared, ";
+                        itemTotal -= 1;
+                    }
+
+                    if (temp.maxTemp < c.cookedTemp) {
+                        comments += "under cooked, ";
+                        itemTotal -= 2;
+                    } else if (temp.maxTemp > c.cookedTemp * 1.33) {
+                        comments += "overcooked, ";
+                        itemTotal -= 3;
+                    }
+                    total += itemTotal;
+                } else if (t.tag == "sprouts") {
+                    foundSprouts = true;
+                    total += 5;
+                }
+            }
+
+            if (!foundSprouts) {
+                comments += "missing sprouts, ";
+            }
+
+            if (crabCakesFound < 2) {
+                comments += "missing crab cake(s), ";
+            }
+
+            LiquidContainer l = p.GetComponent<LiquidContainer>();
+            if (l.currentVolume == 0) {
+                comments += "missing sauce, ";
+            } else if (l.tag == "bearnaise") {
+                total += 5;
+            } else {
+                // wrong sauce tag
+                comments += "incorrect sauce, ";
+            }   
+            return (total / 4, comments);
+        }
+
+        public override string ToString()
+        {
+            return "Crab Cakes\n";
+        }
+    }
+
+    private class TableBreadOrder : Orderable {
+
+        public override string ToString() {
+            return "Table Bread\n";
+        }
+
+        public (float, string) Evaluate(GameObject p) {
+            float total = 0;
+            string comments = "Table Bread notes: ";
+            bool foundBread = false;
+            bool foundOil = false;
+            foreach(Transform t in p.transform) {
+                if (t.tag == "bread") {
+                    foundBread = true;
+                    Cookable c = t.gameObject.GetComponent<Cookable>();
+                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    if (temp.maxTemp < c.cookedTemp) {
+                        total += 3;
+                        comments += "bread was cold, ";
+                    } else if (temp.maxTemp > c.cookedTemp * 1.33) {
+                        total += 2;
+                        comments += "bread was too hot, ";
+                    } else {
+                        total += 5;
+                    }
+                } else if (t.tag == "olive oil") {
+                    total += 5;
+                    foundOil = true;
+                }
+            }
+
+            if (!foundBread) {
+                comments += "missing bread, ";
+            }
+            
+            if (!foundOil) {
+                comments += "missing olive oil, ";
+            }
+
+            return (total / 2, comments);
+        }
+    }
+
+    private class RoastChickenOrder : Orderable {
+        public override string ToString()
+        {
+            return "Roast Chicken w/ Vegetables\n";
+        }
+
+        public (float, string) Evaluate(GameObject p) {
+            float total = 0;
+            string comments = "Roast Chicken notes: ";
+            bool breastFound = false;
+            int wingCount = 0;
+            bool vegFound = false;
+            foreach (Transform t in p.transform) {
+                if (t.tag == "breast") {
+                    float itemTotal = 5;
+                    breastFound = true;
+                    Cookable c = t.gameObject.GetComponent<Cookable>();
+                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    if (temp.maxTemp < c.cookedTemp) {
+                        total += 0;
+                        comments += "chicken breast undercooked, ";
+                        break;
+                    } else if (temp.maxTemp > c.cookedTemp * 1.33) {
+                        itemTotal -= 2;
+                        comments += "chicken breast overcooked, ";
+                    }
+
+                    Seasonable s = t.gameObject.GetComponent<Seasonable>();
+                    if (s.salt == 0 || s.pepper == 0 || s.parsley == 0) {
+                        itemTotal -= 2;
+                        comments += "chicken breast seasoning was off, ";
+                    }
+                    total += itemTotal;
+                } else if (t.tag == "wing") {
+                    wingCount += 1;
+                    float itemTotal = 5;
+                    Cookable c = t.gameObject.GetComponent<Cookable>();
+                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    if (temp.maxTemp < c.cookedTemp) {
+                        total += 0;
+                        comments += "wing undercooked, ";
+                        break;
+                    } else if (temp.maxTemp > c.cookedTemp * 1.33) {
+                        itemTotal -= 2;
+                        comments += "wing overcooked, ";
+                    }
+
+                    Seasonable s = t.gameObject.GetComponent<Seasonable>();
+                    if (s.salt == 0 || s.pepper == 0 || s.parsley == 0) {
+                        itemTotal -= 2;
+                        comments += "wing seasoning was off, ";
+                    }
+                    total += itemTotal;
+                } else if (t.tag == "vegetables") {
+                    vegFound = true;
+                    float itemTotal = 5;
+                    Cookable c = t.gameObject.GetComponent<Cookable>();
+                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    if (temp.maxTemp < c.cookedTemp) {
+                        total += 0;
+                        comments += "vegetables undercooked, ";
+                        break;
+                    }
+
+                    Seasonable s = t.gameObject.GetComponent<Seasonable>();
+                    if (s.salt == 0 || s.pepper == 0 || s.parsley == 0) {
+                        itemTotal -= 2;
+                        comments += "vegetable seasoning was off, ";
+                    }
+                    total += itemTotal;
+                }
+            }
+            if (!vegFound) {
+                comments += "missing vegetables, ";
+            }
+            if (!breastFound) {
+                comments += "missing chicken breast, ";
+            }
+            if (wingCount < 2) {
+                comments += "missing wing(s), ";
+            }
+            LiquidContainer l = p.GetComponent<LiquidContainer>();
+            if (l.currentVolume == 0) {
+                comments += "forgot sauce, ";
+            } else if (l.tag == "pan sauce") {
+                total += 5;
+            } else {
+                total += 1;
+                comments += "wrong sauce, ";
+            }
+
+            return (total / 4, comments);
+
         }
     }
 }
