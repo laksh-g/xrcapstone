@@ -30,6 +30,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public GameObject RoomSettings;
     public GameObject FoodDisplay;
 
+    public GameObject PreGameLobby;
+
     void Awake()
     {
         // this makes sure we can use PhotonNetwork.LoadLevel() on the master client and all clients in the same room sync their level automatically
@@ -110,8 +112,15 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         //set correct game objects
         //connectGameMenu.SetActive(false);
         JoinRoomScreen.SetActive(false);
-        RoomSettings.SetActive(true);
-        FoodDisplay.SetActive(true);
+
+        if(PhotonNetwork.LocalPlayer.ActorNumber == 1){
+            RoomSettings.SetActive(true);
+            FoodDisplay.SetActive(true);
+        }else{
+            PreGameLobby.SetActive(true);
+            RoomSettings.SetActive(false);
+            FoodDisplay.SetActive(false);
+        }
         createdRoomCode.text = "<b>Room Code:</b> " + PhotonNetwork.CurrentRoom.Name;
         base.OnJoinedRoom();
     }
