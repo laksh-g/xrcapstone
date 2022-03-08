@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571336, b: 0.3069219, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2353,6 +2353,7 @@ GameObject:
   - component: {fileID: 1664113895}
   - component: {fileID: 1664113894}
   - component: {fileID: 1664113897}
+  - component: {fileID: 1664113896}
   m_Layer: 0
   m_Name: Network Manager
   m_TagString: Untagged
@@ -2387,7 +2388,8 @@ MonoBehaviour:
   createdRoomCode: {fileID: 0}
   joinInput: {fileID: 0}
   JoinRoomScreen: {fileID: 0}
-  PreGameLobby: {fileID: 0}
+  RoomSettings: {fileID: 0}
+  FoodDisplay: {fileID: 0}
 --- !u!4 &1664113895
 Transform:
   m_ObjectHideFlags: 0
@@ -2402,6 +2404,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1664113896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664113893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a87d83e5abbd5441dac1dfd691fcf052, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1664113897
 MonoBehaviour:
   m_ObjectHideFlags: 0
