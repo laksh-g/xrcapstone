@@ -217,8 +217,10 @@ public class GameManager : MonoBehaviour
         foreach (GameObject p in plates) {
             closestMatch = null;
             maxScore = 0;
+            Dish info = p.GetComponent<Dish>();
             foreach (Orderable o in remainingCovers)
             {
+               
                 if (o is SteakFritesOrder && info.dishID == "steakfrites")
                 {
                     (currScore, plateComments) = ((SteakFritesOrder)o).Evaluate(p);
