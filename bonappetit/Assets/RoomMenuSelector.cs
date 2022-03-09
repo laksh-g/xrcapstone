@@ -18,6 +18,9 @@ public class RoomMenuSelector : MonoBehaviourPunCallbacks
     private List<string> list;
     private int maxIdx;
     private Dictionary <string,List<string>> Menu;
+
+    ExitGames.Client.Photon.Hashtable ht;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,12 +37,6 @@ public class RoomMenuSelector : MonoBehaviourPunCallbacks
     {
         label.text = "<b>"+ list[index] +"</b> ";
         //update the UI
-        if (PhotonNetwork.CurrentRoom != null) {
-            ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
-            ht[MenuType] = list[index];
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-        }
-        
     }
 
     public void increment()
@@ -63,5 +60,13 @@ public class RoomMenuSelector : MonoBehaviourPunCallbacks
         //     ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
         //     ht[MenuType] = list[index];
         // }
+    }
+
+    public void updateProperties(){
+        if (PhotonNetwork.CurrentRoom != null) {
+            ht = PhotonNetwork.CurrentRoom.CustomProperties;
+            ht[MenuType] = list[index];
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+        }
     }
 }
