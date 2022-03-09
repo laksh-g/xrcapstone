@@ -31,7 +31,9 @@ public class GameManager : MonoBehaviour
 
     private bool endgame = false;
 
-    private bool[] menu = {true, true, true, true, true};
+    private string menu = "00000";
+
+    private int ticketOption; // 0 is single, 1 is multiple
 
     // Start is called before the first frame update
 
@@ -45,7 +47,10 @@ public class GameManager : MonoBehaviour
         clock.startTime = startTime;
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
+            ExitGames.Client.Photon.Hashtable currHt = PhotonNetwork.CurrentRoom.CustomProperties;
             ht["startTime"] = startTime;
+            ticketOption = (int)currHt["ticketOption"];
+            menu = (string)currHt["FoodDisplay"];
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
         }
     }
@@ -98,7 +103,7 @@ public class GameManager : MonoBehaviour
             }
 
             orderNum++;
-            Order newOrder = new Order(orderNum, true, menu);
+            Order newOrder = new Order(orderNum, ticketOption, menu);
             openOrders.Add(orderNum, newOrder);
             a.PlayOneShot(startGameSound);
             createTicket(newOrder);
@@ -271,11 +276,11 @@ public class GameManager : MonoBehaviour
         public int partySize;
         public List<Orderable> contents = new List<Orderable>();
         public GameObject gObj;
-        public Order(int orderNum, bool singleTicket, bool[] menu)
+        public Order(int orderNum, int ticketOption, string menu)
         {
             this.orderNum = orderNum;
             partySize = 1;
-            if (!singleTicket) {
+            if (ticketOption == 1) { // multiple ticket
                 float rand = Random.Range(0f, 1f);
                 if (rand > .5)
                 {
@@ -292,23 +297,23 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        private Orderable GenerateDish(bool[] menu)
+        private Orderable GenerateDish(string menu)
         {
             List<Orderable> dishPool = new List<Orderable>();
-            if (menu[0]) {
-                dishPool.Add(new TableBreadOrder());
-            }
-            if (menu[1]) {
-                dishPool.Add(new OnionSoupOrder());
-            }
-            if (menu[2]) {
-                dishPool.Add(new CrabCakeOrder());
-            }
-            if (menu[3]) {
+            if (menu[0] == '1') {
                 dishPool.Add(new SteakFritesOrder());
             }
-            if (menu[4]) {
+            if (menu[1] == '1') {
+                dishPool.Add(new CrabCakeOrder());
+            }
+            if (menu[2] == '1') {
+                dishPool.Add(new OnionSoupOrder());
+            }
+            if (menu[3] == '1') {
                 dishPool.Add(new RoastChickenOrder());
+            }
+            if (menu[4] == '1') {
+                dishPool.Add(new TableBreadOrder());
             }
             return dishPool[Random.Range(0,dishPool.Count - 1)];
         }
@@ -829,4 +834,3 @@ public class GameManager : MonoBehaviour
         }
     }
 }
-
