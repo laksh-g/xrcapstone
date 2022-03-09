@@ -122,9 +122,27 @@ public class Tutorial : MonoBehaviour
 
             header = "French Onion Soup Tutorial\n";
         }
+        // highlightObjs.Add(new GameObject[] { GameObject.Find() });
         else if (tutorialType.Equals(TutorialType.roastChicken))
         {
+            highlightObjs.Add(new GameObject[] { GameObject.Find("RoastingPanSpawner") });
+            //highlightObjs.Add(new GameObject[] { GameObject.Find() });
 
+            tutorialText = new string[]
+            {
+                "Step 1: Roast the chicken and vegetables! Grab a roasting pan. \n\nTIP: Press and hold the grip button to grab objects.",
+                "Step 2: Add 1 chicken breast, 2 chicken wings, and an order of vegetables to the roasting pan. \n\nTIP: Grab and pull the fridge handle to open the fridge.",
+                "Step 3: Season everything with salt and pepper, and add about 75mL of olive oil to the pan.",
+                "Step 4: Place the roasting pan in the 425° oven and activate the chicken timer",
+                "Step 5: Once the timer goes off, take the roasting pan out and put the food on a dinner plate. Save the roasting liquid in the pan.",
+                "Step 6: Garnish the plate with parsley.",
+                "Step 7: Let's make the pan sauce! Take the roasting liquid from before and add 100mL of it to a sauce pan.",
+                "Step 8: Add shallots to the pan and cook over high heat for about 10s.",
+                "Step 9: Reduce heat and add 150mL of chardonnay white wine to deglaze.",
+                "Step 10: Pour completed sauce over the chicken and vegetables."
+            };
+
+            header = "Roast Chicken with Summer Vegetables Tutorial\n";
         }
         else
         {
