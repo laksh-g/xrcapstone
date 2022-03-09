@@ -75,16 +75,16 @@ public class FoodDisplay : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
             string val;
-            // if(!ht.ContainsKey("FoodDisplay")){
-            //     ht["FoodDisplay"] = "00000";
-            //     // if(PhotonNetwork.IsMasterClient){
-            //     //     PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-            //     // }
-            //     val = "00000";
-            // }else{
+            if(!ht.ContainsKey("FoodDisplay")){
+                ht["FoodDisplay"] = "00000";
+                // if(PhotonNetwork.IsMasterClient){
+                //     PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+                // }
+                val = "00000";
+            }else{
                 val = (string) ht["FoodDisplay"];
                 Debug.Log(val);
-            //}
+            }
             for(int i = 0; i < val.Length; i++){
                 if(val[i] == '1'){
                     checkSelect[i] = false;
