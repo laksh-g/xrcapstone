@@ -17,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/FineDiningKitchen.unity
     guid: 801ac96c2fac0d240b92c5f2ad1c9b7e
-  - enabled: 0
-    path: Assets/Scenes/TutorialSteak.unity
-    guid: 7ab6d857e22934ffd964381510ac7cf4
   - enabled: 1
     path: Assets/Scenes/NewEndgame.unity
     guid: 78f324240e49941489c74f24667e7758
