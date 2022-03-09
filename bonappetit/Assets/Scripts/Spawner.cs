@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Spawner : MonoBehaviour
 {
-    //public GameObject prefab;
+    public bool onlyAllowOneActiveCopy = false;
     private bool offline = true;
     private Vector3 spawnPosition;
 
@@ -15,6 +15,8 @@ public class Spawner : MonoBehaviour
     public GameObject initialSpawnedObject;
 
     public GameObject prefab;
+
+    private Transform activeCopy = null;
     private bool spawnedNew = false;
     //Rigidbody _rb = null;
     // Start is called before the first frame update
@@ -35,14 +37,20 @@ public class Spawner : MonoBehaviour
         if (other.gameObject == initialSpawnedObject) {
             Debug.Log(tag + " spawnedObj left the spawner");
             initialSpawnedObject.layer = prefab.layer;
-            if (offline) {
-                initialSpawnedObject = Instantiate(prefab, spawnPosition, spawnRotation);
-                initialSpawnedObject.layer = 3;
-                
+            Transform oldActiveCopy = activeCopy;
+            activeCopy = initialSpawnedObject.transform;
+            if (onlyAllowOneActiveCopy && oldActiveCopy != null) {
+                Debug.Log("reusing spawned asset " + tag);
+                oldActiveCopy.SetPositionAndRotation(spawnPosition, spawnRotation);
+                initialSpawnedObject = activeCopy.gameObject;
+            } else if (offline) {
+                    initialSpawnedObject = Instantiate(prefab, spawnPosition, spawnRotation);
+                    initialSpawnedObject.layer = 3;
             } else {
-                initialSpawnedObject = PhotonNetwork.Instantiate(prefab.name, spawnPosition, spawnRotation);
-                initialSpawnedObject.layer = 3;
+                    initialSpawnedObject = PhotonNetwork.Instantiate(prefab.name, spawnPosition, spawnRotation);
+                    initialSpawnedObject.layer = 3;
             }
+            
         }
     }
 }
