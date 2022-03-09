@@ -73,7 +73,7 @@ public class Tutorial : MonoBehaviour
             highlightObjs.Add(new GameObject[] { plate });
             highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_01") });
 
-            tutorialText = new string[] 
+            tutorialText = new string[]
             {
                 "Step 1: Cook a steak! Get a steak from the fridge. \n\nTIP: Press and hold the grip button to grab objects. Grab and pull the fridge handle to open the fridge.",
                 "Step 2: Place the steak on the cutting board and season it with 7g of salt and 5g of pepper. \n\nTIP: Salt and pepper come out from the top of the shakers.",
@@ -121,6 +121,10 @@ public class Tutorial : MonoBehaviour
             };
 
             header = "French Onion Soup Tutorial\n";
+        }
+        else if (tutorialType.Equals(TutorialType.roastChicken))
+        {
+
         }
         else
         {
