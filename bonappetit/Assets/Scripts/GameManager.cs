@@ -31,11 +31,24 @@ public class GameManager : MonoBehaviour
 
     private bool endgame = false;
 
-    private bool[] menu = {true, true, true, true, true};
+    private string menu = "00000";
+
+    private int ticketOption; // 0 is single, 1 is multiple
+
+    public bool test = false;
 
     // Start is called before the first frame update
 
+    void Start() {
+        if (test) {
+            StartGame();
+        }
+    }
     public void StartGame() {
+        if (test) {
+            CreateTestOrders();
+            return;
+        }
         InvokeRepeating("createStartingOrders", 0f, 10f);
         a.PlayOneShot(startGameSound);
         isActive = true;
@@ -45,7 +58,10 @@ public class GameManager : MonoBehaviour
         clock.startTime = startTime;
         if (PhotonNetwork.IsMasterClient && PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = new ExitGames.Client.Photon.Hashtable();
+            ExitGames.Client.Photon.Hashtable currHt = PhotonNetwork.CurrentRoom.CustomProperties;
             ht["startTime"] = startTime;
+            ticketOption = (int)currHt["ticketOption"];
+            menu = (string)currHt["FoodDisplay"];
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
         }
     }
@@ -88,6 +104,14 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DrawNewOrder());
     }
 
+    private void CreateTestOrders() {
+        for (int i = 0; i < 5; i++) {
+            Order newOrder = new Order(i, ticketOption, menu, true);
+            openOrders.Add(i, newOrder);
+            createTicket(newOrder);
+        }
+    }
+
     public IEnumerator DrawNewOrder()
     {
         if (canMakeMore())
@@ -98,7 +122,7 @@ public class GameManager : MonoBehaviour
             }
 
             orderNum++;
-            Order newOrder = new Order(orderNum, true, menu);
+            Order newOrder = new Order(orderNum, ticketOption, menu, false);
             openOrders.Add(orderNum, newOrder);
             a.PlayOneShot(startGameSound);
             createTicket(newOrder);
@@ -111,8 +135,12 @@ public class GameManager : MonoBehaviour
             ticketSpawn.position.y,
             ticketSpawn.position.z
         );
-        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, pos, ticketSpawn.rotation);
-
+        GameObject newTicket = null;
+        if (test) {
+            newTicket = Instantiate(ticketPrefab, pos, ticketSpawn.rotation);
+        } else {
+            newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, pos, ticketSpawn.rotation);
+        }
         newTicket.GetComponent<Printable>().orderNum = orderNum;
         newTicket.GetComponent<Printable>().orderString = comments;
         newTicket.tag = "feedback";
@@ -186,9 +214,12 @@ public class GameManager : MonoBehaviour
 
     private void createTicket(Order newOrder)
     {
-        // TODO : Change back!!
-        GameObject newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, ticketSpawn.rotation);
-
+        GameObject newTicket = null;
+        if (test) {
+            newTicket = Instantiate(ticketPrefab, ticketSpawn.position, ticketSpawn.rotation);
+        } else {
+            newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, ticketSpawn.rotation);
+        }
         newTicket.GetComponent<Printable>().orderNum = newOrder.orderNum;
         newTicket.GetComponent<Printable>().orderString = newOrder.ToString();
 
@@ -230,7 +261,7 @@ public class GameManager : MonoBehaviour
                     (currScore, plateComments) = ((TableBreadOrder)o).Evaluate(p);
                 } else if (o is CrabCakeOrder && info.dishID == "crabcakes") {
                     (currScore, plateComments) = ((CrabCakeOrder)o).Evaluate(p);
-                } else if (o is RoastChickenOrder && info.dishID == "roastChicken") {
+                } else if (o is RoastChickenOrder && info.dishID == "roastchicken") {
                     (currScore, plateComments) = ((RoastChickenOrder)o).Evaluate(p);
                 }
                 else { currScore = 0; plateComments = "Bad type"; }
@@ -271,11 +302,21 @@ public class GameManager : MonoBehaviour
         public int partySize;
         public List<Orderable> contents = new List<Orderable>();
         public GameObject gObj;
-        public Order(int orderNum, bool singleTicket, bool[] menu)
+        public Order(int orderNum, int ticketOption, string menu, bool isTest)
         {
             this.orderNum = orderNum;
             partySize = 1;
-            if (!singleTicket) {
+            if (isTest) {
+                switch(orderNum) {
+                    case 0: contents.Add(new SteakFritesOrder(1, true, true, false, true)); break;
+                    case 1: contents.Add(new OnionSoupOrder(true)); break;
+                    case 2: contents.Add(new RoastChickenOrder()); break;
+                    case 3: contents.Add(new TableBreadOrder()); break;
+                    case 4: contents.Add(new CrabCakeOrder()); break;
+                }
+                return;
+            }
+            if (ticketOption == 1) {
                 float rand = Random.Range(0f, 1f);
                 if (rand > .5)
                 {
@@ -292,23 +333,23 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        private Orderable GenerateDish(bool[] menu)
+        private Orderable GenerateDish(string menu)
         {
             List<Orderable> dishPool = new List<Orderable>();
-            if (menu[0]) {
-                dishPool.Add(new TableBreadOrder());
-            }
-            if (menu[1]) {
-                dishPool.Add(new OnionSoupOrder());
-            }
-            if (menu[2]) {
-                dishPool.Add(new CrabCakeOrder());
-            }
-            if (menu[3]) {
+            if (menu[0] == '1') {
                 dishPool.Add(new SteakFritesOrder());
             }
-            if (menu[4]) {
+            if (menu[1] == '1') {
+                dishPool.Add(new CrabCakeOrder());
+            }
+            if (menu[2] == '1') {
+                dishPool.Add(new OnionSoupOrder());
+            }
+            if (menu[3] == '1') {
                 dishPool.Add(new RoastChickenOrder());
+            }
+            if (menu[4] == '1') {
+                dishPool.Add(new TableBreadOrder());
             }
             return dishPool[Random.Range(0,dishPool.Count - 1)];
         }
@@ -334,6 +375,10 @@ public class GameManager : MonoBehaviour
 
     private class OnionSoupOrder : Orderable {
         bool hasBread = true;
+
+        public OnionSoupOrder(bool hasBread) {
+            this.hasBread = hasBread;
+        }
         public OnionSoupOrder() {
             hasBread = Random.Range(0f, 1f) > .10;
         }
@@ -384,10 +429,10 @@ public class GameManager : MonoBehaviour
 
             // evaluate soup
             LiquidContainer l = p.GetComponent<LiquidContainer>();
-            if (l = null) {
+            if (l == null) {
                 Debug.Log("Couldn't find liquid container on onion soup");
             } else {
-                if (p.tag == "frenchonionsoup" && l.currentVolume >= 500) {
+                if (l.tag == "frenchonionsoup" && l.currentVolume >= 500) {
                     total += 5;
                 } else if (p.tag == "frenchonionsoup" && l.currentVolume < 500 && l.currentVolume > 0) {
                     total += 3;
@@ -417,6 +462,12 @@ public class GameManager : MonoBehaviour
         BearnaiseOrder b = null;
         bool hasSauce = true;
 
+        public SteakFritesOrder(int doneness, bool parsley, bool salt, bool crispy, bool bearnaise) {
+            s = new SteakOrder(doneness);
+            f = new FryOrder(salt, parsley, crispy);
+            b = new BearnaiseOrder();
+            hasSauce = bearnaise;
+        }
         public SteakFritesOrder()
         {
             s = new SteakOrder();
@@ -486,6 +537,9 @@ public class GameManager : MonoBehaviour
     private class SteakOrder : Orderable
     {
         int expectedDoneness;
+        public SteakOrder(int doneness) {
+            expectedDoneness = doneness;
+        }
         public SteakOrder()
         {
             expectedDoneness = (int)Random.Range(0, Steak.donenessLabels.Length - 1);
@@ -508,17 +562,17 @@ public class GameManager : MonoBehaviour
                 comments += "expected " + Steak.donenessLabels[expectedDoneness] + " received " + s.GetDonenessLabel() + ", ";
             }
 
-            if (s.searTime < 120)
+            if (s.searTime < 30)
             {
                 result -= 1;
                 comments += "not seared enough, ";
             }
-            if (s.searTime > 180)
+            if (s.searTime > 45)
             {
                 result -= 1;
                 comments += "burnt exterior, ";
             }
-            if (s.restTime < 300f)
+            if (s.restTime < 45)
             {
                 result -= 1;
                 comments += "not rested long enough, ";
@@ -553,6 +607,11 @@ public class GameManager : MonoBehaviour
         public bool noParsley = false;
         public bool extraCrispy = false;
 
+        public FryOrder(bool salt, bool parsley, bool crispy) {
+            noSalt = !salt;
+            noParsley = !parsley;
+            extraCrispy = crispy;
+        }
         public FryOrder()
         {
             float rand = Random.Range(0f, 1f);
@@ -627,8 +686,6 @@ public class GameManager : MonoBehaviour
     }
 
     private class CrabCakeOrder : Orderable {
-        public CrabCakeOrder() {
-        }
 
         public (float, string) Evaluate(GameObject p) {
         
@@ -824,9 +881,8 @@ public class GameManager : MonoBehaviour
                 comments += "wrong sauce, ";
             }
 
-            return (total / 4, comments);
+            return (total / 5, comments);
 
         }
     }
 }
-

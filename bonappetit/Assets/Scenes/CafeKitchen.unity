@@ -6479,6 +6479,7 @@ MonoBehaviour:
   startGame: 0
   startGameSound: {fileID: 8300000, guid: da6cab145e8edcf48ad5a7db4134d269, type: 3}
   a: {fileID: 195030576}
+  test: 0
 --- !u!4 &1200281380
 Transform:
   m_ObjectHideFlags: 0
@@ -10454,7 +10455,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3694883754071643327, guid: 84897b65c1aad0446aa9f7450df88b60, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3694883754071643327, guid: 84897b65c1aad0446aa9f7450df88b60, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -10462,7 +10463,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8004326841919156848, guid: 84897b65c1aad0446aa9f7450df88b60, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84897b65c1aad0446aa9f7450df88b60, type: 3}

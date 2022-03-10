@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3097864499924501217}
   - component: {fileID: 1810876991}
   - component: {fileID: 6461895670914590230}
+  - component: {fileID: 6693274249589966486}
   m_Layer: 9
   m_Name: Vegetables
   m_TagString: vegetables
@@ -282,6 +283,23 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &6693274249589966486
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6940630453179215814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db88ea5d32dadce4d9d74eb47387f81e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  salt: 0
+  pepper: 0
+  parsley: 0
+  truffleOil: 0
+  gruyere: 0
 --- !u!1001 &2752313650181081894
 PrefabInstance:
   m_ObjectHideFlags: 0

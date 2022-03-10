@@ -8,6 +8,7 @@ using Photon.Realtime;
 public class SetTicketType : MonoBehaviour
 {
     public Slider mainSlider;
+    public GameObject currObj;
     // Start is called before the first frame update
     void Start()
     {
