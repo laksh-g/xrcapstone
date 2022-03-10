@@ -48,7 +48,8 @@ public class Plateable : MonoBehaviourPunCallbacks
     void OnTriggerEnter (Collider other) {
         if(!connected && other.gameObject.tag == "plate" 
         && CalculatePlateAngle(other.transform) < 10 ) {
-            _view.RPC("StickTo", RpcTarget.All, other.gameObject);
+            PhotonView view = other.GetComponentInParent<PhotonView>();
+            _view.RPC("StickTo", RpcTarget.All, view.ViewID);
         }
     }
 
@@ -84,12 +85,13 @@ public class Plateable : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    void StickTo(GameObject other, PhotonMessageInfo info) {
+    void StickTo(int id, PhotonMessageInfo info) {
+            GameObject target = PhotonView.Find(id).gameObject;
             if (connected) {
                 // release from plate if it already has one
                 Unstick();
             }
-            Transform[] transforms = other.GetComponentsInChildren<Transform>();
+            Transform[] transforms = target.GetComponentsInChildren<Transform>();
             foreach (Transform t in transforms) {
                 Debug.Log("found hook for " + t.tag);
                 if (t.CompareTag(tag)) {
@@ -98,8 +100,8 @@ public class Plateable : MonoBehaviourPunCallbacks
                     connected = true;
                     point = t;
                     t.tag = "occupied"; // set the tag so other objects don't try to stick here
-                    plateTemp = other.GetComponentInParent<Temperature>();
-                    _transform.parent = other.transform.parent;
+                    plateTemp = target.GetComponent<Temperature>();
+                    _transform.parent = target.transform;
                     Debug.Log(tag + " acquired plate");
                     break;
                 }
