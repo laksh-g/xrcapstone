@@ -12,7 +12,7 @@ public class Plateable : MonoBehaviourPunCallbacks
 
     private bool connected = false;
 
-    private Transform point = null;
+    public Transform point = null;
 
     private Transform _transform;
     private Rigidbody _rb;
@@ -33,7 +33,7 @@ public class Plateable : MonoBehaviourPunCallbacks
     }
 
     void Update() {
-        if (connected && CalculatePlateAngle(point.parent.parent) > 60) {
+        if (connected && point != null && CalculatePlateAngle(point.parent.parent) > 60) {
             _view.RPC("UnstickFrom", RpcTarget.All, point);
         } else if (connected) {
             if (plateTemp != null && _temp != null) {
