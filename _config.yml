@@ -30,7 +30,7 @@ twitter_username: jekyllrb
 github_username: jekyll
 
 # Build settings
-theme: jekyll-theme-cayman
+theme: minimal-mistakes-jekyll
 site_url: https://uwrealitylab.github.io/xrcapstone22wi-team5/
 plugins:
   - jekyll-feed
