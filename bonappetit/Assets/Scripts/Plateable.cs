@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Plateable : MonoBehaviour
+public class Plateable : MonoBehaviourPunCallbacks
 {
 
     private Temperature plateTemp = null;
@@ -16,6 +17,8 @@ public class Plateable : MonoBehaviour
     private Transform _transform;
     private Rigidbody _rb;
 
+    private PhotonView _view;
+
     private XRGrabNetworkInteractable _grab;
 
     void Awake() {
@@ -25,22 +28,68 @@ public class Plateable : MonoBehaviour
         _temp = GetComponent<Temperature>();
     }
 
+    void Start() {
+        _view = GetComponent<PhotonView>();
+    }
+
     void Update() {
         if (connected && CalculatePlateAngle(point.parent.parent) > 60) {
-            Unstick();
+            _view.RPC("UnstickFrom", RpcTarget.All, point);
         } else if (connected) {
             if (plateTemp != null && _temp != null) {
                 _temp.heater = plateTemp.heater;
             }
             _transform.SetPositionAndRotation(point.position, point.rotation);
         } else if (_rb.isKinematic == true) {
+            Debug.LogError(tag + " Object has been left in kinematic state and will now be unplated");
             Unstick();
         }
     }
     void OnTriggerEnter (Collider other) {
         if(!connected && other.gameObject.tag == "plate" 
         && CalculatePlateAngle(other.transform) < 10 ) {
-            Transform[] transforms = other.gameObject.GetComponentsInChildren<Transform>();
+            _view.RPC("StickTo", RpcTarget.All, other.gameObject);
+        }
+    }
+
+    public void Unstick() {
+        if (connected) {
+            Debug.Log(tag +  " unstuck from plate");
+            connected = false;
+            point.tag = tag; // reset tag
+            point = null;
+            gameObject.layer = 9; // set back to food layer
+            _transform.parent = null;
+            _rb.isKinematic = false;
+        }
+    }
+
+    [PunRPC]
+    void UnstickFrom(Transform point, PhotonMessageInfo info) {
+        if (connected && this.point == point) {
+            Debug.Log(tag +  " unstuck from plate");
+            connected = false;
+            this.point.tag = tag; // reset tag
+            this.point = null;
+            gameObject.layer = 9; // set back to food layer
+            _transform.parent = null;
+            _rb.isKinematic = false;
+        }
+    }
+
+    private float CalculatePlateAngle(Transform p) {
+        float zAngle = 180 - Mathf.Abs(180 - p.rotation.eulerAngles.z); 
+        float xAngle = 180 - Mathf.Abs(180 - p.rotation.eulerAngles.x);
+        return Mathf.Max(zAngle, xAngle);
+    }
+
+    [PunRPC]
+    void StickTo(GameObject other, PhotonMessageInfo info) {
+            if (connected) {
+                // release from plate if it already has one
+                Unstick();
+            }
+            Transform[] transforms = other.GetComponentsInChildren<Transform>();
             foreach (Transform t in transforms) {
                 Debug.Log("found hook for " + t.tag);
                 if (t.CompareTag(tag)) {
@@ -56,25 +105,6 @@ public class Plateable : MonoBehaviour
                 }
             }
             Debug.Log(tag + " failed to find appropriate plate hook");
-        }
-    }
-
-    public void Unstick() {
-        if (connected) {
-            Debug.Log(tag +  " unstuck from plate");
-            connected = false;
-            point.tag = tag; // reset tag
-            point = null;
-            gameObject.layer = 9; // set back to food layer
-            _rb.isKinematic = false;
-            _transform.parent = null;
-        }
-    }
-
-    private float CalculatePlateAngle(Transform p) {
-        float zAngle = 180 - Mathf.Abs(180 - p.rotation.eulerAngles.z); 
-        float xAngle = 180 - Mathf.Abs(180 - p.rotation.eulerAngles.x);
-        return Mathf.Max(zAngle, xAngle);
     }
 
 }

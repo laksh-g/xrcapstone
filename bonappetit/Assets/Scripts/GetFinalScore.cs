@@ -28,7 +28,7 @@ public class GetFinalScore : MonoBehaviourPunCallbacks
     {
         //tm.text = finalScore.ToString();
         float score = (float) PhotonNetwork.CurrentRoom.CustomProperties["score"];
-        tm.text = score.ToString();
+        tm.text = score.ToString("0.00");
     }
 
     public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
