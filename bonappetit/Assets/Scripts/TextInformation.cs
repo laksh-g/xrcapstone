@@ -28,7 +28,7 @@ public class TextInformation : MonoBehaviour
         { "breast", new List<string> { "salt", "pepper", "parsley" } },
         { "wing", new List<string> { "salt", "pepper", "parsley" } },
         { "vegetables", new List<string> { "salt", "pepper" } },
-        { "frenchonionsoup", new List<string> { "gruyere" } }
+        { "french onion soup", new List<string> { "parsley" } }
     };
 
     // Start is called before the first frame update
@@ -100,13 +100,19 @@ public class TextInformation : MonoBehaviour
                 List<string> occupied = new List<string>();
                 List<string> missing = new List<string>();
 
-                var liquid = selectedObject.GetComponentInChildren<LiquidContainer>();
+                // missing liquids check (sauce or soup)
+
+                if (!selectedObject.TryGetComponent(out LiquidContainer liquid))
+                {
+                    liquid = GetComponentInChildren<LiquidContainer>();
+                }
                 bool hasLiquid = false;
                 if (liquid != null && liquid.currentVolume > 0)
                 {
                     hasLiquid = true;
                 }
 
+                // missing hookable components check
                 var children = selectedObject.gameObject.GetComponentsInChildren<Transform>();
                 foreach (var child in children)
                 {
@@ -133,13 +139,13 @@ public class TextInformation : MonoBehaviour
                         }
                     }
                 }
-
                 // text.text += "Currently contains components: " + String.Join(", ", occupied.ToArray()) + '\n';
                 if (missing.Count > 0)
                 {
                     text.text += "Missing components: " + String.Join(", ", missing.ToArray()) + '\n';
                 }
 
+                // missing seasonings check
                 var seasonables = selectedObject.gameObject.GetComponentsInChildren<Seasonable>();
                 foreach (var s in seasonables)
                 {
@@ -183,11 +189,12 @@ public class TextInformation : MonoBehaviour
         }
         else
         {
+            /*
             var temp = selectedObject.GetComponent<Temperature>();
             if (temp != null)
             {
                 text.text += "Current temperature: " + temp.temp.ToString("F1") + " C" + '\n';
-            }
+            }*/
 
             var cook = selectedObject.GetComponent<Cookable>();
             if (cook != null && cook.isSearable)
@@ -224,12 +231,29 @@ public class TextInformation : MonoBehaviour
                 text.text += "Setting: " + knob.getLabel() + '\n';
             }
 
-            var liquidContainer = selectedObject.GetComponent<LiquidContainer>();
-            if (liquidContainer != null)
+
+            var seasonable = selectedObject.GetComponent<Seasonable>();
+            if (seasonable != null)
             {
-                //text.text += "Capacity: " + liquidContainer.capacity.ToString("F0") + " mL" + '\n';
-                text.text += "Current volume: " + liquidContainer.currentVolume.ToString("F0") + " mL" + '\n';
+                text.text += "Salt: " + seasonable.salt.ToString("F1") + " g" + '\n';
+                text.text += "Pepper: " + seasonable.pepper.ToString("F1") + " g" + '\n';
+                text.text += "Parsley: " + seasonable.parsley.ToString("F1") + " g" + '\n';
+                text.text += "Gruyere: " + seasonable.gruyere.ToString("F1") + " g" + '\n';
+                text.text += "Truffle Oil: " + seasonable.truffleOil.ToString("F1") + " mL" + '\n';
             }
+        }
+
+        var temp = selectedObject.GetComponent<Temperature>();
+        if (temp != null)
+        {
+            text.text += "Current temperature: " + temp.temp.ToString("F1") + " C" + '\n';
+        }
+
+        var liquidContainer = selectedObject.GetComponent<LiquidContainer>();
+        if (liquidContainer != null)
+        {
+            //text.text += "Capacity: " + liquidContainer.capacity.ToString("F0") + " mL" + '\n';
+            text.text += "Current volume: " + liquidContainer.currentVolume.ToString("F0") + " mL" + '\n';
         }
 
     }

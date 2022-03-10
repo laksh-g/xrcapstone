@@ -5,27 +5,33 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewLobby.unity
     guid: 72b5d3d49ee4c65488cc6b233fe19d6c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/CafeKitchen.unity
     guid: ea6e01759c3b9af4ebe38d423f1237d2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/RestaurantKitchen.unity
     guid: 90a1f30c1945bd44d8aac751f80f9105
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/FineDiningKitchen.unity
     guid: 801ac96c2fac0d240b92c5f2ad1c9b7e
   - enabled: 0
     path: Assets/Scenes/TutorialSteak.unity
     guid: 7ab6d857e22934ffd964381510ac7cf4
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewEndgame.unity
     guid: 78f324240e49941489c74f24667e7758
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/SteakTutorial.unity
     guid: 3ae8adfc732a2408db794e72cbeae8dd
+  - enabled: 1
+    path: Assets/Scenes/ChickenTutorial.unity
+    guid: 98d00d875b62b49499f9a1a90f33f3bf
+  - enabled: 0
+    path: Assets/Scenes/OnionTutorial.unity
+    guid: 2598ef67ff7704af6a1559f2b7ee0baa
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fa1f197d61378174a82d904ceb13df6c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f8e6118ce0a9e6c4b8e7248ec58b6811, type: 2}
