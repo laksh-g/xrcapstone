@@ -40,7 +40,7 @@ public class Spawner : MonoBehaviour
             activeCopy = initialSpawnedObject.transform;
             Debug.Log("Starting spawn protocol for " + other.tag);
             other.gameObject.layer = prefab.layer;
-            _view.RPC("ReleaseObject", RpcTarget.Others, otherview.ViewID);
+            _view.RPC("ReleaseObject", RpcTarget.All, otherview.ViewID);
             if (onlyAllowOneActiveCopy && oldActive != null) {
                 oldActive.gameObject.layer = 3;
                 oldActive.SetPositionAndRotation(spawnPosition, spawnRotation);
@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour
                 initialSpawnedObject = PhotonNetwork.Instantiate(prefab.name, spawnPosition, spawnRotation);
                 initialSpawnedObject.layer = 3;
             }
-            _view.RPC("SetupObject", RpcTarget.Others, initialSpawnedObject.GetComponent<PhotonView>().ViewID);
+            _view.RPC("SetupObject", RpcTarget.All, initialSpawnedObject.GetComponent<PhotonView>().ViewID);
             
         }
     }
