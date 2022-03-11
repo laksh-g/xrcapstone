@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 [RequireComponent(typeof(XRBaseInteractor))]
 public class GetInfo : MonoBehaviour
 {
-    GameObject text;
+    [SerializeField] GameObject text;
 
     XRBaseInteractor baseInteractor;
 
@@ -24,7 +24,8 @@ public class GetInfo : MonoBehaviour
     protected virtual void OnHoverEntered(HoverEnterEventArgs args)
     {
         // get canvas text from left hand controller
-        text = args.interactorObject.transform.gameObject.transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject;
+        // text = args.interactorObject.transform.gameObject.transform.parent.GetChild(1).GetChild(0).GetChild(0).GetChild(0).gameObject;
         text.GetComponent<TextInformation>().UpdateSelected(args.interactableObject.transform.gameObject);
+        //args.interactorObject.transform.gameObject.transform.parent.GetComponentInChildren<TextInformation>()
     }
 }
