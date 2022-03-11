@@ -253,7 +253,7 @@ MonoBehaviour:
   side1: {fileID: 650791144855890311}
   side2: {fileID: 735935964033988375}
   seared: {fileID: 2100000, guid: 9888a4cfc2b06ea49ac60aaf5896ef75, type: 2}
-  desiredSearTime: 10
+  desiredSearTime: 20
   searTime: 0
   raw: {fileID: 2100000, guid: 39bcc10c328b3694fa773551d9816e94, type: 2}
   cooked: {fileID: 2100000, guid: ee9013f83b4ef4948b82249094620423, type: 2}

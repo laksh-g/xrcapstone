@@ -117,11 +117,11 @@ public class Temperature : MonoBehaviour, IPunObservable
         return - k * (temp - arg);
     }
 
-    float tempInF() {
+    public float tempInF() {
         return temp * 1.8F + 32;
     }
 
-    float tempInC() {
+    public float tempInC() {
         return temp;
     }
 
