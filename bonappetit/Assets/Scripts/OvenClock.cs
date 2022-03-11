@@ -43,6 +43,7 @@ public class OvenClock : MonoBehaviour
         if (!isActive) {
             isActive = true;
             startTime = Time.time;
+            timeLimit = limit;
         }
     }
 

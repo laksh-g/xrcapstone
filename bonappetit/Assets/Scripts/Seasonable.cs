@@ -18,9 +18,15 @@ public class Seasonable : MonoBehaviour, IPunObservable
     [SerializeField]
     public float gruyere = 0;
 
+    private PhotonView _view = null;
+
+    void Awake() {
+        _view = GetComponent<PhotonView>();
+    }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)
+        if (stream.IsWriting && _view.IsMine)
         {
             stream.SendNext(salt);
             stream.SendNext(pepper);

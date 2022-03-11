@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
 public class TextInformation : MonoBehaviour
 {
@@ -73,6 +74,11 @@ public class TextInformation : MonoBehaviour
     void UpdateText() 
     {
         //text.text += "Name: " + selectedObject.name + '\n';
+
+        var view = selectedObject.GetComponent<PhotonView>();
+        if (view != null) {
+            text.text += "Is my item: " + view.IsMine;
+        }
         var desc = selectedObject.GetComponent<Description>();
         string tagStr = selectedObject.tag;
         if (desc == null)

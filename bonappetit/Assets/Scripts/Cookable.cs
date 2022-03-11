@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Cookable : MonoBehaviour
+[RequireComponent(typeof(PhotonView))]
+public class Cookable : MonoBehaviour, IPunObservable
 {
     public float cookedTemp; // in C
 
@@ -13,6 +15,8 @@ public class Cookable : MonoBehaviour
 
     public Material seared = null;
     public float desiredSearTime = 10;
+
+    [SerializeField]
     public  float searTime = 0;
     
     // materials for transitions
@@ -26,6 +30,8 @@ public class Cookable : MonoBehaviour
 
     private bool isStaticMaterial = false;
 
+    private PhotonView _view;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +44,7 @@ public class Cookable : MonoBehaviour
         if (burnt == null || cooked == null || raw == null) {
             isStaticMaterial = true;
         }
+        _view = GetComponent<PhotonView>();
     }
 
     // Update is called once per frame
@@ -107,6 +114,18 @@ public class Cookable : MonoBehaviour
             return "Good";
         } else {
             return "Underdone";
+        }
+    }
+
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        if (stream.IsWriting && _view.IsMine)
+        {
+            stream.SendNext(searTime);
+        }
+        else
+        {
+            searTime = (float)stream.ReceiveNext();
         }
     }
 }

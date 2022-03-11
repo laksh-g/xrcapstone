@@ -32,6 +32,7 @@ public class Steak : MonoBehaviour, IPunObservable
     public readonly float[] donenessTemps = {48, 52, 54, 60, 66, 71}; // in Celsius
     public static string[] donenessLabels = {"Blue", "Rare", "Medium Rare", "Medium", "Medium Well", "Well Done"}; 
 
+    private PhotonView _view;
     // Start is called before the first frame update
     void Start()
     {
@@ -43,6 +44,7 @@ public class Steak : MonoBehaviour, IPunObservable
         raw = transform.Find("Uncooked");
         done = transform.Find("Cooked");
         burnt = transform.Find("Burnt");
+        _view = GetComponent<PhotonView>();
 
     }
 
@@ -51,7 +53,7 @@ public class Steak : MonoBehaviour, IPunObservable
             restTime += Time.unscaledDeltaTime;
         }
         if (heater != null && heater.s != null) {
-            if (heater.s.val > 0 && !a.isPlaying) {a.Play();}
+            if (heater.s.val > 0 && !heater.isCooler && !a.isPlaying) {a.Play();}
             a.volume = .5f;
             if ((heater.s.val == 3 && heater.s.numSettings == 4)) {
                 searTime += Time.deltaTime;
@@ -118,7 +120,7 @@ public class Steak : MonoBehaviour, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)
+        if (stream.IsWriting && _view.IsMine)
         {
             stream.SendNext(isResting);
             stream.SendNext(searTime);
