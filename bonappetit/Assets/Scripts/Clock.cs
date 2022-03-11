@@ -14,9 +14,16 @@ public class Clock : MonoBehaviourPunCallbacks
     public static int GAME_LENGTH = 600;
 
     public XRInteractionManager im = null;
+
+    public bool offlineMode = false;
     // Start is called before the first frame update
+
     void Start()
     {
+        if (offlineMode) {
+            PhotonNetwork.OfflineMode = true;
+            PhotonNetwork.CreateRoom(null);
+        }
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
             if(!ht.ContainsKey("time")){

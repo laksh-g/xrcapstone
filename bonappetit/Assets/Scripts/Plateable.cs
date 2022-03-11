@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Plateable : MonoBehaviour
+public class Plateable : MonoBehaviourPunCallbacks
 {
 
     private Temperature plateTemp = null;
@@ -11,10 +12,12 @@ public class Plateable : MonoBehaviour
 
     private bool connected = false;
 
-    private Transform point = null;
+    public Transform point = null;
 
     private Transform _transform;
     private Rigidbody _rb;
+
+    private PhotonView _view;
 
     private XRGrabNetworkInteractable _grab;
 
@@ -25,22 +28,58 @@ public class Plateable : MonoBehaviour
         _temp = GetComponent<Temperature>();
     }
 
+    void Start() {
+        _view = GetComponent<PhotonView>();
+    }
+
     void Update() {
-        if (connected && CalculatePlateAngle(point.parent.parent) > 60) {
-            Unstick();
+        if (connected && point != null && CalculatePlateAngle(point.parent.parent) > 60) {
+            _view.RPC("Unstick", RpcTarget.All);
         } else if (connected) {
             if (plateTemp != null && _temp != null) {
                 _temp.heater = plateTemp.heater;
             }
             _transform.SetPositionAndRotation(point.position, point.rotation);
         } else if (_rb.isKinematic == true) {
+            Debug.LogError(tag + " Object has been left in kinematic state and will now be unplated");
             Unstick();
         }
     }
     void OnTriggerEnter (Collider other) {
         if(!connected && other.gameObject.tag == "plate" 
         && CalculatePlateAngle(other.transform) < 10 ) {
-            Transform[] transforms = other.gameObject.GetComponentsInChildren<Transform>();
+            PhotonView view = other.GetComponentInParent<PhotonView>();
+            _view.RPC("StickTo", RpcTarget.All, view.ViewID);
+        }
+    }
+
+    [PunRPC]
+    public void Unstick() {
+        if (connected) {
+            Debug.Log(tag +  " unstuck from plate");
+            connected = false;
+            point.tag = tag; // reset tag
+            point = null;
+            gameObject.layer = 9; // set back to food layer
+            _transform.parent = null;
+            _rb.isKinematic = false;
+        }
+    }
+
+    private float CalculatePlateAngle(Transform p) {
+        float zAngle = 180 - Mathf.Abs(180 - p.rotation.eulerAngles.z); 
+        float xAngle = 180 - Mathf.Abs(180 - p.rotation.eulerAngles.x);
+        return Mathf.Max(zAngle, xAngle);
+    }
+
+    [PunRPC]
+    void StickTo(int id, PhotonMessageInfo info) {
+            GameObject target = PhotonView.Find(id).gameObject;
+            if (connected) {
+                // release from plate if it already has one
+                Unstick();
+            }
+            Transform[] transforms = target.GetComponentsInChildren<Transform>();
             foreach (Transform t in transforms) {
                 Debug.Log("found hook for " + t.tag);
                 if (t.CompareTag(tag)) {
@@ -49,32 +88,13 @@ public class Plateable : MonoBehaviour
                     connected = true;
                     point = t;
                     t.tag = "occupied"; // set the tag so other objects don't try to stick here
-                    plateTemp = other.GetComponentInParent<Temperature>();
-                    _transform.parent = other.transform.parent;
+                    plateTemp = target.GetComponent<Temperature>();
+                    _transform.parent = target.transform;
                     Debug.Log(tag + " acquired plate");
                     break;
                 }
             }
             Debug.Log(tag + " failed to find appropriate plate hook");
-        }
-    }
-
-    public void Unstick() {
-        if (connected) {
-            Debug.Log(tag +  " unstuck from plate");
-            connected = false;
-            point.tag = tag; // reset tag
-            point = null;
-            gameObject.layer = 9; // set back to food layer
-            _rb.isKinematic = false;
-            _transform.parent = null;
-        }
-    }
-
-    private float CalculatePlateAngle(Transform p) {
-        float zAngle = 180 - Mathf.Abs(180 - p.rotation.eulerAngles.z); 
-        float xAngle = 180 - Mathf.Abs(180 - p.rotation.eulerAngles.x);
-        return Mathf.Max(zAngle, xAngle);
     }
 
 }

@@ -7,7 +7,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class Spawner : MonoBehaviour
 {
     public bool onlyAllowOneActiveCopy = false;
-    private bool offline = true;
     private Vector3 spawnPosition;
 
     private Quaternion spawnRotation;
@@ -17,8 +16,7 @@ public class Spawner : MonoBehaviour
     public GameObject prefab;
 
     private Transform activeCopy = null;
-    private bool spawnedNew = false;
-    //Rigidbody _rb = null;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,9 +24,6 @@ public class Spawner : MonoBehaviour
         spawnPosition = new Vector3(t.position.x, t.position.y, t.position.z);
         spawnRotation = new Quaternion(t.rotation.x, t.rotation.y, t.rotation.z, t.rotation.w);
         initialSpawnedObject.layer = 3;
-        if (PhotonNetwork.OfflineMode) {
-            offline = false;
-        }
     }
 
 
@@ -43,10 +38,8 @@ public class Spawner : MonoBehaviour
                 Debug.Log("reusing spawned asset " + tag);
                 oldActiveCopy.SetPositionAndRotation(spawnPosition, spawnRotation);
                 initialSpawnedObject = activeCopy.gameObject;
-            } else if (offline) {
-                    initialSpawnedObject = Instantiate(prefab, spawnPosition, spawnRotation);
-                    initialSpawnedObject.layer = 3;
             } else {
+                    Debug.Log("Photon network offline :" + PhotonNetwork.OfflineMode);
                     initialSpawnedObject = PhotonNetwork.Instantiate(prefab.name, spawnPosition, spawnRotation);
                     initialSpawnedObject.layer = 3;
             }

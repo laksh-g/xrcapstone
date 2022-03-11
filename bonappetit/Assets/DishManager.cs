@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class DishManager : MonoBehaviour
 {
@@ -13,12 +14,28 @@ public class DishManager : MonoBehaviour
     void Start()
     {
        steakFrites.gameObject.SetActive(true); 
+       ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
+       if(ht.ContainsKey("FoodDisplay")) {
+           SetupScene((string)ht["FoodDisplay"]);
+       }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void SetupScene(string menu) {
+        if (menu[0] == '0') {
+            steakFrites.gameObject.SetActive(false);
+        }
+        if (menu[1] == '0') {
+            crabCakes.gameObject.SetActive(false);
+        }
+        if (menu[2] == '0') {
+            onionSoup.gameObject.SetActive(false);
+        }
+        if (menu[3] == '0') {
+            chicken.gameObject.SetActive(false);
+        }
+        if (menu[4] == '0') {
+            tableBread.gameObject.SetActive(false);
+        }
     }
 
 }
