@@ -11,15 +11,18 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     public Button HeadChefButton;
     public Button RotisseurButton;
     public Button SaucierButton;
+    public Button SousButton;
 
     public Button StartGame;
     public Button RoomSettings;
+    private bool buttonActivated;
 
     // Start is called before the first frame update
     void Start()
     {
         StartGame.interactable = false;
         RoomSettings.interactable = false;
+        buttonActivated = false;
     }
 
     // Update is called once per frame
@@ -27,6 +30,15 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     {
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
+            if(!buttonActivated){
+                if((string)ht["difficulty"] == "Fine Dining Kitchen"){
+                    SousButton.gameObject.SetActive(true);
+                    buttonActivated = true;
+                }else{
+                    SousButton.gameObject.SetActive(false);
+                }
+            }
+            
             if(ht.ContainsKey("RotisseurRole") && (int)ht["RotisseurRole"] != -1){
                 RotisseurButton.interactable = false;
                 RotisseurButton.GetComponentInChildren<TMP_Text>().text = ((int)ht["RotisseurRole"]).ToString();
@@ -48,6 +60,13 @@ public class AssignRoles : MonoBehaviourPunCallbacks
                 HeadChefButton.interactable = true;
                 HeadChefButton.GetComponentInChildren<TMP_Text>().text = "Head Chef";
             }
+            if(ht.ContainsKey("SousChefRole") && (int)ht["SousChefRole"] != -1){
+                SousButton.interactable = false;
+                SousButton.GetComponentInChildren<TMP_Text>().text = ((int)ht["SousChefRole"]).ToString();
+            } else {
+                SousButton.interactable = true;
+                SousButton.GetComponentInChildren<TMP_Text>().text = "Sous Chef";
+            }
         }
     }
 
@@ -58,11 +77,12 @@ public class AssignRoles : MonoBehaviourPunCallbacks
 
     public void SetRole(string role)
     {
+        Debug.Log("Selected role" + role);
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
             ht[role] = PhotonNetwork.LocalPlayer.ActorNumber;
         
-            string[] roles = {"RotisseurRole", "SaucierRole", "HeadChefRole"};
+            string[] roles = {"RotisseurRole", "SaucierRole", "HeadChefRole", "SousChefRole"};
             
             foreach(string name in roles)
             {
