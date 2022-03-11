@@ -91,7 +91,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", RTransform.position, RTransform.rotation);
         }else if ((string) playerCustomProps["role"] == "SousChefRole"){
             rig.MoveCameraToWorldLocation(SousTransform.position);
-            rig.RotateAroundCameraUsingOriginUp(-90);
+            rig.RotateAroundCameraUsingOriginUp(90);
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", SousTransform.position, SousTransform.rotation);
         }else {
             PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
