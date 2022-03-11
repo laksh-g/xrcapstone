@@ -1882,7 +1882,7 @@ GameObject:
   - component: {fileID: 5071429644328289829}
   m_Layer: 8
   m_Name: FrontLeftSauce (2)
-  m_TagString: frenchonionsoup
+  m_TagString: french onion soup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
@@ -2408,7 +2408,7 @@ GameObject:
   - component: {fileID: 6707343332104942817}
   m_Layer: 8
   m_Name: FrontLeftSauce (1)
-  m_TagString: frenchonionsoup
+  m_TagString: french onion soup
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
