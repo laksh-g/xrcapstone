@@ -3445,6 +3445,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 85
       objectReference: {fileID: 0}
+    - target: {fileID: 5837944472473988099, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
+      propertyPath: sceneViewId
+      value: 97
+      objectReference: {fileID: 0}
     - target: {fileID: 6189939675023991752, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
       propertyPath: m_Name
       value: BottleSpawner (1)
@@ -3492,6 +3496,10 @@ PrefabInstance:
     - target: {fileID: 6189939675023991755, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953407280179546894, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
+      propertyPath: sceneViewId
+      value: 96
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
@@ -4862,6 +4870,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1144510564037703396, guid: e46313a6d6823814a86f516f933d6e7f, type: 3}
+      propertyPath: sceneViewId
+      value: 95
+      objectReference: {fileID: 0}
     - target: {fileID: 5696041992239367293, guid: e46313a6d6823814a86f516f933d6e7f, type: 3}
       propertyPath: sceneViewId
       value: 11
@@ -4935,6 +4947,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 5837944472473988099, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
+      propertyPath: sceneViewId
+      value: 94
+      objectReference: {fileID: 0}
     - target: {fileID: 6189939675023991752, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
       propertyPath: m_Name
       value: BottleSpawner
@@ -4982,6 +4998,10 @@ PrefabInstance:
     - target: {fileID: 6189939675023991755, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8953407280179546894, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
+      propertyPath: sceneViewId
+      value: 93
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f0f7f4e54a569d4980f72427f9dcb06, type: 3}
@@ -7080,6 +7100,10 @@ PrefabInstance:
     - target: {fileID: 152514128683877787, guid: e46313a6d6823814a86f516f933d6e7f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1144510564037703396, guid: e46313a6d6823814a86f516f933d6e7f, type: 3}
+      propertyPath: sceneViewId
+      value: 87
       objectReference: {fileID: 0}
     - target: {fileID: 5696041992239367293, guid: e46313a6d6823814a86f516f933d6e7f, type: 3}
       propertyPath: sceneViewId
