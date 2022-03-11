@@ -138,7 +138,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4381066696313610017}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Breast
   m_TagString: breast
   m_Icon: {fileID: 0}
@@ -578,7 +578,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2702477639161987412}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wing1
   m_TagString: wing
   m_Icon: {fileID: 0}
@@ -689,7 +689,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6111764014443900233}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wing2
   m_TagString: wing
   m_Icon: {fileID: 0}
@@ -719,7 +719,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3807582886607083915}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Veggies
   m_TagString: vegetables
   m_Icon: {fileID: 0}

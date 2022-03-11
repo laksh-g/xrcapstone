@@ -34,7 +34,7 @@ public class Plateable : MonoBehaviourPunCallbacks
 
     void Update() {
         if (connected && point != null && CalculatePlateAngle(point.parent.parent) > 60) {
-            _view.RPC("UnstickFrom", RpcTarget.All, point);
+            _view.RPC("Unstick", RpcTarget.All);
         } else if (connected) {
             if (plateTemp != null && _temp != null) {
                 _temp.heater = plateTemp.heater;
@@ -53,25 +53,13 @@ public class Plateable : MonoBehaviourPunCallbacks
         }
     }
 
+    [PunRPC]
     public void Unstick() {
         if (connected) {
             Debug.Log(tag +  " unstuck from plate");
             connected = false;
             point.tag = tag; // reset tag
             point = null;
-            gameObject.layer = 9; // set back to food layer
-            _transform.parent = null;
-            _rb.isKinematic = false;
-        }
-    }
-
-    [PunRPC]
-    void UnstickFrom(Transform point, PhotonMessageInfo info) {
-        if (connected && this.point == point) {
-            Debug.Log(tag +  " unstuck from plate");
-            connected = false;
-            this.point.tag = tag; // reset tag
-            this.point = null;
             gameObject.layer = 9; // set back to food layer
             _transform.parent = null;
             _rb.isKinematic = false;

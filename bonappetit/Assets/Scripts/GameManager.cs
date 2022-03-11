@@ -7,6 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class GameManager : MonoBehaviour
 {
+    public DishManager dishManager;
     public int coversCompleted;
     public Transform ticketSpawn;
     public GameObject ticketPrefab;

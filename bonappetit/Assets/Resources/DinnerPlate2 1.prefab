@@ -105,7 +105,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 605818107}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Breast
   m_TagString: breast
   m_Icon: {fileID: 0}
@@ -135,7 +135,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1230550911}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Vegetables
   m_TagString: vegetables
   m_Icon: {fileID: 0}
@@ -166,7 +166,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1286038362}
   - component: {fileID: 1286038363}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Hitbox
   m_TagString: plate
   m_Icon: {fileID: 0}
@@ -243,7 +243,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1657909859}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wing2
   m_TagString: wing
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1756518652}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: Wing1
   m_TagString: wing
   m_Icon: {fileID: 0}
@@ -474,7 +474,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6706312177938860363}
+        m_TargetAssemblyTypeName: Dish, Assembly-CSharp
+        m_MethodName: TransferFoodOwnership
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []

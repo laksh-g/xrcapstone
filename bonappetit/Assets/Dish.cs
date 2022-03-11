@@ -1,11 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
-public class Dish : MonoBehaviour
+public class Dish : MonoBehaviourPunCallbacks
 {
     public string dishID;
     public Transform itemFolder = null;
+
+    private PhotonView _view = null;
+
+    void Awake() {
+        _view = GetComponent<PhotonView>();
+    }
 
 
     public string GetCompletionInfo()
@@ -26,5 +33,14 @@ public class Dish : MonoBehaviour
             }
         }
         return result;
+    }
+
+    public void TransferFoodOwnership() {
+        if (!_view.IsMine) {
+            PhotonView[] views = GetComponentsInChildren<PhotonView>();
+            foreach (PhotonView view in views) {
+                view.RequestOwnership();
+            }
+        }
     }
 }
