@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6189939674139987498}
   - component: {fileID: 6189939674139987500}
   - component: {fileID: 6189939674139987501}
+  - component: {fileID: 8953407280179546894}
   m_Layer: 0
   m_Name: Cube (1)
   m_TagString: Untagged
@@ -57,8 +58,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyAllowOneActiveCopy: 0
   initialSpawnedObject: {fileID: 1360928071295076585}
   prefab: {fileID: 7081995158553762514, guid: 185f5dfb22df74240939d28179ac7a0f, type: 3}
+--- !u!114 &8953407280179546894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189939674139987499}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6189939674933907058
 GameObject:
   m_ObjectHideFlags: 0
@@ -72,6 +96,7 @@ GameObject:
   - component: {fileID: 6189939674933907062}
   - component: {fileID: 6189939674933907063}
   - component: {fileID: 6189939674933907060}
+  - component: {fileID: 5837944472473988099}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -167,8 +192,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyAllowOneActiveCopy: 0
   initialSpawnedObject: {fileID: 6279268190462093600}
   prefab: {fileID: 8262985976797309670, guid: 96ab5c2d0deefad4fae753796860aa7a, type: 3}
+--- !u!114 &5837944472473988099
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6189939674933907058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 1
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &6189939675023991752
 GameObject:
   m_ObjectHideFlags: 0

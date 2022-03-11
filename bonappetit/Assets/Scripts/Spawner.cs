@@ -17,6 +17,7 @@ public class Spawner : MonoBehaviour
 
     private Transform activeCopy = null;
 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,9 @@ public class Spawner : MonoBehaviour
 
     void OnTriggerExit(Collider other) {
         Debug.Log (tag + " left the spawner");
+        
         if (other.gameObject == initialSpawnedObject) {
+            PhotonView otherview = other.gameObject.GetComponent<PhotonView>();
             Debug.Log(tag + " spawnedObj left the spawner");
             initialSpawnedObject.layer = prefab.layer;
             Transform oldActiveCopy = activeCopy;
@@ -45,5 +48,22 @@ public class Spawner : MonoBehaviour
             }
             
         }
+    }
+
+    [PunRPC]
+    private void Respawn() {
+        Debug.Log(tag + " spawnedObj left the spawner");
+            initialSpawnedObject.layer = prefab.layer;
+            Transform oldActiveCopy = activeCopy;
+            activeCopy = initialSpawnedObject.transform;
+            if (onlyAllowOneActiveCopy && oldActiveCopy != null) {
+                Debug.Log("reusing spawned asset " + tag);
+                oldActiveCopy.SetPositionAndRotation(spawnPosition, spawnRotation);
+                initialSpawnedObject = activeCopy.gameObject;
+            } else {
+                    Debug.Log("Photon network offline :" + PhotonNetwork.OfflineMode);
+                    initialSpawnedObject = PhotonNetwork.Instantiate(prefab.name, spawnPosition, spawnRotation);
+                    initialSpawnedObject.layer = 3;
+            }
     }
 }

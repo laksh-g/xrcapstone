@@ -21,6 +21,8 @@ public class Plateable : MonoBehaviourPunCallbacks
 
     private XRGrabNetworkInteractable _grab;
 
+    private int plateID = -1;
+
     void Awake() {
         _transform = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody>();
@@ -33,20 +35,17 @@ public class Plateable : MonoBehaviourPunCallbacks
     }
 
     void Update() {
-        if (connected && point != null && CalculatePlateAngle(point.parent.parent) > 60) {
-            _view.RPC("Unstick", RpcTarget.All);
+        if (connected && _view.IsMine && point != null && CalculatePlateAngle(point.parent.parent) > 60) {
+            _view.RPC("Unstick", RpcTarget.All, plateID);
         } else if (connected) {
             if (plateTemp != null && _temp != null) {
                 _temp.heater = plateTemp.heater;
             }
             _transform.SetPositionAndRotation(point.position, point.rotation);
-        } else if (_rb.isKinematic == true) {
-            Debug.LogError(tag + " Object has been left in kinematic state and will now be unplated");
-            Unstick();
         }
     }
     void OnTriggerEnter (Collider other) {
-        if(!connected && other.gameObject.tag == "plate" 
+        if(!connected && _view.IsMine && other.gameObject.tag == "plate" 
         && CalculatePlateAngle(other.transform) < 10 ) {
             PhotonView view = other.GetComponentInParent<PhotonView>();
             _view.RPC("StickTo", RpcTarget.All, view.ViewID);
@@ -54,8 +53,8 @@ public class Plateable : MonoBehaviourPunCallbacks
     }
 
     [PunRPC]
-    public void Unstick() {
-        if (connected) {
+    public void Unstick(int id) {
+        if (connected && id == plateID) {
             Debug.Log(tag +  " unstuck from plate");
             connected = false;
             point.tag = tag; // reset tag
@@ -63,6 +62,7 @@ public class Plateable : MonoBehaviourPunCallbacks
             gameObject.layer = 9; // set back to food layer
             _transform.parent = null;
             _rb.isKinematic = false;
+            plateID = -1;
         }
     }
 
@@ -75,10 +75,7 @@ public class Plateable : MonoBehaviourPunCallbacks
     [PunRPC]
     void StickTo(int id, PhotonMessageInfo info) {
             GameObject target = PhotonView.Find(id).gameObject;
-            if (connected) {
-                // release from plate if it already has one
-                Unstick();
-            }
+            plateID = id;
             Transform[] transforms = target.GetComponentsInChildren<Transform>();
             foreach (Transform t in transforms) {
                 Debug.Log("found hook for " + t.tag);

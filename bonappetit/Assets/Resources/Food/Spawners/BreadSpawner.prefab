@@ -128,8 +128,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyAllowOneActiveCopy: 0
   initialSpawnedObject: {fileID: 687188966474335825}
   prefab: {fileID: 5081479549258363810, guid: ecd19778f581e7a4bacdf9c9359d0918, type: 3}
+--- !u!114 &1144510564037703396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 152514128683877787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &5696041992064185843
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -143,10 +166,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1944093796369997705, guid: ecd19778f581e7a4bacdf9c9359d0918, type: 3}
       propertyPath: ObservedComponents.Array.size
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1944093796369997705, guid: ecd19778f581e7a4bacdf9c9359d0918, type: 3}
       propertyPath: ObservedComponents.Array.data[1]
+      value: 
+      objectReference: {fileID: 6134295372024126207}
+    - target: {fileID: 1944093796369997705, guid: ecd19778f581e7a4bacdf9c9359d0918, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
       value: 
       objectReference: {fileID: 5696041992239367294}
     - target: {fileID: 5081479549258363810, guid: ecd19778f581e7a4bacdf9c9359d0918, type: 3}
@@ -219,6 +246,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ee5e7a8aa8a29b49ae1c062de1518ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6134295372024126207 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1886178252685553420, guid: ecd19778f581e7a4bacdf9c9359d0918, type: 3}
+  m_PrefabInstance: {fileID: 5696041992064185843}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 687188966474335825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &5696041992239367292
@@ -357,6 +395,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6701456739080830302}
+  - {fileID: 6134295372024126207}
   - {fileID: 5696041992239367294}
   sceneViewId: 0
   InstantiationId: 0
@@ -390,6 +429,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cookedTemp: 60
+  isSearable: 0
+  side1: {fileID: 0}
+  side2: {fileID: 0}
+  seared: {fileID: 0}
+  desiredSearTime: 10
+  searTime: 0
   raw: {fileID: 0}
   cooked: {fileID: 0}
   burnt: {fileID: 0}
