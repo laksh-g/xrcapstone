@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862414718464636005, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
       propertyPath: sceneViewId
-      value: 73
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5010351151384128034, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
       propertyPath: m_IsActive
@@ -276,7 +276,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862414718464636005, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
       propertyPath: sceneViewId
-      value: 22
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5010351151384128034, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
       propertyPath: m_IsActive
@@ -423,5 +423,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyAllowOneActiveCopy: 0
   initialSpawnedObject: {fileID: 3179814903091726212}
   prefab: {fileID: 8514199381623137221, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}

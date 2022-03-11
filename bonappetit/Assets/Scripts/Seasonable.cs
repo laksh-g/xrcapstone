@@ -14,8 +14,6 @@ public class Seasonable : MonoBehaviour, IPunObservable
     [SerializeField]
     public float parsley = 0;
     [SerializeField]
-    public float truffleOil = 0;
-    [SerializeField]
     public float gruyere = 0;
 
     private PhotonView _view = null;
@@ -31,7 +29,6 @@ public class Seasonable : MonoBehaviour, IPunObservable
             stream.SendNext(salt);
             stream.SendNext(pepper);
             stream.SendNext(parsley);
-            stream.SendNext(truffleOil);
             stream.SendNext(gruyere);
         }
         else
@@ -39,7 +36,6 @@ public class Seasonable : MonoBehaviour, IPunObservable
             salt = (float)stream.ReceiveNext();
             pepper = (float)stream.ReceiveNext();
             parsley = (float)stream.ReceiveNext();
-            truffleOil = (float)stream.ReceiveNext();
             gruyere = (float)stream.ReceiveNext();
         }
     }

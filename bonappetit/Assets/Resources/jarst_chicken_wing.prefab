@@ -312,6 +312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcf1e77bbc0bf1448b843c3d44b013c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  point: {fileID: 0}
 --- !u!114 &102035540070145374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,7 +328,6 @@ MonoBehaviour:
   salt: 0
   pepper: 0
   parsley: 0
-  truffleOil: 0
   gruyere: 0
 --- !u!114 &485523254622101148
 MonoBehaviour:

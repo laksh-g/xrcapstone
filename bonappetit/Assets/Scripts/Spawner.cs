@@ -39,7 +39,8 @@ public class Spawner : MonoBehaviour
             Transform oldActive = activeCopy;
             activeCopy = initialSpawnedObject.transform;
             Debug.Log("Starting spawn protocol for " + other.tag);
-            _view.RPC("ReleaseObject", RpcTarget.All, otherview.ViewID);
+            other.gameObject.layer = prefab.layer;
+            _view.RPC("ReleaseObject", RpcTarget.Others, otherview.ViewID);
             if (onlyAllowOneActiveCopy && oldActive != null) {
                 oldActive.gameObject.layer = 3;
                 oldActive.SetPositionAndRotation(spawnPosition, spawnRotation);
@@ -69,10 +70,8 @@ public class Spawner : MonoBehaviour
         GameObject target = PhotonView.Find(viewID).gameObject;
         if (target != initialSpawnedObject) {
             Debug.LogError("Releasing object that is not the current one in the spawner");
-            target.layer = prefab.layer;
-        } else {
-            target.layer = prefab.layer;
-            initialSpawnedObject = null;
         }
+        target.layer = prefab.layer;
+        initialSpawnedObject = null;
     }
 }
