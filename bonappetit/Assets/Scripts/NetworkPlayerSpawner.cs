@@ -13,6 +13,7 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
     public Transform HCTransform;
     public Transform STransform;
     public Transform RTransform;
+    public Transform SousTransform;
 
     // private GameObject textGo;
     // private TMP_Text tm;
@@ -88,7 +89,11 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
             rig.MoveCameraToWorldLocation(RTransform.position);
             rig.RotateAroundCameraUsingOriginUp(-90);
             spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", RTransform.position, RTransform.rotation);
-        } else{
+        }else if ((string) playerCustomProps["role"] == "SousChefRole"){
+            rig.MoveCameraToWorldLocation(SousTransform.position);
+            rig.RotateAroundCameraUsingOriginUp(-90);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", SousTransform.position, SousTransform.rotation);
+        }else {
             PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
             
             rig.MoveCameraToWorldLocation(HCTransform.position);

@@ -11,13 +11,14 @@ public class UpdatePlayerStats : MonoBehaviour
     void Start()
     {
         StartCoroutine("waitForScore");
-        updatePlayerStats();
+        
     }
 
     private IEnumerator waitForScore() {
         while (!PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("score")) {
             yield return null;
         }
+        updatePlayerStats();
     }
     void updatePlayerStats() {
         float curr_score = (float) PhotonNetwork.CurrentRoom.CustomProperties["score"];
