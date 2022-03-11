@@ -83,7 +83,6 @@ public class FoodDisplay : MonoBehaviourPunCallbacks
                 val = "00000";
             }else{
                 val = (string) ht["FoodDisplay"];
-                Debug.Log(val);
             }
             for(int i = 0; i < val.Length; i++){
                 if(val[i] == '1'){
@@ -107,7 +106,6 @@ public class FoodDisplay : MonoBehaviourPunCallbacks
     void Blink()
     {
         elapsed += Time.deltaTime;
-        Debug.Log(startColor.Count);
         for (int idx = 0; idx < startColor.Count; idx++)
         {
             if(checkSelect[idx]){
