@@ -42,6 +42,9 @@ MonoBehaviour:
   - CantHearYou
   - ChangeColour
   - HeresWhy
+  - StickTo
+  - UnstickFrom
+  - Unstick
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

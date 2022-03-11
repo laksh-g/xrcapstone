@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
 public class UpdatePlayerStats : MonoBehaviour
 {
+    public GetFinalScore f = null;
     // Start is called before the first frame update
     void Start()
     {
+        StartCoroutine("waitForScore");
         updatePlayerStats();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private IEnumerator waitForScore() {
+        while (!PhotonNetwork.CurrentRoom.CustomProperties.ContainsKey("score")) {
+            yield return null;
+        }
     }
-
     void updatePlayerStats() {
-        TextMeshProUGUI curr_score_text = GameObject.Find("Final Score").GetComponent<TextMeshProUGUI>();
-        float curr_score = float.Parse(curr_score_text.text);
+        float curr_score = (float) PhotonNetwork.CurrentRoom.CustomProperties["score"];
 
         float high_score = PlayerPrefs.GetFloat("HighScore");
 
