@@ -10,8 +10,8 @@ public class TextInformation : MonoBehaviour
     private GameObject selectedObject;
     private string tutorialText;
     private string debugText;
+    private string defaultText;
 
-    readonly string defaultText = "Hover over an item for more info\nToggle with X\nCycle through recipes with A/B";
     readonly Dictionary<string, List<string>> hookNames = new Dictionary<string, List<string>> 
     { 
         { "Stone Plate", new List<string> { "Sauce", "Fries", "Steak" } },
@@ -36,6 +36,7 @@ public class TextInformation : MonoBehaviour
     void Start()
     {
         text = GetComponent<TextMeshProUGUI>();
+        defaultText = text.text;
     }
 
     // Update is called once per frame

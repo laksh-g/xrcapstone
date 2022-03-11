@@ -216,8 +216,17 @@ public class Tutorial : MonoBehaviour
 
             header = "Crab Cakes Tutorial\n";
         }
+        else if (tutorialType.Equals(TutorialType.headChef))
+        {
+            highlightObjs.Add(new GameObject[] { null });
+
+            tutorialText = new string[] { "This tutorial is not available yet.\nPress the left menu button to return to the lobby." };
+            header = "Head Chef Tutorial\n";
+        }
         else
         {
+            highlightObjs.Add(new GameObject[] { null });
+
             tutorialText = new string[] { "Press the left menu button to return to the lobby." };
             header = "No tutorial available\n";
         }
