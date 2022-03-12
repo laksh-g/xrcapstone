@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>
+    Week 6 - Bon Appetit
+    
+  </title>
+
+  <meta name="description" content="What we have accomplished">
+
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="/assets/main.css">
+  <link rel="canonical" href="http://localhost:4000/2022/02/11/week6.html">
+  <link rel="alternate" type="application/rss+xml" title="Bon Appetit" href="/feed.xml">
+
+</head>
+
+
+<body>
+
+  <!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+  <div class="container">
+    <a class="navbar-brand" href="/">Bon Appetit</a>
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      Menu
+      <i class="fa fa-bars"></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/posts">Posts</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+  <!-- Page Header -->
+
+<header class="masthead" style="background-image: url('/img/posts/01.jpg')">
+  
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>Week 6</h1>
+            
+            <h2 class="subheading">MVP week! Multiplayer beta, end-game screen, recipe UI, and ticketing system...</h2>
+            
+            <span class="meta">Posted by
+              <a href="#">Bon Appetit</a>
+              on February 11, 2022 &middot; <span class="reading-time" title="Estimated read time">
+  
+   2 mins  read </span>
+
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+
+        <h2 class="section-heading">What we have accomplished</h2>
+
+<ul>
+  <li><b>Johnathon</b>: Finished adding sound effects for collisions and cooking,
+redesigned kitchen, added in-game clock, dialed in cooking times, and helped
+set up the game manager and object serialization to be used for multiplayer</li>
+  <li><b>Katherine</b>: Finished object information UI with added toggle feature,
+created recipe posters for players to follow.</li>
+  <li><b>Laksh</b>: Finished adding rooms and network features, added XR grab
+interactables for network and back to menu features. Helped serializing data
+to be synced over the network. Implemented end game screen and scores display.</li>
+  <li><b>Hritik</b>: Finished creating the ticketing system and incorporating it
+with the main application. Also did testing with other memebers to check the
+current app and do bug fixing.</li>
+</ul>
+
+<h2 class="section-heading">New features/functionality implemented</h2>
+
+<ul>
+  <li>Brand new kitchen! The original kitchen has been redesigned to be smaller and
+tighter to improve performance and comfort</li>
+  <li>New fries! Having individual fries proved too computationally intensive for
+the Quest, so we’ve resorted to bundles of fries.</li>
+  <li>New clock! See how much time is left by reading the clock over the turn-in
+zone.</li>
+  <li>End-game screen! See your team’s score and total covers completed after
+service is over.</li>
+  <li>Real-time feedback! After sending in an order, another ticket is printed
+telling the head chef how it was.</li>
+  <li>Bearnaise sauce! Add sauce to a saucepan then heat it up to get it ready to
+serve.</li>
+  <li>XR Grab interactables now sync over the network</li>
+  <li>Players teleport to their respective stations based on their roles.</li>
+  <li>Object characteristics (like temp, amount of salt etc.) update over the
+network.</li>
+  <li>End game screen where head chef can view the final score for the game.</li>
+  <li>Object information ui can be toggled.</li>
+  <li>Recipe posters provide players cooking instructions.</li>
+</ul>
+
+<h2 class="section-heading">Bug Fixes</h2>
+
+<ul>
+  <li>The in-game clock is now synchronized between players</li>
+  <li>Steak cooking has been slowed to allow for proper time to sear before reaching
+cooked temps</li>
+  <li>Spawned-in objects now spawn in for all players</li>
+  <li>Reduced plated object collisions so plates should freak out less now</li>
+  <li>Fixed bug with XR grab interactables not syncing over network</li>
+  <li>Fixed serializing datafields</li>
+  <li>Fixed network voice bug.</li>
+</ul>
+
+<h2 class="section-heading">Code review</h2>
+
+<ul>
+  <li>GameManager.cs: <a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/20">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/20</a></li>
+  <li>CollisionSound.cs:
+<a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/18">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/18</a></li>
+  <li>NetworkPlayerSpawner.cs
+<a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/16">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/16</a></li>
+  <li>TriggerCanvas.cs
+<a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/11">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/11</a></li>
+</ul>
+
+<h2 class="section-heading">Blocking issues</h2>
+
+<ul>
+  <li>Multiplayer: Serialized fields record different values for different players.</li>
+  <li>Multiplayer: Master client always gets assigned to the first player to join
+the room.</li>
+</ul>
+
+
+        <hr>
+
+        <div class="clearfix">
+
+          
+          <a class="btn btn-primary float-left" href="/2022/02/04/week5.html" data-toggle="tooltip" data-placement="top" title="Week 5">&larr; Previous<span class="d-none d-md-inline">
+              Post</span></a>
+          
+          
+          <a class="btn btn-primary float-right" href="/2022/02/18/week7.html" data-toggle="tooltip" data-placement="top" title="Week 7">Next<span class="d-none d-md-inline">
+              Post</span> &rarr;</a>
+          
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Footer -->
+
+<hr>
+
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-md-10 mx-auto">
+        <ul class="list-inline text-center">
+          
+          <li class="list-inline-item">
+            <a href="mailto:hritik@uw.edu">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="far fa-envelope fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="list-inline-item">
+            <a href="https://github.com/UWRealityLab/xrcapstone22wi-team5">
+              <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+            </a>
+          </li>
+          
+          
+        </ul>
+        <p class="copyright text-muted">Copyright &copy; Bon Appetit 2022</p>
+      </div>
+    </div>
+  </div>
+</footer>
+
+
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/assets/vendor/startbootstrap-clean-blog/js/scripts.js"></script>
+
+<script src="/assets/scripts.js"></script>
+
+
+
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '');
+</script>
+
+
+
+</body>
+
+</html>

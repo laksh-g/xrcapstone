@@ -1,0 +1,489 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.2.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-11T15:41:44-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bon Appetit</title><subtitle>A virtual reality cooking experience like never before</subtitle><author><name>Bon Appetit</name></author><entry><title type="html">Week9</title><link href="http://localhost:4000/2022/03/04/week9.html" rel="alternate" type="text/html" title="Week9" /><published>2022-03-04T00:00:00-08:00</published><updated>2022-03-04T00:00:00-08:00</updated><id>http://localhost:4000/2022/03/04/week9</id><content type="html" xml:base="http://localhost:4000/2022/03/04/week9.html"><![CDATA[<h1 id="week-9---new-dishes-item-spawners-new-render-pipeline-and-new-game-options">Week 9 - New dishes, item spawners, new render pipeline, and new game options…</h1>
+
+<h2 id="apk-build">APK Build</h2>
+<p>https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=sharing</p>
+<h2 id="what-we-have-accomplished">What we have accomplished</h2>
+
+<ul>
+  <li>Johnathon: Created and implemented 4 new dishes, added item spawners, added oven appliance, and upgraded render pipeline to URP.</li>
+  <li>Katherine: Updated steak frites tutorial scene with feedback from peer testings, and incorporated the new item spawners and render pipeline that Johnathon created.</li>
+  <li>Laksh: Updated Lobby with new graphics, fixed some serialization issues with items syncing over network</li>
+  <li>Hritik: Fixed ticketing system color issues, starting working on saving and displaying user scores</li>
+</ul>
+
+<h2 id="new-featuresfunctionality-implemented">New features/functionality implemented</h2>
+<ul>
+  <li>New dishes! Crab cakes, table bread, roasted chicken, and French onion soup have all been added to the game</li>
+  <li>URP! We’ve upgraded the render pipeline to the Universal Render Pipeline for performance and visual improvements</li>
+  <li>Oven! A new kitchen appliance featuring cooking timers for chicken and bread</li>
+  <li>Fry timer! The knob on the frier now works as a timer for perfect crispy fries</li>
+  <li>Item spawners! All foods, plates, and tools now are produced using item spawners to limit the amount of objects in the scene</li>
+  <li>Tutorial is updated to include new features created this week</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+<ul>
+  <li>Moving between heating elements now registers correctly</li>
+  <li>Pans and frying baskets use the plating script now in order to fix issues of items falling through hitboxes</li>
+  <li>Item properties now sync better over network.</li>
+</ul>
+
+<h2 id="code-review">Code review</h2>
+
+<h2 id="blocking-issues">Blocking issues</h2>
+<ul>
+  <li>Plating synchronization and serialization of various elements are still the primary blocking issues</li>
+  <li>Baked lighting ends up leaving a lot of artifacts in the current scene</li>
+</ul>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[Week 9 - New dishes, item spawners, new render pipeline, and new game options…]]></summary></entry><entry><title type="html">Week8</title><link href="http://localhost:4000/2022/02/25/week8.html" rel="alternate" type="text/html" title="Week8" /><published>2022-02-25T00:00:00-08:00</published><updated>2022-02-25T00:00:00-08:00</updated><id>http://localhost:4000/2022/02/25/week8</id><content type="html" xml:base="http://localhost:4000/2022/02/25/week8.html"><![CDATA[<h1 id="week-8---tutorial-scene-gameplay-improvements-ticket-rail-and-game-lobby-improvements">Week 8 - Tutorial scene, gameplay improvements, ticket rail, and game lobby improvements…</h1>
+
+<h2 id="what-we-have-accomplished">What we have accomplished</h2>
+
+<ul>
+  <li>Johnathon: Created a roadmap for the rest of the quarter, laid groundwork for new french onion soup dish, implemented plating improvements, and worked on fixing more gameplay bugs from the MVP demo.</li>
+  <li>Katherine: Created a tutorial scene that highlighted objects and led players through the steps of cooking steak frites.</li>
+  <li>Laksh: Improved the lobby scene and added new create and join lobby features, Added new end game scene. Added tutorial screen.</li>
+  <li>Hritik: Fixed ticketing bugs, added the new ticket rail that allows users to easily manage tickets, and worked on other bugs/testing for user testing activity.</li>
+</ul>
+
+<h2 id="new-featuresfunctionality-implemented">New features/functionality implemented</h2>
+<ul>
+  <li>Soup bowls! These will be handy for one of our upcoming dishes.</li>
+  <li>Gruyere cheese! You can shred and melt this stuff. Great for a certain type of soup…</li>
+  <li>New steak appearance! We thought that the hyperrealistic appearance seemed odd for the low-poly style, so we gave steaks a new look.</li>
+  <li>Tutorial scene for steak frites.</li>
+  <li>New create and Join lobby menus.</li>
+  <li>New end game scene</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+<ul>
+  <li>Plating has been significantly improved, however some bugs regarding turn in are still present with the new system</li>
+  <li>Feedback has been made a little more concise for each dish</li>
+  <li>Seasoning while on heating elements and plates have been fixed</li>
+  <li>Grating now works correctly</li>
+  <li>Fixed bugs with room creation</li>
+  <li>Fixed end game scene</li>
+</ul>
+
+<h2 id="code-review">Code review</h2>
+<ul>
+  <li>Tutorial.cs</li>
+</ul>
+
+<h2 id="blocking-issues">Blocking issues</h2>
+<ul>
+  <li>Plating synchronization not persisting between users, causing bugs for turn in. We may have to serialize this somehow.</li>
+</ul>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[Week 8 - Tutorial scene, gameplay improvements, ticket rail, and game lobby improvements…]]></summary></entry><entry><title type="html">Week 7</title><link href="http://localhost:4000/2022/02/18/week7.html" rel="alternate" type="text/html" title="Week 7" /><published>2022-02-18T00:00:00-08:00</published><updated>2022-02-18T00:00:00-08:00</updated><id>http://localhost:4000/2022/02/18/week7</id><content type="html" xml:base="http://localhost:4000/2022/02/18/week7.html"><![CDATA[<h2 class="section-heading">What we have accomplished</h2>
+
+<ul>
+  <li><b>Johnathon</b>: Organized feedback from MVP testing and distributed
+bug-fixing work to the team, worked on fixing plating bugs, audio
+improvements, and new gameplay features for upcoming new dishes.</li>
+  <li><b>Katherine</b>: Started developing a tutorial/tips system. The tutorial
+system will walk the user through the roles and explain the game mechanics.</li>
+  <li><b>Laksh</b>: Remade the Lobby scene with a settings menu, create and join
+room options, pre game lobby menu. A more robust role assigning system with
+all data being synced over custom room properties and custom player
+properties.</li>
+  <li><b>Hritik</b>: Started fixing bugs that were reported from user testing and
+working on adding new features as noted in the MVP bugs section.</li>
+</ul>
+
+<h2 class="section-heading">New features/functionality implemented</h2>
+
+<ul>
+  <li>Grating! Shred some cheese or truffle over a dish to instantly up the
+fanciness factor.</li>
+  <li>Cooking torch! Great for making creme brulee or for finishing french onion
+soup…</li>
+  <li>More realistic temperature response! Items removed from heat will now continue
+to cook for a little longer</li>
+  <li>Players can now join and create rooms</li>
+  <li>New Lobby scene with a kitchen layout</li>
+  <li>Players not see buttons grayed out for roles already taken in a room.</li>
+  <li>Scenes sync across clients with the master client loading scene transitions.</li>
+</ul>
+
+<h2 class="section-heading">Bug Fixes</h2>
+
+<ul>
+  <li>Violent plating collisions should be significantly reduced</li>
+  <li>Items fall from plate if rotated enough</li>
+  <li>Volume lowered in main scene</li>
+  <li>Collisions in drawers should be more accurate</li>
+  <li>Held objects should be less jittery now</li>
+  <li>Lobby scene to kitchen scene transition bugs.</li>
+  <li>Role selection and start game sync fixed</li>
+</ul>
+
+<h2 class="section-heading">Code review</h2>
+
+<ul>
+  <li>Plateable.cs: <a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/22">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/22</a></li>
+  <li>AssignRoles.cs: <a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/21">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/21</a></li>
+</ul>
+
+<h2 class="section-heading">Blocking issues</h2>
+
+<ul>
+  <li>Looking for solutions to enable the Oculus on-screen keyboard for entering
+room codes, changing names etc.</li>
+</ul>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[What we have accomplished]]></summary></entry><entry><title type="html">Week 6</title><link href="http://localhost:4000/2022/02/11/week6.html" rel="alternate" type="text/html" title="Week 6" /><published>2022-02-11T00:00:00-08:00</published><updated>2022-02-11T00:00:00-08:00</updated><id>http://localhost:4000/2022/02/11/week6</id><content type="html" xml:base="http://localhost:4000/2022/02/11/week6.html"><![CDATA[<h2 class="section-heading">What we have accomplished</h2>
+
+<ul>
+  <li><b>Johnathon</b>: Finished adding sound effects for collisions and cooking,
+redesigned kitchen, added in-game clock, dialed in cooking times, and helped
+set up the game manager and object serialization to be used for multiplayer</li>
+  <li><b>Katherine</b>: Finished object information UI with added toggle feature,
+created recipe posters for players to follow.</li>
+  <li><b>Laksh</b>: Finished adding rooms and network features, added XR grab
+interactables for network and back to menu features. Helped serializing data
+to be synced over the network. Implemented end game screen and scores display.</li>
+  <li><b>Hritik</b>: Finished creating the ticketing system and incorporating it
+with the main application. Also did testing with other memebers to check the
+current app and do bug fixing.</li>
+</ul>
+
+<h2 class="section-heading">New features/functionality implemented</h2>
+
+<ul>
+  <li>Brand new kitchen! The original kitchen has been redesigned to be smaller and
+tighter to improve performance and comfort</li>
+  <li>New fries! Having individual fries proved too computationally intensive for
+the Quest, so we’ve resorted to bundles of fries.</li>
+  <li>New clock! See how much time is left by reading the clock over the turn-in
+zone.</li>
+  <li>End-game screen! See your team’s score and total covers completed after
+service is over.</li>
+  <li>Real-time feedback! After sending in an order, another ticket is printed
+telling the head chef how it was.</li>
+  <li>Bearnaise sauce! Add sauce to a saucepan then heat it up to get it ready to
+serve.</li>
+  <li>XR Grab interactables now sync over the network</li>
+  <li>Players teleport to their respective stations based on their roles.</li>
+  <li>Object characteristics (like temp, amount of salt etc.) update over the
+network.</li>
+  <li>End game screen where head chef can view the final score for the game.</li>
+  <li>Object information ui can be toggled.</li>
+  <li>Recipe posters provide players cooking instructions.</li>
+</ul>
+
+<h2 class="section-heading">Bug Fixes</h2>
+
+<ul>
+  <li>The in-game clock is now synchronized between players</li>
+  <li>Steak cooking has been slowed to allow for proper time to sear before reaching
+cooked temps</li>
+  <li>Spawned-in objects now spawn in for all players</li>
+  <li>Reduced plated object collisions so plates should freak out less now</li>
+  <li>Fixed bug with XR grab interactables not syncing over network</li>
+  <li>Fixed serializing datafields</li>
+  <li>Fixed network voice bug.</li>
+</ul>
+
+<h2 class="section-heading">Code review</h2>
+
+<ul>
+  <li>GameManager.cs: <a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/20">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/20</a></li>
+  <li>CollisionSound.cs:
+<a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/18">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/18</a></li>
+  <li>NetworkPlayerSpawner.cs
+<a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/16">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/16</a></li>
+  <li>TriggerCanvas.cs
+<a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/11">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/11</a></li>
+</ul>
+
+<h2 class="section-heading">Blocking issues</h2>
+
+<ul>
+  <li>Multiplayer: Serialized fields record different values for different players.</li>
+  <li>Multiplayer: Master client always gets assigned to the first player to join
+the room.</li>
+</ul>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[What we have accomplished]]></summary></entry><entry><title type="html">Week 5</title><link href="http://localhost:4000/2022/02/04/week5.html" rel="alternate" type="text/html" title="Week 5" /><published>2022-02-04T00:00:00-08:00</published><updated>2022-02-04T00:00:00-08:00</updated><id>http://localhost:4000/2022/02/04/week5</id><content type="html" xml:base="http://localhost:4000/2022/02/04/week5.html"><![CDATA[<h2 class="section-heading">What we have accomplished</h2>
+
+<ul>
+  <li>Johnathon: Introduced basic sound effects, seasoning, fry spawner, smoke
+effect, game manager object and gameplay logistics, and created the final
+scene for the MVP kitchen</li>
+  <li>Katherine: Finished object information ui to be attached to each player and
+work in multiplayer.</li>
+  <li>Laksh: Finished Network Player prefabs textures, fixed photon Voice,
+implemented</li>
+  <li>room joining screen.</li>
+  <li>Hritik: Finished pushing fries to the master repo. Started working on
+ticketing system.</li>
+</ul>
+
+<h2 class="section-heading">New features/functionality implemented</h2>
+
+<ul>
+  <li>All new kitchen! A 3-station kitchen designed from the ground up</li>
+  <li>Sound effects! Both ambient noises and context-specific noises have been added
+to the kitchen</li>
+  <li>Fry dispensing! Activate the dispenser in the corner to get delicious sliced
+potatoes</li>
+  <li>Game elements! The game manager provides orders and evaluates orders that are
+turned in</li>
+  <li>Smoke effect! Smoke is produced when searing a steak</li>
+  <li>Seasoning and shakers! Salt, pepper, and parsley shakers are now available</li>
+  <li>Object information UI! Get temperature, salt levels, and more information
+about objects</li>
+  <li>New UI at the start of the game to join rooms and select your roles.</li>
+  <li>Voice chat implemented</li>
+</ul>
+
+<p>##</p>
+
+<h2 class="section-heading">Bug Fixes</h2>
+
+<ul>
+  <li>Items now stick to plates when in contact. No more sliding around</li>
+  <li>Collisions between objects (especially fries) are now much more consistent and
+reliable</li>
+  <li>Fixed bug with ladle not updating correctly</li>
+  <li>Increased player movement speed</li>
+  <li>Fixed Voice chat bug</li>
+</ul>
+
+<h2 class="section-heading">Code review</h2>
+
+<ul>
+  <li>GameManager.cs: <a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/7">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/7</a></li>
+  <li>GetInfo.cs: <a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/9">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/9</a></li>
+  <li>TextInformation.cs:
+<a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/9">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/9</a></li>
+</ul>
+
+<h2 class="section-heading">Blocking issues</h2>
+
+<ul>
+  <li>Multiplayer functionality: There is currently an issue where an interactable
+object can only be ‘owned’ by one person per session. This results in multiple
+copies of the same object being in different places for different players.</li>
+</ul>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[What we have accomplished]]></summary></entry><entry><title type="html">Week 4</title><link href="http://localhost:4000/2022/01/27/week4.html" rel="alternate" type="text/html" title="Week 4" /><published>2022-01-27T00:00:00-08:00</published><updated>2022-01-27T00:00:00-08:00</updated><id>http://localhost:4000/2022/01/27/week4</id><content type="html" xml:base="http://localhost:4000/2022/01/27/week4.html"><![CDATA[<h2 class="section-heading">What we have accomplished</h2>
+
+<ul>
+  <li><b>Johnathon</b>: Started project wiki, wrote pouring and filling scripts for
+liquids, made interactable prefabs for kitchen environment, fixed
+player/object collisions</li>
+  <li><b>Katherine</b>: Implemented a basic UI system for seeing object information
+(item name, temperature).</li>
+  <li><b>Laksh</b>: Added Network Manager and Player scripts and components. Added
+Player and hand Prefabs.</li>
+  <li><b>Hritik</b>: Created two different textures for fries (cooked and uncooked).
+Made it such that the texture changed when the fries reach the required
+temperature.</li>
+</ul>
+
+<h2 class="section-heading">New features/functionality implemented</h2>
+
+<ul>
+  <li>Interactable kitchen fixtures! Knobs can be turned, doors and drawers can be
+opened, and objects properly interact with them due to compound primitive hit
+boxes</li>
+  <li>Liquid containers! Containers can be filled, pour liquid, or be scooped from
+using a single script. These containers visibly transform depending on how
+much liquid they are holding</li>
+  <li>Ladle! A working ladle. Not much more to say</li>
+  <li>Players can now see their own animated hands to show gripping and trigger
+controls.</li>
+  <li>All players are now connected to the Photon PUN servers and get added to the
+same room.</li>
+</ul>
+
+<h2 class="section-heading">Bug Fixes</h2>
+
+<ul>
+  <li>Held objects and players no longer clip through static objects.</li>
+  <li>Player hand animations are now synced between clients.</li>
+</ul>
+
+<h2 class="section-heading">Code review</h2>
+
+<ul>
+  <li><a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/1">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/1</a></li>
+  <li><a href="https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/4">https://github.com/UWRealityLab/xrcapstone22wi-team5/pull/4</a></li>
+</ul>
+
+<h2 class="section-heading">Blocking issues</h2>
+
+<ul>
+  <li>No blockers to report.</li>
+</ul>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[What we have accomplished]]></summary></entry><entry><title type="html">Week 3</title><link href="http://localhost:4000/2022/01/20/week3.html" rel="alternate" type="text/html" title="Week 3" /><published>2022-01-20T00:00:00-08:00</published><updated>2022-01-20T00:00:00-08:00</updated><id>http://localhost:4000/2022/01/20/week3</id><content type="html" xml:base="http://localhost:4000/2022/01/20/week3.html"><![CDATA[<h2 class="section-heading">What we have accomplished</h2>
+
+<ul>
+  <li><b>Johnathon</b>: Imported new purchased kitchen assets, created new
+temperature and cooking scripts for dish components, and began work on prefab
+interactivity with the new assets.</li>
+  <li><b>Katherine</b>: Finalized MVP and target product, imported color change
+cooking script, and researched how to implement UI for object information.</li>
+  <li><b>Laksh</b>: Researched on more assets for kitchen and different food items
+and started looking into Photon PUN for multiplayer integrations.</li>
+  <li><b>Hritik</b>: Looked into how to go about making fries and started working on
+implementing them. Started with a single cuboid and added different shades to
+mimic real fries.</li>
+</ul>
+
+<h2 class="section-heading">New features/functionality implemented</h2>
+
+<ul>
+  <li>Basic temperature system: temperature has realistic decay and reacts to being
+at room temp, in a fridge, or on/in a heating element</li>
+  <li>Turnable knobs for kitchen appliances</li>
+</ul>
+
+<h2 class="section-heading">Code review</h2>
+
+<p>All project code is currently in the ‘build’ branch. As features are completed,
+they will be pushed to the ‘master’ branch.</p>
+
+<ul>
+  <li>bonappetit/Assets/Scripts/Temperature.cs</li>
+  <li>bonappetit/Assets/Scripts/Knob.cs</li>
+</ul>
+
+<h2 class="section-heading">Blocking issues</h2>
+
+<p>No blockers to report.</p>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[What we have accomplished]]></summary></entry><entry><title type="html">Weeks 1+2</title><link href="http://localhost:4000/2022/01/13/week1-2.html" rel="alternate" type="text/html" title="Weeks 1+2" /><published>2022-01-13T00:00:00-08:00</published><updated>2022-01-13T00:00:00-08:00</updated><id>http://localhost:4000/2022/01/13/week1-2</id><content type="html" xml:base="http://localhost:4000/2022/01/13/week1-2.html"><![CDATA[<h2 class="section-heading">What we have accomplished</h2>
+
+<ul>
+  <li><b>Johnathon</b>: Worked on prototyping a basic temperature system and
+stovetop function for the individual demo, refined the project pitch, and
+researched into required assets and budgeting</li>
+  <li><b>Katherine</b>: Prototyped a boiling system that shows the color of an
+object changing as it is being cooked, and created the skeleton of this
+website.</li>
+  <li><b>Laksh</b>: Implemented scripts for managing the UI for the game and object
+spawning using buttons, and researched about some assets for our cooking game,
+like models for food ingredients and dishes.</li>
+  <li><b>Hritik</b>: Researched other applications like cookout that have a similar
+or somewhat overlapping user base, and looked into ideas and assets and how
+they could fit the space better.</li>
+</ul>
+
+<h2 class="section-heading">Idea update</h2>
+
+<ul>
+  <li>Co-op line cooking game set in a gourmet French Kitchen</li>
+  <li>Orders will be completed by coordinating with other players</li>
+  <li>Each player will have a specific role
+    <ul>
+      <li>Head chefs will be in charge of receiving orders and giving instructions to
+the other players</li>
+      <li>Station chefs will be in charge of cooking the orders, with instructions
+from the head chef</li>
+    </ul>
+  </li>
+  <li>Focus will be on teamwork and cooking, not the prep work. This includes
+    <ul>
+      <li>Boiling</li>
+      <li>Sauteing</li>
+      <li>Baking</li>
+      <li>Plating</li>
+      <li>Garnishing</li>
+      <li>and more…</li>
+    </ul>
+  </li>
+  <li>Use realistic recipes with measurements</li>
+  <li>MVP will focus on:
+    <ul>
+      <li>3 player co-op</li>
+      <li>1 recipe: steak frites (steak, fries, bearnaise sauce)</li>
+      <li>Supports the following functions:
+        <ul>
+          <li>Frying</li>
+          <li>Baking</li>
+          <li>Sauteing</li>
+          <li>Garnishing</li>
+        </ul>
+      </li>
+      <li>Temperature-checking system</li>
+      <li>Ticketing system for head chef</li>
+      <li>Rating system for final delivered food</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 class="section-heading">New features/functionality implemented</h2>
+
+<p>Basic functionalities prototyped in our demos which will be imported into the
+project:</p>
+
+<ul>
+  <li>A boiling script that changes the color of the object as it is being cooked</li>
+  <li>Created some basic UI elements like canvases and buttons</li>
+  <li>An object spawning script</li>
+  <li>A working stovetop with multiple heat settings</li>
+  <li>A basic temperature script for tracking cooking progress</li>
+  <li>Steak asset responds to being cooked</li>
+</ul>
+
+<h2 class="section-heading">Code review</h2>
+
+<p>No files are in need of review.</p>
+
+<h2 class="section-heading">Blocking issues</h2>
+
+<p>No blockers to report.</p>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[What we have accomplished]]></summary></entry><entry><title type="html">Man must explore, and this is exploration at its greatest</title><link href="http://localhost:4000/2020/01/31/man-must-explore.html" rel="alternate" type="text/html" title="Man must explore, and this is exploration at its greatest" /><published>2020-01-31T06:45:13-08:00</published><updated>2020-01-31T06:45:13-08:00</updated><id>http://localhost:4000/2020/01/31/man-must-explore</id><content type="html" xml:base="http://localhost:4000/2020/01/31/man-must-explore.html"><![CDATA[<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+
+<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+
+<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+<h2 class="section-heading">The Final Frontier</h2>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+
+<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+
+<h2 class="section-heading">Reaching for the Stars</h2>
+
+<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+
+<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
+<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+
+<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+
+<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.]]></summary></entry><entry><title type="html">I believe every human has a finite number of heartbeats. I don’t intend to waste any of mine.</title><link href="http://localhost:4000/2020/01/30/heartbeats.html" rel="alternate" type="text/html" title="I believe every human has a finite number of heartbeats. I don’t intend to waste any of mine." /><published>2020-01-30T19:45:13-08:00</published><updated>2020-01-30T19:45:13-08:00</updated><id>http://localhost:4000/2020/01/30/heartbeats</id><content type="html" xml:base="http://localhost:4000/2020/01/30/heartbeats.html"><![CDATA[<p>Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.</p>
+
+<p>Science cuts two ways, of course; its products can be used for both good and evil. But there's no turning back from science. The early warnings about technological dangers also come from science.</p>
+
+<p>What was most significant about the lunar voyage was not that man set foot on the Moon but that they set eye on the earth.</p>
+
+<p>A Chinese tale tells of some men sent to harm a young girl who, upon seeing her beauty, become her protectors rather than her violators. That's how I felt seeing the Earth for the first time. I could not help but love and cherish her.</p>
+
+<p>For those who have seen the Earth from space, and for the hundreds and perhaps thousands more who will, the experience most certainly changes your perspective. The things that we share in our world are far more valuable than those which divide us.</p>
+
+<h2 class="section-heading">The Final Frontier</h2>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<p>There can be no thought of finishing for ‘aiming for the stars.’ Both figuratively and literally, it is a task to occupy the generations. And no matter how much progress one makes, there is always the thrill of just beginning.</p>
+
+<blockquote class="blockquote">The dreams of yesterday are the hopes of today and the reality of tomorrow. Science has not yet mastered prophecy. We predict too much for the next year and yet far too little for the next ten.</blockquote>
+
+<p>Spaceflights cannot be stopped. This is not the work of any one man or even a group of men. It is a historical process which mankind is carrying out in accordance with the natural laws of human development.</p>
+
+<h2 class="section-heading">Reaching for the Stars</h2>
+
+<p>As we got further and further away, it [the Earth] diminished in size. Finally it shrank to the size of a marble, the most beautiful you can imagine. That beautiful, warm, living object looked so fragile, so delicate, that if you touched it with a finger it would crumble and fall apart. Seeing this has to change a man.</p>
+
+<img class="img-fluid" src="https://source.unsplash.com/Mn9Fa_wQH-M/800x450" alt="Demo Image">
+<span class="caption text-muted">To go places and do things that have never been done before – that’s what living is all about.</span>
+
+<p>Space, the final frontier. These are the voyages of the Starship Enterprise. Its five-year mission: to explore strange new worlds, to seek out new life and new civilizations, to boldly go where no man has gone before.</p>
+
+<p>As I stand out here in the wonders of the unknown at Hadley, I sort of realize there’s a fundamental truth to our nature, Man must explore, and this is exploration at its greatest.</p>
+
+<p>Placeholder text by <a href="http://spaceipsum.com/">Space Ipsum</a>. Photographs by <a href="https://unsplash.com/">Unsplash</a>.</p>]]></content><author><name>Bon Appetit</name></author><summary type="html"><![CDATA[Never in all their history have men been able truly to conceive of the world as one: a single sphere, a globe, having the qualities of a globe, a round earth in which all the directions eventually meet, in which there is no center because every point, or none, is center — an equal earth which all men occupy as equals. The airman's earth, if free men make it, will be truly round: a globe in practice, not in theory.]]></summary></entry></feed>

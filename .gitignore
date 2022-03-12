@@ -59,7 +59,6 @@ sysinfo.txt
 crashlytics-build.properties
 
 # website stuff
-_site
 .sass-cache
 .jekyll-cache
 .jekyll-metadata

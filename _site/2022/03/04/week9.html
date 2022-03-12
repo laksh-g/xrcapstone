@@ -1,0 +1,37 @@
+<h1 id="week-9---new-dishes-item-spawners-new-render-pipeline-and-new-game-options">Week 9 - New dishes, item spawners, new render pipeline, and new game options…</h1>
+
+<h2 id="apk-build">APK Build</h2>
+<p>https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=sharing</p>
+<h2 id="what-we-have-accomplished">What we have accomplished</h2>
+
+<ul>
+  <li>Johnathon: Created and implemented 4 new dishes, added item spawners, added oven appliance, and upgraded render pipeline to URP.</li>
+  <li>Katherine: Updated steak frites tutorial scene with feedback from peer testings, and incorporated the new item spawners and render pipeline that Johnathon created.</li>
+  <li>Laksh: Updated Lobby with new graphics, fixed some serialization issues with items syncing over network</li>
+  <li>Hritik: Fixed ticketing system color issues, starting working on saving and displaying user scores</li>
+</ul>
+
+<h2 id="new-featuresfunctionality-implemented">New features/functionality implemented</h2>
+<ul>
+  <li>New dishes! Crab cakes, table bread, roasted chicken, and French onion soup have all been added to the game</li>
+  <li>URP! We’ve upgraded the render pipeline to the Universal Render Pipeline for performance and visual improvements</li>
+  <li>Oven! A new kitchen appliance featuring cooking timers for chicken and bread</li>
+  <li>Fry timer! The knob on the frier now works as a timer for perfect crispy fries</li>
+  <li>Item spawners! All foods, plates, and tools now are produced using item spawners to limit the amount of objects in the scene</li>
+  <li>Tutorial is updated to include new features created this week</li>
+</ul>
+
+<h2 id="bug-fixes">Bug Fixes</h2>
+<ul>
+  <li>Moving between heating elements now registers correctly</li>
+  <li>Pans and frying baskets use the plating script now in order to fix issues of items falling through hitboxes</li>
+  <li>Item properties now sync better over network.</li>
+</ul>
+
+<h2 id="code-review">Code review</h2>
+
+<h2 id="blocking-issues">Blocking issues</h2>
+<ul>
+  <li>Plating synchronization and serialization of various elements are still the primary blocking issues</li>
+  <li>Baked lighting ends up leaving a lot of artifacts in the current scene</li>
+</ul>
