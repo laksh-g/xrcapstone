@@ -63,3 +63,5 @@ crashlytics-build.properties
 .jekyll-cache
 .jekyll-metadata
 vendor
+
+.DS_Store

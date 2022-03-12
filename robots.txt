@@ -1,1 +1,1 @@
-Sitemap: https://github.com/UWRealityLab/xrcapstone22wi-team5/sitemap.xml
+Sitemap: https://uwrealitylab.github.io/xrcapstone22wi-team5/sitemap.xml
