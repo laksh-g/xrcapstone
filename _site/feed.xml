@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2022-03-12T01:26:36-08:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">Bon Appétit</title><subtitle>A virtual reality cooking experience like never before</subtitle><author><name>Bon Appétit</name></author><entry><title type="html">Week 10</title><link href="http://localhost:4000/2022/03/11/week10.html" rel="alternate" type="text/html" title="Week 10" /><published>2022-03-11T00:00:00-08:00</published><updated>2022-03-11T00:00:00-08:00</updated><id>http://localhost:4000/2022/03/11/week10</id><content type="html" xml:base="http://localhost:4000/2022/03/11/week10.html">&lt;h2 class=&quot;section-heading&quot;&gt;APK Build&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.9.0">Jekyll</generator><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/feed.xml" rel="self" type="application/atom+xml" /><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/" rel="alternate" type="text/html" /><updated>2022-03-12T01:31:37-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/feed.xml</id><title type="html">Bon Appétit</title><subtitle>A virtual reality cooking experience like never before</subtitle><author><name>Bon Appétit</name></author><entry><title type="html">Week 10</title><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/03/11/week10.html" rel="alternate" type="text/html" title="Week 10" /><published>2022-03-11T00:00:00-08:00</published><updated>2022-03-11T00:00:00-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/03/11/week10</id><content type="html" xml:base="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/03/11/week10.html">&lt;h2 class=&quot;section-heading&quot;&gt;APK Build&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=sharing&quot;&gt;https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=sharing&lt;/a&gt;&lt;/p&gt;
 
@@ -52,7 +52,7 @@ in&lt;/li&gt;
 
 &lt;h2 class=&quot;section-heading&quot;&gt;Blocking issues&lt;/h2&gt;
 
-&lt;p&gt;Nothing yet&lt;/p&gt;</content><author><name>Bon Appétit</name></author><summary type="html">APK Build</summary></entry><entry><title type="html">Week 9</title><link href="http://localhost:4000/2022/03/04/week9.html" rel="alternate" type="text/html" title="Week 9" /><published>2022-03-04T00:00:00-08:00</published><updated>2022-03-04T00:00:00-08:00</updated><id>http://localhost:4000/2022/03/04/week9</id><content type="html" xml:base="http://localhost:4000/2022/03/04/week9.html">&lt;h2 class=&quot;section-heading&quot;&gt;APK Build&lt;/h2&gt;
+&lt;p&gt;Nothing yet&lt;/p&gt;</content><author><name>Bon Appétit</name></author><summary type="html">APK Build</summary></entry><entry><title type="html">Week 9</title><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/03/04/week9.html" rel="alternate" type="text/html" title="Week 9" /><published>2022-03-04T00:00:00-08:00</published><updated>2022-03-04T00:00:00-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/03/04/week9</id><content type="html" xml:base="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/03/04/week9.html">&lt;h2 class=&quot;section-heading&quot;&gt;APK Build&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=sharing&quot;&gt;https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=sharing&lt;/a&gt;&lt;/p&gt;
 
@@ -103,7 +103,7 @@ items falling through hitboxes&lt;/li&gt;
   &lt;li&gt;Plating synchronization and serialization of various elements are still the
 primary blocking issues&lt;/li&gt;
   &lt;li&gt;Baked lighting ends up leaving a lot of artifacts in the current scene&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">APK Build</summary></entry><entry><title type="html">Week 8</title><link href="http://localhost:4000/2022/02/25/week8.html" rel="alternate" type="text/html" title="Week 8" /><published>2022-02-25T00:00:00-08:00</published><updated>2022-02-25T00:00:00-08:00</updated><id>http://localhost:4000/2022/02/25/week8</id><content type="html" xml:base="http://localhost:4000/2022/02/25/week8.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">APK Build</summary></entry><entry><title type="html">Week 8</title><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/25/week8.html" rel="alternate" type="text/html" title="Week 8" /><published>2022-02-25T00:00:00-08:00</published><updated>2022-02-25T00:00:00-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/25/week8</id><content type="html" xml:base="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/25/week8.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;b&gt;Johnathon&lt;/b&gt;: Created a roadmap for the rest of the quarter, laid
@@ -154,7 +154,7 @@ are still present with the new system&lt;/li&gt;
 &lt;ul&gt;
   &lt;li&gt;Plating synchronization not persisting between users, causing bugs for turn
 in. We may have to serialize this somehow.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 7</title><link href="http://localhost:4000/2022/02/18/week7.html" rel="alternate" type="text/html" title="Week 7" /><published>2022-02-18T00:00:00-08:00</published><updated>2022-02-18T00:00:00-08:00</updated><id>http://localhost:4000/2022/02/18/week7</id><content type="html" xml:base="http://localhost:4000/2022/02/18/week7.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 7</title><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/18/week7.html" rel="alternate" type="text/html" title="Week 7" /><published>2022-02-18T00:00:00-08:00</published><updated>2022-02-18T00:00:00-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/18/week7</id><content type="html" xml:base="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/18/week7.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;b&gt;Johnathon&lt;/b&gt;: Organized feedback from MVP testing and distributed
@@ -209,7 +209,7 @@ to cook for a little longer&lt;/li&gt;
 &lt;ul&gt;
   &lt;li&gt;Looking for solutions to enable the Oculus on-screen keyboard for entering
 room codes, changing names etc.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 6</title><link href="http://localhost:4000/2022/02/11/week6.html" rel="alternate" type="text/html" title="Week 6" /><published>2022-02-11T00:00:00-08:00</published><updated>2022-02-11T00:00:00-08:00</updated><id>http://localhost:4000/2022/02/11/week6</id><content type="html" xml:base="http://localhost:4000/2022/02/11/week6.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 6</title><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/11/week6.html" rel="alternate" type="text/html" title="Week 6" /><published>2022-02-11T00:00:00-08:00</published><updated>2022-02-11T00:00:00-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/11/week6</id><content type="html" xml:base="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/11/week6.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;b&gt;Johnathon&lt;/b&gt;: Finished adding sound effects for collisions and cooking,
@@ -280,7 +280,7 @@ cooked temps&lt;/li&gt;
   &lt;li&gt;Multiplayer: Serialized fields record different values for different players.&lt;/li&gt;
   &lt;li&gt;Multiplayer: Master client always gets assigned to the first player to join
 the room.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 5</title><link href="http://localhost:4000/2022/02/04/week5.html" rel="alternate" type="text/html" title="Week 5" /><published>2022-02-04T00:00:00-08:00</published><updated>2022-02-04T00:00:00-08:00</updated><id>http://localhost:4000/2022/02/04/week5</id><content type="html" xml:base="http://localhost:4000/2022/02/04/week5.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 5</title><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/04/week5.html" rel="alternate" type="text/html" title="Week 5" /><published>2022-02-04T00:00:00-08:00</published><updated>2022-02-04T00:00:00-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/04/week5</id><content type="html" xml:base="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/02/04/week5.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;b&gt;Johnathon&lt;/b&gt;: Introduced basic sound effects, seasoning, fry spawner,
@@ -339,7 +339,7 @@ reliable&lt;/li&gt;
   &lt;li&gt;Multiplayer functionality: There is currently an issue where an interactable
 object can only be ‘owned’ by one person per session. This results in multiple
 copies of the same object being in different places for different players.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 4</title><link href="http://localhost:4000/2022/01/27/week4.html" rel="alternate" type="text/html" title="Week 4" /><published>2022-01-27T00:00:00-08:00</published><updated>2022-01-27T00:00:00-08:00</updated><id>http://localhost:4000/2022/01/27/week4</id><content type="html" xml:base="http://localhost:4000/2022/01/27/week4.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 4</title><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/01/27/week4.html" rel="alternate" type="text/html" title="Week 4" /><published>2022-01-27T00:00:00-08:00</published><updated>2022-01-27T00:00:00-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/01/27/week4</id><content type="html" xml:base="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/01/27/week4.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;b&gt;Johnathon&lt;/b&gt;: Started project wiki, wrote pouring and filling scripts for
@@ -388,7 +388,7 @@ same room.&lt;/li&gt;
 
 &lt;ul&gt;
   &lt;li&gt;No blockers to report.&lt;/li&gt;
-&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 3</title><link href="http://localhost:4000/2022/01/20/week3.html" rel="alternate" type="text/html" title="Week 3" /><published>2022-01-20T00:00:00-08:00</published><updated>2022-01-20T00:00:00-08:00</updated><id>http://localhost:4000/2022/01/20/week3</id><content type="html" xml:base="http://localhost:4000/2022/01/20/week3.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
+&lt;/ul&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Week 3</title><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/01/20/week3.html" rel="alternate" type="text/html" title="Week 3" /><published>2022-01-20T00:00:00-08:00</published><updated>2022-01-20T00:00:00-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/01/20/week3</id><content type="html" xml:base="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/01/20/week3.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;b&gt;Johnathon&lt;/b&gt;: Imported new purchased kitchen assets, created new
@@ -423,7 +423,7 @@ they will be pushed to the ‘master’ branch.&lt;/p&gt;
 
 &lt;h2 class=&quot;section-heading&quot;&gt;Blocking issues&lt;/h2&gt;
 
-&lt;p&gt;No blockers to report.&lt;/p&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Weeks 1+2</title><link href="http://localhost:4000/2022/01/13/week1-2.html" rel="alternate" type="text/html" title="Weeks 1+2" /><published>2022-01-13T00:00:00-08:00</published><updated>2022-01-13T00:00:00-08:00</updated><id>http://localhost:4000/2022/01/13/week1-2</id><content type="html" xml:base="http://localhost:4000/2022/01/13/week1-2.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
+&lt;p&gt;No blockers to report.&lt;/p&gt;</content><author><name>Bon Appétit</name></author><summary type="html">What we have accomplished</summary></entry><entry><title type="html">Weeks 1+2</title><link href="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/01/13/week1-2.html" rel="alternate" type="text/html" title="Weeks 1+2" /><published>2022-01-13T00:00:00-08:00</published><updated>2022-01-13T00:00:00-08:00</updated><id>https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/01/13/week1-2</id><content type="html" xml:base="https://github.com/UWRealityLab/xrcapstone22wi-team5/2022/01/13/week1-2.html">&lt;h2 class=&quot;section-heading&quot;&gt;What we have accomplished&lt;/h2&gt;
 
 &lt;ul&gt;
   &lt;li&gt;&lt;b&gt;Johnathon&lt;/b&gt;: Worked on prototyping a basic temperature system and
