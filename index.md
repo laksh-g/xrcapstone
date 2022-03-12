@@ -1,68 +1,20 @@
-# Bon Appetit
+---
+layout: home
+background: "/img/bg-index.jpg"
+---
 
-## Project Description
+<h2 class="section-heading">Project Description</h2>
 
-Work in a gourmet kitchen and team up with 2 of your friends to try and complete
-orders with realistic dishes. This game simulates the intensity of a 5-star
-restaurant, and you will need teamwork in order to make the cut!
+Work in a gourmet kitchen and team up with 2-3 of your friends to try and
+complete orders with realistic dishes. This game simulates the intensity of a
+5-star restaurant, and you will need teamwork in order to make the cut!
 
-## Team Members
+<h2 class="section-heading">Most Recent APK Build</h2>
 
-### Johnathon Leon Guerrero
+<https://drive.google.com/file/d/1ySj7fq6hjkoRplv2JiMX1euAYzDTcda4/view?usp=sharing>
 
-<img src="https://media.githubusercontent.com/media/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/_DSC3220-Edit.jpg" alt="Johnathon" width="400"/>
+<h2 class="section-heading">Demo Video</h2>
 
-Hello! I’m a senior in computer engineering at UW currently living close to
-campus. Over the summer, I was an intern for Zillow Group where I focused on
-front-end and back-end web development and scripting. My experience working as a
-busser and line cook at the (now defunct) Tula Bene Pasteria served as the
-inspiration for this project. Despite being brand new to VR development and game
-design, I’m very excited to bring this vision to life.
+<iframe src="https://drive.google.com/file/d/1wBM3vF4RZulU2iWUgi4qD19zvQ4jryAl/preview" width="720" height="540" allow="autoplay"></iframe>
 
-### Laksh Gupta
-
-<img src="https://raw.githubusercontent.com/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/Laksh.jpeg" alt="Laksh" width="400"/> 
-
-Heyo! I’m a senior at UW and I love working with new technologies. I’m looking
-forward to working with the new VR/AR technologies and to seeing all kinds of
-new innovations we develop from it. I have some experience working with android
-app development and back-end networking and I am excited to learn more about
-unity development this quarter.
-
-### Hritik Aggarwal
-
-<img src="https://media.githubusercontent.com/media/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/hritik.png" alt="Hritik" width="400"/>
-
-Hi! I am a senior at UW who loves creating new tools and technologies.
-Currently, I am exploring the space of making mobile apps using React Native and
-VR using Unity and Oculus. In the past, I have worked on different platforms
-including iOS, Android, Web, Windows Platform, and even the Xbox Console. I am
-super excited to work on this idea and bring my experience/skills to the table.
-
-### Katherine Cai
-
-<img src="https://media.githubusercontent.com/media/UWRealityLab/xrcapstone22wi-team5/gh-pages/docs/assets/DSC01517_Original.jpg" alt="Katherine" width="400"/>
-
-Hello! I am a senior studying Computer Engineering at UW. Over the summer I
-interned with Ekata, a MasterCard company, where I focused on developing a QA
-automation framework for graph based internal products. I have minimal
-experience with VR and game design, so I am looking forward to learn more about
-Unity and VR this quarter.
-
-## PRD
-
-[Link](https://docs.google.com/document/d/1qiKnid1c8BujVksI3OGwbceG1bKiSeyCJPEgfXp2q0I/edit?usp=sharing)
-
-## Demo Video
-
-Coming soon!
-
-## Weekly Updates
-
-- [Week 1+2](https://uwrealitylab.github.io/xrcapstone22wi-team5/week1-2)
-- [Week 3](https://uwrealitylab.github.io/xrcapstone22wi-team5/week3)
-- [Week 4](https://uwrealitylab.github.io/xrcapstone22wi-team5/week4)
-- [Week 5](https://uwrealitylab.github.io/xrcapstone22wi-team5/week5)
-- [Week 6](https://uwrealitylab.github.io/xrcapstone22wi-team5/week6)
-- [Week 7](https://uwrealitylab.github.io/xrcapstone22wi-team5/week7)
-- [Week 8](https://uwrealitylab.github.io/xrcapstone22wi-team5/week8)
+<h2 class="section-heading">Weekly Updates</h2>
