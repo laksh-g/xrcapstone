@@ -8,10 +8,12 @@ public class Dish : MonoBehaviourPunCallbacks
     public string dishID;
     public Transform itemFolder = null;
 
+    public List<Transform> connectedItems;
     private PhotonView _view = null;
 
     void Awake() {
         _view = GetComponent<PhotonView>();
+        connectedItems = new List<Transform>();
     }
 
 

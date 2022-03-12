@@ -13,7 +13,7 @@ public class Plateable : MonoBehaviourPunCallbacks
     private bool connected = false;
 
     public Transform point = null;
-
+    private FixedJoint _joint = null;
     private Transform _transform;
     private Rigidbody _rb;
 
@@ -59,9 +59,11 @@ public class Plateable : MonoBehaviourPunCallbacks
             connected = false;
             point.tag = tag; // reset tag
             point = null;
+            //Destroy(_joint);
+            //_joint = null;
             gameObject.layer = 9; // set back to food layer
-            _transform.parent = null;
-            _rb.isKinematic = false;
+            //_transform.parent = null;
+            //_rb.isKinematic = false;
             plateID = -1;
         }
     }
@@ -72,6 +74,9 @@ public class Plateable : MonoBehaviourPunCallbacks
         return Mathf.Max(zAngle, xAngle);
     }
 
+    public void GrabUnstick() {
+        
+    }
     [PunRPC]
     void StickTo(int id, PhotonMessageInfo info) {
             GameObject target = PhotonView.Find(id).gameObject;
@@ -80,13 +85,18 @@ public class Plateable : MonoBehaviourPunCallbacks
             foreach (Transform t in transforms) {
                 Debug.Log("found hook for " + t.tag);
                 if (t.CompareTag(tag)) {
-                    _rb.isKinematic = true;
+                    _transform.SetPositionAndRotation(t.position, t.rotation);
+                    //_joint = gameObject.AddComponent<FixedJoint>();
+                    //_joint.connectedBody = target.GetComponent<Rigidbody>();
+                    //_joint.breakForce = Mathf.Infinity;
+                    //_joint.enableCollision = false;
+                    //_rb.isKinematic = true;
                     gameObject.layer = 10; // set to plated layer to disable collisions
                     connected = true;
                     point = t;
                     t.tag = "occupied"; // set the tag so other objects don't try to stick here
                     plateTemp = target.GetComponent<Temperature>();
-                    _transform.parent = target.transform;
+                    //_transform.parent = target.transform;
                     Debug.Log(tag + " acquired plate");
                     break;
                 }
