@@ -8,6 +8,8 @@ url: "https://github.com/UWRealityLab/xrcapstone22wi-team5"
 # Social Profiles
 github_username: UWRealityLab/xrcapstone22wi-team5
 
+theme: jekyll-theme-clean-blog
+
 # Add your google-analytics ID here to activate google analytics
 
 # Build settings
