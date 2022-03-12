@@ -23,6 +23,12 @@ public class Temperature : MonoBehaviour, IPunObservable
 
     private int cachedVal = 0;
 
+    private PhotonView _view = null;
+
+    void Awake() {
+        _view = GetComponent<PhotonView>();
+    }
+
     void Update() {
         if (isResting && restTime < 10f) {
             restTime += Time.deltaTime;
@@ -127,7 +133,7 @@ public class Temperature : MonoBehaviour, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)
+        if (stream.IsWriting && _view.IsMine)
         {
             stream.SendNext(temp);
             stream.SendNext(maxTemp);

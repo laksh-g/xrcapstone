@@ -242,6 +242,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 8457358296326069253}
+  - {fileID: 8201942885323769192}
   - {fileID: 8381575663307270696}
   - {fileID: 501666002165724705}
   sceneViewId: 0
@@ -314,7 +315,6 @@ MonoBehaviour:
   salt: 0
   pepper: 0
   parsley: 0
-  truffleOil: 0
   gruyere: 0
 --- !u!65 &994197961452226840
 BoxCollider:

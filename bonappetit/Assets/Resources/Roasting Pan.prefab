@@ -491,6 +491,7 @@ MonoBehaviour:
   liquid: {fileID: 3671722514298420027}
   liquidStart: {fileID: 931001172366513252}
   liquidEnd: {fileID: 7633406978228178595}
+  automaticRefill: 0
   variablePourRate: 1
   pourRateMultiplier: 2
   spout: {fileID: 4191176898208432069}

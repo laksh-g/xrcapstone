@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using Photon.Pun;
 
 public class TextInformation : MonoBehaviour
 {
@@ -73,6 +74,14 @@ public class TextInformation : MonoBehaviour
     void UpdateText() 
     {
         //text.text += "Name: " + selectedObject.name + '\n';
+/* Debug info
+        var view = selectedObject.GetComponent<PhotonView>();
+        if (view != null) {
+            text.text += "Is my item: " + view.IsMine + "\n";
+        }
+
+        text.text += "Item layer: " + selectedObject.layer + "\n";
+        */
         var desc = selectedObject.GetComponent<Description>();
         string tagStr = selectedObject.tag;
         if (desc == null)
@@ -192,10 +201,6 @@ public class TextInformation : MonoBehaviour
                                 if (s.gruyere <= 0)
                                     missingSeasoning.Add("gruyere");
                                 break;
-                            case "truffle oil":
-                                if (s.truffleOil <= 0)
-                                    missingSeasoning.Add("truffle oil");
-                                break;
                         }
                     }
                     if (missingSeasoning.Count > 0)
@@ -280,9 +285,6 @@ public class TextInformation : MonoBehaviour
                             case "gruyere":
                                 text.text += "Gruyere: " + seasonable.gruyere.ToString("F1") + " g" + '\n';
                                 break;
-                            case "truffle oil":
-                                text.text += "Truffle Oil: " + seasonable.truffleOil.ToString("F1") + " mL" + '\n';
-                                break;
                         }
                     }
                 }
@@ -292,7 +294,6 @@ public class TextInformation : MonoBehaviour
                     text.text += "Pepper: " + seasonable.pepper.ToString("F1") + " g" + '\n';
                     text.text += "Parsley: " + seasonable.parsley.ToString("F1") + " g" + '\n';
                     text.text += "Gruyere: " + seasonable.gruyere.ToString("F1") + " g" + '\n';
-                    text.text += "Truffle Oil: " + seasonable.truffleOil.ToString("F1") + " mL" + '\n';
                 }
             }
         }

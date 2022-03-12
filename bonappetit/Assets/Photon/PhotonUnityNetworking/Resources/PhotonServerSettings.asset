@@ -46,6 +46,8 @@ MonoBehaviour:
   - UnstickFrom
   - Unstick
   - Respawn
+  - ReleaseObject
+  - SetupObject
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 0

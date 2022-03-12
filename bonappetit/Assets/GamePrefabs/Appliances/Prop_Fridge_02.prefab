@@ -128,7 +128,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.35684884, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.4582257, y: 0.7937126, z: -2.3245807}
+  m_ConnectedAnchor: {x: -9.082114, y: 0.81508994, z: 0.069595754}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -414,7 +414,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.35684884, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.84836245, y: 0.7937126, z: -2.3245807}
+  m_ConnectedAnchor: {x: -9.082114, y: 0.81508994, z: -1.5402677}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -2238,7 +2238,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.47728038, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -0.84836245, y: 1.7482729, z: -2.3245807}
+  m_ConnectedAnchor: {x: -9.082114, y: 1.7696507, z: -1.5402677}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -2521,6 +2521,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   s: {fileID: 795897278752331576}
   isOvenlike: 1
+  isCooler: 1
   temperatureSettings:
   - -18
 --- !u!114 &6704779624381434159
@@ -2676,6 +2677,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   s: {fileID: 3447397589266809625}
   isOvenlike: 1
+  isCooler: 1
   temperatureSettings:
   - 4
 --- !u!114 &8396334086395420889
@@ -2847,7 +2849,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: 0.47728038, z: 0}
   m_Axis: {x: 0, y: 1, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -2.4582257, y: 1.7482729, z: -2.3245807}
+  m_ConnectedAnchor: {x: -9.082114, y: 1.7696507, z: 0.069595754}
   m_UseSpring: 0
   m_Spring:
     spring: 0

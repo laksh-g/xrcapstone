@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
+[RequireComponent(typeof(PhotonView))]
+[RequireComponent(typeof(Temperature))]
 public class LiquidContainer : MonoBehaviour
 {
     [SerializeField]
@@ -15,6 +17,8 @@ public class LiquidContainer : MonoBehaviour
     [Header("Fillable Settings")]
     public Transform liquidStart = null;
     public Transform liquidEnd = null;
+
+    public bool automaticRefill = false;
     [Header("Pourable Settings")]
     public bool variablePourRate = false;
     public int pourRateMultiplier = 1;
@@ -27,6 +31,8 @@ public class LiquidContainer : MonoBehaviour
     private LiquidContainer scooper = null;
 
     public  Temperature temperature = null;
+
+    private PhotonView _view = null;
     private readonly float baseRate = 0.5f; // the base pour rate
     private readonly float scoopRate = 20.0f; // the rate which liquid can be scooped from this object
 
@@ -44,6 +50,7 @@ public class LiquidContainer : MonoBehaviour
         if (temperature == null) {
             temperature = gameObject.AddComponent<Temperature>();
         }
+        _view = GetComponent<PhotonView>();
     }
 
     void FixedUpdate() {
@@ -102,6 +109,9 @@ public class LiquidContainer : MonoBehaviour
             } else {
                 liquidMesh.enabled = false;
             }
+            if (automaticRefill && getPercentage() < .75) {
+                Refill();
+            }
         }
     }
 
@@ -140,9 +150,13 @@ public class LiquidContainer : MonoBehaviour
         scooper = null;
     }
 
+    public void Refill() {
+        currentVolume = capacity;
+    }
+
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting)
+        if (stream.IsWriting && _view.IsMine)
         {
             stream.SendNext(currentVolume);
         }

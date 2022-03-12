@@ -328,7 +328,6 @@ MonoBehaviour:
   salt: 0
   pepper: 0
   parsley: 0
-  truffleOil: 0
   gruyere: 0
 --- !u!114 &485523254622101148
 MonoBehaviour:
