@@ -23,11 +23,22 @@ public class AssignRoles : MonoBehaviourPunCallbacks
         StartGame.interactable = false;
         RoomSettings.interactable = false;
         buttonActivated = false;
+
+        InvokeRepeating("updateButtons", 0.1f, 0.4f);
     }
 
     // Update is called once per frame
     void Update()
     {
+        
+    }
+
+    // private IEnumerator SetCustomProperties()
+    // {
+    //     yield return new WaitForSeconds(1.5f);
+    // }
+
+    public void updateButtons(){
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
             if(!buttonActivated){
@@ -70,11 +81,6 @@ public class AssignRoles : MonoBehaviourPunCallbacks
         }
     }
 
-    private IEnumerator SetCustomProperties()
-    {
-        yield return new WaitForSeconds(1);
-    }
-
     public void SetRole(string role)
     {
         Debug.Log("Selected role" + role);
@@ -105,9 +111,9 @@ public class AssignRoles : MonoBehaviourPunCallbacks
                 RoomSettings.interactable = true;
                 PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
             }else{
-                StartGame.interactable = false;
+                //StartGame.interactable = false;
                 RoomSettings.interactable = false;
-                //StartGame.interactable = true;
+                StartGame.interactable = true;
             }
         }
     }

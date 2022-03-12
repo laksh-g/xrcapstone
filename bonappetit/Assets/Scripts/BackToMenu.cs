@@ -7,6 +7,10 @@ public class BackToMenu : MonoBehaviour
 {
     public string scene;
 
+    void Start(){
+        PhotonNetwork.AutomaticallySyncScene = false;
+    }
+
     public void NextScene()
     {
         SceneManager.LoadScene(scene);
