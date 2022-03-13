@@ -56,7 +56,6 @@ public class Plateable : MonoBehaviourPunCallbacks
     [PunRPC]
     public void Unstick(int id) {
         if (connected && id == plateID) {
-            Debug.Log(tag +  " unstuck from plate");
             connected = false;
             point.tag = tag; // reset tag
             point = null;
@@ -69,6 +68,7 @@ public class Plateable : MonoBehaviourPunCallbacks
             Dish d = PhotonView.Find(id).GetComponent<Dish>();
             if (d != null) {
                 d.connectedItems.Remove(_view.ViewID);
+                Debug.LogError("Removed view " + _view.ViewID + " from " + d.connectedItems);
             }
             
         }
@@ -105,10 +105,10 @@ public class Plateable : MonoBehaviourPunCallbacks
                     t.tag = "occupied"; // set the tag so other objects don't try to stick here
                     plateTemp = target.GetComponent<Temperature>();
                     //_transform.parent = target.transform;
-                    Debug.Log(tag + " acquired plate");
                     Dish d = target.GetComponent<Dish>();
                     if (d != null) {
                         d.connectedItems.Add(_view.ViewID);
+                        Debug.LogError("New dish contents: " + d.connectedItems);
                     }
                     break;
                 }
