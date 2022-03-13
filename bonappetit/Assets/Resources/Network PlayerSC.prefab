@@ -684,7 +684,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3611602263198294639, guid: fc51fc6ffd01a634dbe5e6005af37a74, type: 3}
       propertyPath: m_text
-      value: Saucier
+      value: Sous Chef
+      objectReference: {fileID: 0}
+    - target: {fileID: 3611602263198294639, guid: fc51fc6ffd01a634dbe5e6005af37a74, type: 3}
+      propertyPath: m_fontSize
+      value: 42.65
       objectReference: {fileID: 0}
     - target: {fileID: 7955632741032637072, guid: fc51fc6ffd01a634dbe5e6005af37a74, type: 3}
       propertyPath: m_Name
@@ -696,7 +700,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8825574016686011493, guid: fc51fc6ffd01a634dbe5e6005af37a74, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 196
+      value: 65
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc51fc6ffd01a634dbe5e6005af37a74, type: 3}
@@ -871,7 +875,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: e17ebc8581b521648a2c8941de1cd250, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: bc7ba5616378d8d43abc0fe7d7ea58a0, type: 2}
+      objectReference: {fileID: 2100000, guid: 3384851393f23944894c26f5f3db6d10, type: 2}
     - target: {fileID: 919132149155446097, guid: e17ebc8581b521648a2c8941de1cd250, type: 3}
       propertyPath: m_Name
       value: chef_hat
