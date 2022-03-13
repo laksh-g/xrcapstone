@@ -11,6 +11,7 @@ public class ToggleTurning : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        mainSlider.value = PlayerPrefs.GetFloat("TurnSetting");
         mainSlider.onValueChanged.AddListener (delegate {ValueChangeCheck ();});
     }
 
@@ -19,5 +20,6 @@ public class ToggleTurning : MonoBehaviour
         ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
         playerCustomProps["turnOption"] = (int) mainSlider.value;
         PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProps);
+        PlayerPrefs.SetFloat("TurnSetting", mainSlider.value);
 	}
 }
