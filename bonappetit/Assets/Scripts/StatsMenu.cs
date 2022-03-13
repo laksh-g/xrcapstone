@@ -12,9 +12,9 @@ public class StatsMenu : MonoBehaviour
         string avg_score_text = "";
 
         if (total_games == 0) {
-            avg_score_text = "0";
+            avg_score_text = "0.00";
         } else {
-            avg_score_text = (PlayerPrefs.GetFloat("TotalGamesScore") / total_games).ToString();
+            avg_score_text = (PlayerPrefs.GetFloat("TotalGamesScore") / total_games).ToString("0.00");
         }
 
         foreach (Transform child in gameObject.transform)
@@ -25,7 +25,7 @@ public class StatsMenu : MonoBehaviour
             if (target.name == "Highest Score") {
                 // get highest score
                 tmp = target.GetComponent<TextMeshProUGUI>();
-                tmp.text = PlayerPrefs.GetFloat("HighScore").ToString();
+                tmp.text = PlayerPrefs.GetFloat("HighScore").ToString("0.00");
             } else if (target.name == "Total Games") {
                 // get total games
                 tmp = target.GetComponent<TextMeshProUGUI>();

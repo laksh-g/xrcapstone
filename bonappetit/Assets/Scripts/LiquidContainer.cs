@@ -5,7 +5,7 @@ using Photon.Pun;
 
 [RequireComponent(typeof(PhotonView))]
 [RequireComponent(typeof(Temperature))]
-public class LiquidContainer : MonoBehaviour
+public class LiquidContainer : MonoBehaviour, IPunObservable
 {
     [SerializeField]
     public float currentVolume = 0; // in mL
@@ -54,7 +54,7 @@ public class LiquidContainer : MonoBehaviour
     }
 
     void FixedUpdate() {
-        if (isPourable && isPouring) {
+        if (_view.IsMine && isPourable && isPouring) {
             float pourRate = CalculatePourRate();
             currentVolume = Mathf.Max(0f, currentVolume - pourRate);
             if (stream.container != null && stream.container.currentVolume < stream.container.capacity) {
@@ -65,7 +65,7 @@ public class LiquidContainer : MonoBehaviour
             }
         }
 
-        if (scooper != null && currentVolume > 0f && scooper.currentVolume < scooper.capacity) {
+        if (_view.IsMine && scooper != null && currentVolume > 0f && scooper.currentVolume < scooper.capacity) {
             scooper.liquidMaterial = liquidMaterial; // inherit material
             currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
             scooper.currentVolume = Mathf.Min(scooper.currentVolume + scoopRate, scooper.capacity);
@@ -156,13 +156,15 @@ public class LiquidContainer : MonoBehaviour
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting && _view.IsMine)
+        if (stream.IsWriting)
         {
             stream.SendNext(currentVolume);
+            stream.SendNext(tag);
         }
         else
         {
             currentVolume = (float)stream.ReceiveNext();
+            tag = (string)stream.ReceiveNext();
         }
     }
 }

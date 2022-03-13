@@ -8,12 +8,11 @@ public class Dish : MonoBehaviourPunCallbacks
     public string dishID;
     public Transform itemFolder = null;
 
-    public List<Transform> connectedItems;
+    public HashSet<int> connectedItems = new HashSet<int>();
     private PhotonView _view = null;
 
     void Awake() {
         _view = GetComponent<PhotonView>();
-        connectedItems = new List<Transform>();
     }
 
 
@@ -43,6 +42,25 @@ public class Dish : MonoBehaviourPunCallbacks
             foreach (PhotonView view in views) {
                 view.RequestOwnership();
             }
+        }
+    }
+
+    public void Release() {
+        if (connectedItems.Count > 0 && _view.IsMine) {
+            foreach (int id in connectedItems) {
+                _view.RPC("ReleaseComponent", RpcTarget.AllViaServer, id);
+                return;
+            }
+        }
+    }
+
+    [PunRPC] 
+    void ReleaseComponent(int viewID) {
+        if (connectedItems.Contains(viewID)) {
+            connectedItems.Remove(viewID);
+            PhotonView target = PhotonView.Find(viewID);
+            target.RPC("Unstick", RpcTarget.AllViaServer, _view.ViewID);
+            Transform t = target.gameObject.transform;
         }
     }
 }

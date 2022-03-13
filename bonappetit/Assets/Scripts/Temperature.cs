@@ -30,25 +30,27 @@ public class Temperature : MonoBehaviour, IPunObservable
     }
 
     void Update() {
-        if (isResting && restTime < 10f) {
-            restTime += Time.deltaTime;
-        } else {
-            isResting = false;
-            restTime = 0;
-        }
-
-        if (heater != null && heater.s != null) {
-            if (heater.s.val == 0 && cachedVal > 0) {
-                isResting = true;
-            } else if (isResting && heater.s.val > 0) {
+        if(_view.IsMine) {
+            if (isResting && restTime < 10f) {
+                restTime += Time.deltaTime;
+            } else {
                 isResting = false;
                 restTime = 0;
             }
-            cachedVal = heater.s.val;
+
+            if (heater != null && heater.s != null) {
+                if (heater.s.val == 0 && cachedVal > 0) {
+                    isResting = true;
+                } else if (isResting && heater.s.val > 0) {
+                    isResting = false;
+                    restTime = 0;
+                }
+                cachedVal = heater.s.val;
+            }
+            tempDelta = SetDelta();
+            temp += tempDelta * Time.deltaTime;
+            maxTemp = System.Math.Max(maxTemp, temp); 
         }
-        tempDelta = SetDelta();
-        temp += tempDelta * Time.deltaTime;
-        maxTemp = System.Math.Max(maxTemp, temp); 
     }
 
     private float SetDelta() {
@@ -95,7 +97,7 @@ public class Temperature : MonoBehaviour, IPunObservable
         return delta(maxTemp + 5);
     }
     void OnTriggerEnter(Collider other) {
-        if (other.tag == "heater") {
+        if (_view.IsMine && other.tag == "heater") {
             heater = other.GetComponent<HeatingElement>();
             if (heater != null && (heater.s == null || heater.s.val != 0)) {
                 isResting = false;
@@ -107,7 +109,7 @@ public class Temperature : MonoBehaviour, IPunObservable
 
     void OnTriggerExit(Collider other)
     {
-        if (heater != null && other.gameObject == heater.gameObject) {
+        if (_view.IsMine && heater != null && other.gameObject == heater.gameObject) {
             isResting = true;
             heater = null;
         }
@@ -133,7 +135,7 @@ public class Temperature : MonoBehaviour, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting && _view.IsMine)
+        if (stream.IsWriting)
         {
             stream.SendNext(temp);
             stream.SendNext(maxTemp);

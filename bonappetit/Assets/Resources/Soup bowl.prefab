@@ -751,6 +751,7 @@ GameObject:
   - component: {fileID: 646087123875748876}
   - component: {fileID: 2947762739225489947}
   - component: {fileID: 5238003760996203860}
+  - component: {fileID: 421351868}
   m_Layer: 9
   m_Name: Soup bowl
   m_TagString: plate
@@ -845,6 +846,7 @@ MonoBehaviour:
   liquid: {fileID: 1978148310}
   liquidStart: {fileID: 1107881584}
   liquidEnd: {fileID: 1211230694}
+  automaticRefill: 0
   variablePourRate: 1
   pourRateMultiplier: 1
   spout: {fileID: 1211230694}
@@ -1023,8 +1025,8 @@ MonoBehaviour:
   salt: 0
   pepper: 0
   parsley: 0
-  truffleOil: 0
   gruyere: 0
+  view: {fileID: 0}
 --- !u!114 &1882944699
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1056,13 +1058,13 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 1882944698}
   - {fileID: 1882944699}
   - {fileID: 5238003760996203860}
+  - {fileID: 421351868}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1109,6 +1111,25 @@ MonoBehaviour:
   m_SynchronizeAngularVelocity: 1
   m_TeleportEnabled: 1
   m_TeleportIfDistanceGreaterThan: 3
+--- !u!114 &421351868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4444202847724821724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4c1bb19472ba8843af4ab47679c70d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toastingTime: 0
+  cheeseTransform: {fileID: 1629250193879453133}
+  cheeseMesh: {fileID: 492984420713903778}
+  start: {fileID: 635975033}
+  end: {fileID: 1435038190}
+  _audio: {fileID: 1473627186}
+  _smoke: {fileID: 7999314828218428389}
 --- !u!1 &4464060650788601751
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,6 +1217,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 292aba2ee9dd54740bf0600a7b3933d8, type: 3}
+--- !u!198 &7999314828218428389 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 8565349758713262664, guid: 292aba2ee9dd54740bf0600a7b3933d8, type: 3}
+  m_PrefabInstance: {fileID: 1863780293264906669}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3828625221453360420
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1356,6 +1382,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2552808994348137708, guid: b7cadc8d771d2544d9cc46135d737de6, type: 3}
   m_PrefabInstance: {fileID: 3886927716605309217}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &492984420713903778 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 3685715387172063107, guid: b7cadc8d771d2544d9cc46135d737de6, type: 3}
+  m_PrefabInstance: {fileID: 3886927716605309217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!136 &634817256
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1466,19 +1497,3 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1473627187
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2150348733892237175}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4c1bb19472ba8843af4ab47679c70d4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toastingTime: 0
-  _temp: {fileID: 0}
-  start: {fileID: 635975033}
-  end: {fileID: 1435038190}
