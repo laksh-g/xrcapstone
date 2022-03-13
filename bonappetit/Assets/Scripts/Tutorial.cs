@@ -220,7 +220,17 @@ public class Tutorial : MonoBehaviour
         {
             highlightObjs.Add(new GameObject[] { null });
 
-            tutorialText = new string[] { "This tutorial is not available yet.\nPress the left menu button to return to the lobby." };
+            tutorialText = new string[] 
+            {
+                "Head chefs receive tickets with orders from the ticketing machine. In a real game, this is where you would read out directions for your line cooks.", 
+                "Be careful to look for any order modifications that customers have requested (no bread for french onion soup)",
+                "Looks like this dish (french onion soup) is almost complete! Just torch it and add parsley.",
+                "Looks like this dish (crab cakes) is almost complete! Just add the fresh sprouts to garnish. The head chef is responsible for quality assurance and garnishing for all dishes.",
+                "Once you're done, take the item and place it in the staging area.",
+                "Once everything for an order is in the staging area, simply place the ticket in the staging area to send it away.",
+                "After submitting an order, feedback will be printed by the machine, so you can see how you did!",
+                "Congratulations! \nYou have successfully completed the head chef tutorial! \n\nTIP: You can press the left menu button to return to the lobby. This works in a multiplayer game as well!"
+            };
             header = "Head Chef Tutorial\n";
         }
         else

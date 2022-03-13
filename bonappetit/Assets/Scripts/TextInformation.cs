@@ -46,14 +46,15 @@ public class TextInformation : MonoBehaviour
         text.text = "";
         if (tutorialText != null)
         {
-            text.text += tutorialText + '\n' + '\n';
+            text.text += tutorialText + "\n-------\n";
         }
         if (debugText != null)
         {
-            text.text += debugText + '\n' + '\n';
+            text.text += debugText + "\n-------\n";
         }
         if (selectedObject != null) 
         {
+            text.text += "Object Information:\n";
             UpdateText();
         }
         else
@@ -230,15 +231,20 @@ public class TextInformation : MonoBehaviour
             }*/
 
             var cook = selectedObject.GetComponent<Cookable>();
-            if (cook != null && cook.isSearable)
+            if (cook != null)
             {
                 text.text += "Cook Status: " + cook.GetStatus() + '\n';
+                if (cook.isSearable)
+                {
+                    text.text += "Sear Status: " + cook.GetSearStatus() + '\n';
+                    text.text += "Sear Time: " + cook.searTime.ToString("F0") + " s" + '\n';
+                }
             }
 
             var steak = selectedObject.GetComponent<Steak>();
             if (steak != null)
             {
-                text.text += "Sear Time: " + steak.searTime.ToString("F0") + " s" + '\n';
+                // text.text += "Sear Time: " + steak.searTime.ToString("F0") + " s" + '\n';
                 text.text += "Rest time: " + steak.restTime.ToString("F0") + " s" + '\n';
                 text.text += "Doneness: " + steak.GetDonenessLabel() + '\n';
                 // text.text += "Salt: " + steak.seasoning.salt.ToString("F1") + " g" + '\n';
