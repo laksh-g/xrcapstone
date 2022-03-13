@@ -111,9 +111,9 @@ public class AssignRoles : MonoBehaviourPunCallbacks
                 RoomSettings.interactable = true;
                 PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
             }else{
-                //StartGame.interactable = false;
+                StartGame.interactable = false;
                 RoomSettings.interactable = false;
-                StartGame.interactable = true;
+                //StartGame.interactable = true;
             }
         }
     }
