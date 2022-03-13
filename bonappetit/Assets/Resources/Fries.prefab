@@ -138,7 +138,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 7085089323787246872}
         m_TargetAssemblyTypeName: Plateable, Assembly-CSharp
-        m_MethodName: Unstick
+        m_MethodName: GrabUnstick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -237,7 +237,6 @@ MonoBehaviour:
   salt: 0
   pepper: 0
   parsley: 0
-  truffleOil: 0
   gruyere: 0
 --- !u!114 &7085089323787246872
 MonoBehaviour:
@@ -5075,11 +5074,12 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 608692678872829872}
+  - {fileID: 4319362887819050187}
   - {fileID: 3010052638963382522}
   - {fileID: 137290389}
   sceneViewId: 0

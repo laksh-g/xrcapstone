@@ -566,7 +566,7 @@ BoxCollider:
   m_GameObject: {fileID: 580239380}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1016,7 +1016,7 @@ BoxCollider:
   m_GameObject: {fileID: 1073021592}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1301,7 +1301,7 @@ BoxCollider:
   m_GameObject: {fileID: 1191681044}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -1491,7 +1491,7 @@ BoxCollider:
   m_GameObject: {fileID: 1574962406}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -2069,7 +2069,7 @@ GameObject:
   - component: {fileID: 2014999941245597291}
   - component: {fileID: 2014999941245597288}
   - component: {fileID: 5818997364780160812}
-  - component: {fileID: 7994200338086348676}
+  - component: {fileID: 8028590841542459365}
   m_Layer: 0
   m_Name: Prop_KitchenTable_06_p03
   m_TagString: Untagged
@@ -2201,15 +2201,15 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 7994200338086348676}
+  - {fileID: 8028590841542459365}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &7994200338086348676
+--- !u!114 &8028590841542459365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2218,13 +2218,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2940365807629847027}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 0
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &4390077976405208707
 GameObject:
   m_ObjectHideFlags: 0
@@ -2240,7 +2240,7 @@ GameObject:
   - component: {fileID: 2014999940137427808}
   - component: {fileID: 2014999940137427815}
   - component: {fileID: 3707397859902161329}
-  - component: {fileID: 318680104847796603}
+  - component: {fileID: 6357638594719221002}
   m_Layer: 0
   m_Name: Prop_KitchenTable_06_p02
   m_TagString: Untagged
@@ -2372,15 +2372,15 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 318680104847796603}
+  - {fileID: 6357638594719221002}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &318680104847796603
+--- !u!114 &6357638594719221002
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2389,13 +2389,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4390077976405208707}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 0
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &5173515262127709114
 GameObject:
   m_ObjectHideFlags: 0
@@ -2411,7 +2411,7 @@ GameObject:
   - component: {fileID: 2014999941678842552}
   - component: {fileID: 2014999941678842559}
   - component: {fileID: 8460232819946213753}
-  - component: {fileID: 7535607249355770771}
+  - component: {fileID: 7122354552570994440}
   m_Layer: 0
   m_Name: Prop_KitchenTable_06_p04
   m_TagString: Untagged
@@ -2543,15 +2543,15 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 7535607249355770771}
+  - {fileID: 7122354552570994440}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
---- !u!114 &7535607249355770771
+--- !u!114 &7122354552570994440
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2560,13 +2560,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5173515262127709114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Script: {fileID: 11500000, guid: 64179f3720bbfe947b7724caa67b7c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SynchronizePosition: 1
-  m_SynchronizeRotation: 0
-  m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_SynchronizeVelocity: 1
+  m_SynchronizeAngularVelocity: 0
+  m_TeleportEnabled: 1
+  m_TeleportIfDistanceGreaterThan: 3
 --- !u!1 &8173613047192007002
 GameObject:
   m_ObjectHideFlags: 0

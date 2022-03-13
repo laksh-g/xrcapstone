@@ -1645,7 +1645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &6235101483837444272
 Transform:
   m_ObjectHideFlags: 0
@@ -1742,6 +1742,7 @@ MonoBehaviour:
   liquid: {fileID: 6802898898792558465}
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
+  automaticRefill: 1
   variablePourRate: 0
   pourRateMultiplier: 1
   spout: {fileID: 0}
@@ -1983,6 +1984,7 @@ MonoBehaviour:
   liquid: {fileID: 7546722366285480882}
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
+  automaticRefill: 1
   variablePourRate: 0
   pourRateMultiplier: 1
   spout: {fileID: 0}
@@ -2509,6 +2511,7 @@ MonoBehaviour:
   liquid: {fileID: 8611059396678241240}
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
+  automaticRefill: 1
   variablePourRate: 0
   pourRateMultiplier: 1
   spout: {fileID: 0}
@@ -2810,6 +2813,7 @@ MonoBehaviour:
   liquid: {fileID: 8749157721646240547}
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
+  automaticRefill: 1
   variablePourRate: 0
   pourRateMultiplier: 1
   spout: {fileID: 0}

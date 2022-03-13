@@ -32,24 +32,26 @@ public class GameManager : MonoBehaviour
 
     private bool endgame = false;
 
-    private string menu = "00000";
+    private string menu = "10000";
 
     private int ticketOption; // 0 is single, 1 is multiple
 
     public bool test = false;
 
+    public bool tutorial = false;
+
     // Start is called before the first frame update
 
     void Start() {
         if (test) {
-            StartGame();
+            PhotonNetwork.Destroy(startButton);
+            CreateTestOrders();
+        } else if (tutorial) {
+            PhotonNetwork.Destroy(startButton);
+            createTutorialOrder();
         }
     }
     public void StartGame() {
-        if (test) {
-            CreateTestOrders();
-            return;
-        }
         InvokeRepeating("createStartingOrders", 0f, 10f);
         a.PlayOneShot(startGameSound);
         isActive = true;
@@ -105,9 +107,15 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DrawNewOrder());
     }
 
+    public void createTutorialOrder() {
+        Order newOrder = new Order(1, ticketOption, menu, false, true);
+        openOrders.Add(1, newOrder);
+        createTicket(newOrder);
+    }
+
     private void CreateTestOrders() {
         for (int i = 0; i < 5; i++) {
-            Order newOrder = new Order(i, ticketOption, menu, true);
+            Order newOrder = new Order(i, ticketOption, menu, true, false);
             openOrders.Add(i, newOrder);
             createTicket(newOrder);
         }
@@ -123,7 +131,7 @@ public class GameManager : MonoBehaviour
             }
 
             orderNum++;
-            Order newOrder = new Order(orderNum, ticketOption, menu, false);
+            Order newOrder = new Order(orderNum, ticketOption, menu, false, false);
             openOrders.Add(orderNum, newOrder);
             a.PlayOneShot(startGameSound);
             createTicket(newOrder);
@@ -214,9 +222,9 @@ public class GameManager : MonoBehaviour
     }
 
     private void createTicket(Order newOrder)
-    {
-        GameObject newTicket = null;
-        if (test) {
+    {   
+        GameObject newTicket;
+        if (test || tutorial) {
             newTicket = Instantiate(ticketPrefab, ticketSpawn.position, ticketSpawn.rotation);
         } else {
             newTicket = PhotonNetwork.Instantiate(ticketPrefab.name, ticketSpawn.position, ticketSpawn.rotation);
@@ -232,7 +240,7 @@ public class GameManager : MonoBehaviour
         return score;
     }
 
-    public (float, string) EvaluateOrder(HashSet<GameObject> plates, int orderNum) {
+    public (float, string) EvaluateOrder(HashSet<Dish> plates, int orderNum) {
         if (!openOrders.ContainsKey(orderNum)) {
             return (0f, "Comments: Old order sent, wasted food");
         }
@@ -246,26 +254,25 @@ public class GameManager : MonoBehaviour
         float currScore;
         HashSet<Orderable> remainingCovers = new HashSet<Orderable>(order.contents);
         Orderable closestMatch;
-        foreach (GameObject p in plates) {
+        foreach (Dish p in plates) {
             closestMatch = null;
             maxScore = 0;
-            Dish info = p.GetComponent<Dish>();
             foreach (Orderable o in remainingCovers)
             {
                
-                if (o is SteakFritesOrder && info.dishID == "steakfrites")
+                if (o is SteakFritesOrder && p.dishID == "steakfrites")
                 {
                     (currScore, plateComments) = ((SteakFritesOrder)o).Evaluate(p);
-                } else if (o is OnionSoupOrder && info.dishID == "onionsoup") {
+                } else if (o is OnionSoupOrder && p.dishID == "onionsoup") {
                     (currScore, plateComments) = ((OnionSoupOrder)o).Evaluate(p);
-                } else if (o is TableBreadOrder && info.dishID == "tablebread") {
+                } else if (o is TableBreadOrder && p.dishID == "tablebread") {
                     (currScore, plateComments) = ((TableBreadOrder)o).Evaluate(p);
-                } else if (o is CrabCakeOrder && info.dishID == "crabcakes") {
+                } else if (o is CrabCakeOrder && p.dishID == "crabcakes") {
                     (currScore, plateComments) = ((CrabCakeOrder)o).Evaluate(p);
-                } else if (o is RoastChickenOrder && info.dishID == "roastchicken") {
+                } else if (o is RoastChickenOrder && p.dishID == "roastchicken") {
                     (currScore, plateComments) = ((RoastChickenOrder)o).Evaluate(p);
                 }
-                else { currScore = 0; plateComments = "Bad type"; }
+                else { currScore = 0; plateComments = "Wrong order :("; }
                 maxScore = Mathf.Max(maxScore, currScore);
                 if (maxScore == currScore)
                 {
@@ -303,7 +310,7 @@ public class GameManager : MonoBehaviour
         public int partySize;
         public List<Orderable> contents = new List<Orderable>();
         public GameObject gObj;
-        public Order(int orderNum, int ticketOption, string menu, bool isTest)
+        public Order(int orderNum, int ticketOption, string menu, bool isTest, bool isTutorial)
         {
             this.orderNum = orderNum;
             partySize = 1;
@@ -315,6 +322,12 @@ public class GameManager : MonoBehaviour
                     case 3: contents.Add(new TableBreadOrder()); break;
                     case 4: contents.Add(new CrabCakeOrder()); break;
                 }
+                return;
+            }
+            if (isTutorial) {
+                partySize = 2;
+                contents.Add(new OnionSoupOrder(false));
+                contents.Add(new CrabCakeOrder());
                 return;
             }
             if (ticketOption == 1) {
@@ -389,14 +402,14 @@ public class GameManager : MonoBehaviour
             return "French Onion Soup\n" + (hasBread ? "" : "-MODIFICATION: NO BREAD\n");
         }
 
-        public (float, string) Evaluate(GameObject p) {
+        public (float, string) Evaluate(Dish p) {
             float total = 0;
             bool foundBread = false;
             string comments = "Onion soup: ";
 
             // evaluate bread
-            foreach (Transform child in p.transform) {
-                GameObject target = child.gameObject;
+            foreach (int id in p.connectedItems) {
+                GameObject target = PhotonView.Find(id).gameObject;
                 if (target.tag == "bread") {
                     foundBread = true;
                     break;
@@ -433,9 +446,9 @@ public class GameManager : MonoBehaviour
             if (l == null) {
                 Debug.Log("Couldn't find liquid container on onion soup");
             } else {
-                if (l.tag == "frenchonionsoup" && l.currentVolume >= 500) {
+                if (l.tag == "french onion soup" && l.currentVolume >= 500) {
                     total += 5;
-                } else if (p.tag == "frenchonionsoup" && l.currentVolume < 500 && l.currentVolume > 0) {
+                } else if (p.tag == "french onion soup" && l.currentVolume < 500 && l.currentVolume > 0) {
                     total += 3;
                     comments += "not enough soup, ";
                 } else {
@@ -476,7 +489,7 @@ public class GameManager : MonoBehaviour
             b = new BearnaiseOrder();
             hasSauce = Random.Range(0f, 1f) > .20;
         }
-        public (float, string) Evaluate(GameObject p) {
+        public (float, string) Evaluate(Dish p) {
             float total = 0;
             string comments = "Steak Frites: ";
             Steak steak = null;
@@ -485,9 +498,8 @@ public class GameManager : MonoBehaviour
         
             float tempVal = 0;
             string tempString = "";
-            foreach (Transform child in p.transform)
-            {
-                GameObject target = child.gameObject;
+            foreach (int id in p.connectedItems) {
+                GameObject target = PhotonView.Find(id).gameObject;
                 if (steak == null && target.tag == "steak") {
                     steak = target.GetComponent<Steak>();
                 } else if (fry == null && target.tag == "fry") {
@@ -688,18 +700,19 @@ public class GameManager : MonoBehaviour
 
     private class CrabCakeOrder : Orderable {
 
-        public (float, string) Evaluate(GameObject p) {
+        public (float, string) Evaluate(Dish p) {
         
             float total = 0;
             string comments = "Crab cakes notes: ";
             int crabCakesFound = 0;
             bool foundSprouts = false;
-            foreach (Transform t in p.transform) {
-                if (t.tag == "crab_cake") {
+            foreach (int id in p.connectedItems) {
+                GameObject target = PhotonView.Find(id).gameObject;
+                if (target.tag == "crab_cake") {
                     float itemTotal = 5;
                     crabCakesFound += 1;
-                    Cookable c = t.gameObject.GetComponent<Cookable>();
-                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    Cookable c = target.GetComponent<Cookable>();
+                    Temperature temp = target.GetComponent<Temperature>();
                     if (c.searTime < c.desiredSearTime) {
                         comments += "under seared, ";
                         itemTotal -= 1;
@@ -716,7 +729,7 @@ public class GameManager : MonoBehaviour
                         itemTotal -= 3;
                     }
                     total += itemTotal;
-                } else if (t.tag == "sprouts") {
+                } else if (target.tag == "sprouts") {
                     foundSprouts = true;
                     total += 5;
                 }
@@ -754,16 +767,17 @@ public class GameManager : MonoBehaviour
             return "Table Bread\n";
         }
 
-        public (float, string) Evaluate(GameObject p) {
+        public (float, string) Evaluate(Dish p) {
             float total = 0;
             string comments = "Table Bread notes: ";
             bool foundBread = false;
             bool foundOil = false;
-            foreach(Transform t in p.transform) {
-                if (t.tag == "bread") {
+            foreach (int id in p.connectedItems) {
+                GameObject target = PhotonView.Find(id).gameObject;
+                if (target.tag == "bread") {
                     foundBread = true;
-                    Cookable c = t.gameObject.GetComponent<Cookable>();
-                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    Cookable c = target.gameObject.GetComponent<Cookable>();
+                    Temperature temp = target.gameObject.GetComponent<Temperature>();
                     if (temp.maxTemp < c.cookedTemp) {
                         total += 3;
                         comments += "bread was cold, ";
@@ -773,7 +787,7 @@ public class GameManager : MonoBehaviour
                     } else {
                         total += 5;
                     }
-                } else if (t.tag == "olive oil") {
+                } else if (target.tag == "olive oil") {
                     total += 5;
                     foundOil = true;
                 }
@@ -797,18 +811,19 @@ public class GameManager : MonoBehaviour
             return "Roast Chicken w/ Vegetables\n";
         }
 
-        public (float, string) Evaluate(GameObject p) {
+        public (float, string) Evaluate(Dish p) {
             float total = 0;
             string comments = "Roast Chicken notes: ";
             bool breastFound = false;
             int wingCount = 0;
             bool vegFound = false;
-            foreach (Transform t in p.transform) {
-                if (t.tag == "breast") {
+            foreach (int id in p.connectedItems) {
+                GameObject target = PhotonView.Find(id).gameObject;
+                if (target.tag == "breast") {
                     float itemTotal = 5;
                     breastFound = true;
-                    Cookable c = t.gameObject.GetComponent<Cookable>();
-                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    Cookable c = target.gameObject.GetComponent<Cookable>();
+                    Temperature temp = target.gameObject.GetComponent<Temperature>();
                     if (temp.maxTemp < c.cookedTemp) {
                         total += 0;
                         comments += "chicken breast undercooked, ";
@@ -818,17 +833,17 @@ public class GameManager : MonoBehaviour
                         comments += "chicken breast overcooked, ";
                     }
 
-                    Seasonable s = t.gameObject.GetComponent<Seasonable>();
+                    Seasonable s = target.gameObject.GetComponent<Seasonable>();
                     if (s.salt == 0 || s.pepper == 0 || s.parsley == 0) {
                         itemTotal -= 2;
                         comments += "chicken breast seasoning was off, ";
                     }
                     total += itemTotal;
-                } else if (t.tag == "wing") {
+                } else if (target.tag == "wing") {
                     wingCount += 1;
                     float itemTotal = 5;
-                    Cookable c = t.gameObject.GetComponent<Cookable>();
-                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    Cookable c = target.GetComponent<Cookable>();
+                    Temperature temp = target.GetComponent<Temperature>();
                     if (temp.maxTemp < c.cookedTemp) {
                         total += 0;
                         comments += "wing undercooked, ";
@@ -838,24 +853,24 @@ public class GameManager : MonoBehaviour
                         comments += "wing overcooked, ";
                     }
 
-                    Seasonable s = t.gameObject.GetComponent<Seasonable>();
+                    Seasonable s = target.GetComponent<Seasonable>();
                     if (s.salt == 0 || s.pepper == 0 || s.parsley == 0) {
                         itemTotal -= 2;
                         comments += "wing seasoning was off, ";
                     }
                     total += itemTotal;
-                } else if (t.tag == "vegetables") {
+                } else if (target.tag == "vegetables") {
                     vegFound = true;
                     float itemTotal = 5;
-                    Cookable c = t.gameObject.GetComponent<Cookable>();
-                    Temperature temp = t.gameObject.GetComponent<Temperature>();
+                    Cookable c = target.GetComponent<Cookable>();
+                    Temperature temp = target.GetComponent<Temperature>();
                     if (temp.maxTemp < c.cookedTemp) {
                         total += 0;
                         comments += "vegetables undercooked, ";
                         break;
                     }
 
-                    Seasonable s = t.gameObject.GetComponent<Seasonable>();
+                    Seasonable s = target.GetComponent<Seasonable>();
                     if (s.salt == 0 || s.pepper == 0 || s.parsley == 0) {
                         itemTotal -= 2;
                         comments += "vegetable seasoning was off, ";

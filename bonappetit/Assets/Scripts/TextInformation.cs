@@ -75,14 +75,15 @@ public class TextInformation : MonoBehaviour
     void UpdateText() 
     {
         //text.text += "Name: " + selectedObject.name + '\n';
-/* Debug info
+// Debug info
         var view = selectedObject.GetComponent<PhotonView>();
         if (view != null) {
             text.text += "Is my item: " + view.IsMine + "\n";
         }
 
         text.text += "Item layer: " + selectedObject.layer + "\n";
-        */
+        text.text += "Item tag: " + selectedObject.tag + "\n";
+        
         var desc = selectedObject.GetComponent<Description>();
         string tagStr = selectedObject.tag;
         if (desc == null)
