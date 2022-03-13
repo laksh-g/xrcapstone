@@ -69,4 +69,8 @@ public class RoomMenuSelector : MonoBehaviourPunCallbacks
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
         }
     }
+
+    public void openRoom(){
+        PhotonNetwork.CurrentRoom.IsVisible = true;
+    }
 }
