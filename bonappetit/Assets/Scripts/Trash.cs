@@ -15,6 +15,10 @@ public class Trash : MonoBehaviour
             // don't destroy orders because those assets are reused
             return;
         }
+        PhotonView view = other.GetComponent<PhotonView>();
+        if (view == null || !view.IsMine) {
+            return;
+        }
         if (specificTrash) {
             if (acceptedTags.Contains(other.gameObject.tag)) {
                 PhotonNetwork.Destroy(other.gameObject);

@@ -200,8 +200,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyAllowOneActiveCopy: 0
   initialSpawnedObject: {fileID: 6096738224976735803}
   prefab: {fileID: 5789349069673887419, guid: 3ab4a281c19b55f46aac90d05a8e7628, type: 3}
+--- !u!114 &2541221008006388006
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7352310121478469757}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 1
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1001 &5277655925621720922
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -215,12 +238,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7072609311942444512, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
       propertyPath: ObservedComponents.Array.size
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7072609311942444512, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
       propertyPath: ObservedComponents.Array.data[1]
       value: 
-      objectReference: {fileID: 4426852283918462322}
+      objectReference: {fileID: 4101978279579157042}
     - target: {fileID: 7431015553467155717, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
       propertyPath: m_Name
       value: Food_Chicken Breast
@@ -285,15 +308,15 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7812502814254456767, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
   m_PrefabInstance: {fileID: 5277655925621720922}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &4426852283918462322 stripped
+--- !u!114 &4101978279579157042 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8381575663307270696, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
+  m_CorrespondingSourceObject: {fileID: 8201942885323769192, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
   m_PrefabInstance: {fileID: 5277655925621720922}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3323169838460502623}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db88ea5d32dadce4d9d74eb47387f81e, type: 3}
+  m_Script: {fileID: 11500000, guid: f0e6caba6cb40ee4ba75aea201b9092e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &5899740371541722334
@@ -392,5 +415,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyAllowOneActiveCopy: 0
   initialSpawnedObject: {fileID: 3323169838460502623}
   prefab: {fileID: 7431015553467155717, guid: 291ea97bd2e918242968429b95de0c61, type: 3}
+--- !u!114 &7205689181841596454
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2085633188111220349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 1
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

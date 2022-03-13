@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 public class Grater : MonoBehaviour
 {
@@ -15,12 +16,15 @@ public class Grater : MonoBehaviour
     private AudioSource a = null;
     public AudioClip shakeSound = null;
     private readonly float pourRate = 0.2f; // in grams
+
+    private PhotonView _view;
     // Start is called before the first frame update
     void Start()
     {
         r = GetComponent<Rigidbody>();
         p = GetComponentInChildren<ParticleSystem>();
         a = GetComponent<AudioSource>();
+        _view = GetComponent<PhotonView>();
     }
     void Update()
     {
@@ -37,6 +41,14 @@ public class Grater : MonoBehaviour
                     target = null;
                 }
             }
+
+
+            if (_view.IsMine && isPouring) {
+                CheckHit();
+                if (target != null) {
+                    _view.RPC("GrateObject", RpcTarget.AllViaServer, target.GetComponent<PhotonView>().ViewID);
+                }
+        }
     }
 
 
@@ -63,17 +75,6 @@ public class Grater : MonoBehaviour
             gratedObj = null;
         }
     }
-    void FixedUpdate()
-    {
-        if (isPouring) {
-            CheckHit();
-            if (target != null && gratedObj != null) {
-                if (gratedObj.tag == "gruyere") {
-                    target.gruyere += pourRate;
-                }
-            }
-        }
-    }
 
     private void CheckHit() {
         int layerMask = (1 << 9) | (1 << 10); // only cast against layers 9 and 10
@@ -87,6 +88,15 @@ public class Grater : MonoBehaviour
             } else {
                 target = null;
             }
+        }
+    }
+
+    [PunRPC]
+    void GrateObject(int id) {
+        PhotonView obj = PhotonView.Find(id);
+        if (obj != null) {
+            Seasonable thistarget = obj.GetComponent<Seasonable>();
+            thistarget.gruyere += pourRate;
         }
     }
 }

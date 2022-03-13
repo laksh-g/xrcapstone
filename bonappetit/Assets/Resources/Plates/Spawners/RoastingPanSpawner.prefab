@@ -112,6 +112,10 @@ PrefabInstance:
       value: Roasting Pan (1)
       objectReference: {fileID: 0}
     - target: {fileID: 777916474672774933, guid: 7029e88063b9db34b8c5329127e7c1c1, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 777916474672774933, guid: 7029e88063b9db34b8c5329127e7c1c1, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -301,6 +305,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 777916474672774933, guid: 7029e88063b9db34b8c5329127e7c1c1, type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 777916474672774933, guid: 7029e88063b9db34b8c5329127e7c1c1, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -375,6 +383,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.30161452, y: 0.040564895, z: 0.30093113}
   m_Center: {x: 0.00085535645, y: -0.002692759, z: -0.0005136579}
+--- !u!114 &3040972732920059698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7702125881449792493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 1
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!114 &6929003840191142648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,5 +417,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyAllowOneActiveCopy: 0
   initialSpawnedObject: {fileID: 7702125880417707667}
   prefab: {fileID: 777916474672774933, guid: 7029e88063b9db34b8c5329127e7c1c1, type: 3}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Plateable : MonoBehaviourPunCallbacks
 {
@@ -13,7 +14,7 @@ public class Plateable : MonoBehaviourPunCallbacks
     private bool connected = false;
 
     public Transform point = null;
-
+    private FixedJoint _joint = null;
     private Transform _transform;
     private Rigidbody _rb;
 
@@ -35,8 +36,8 @@ public class Plateable : MonoBehaviourPunCallbacks
     }
 
     void Update() {
-        if (connected && _view.IsMine && point != null && CalculatePlateAngle(point.parent.parent) > 60) {
-            _view.RPC("Unstick", RpcTarget.All, plateID);
+        if (_view.IsMine && point != null && CalculatePlateAngle(point.parent.parent) > 60) {
+            _view.RPC("Unstick", RpcTarget.AllViaServer, plateID);
         } else if (connected) {
             if (plateTemp != null && _temp != null) {
                 _temp.heater = plateTemp.heater;
@@ -46,9 +47,9 @@ public class Plateable : MonoBehaviourPunCallbacks
     }
     void OnTriggerEnter (Collider other) {
         if(!connected && _view.IsMine && other.gameObject.tag == "plate" 
-        && CalculatePlateAngle(other.transform) < 10 ) {
+        && CalculatePlateAngle(other.transform) < 10 && other.transform.parent.gameObject.layer != 3) {
             PhotonView view = other.GetComponentInParent<PhotonView>();
-            _view.RPC("StickTo", RpcTarget.All, view.ViewID);
+            _view.RPC("StickTo", RpcTarget.AllViaServer, view.ViewID);
         }
     }
 
@@ -59,10 +60,17 @@ public class Plateable : MonoBehaviourPunCallbacks
             connected = false;
             point.tag = tag; // reset tag
             point = null;
+            //Destroy(_joint);
+            //_joint = null;
             gameObject.layer = 9; // set back to food layer
-            _transform.parent = null;
+            //_transform.parent = null;
             _rb.isKinematic = false;
             plateID = -1;
+            Dish d = PhotonView.Find(id).GetComponent<Dish>();
+            if (d != null) {
+                d.connectedItems.Remove(_view.ViewID);
+            }
+            
         }
     }
 
@@ -72,6 +80,11 @@ public class Plateable : MonoBehaviourPunCallbacks
         return Mathf.Max(zAngle, xAngle);
     }
 
+    public void GrabUnstick() {
+        if (connected && _view.IsMine) {
+            _view.RPC("Unstick", RpcTarget.AllViaServer, plateID);
+        }
+    }
     [PunRPC]
     void StickTo(int id, PhotonMessageInfo info) {
             GameObject target = PhotonView.Find(id).gameObject;
@@ -80,14 +93,23 @@ public class Plateable : MonoBehaviourPunCallbacks
             foreach (Transform t in transforms) {
                 Debug.Log("found hook for " + t.tag);
                 if (t.CompareTag(tag)) {
+                    _transform.SetPositionAndRotation(t.position, t.rotation);
+                    //_joint = gameObject.AddComponent<FixedJoint>();
+                    //_joint.connectedBody = target.GetComponent<Rigidbody>();
+                    //_joint.breakForce = Mathf.Infinity;
+                    //_joint.enableCollision = false;
                     _rb.isKinematic = true;
                     gameObject.layer = 10; // set to plated layer to disable collisions
                     connected = true;
                     point = t;
                     t.tag = "occupied"; // set the tag so other objects don't try to stick here
                     plateTemp = target.GetComponent<Temperature>();
-                    _transform.parent = target.transform;
+                    //_transform.parent = target.transform;
                     Debug.Log(tag + " acquired plate");
+                    Dish d = target.GetComponent<Dish>();
+                    if (d != null) {
+                        d.connectedItems.Add(_view.ViewID);
+                    }
                     break;
                 }
             }

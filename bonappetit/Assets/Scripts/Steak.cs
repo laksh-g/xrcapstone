@@ -9,8 +9,8 @@ public class Steak : MonoBehaviour, IPunObservable
 {
     // metadata used for quality checking
     public Seasonable seasoning = null;
-    public float restTime; // in seconds
     [SerializeField]
+    public float restTime; // in seconds
     public bool isResting; // true when steak was just taken off heating source
     public GameObject smokePrefab;
     private ParticleSystem smokeInstance;
@@ -49,14 +49,16 @@ public class Steak : MonoBehaviour, IPunObservable
     }
 
     void Update() {
-        if (isResting) {
+        if (_view.IsMine && isResting) {
             restTime += Time.unscaledDeltaTime;
         }
         if (heater != null && heater.s != null) {
             if (heater.s.val > 0 && !heater.isCooler && !a.isPlaying) {a.Play();}
             a.volume = .5f;
             if ((heater.s.val == 3 && heater.s.numSettings == 4)) {
-                searTime += Time.deltaTime;
+                if (_view.IsMine) {
+                    searTime += Time.deltaTime;
+                }
                 a.volume = 1f;
                 if (smokeInstance == null) {
                     smokeInstance = Instantiate(smokePrefab, transform.position, Quaternion.Euler(-90, 0, 0), transform).GetComponent<ParticleSystem>();
@@ -90,12 +92,17 @@ public class Steak : MonoBehaviour, IPunObservable
     }
 
     void OnTriggerEnter(Collider other) {
-        isResting = false;
-        heater = other.GetComponent<HeatingElement>();
+        if (other.tag == "heater") {
+            heater = other.GetComponent<HeatingElement>();
+            if (heater != null && (heater.s == null || heater.s.val != 0)) {
+                isResting = false;
+                restTime = 0;
+            }
+        }
     }
 
     void OnTriggerExit(Collider other) {
-        if (heater != null) {
+        if (heater != null && other.gameObject == heater.gameObject) {
             isResting = true;
             heater = null;
         }
@@ -120,14 +127,14 @@ public class Steak : MonoBehaviour, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting && _view.IsMine)
+        if (stream.IsWriting)
         {
-            stream.SendNext(isResting);
+            stream.SendNext(restTime);
             stream.SendNext(searTime);
         }
         else
         {
-            isResting = (bool)stream.ReceiveNext();
+            restTime = (float)stream.ReceiveNext();
             searTime = (float)stream.ReceiveNext();
         }
     }

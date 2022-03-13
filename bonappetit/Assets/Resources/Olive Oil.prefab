@@ -155,6 +155,7 @@ MonoBehaviour:
   liquid: {fileID: 0}
   liquidStart: {fileID: 0}
   liquidEnd: {fileID: 0}
+  automaticRefill: 0
   variablePourRate: 0
   pourRateMultiplier: 1
   spout: {fileID: 3237354572615528820}
@@ -188,11 +189,12 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 6264675546211202010}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0

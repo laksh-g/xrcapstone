@@ -434,9 +434,11 @@ GameObject:
   - component: {fileID: 1725186017721985247}
   - component: {fileID: 234753141}
   - component: {fileID: 8850053312881370710}
+  - component: {fileID: 3292905217637450827}
+  - component: {fileID: 6556062136332773263}
   m_Layer: 8
   m_Name: Prop_Pan_02
-  m_TagString: Untagged
+  m_TagString: pan drippings
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -534,7 +536,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2839303931877233242}
   serializedVersion: 2
-  m_Mass: 1
+  m_Mass: 1000
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -562,6 +564,7 @@ MonoBehaviour:
   liquid: {fileID: 7924069092009698793}
   liquidStart: {fileID: 1431015373079499317}
   liquidEnd: {fileID: 2635261117090841618}
+  automaticRefill: 0
   variablePourRate: 1
   pourRateMultiplier: 2
   spout: {fileID: 1095115938377421146}
@@ -710,7 +713,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
@@ -769,6 +772,34 @@ MonoBehaviour:
   shallotTransform: {fileID: 1667804714365697333}
   _temp: {fileID: 0}
   sauceMaterial: {fileID: 2100000, guid: 2bae2af3210034daf99a6f3f575d18c8, type: 2}
+--- !u!114 &3292905217637450827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2839303931877233242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d59299b9ed1fbbd43b5cb203fdeaa472, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dishID: ' SaucePan'
+  itemFolder: {fileID: 0}
+--- !u!114 &6556062136332773263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2839303931877233242}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 205441cb8da75384e98ebec1708f51b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  label: Frying Pan
+  desc: Great for sauteeing crab cakes or making sauces
 --- !u!1 &2846823017024757992
 GameObject:
   m_ObjectHideFlags: 0
@@ -1039,6 +1070,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   s: {fileID: 0}
   isOvenlike: 0
+  isCooler: 0
   temperatureSettings: []
 --- !u!1 &7675419426400604567
 GameObject:

@@ -8,12 +8,21 @@ public class TurnInZone : MonoBehaviour
 {
     public GameManager gm = null;
 
-    public HashSet<GameObject> contents = new HashSet<GameObject>();
+    public HashSet<Dish> contents = new HashSet<Dish>();
     public bool activate = false;
+
+    public Material green;
+    public Material red;
+
+    private bool isRejecting;
+
+    private float rejectTime;
+
+    private MeshRenderer _mesh;
     // Start is called before the first frame update
     void Start()
     {
-        
+        _mesh = GetComponent<MeshRenderer>();
     }
 
     // Update is called once per frame
@@ -25,35 +34,45 @@ public class TurnInZone : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        if (other.gameObject.GetComponent<Dish>() != null) {
-            GameObject p = other.gameObject;
-            if (p == null) {
-                print("can't harvest plate");
-            }
-            contents.Add(p);
+        Dish d = other.gameObject.GetComponent<Dish>();
+        if (d != null) {
+            contents.Add(d);
         }
         if (other.tag == "order") {
-            TurnIn(other.gameObject.GetComponent<Printable>().orderNum);
-            PhotonNetwork.Destroy(other.gameObject);
+            if (contents.Count > 0) {
+                TurnIn(other.gameObject.GetComponent<Printable>().orderNum);
+                PhotonNetwork.Destroy(other.gameObject);
+            } else {
+                StartCoroutine(flashRed());
+            }
         }
     }
 
     void TurnIn(int orderNum) {
         float score;
         string comments;
-        if (contents != null && contents.Count > 0) {
-            (score, comments) = gm.EvaluateOrder(contents, orderNum);
-            print(score + " " + comments);
-            foreach (GameObject child in contents.ToList()) {
-                contents.Remove(child);
-                PhotonNetwork.Destroy(child);
+        (score, comments) = gm.EvaluateOrder(contents, orderNum);
+        print(score + " " + comments);
+        foreach (Dish child in contents.ToList()) {
+            contents.Remove(child);
+            foreach (int id in child.connectedItems) {
+                PhotonNetwork.Destroy(PhotonView.Find(id));
             }
+            PhotonNetwork.Destroy(child.gameObject);
         }
     }
 
+    IEnumerator flashRed() {
+        _mesh.material = red;
+        yield return new WaitForSeconds(.5f);
+        _mesh.material = green;
+
+    }
+
     void OnTriggerExit(Collider other) {
-        if (other.tag == "plate") {
-            contents.Remove(other.gameObject);
+        Dish d = other.gameObject.GetComponent<Dish>();
+        if (d != null) {
+            contents.Remove(d);
         }
     }
 }

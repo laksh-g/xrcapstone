@@ -159,7 +159,19 @@ MonoBehaviour:
       m_Calls: []
   m_SelectEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4465484316892844298}
+        m_TargetAssemblyTypeName: Plateable, Assembly-CSharp
+        m_MethodName: GrabUnstick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_SelectExited:
     m_PersistentCalls:
       m_Calls: []
@@ -249,12 +261,13 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 1
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1300470908539816109}
   - {fileID: 1886178252685553420}
+  - {fileID: 5605942316296676502}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
