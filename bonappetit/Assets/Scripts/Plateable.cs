@@ -48,6 +48,7 @@ public class Plateable : MonoBehaviourPunCallbacks
     void OnTriggerEnter (Collider other) {
         if(!connected && _view.IsMine && other.gameObject.tag == "plate" 
         && CalculatePlateAngle(other.transform) < 10 && other.transform.parent.gameObject.layer != 3) {
+            connected = true;
             PhotonView view = other.GetComponentInParent<PhotonView>();
             _view.RPC("StickTo", RpcTarget.AllViaServer, view.ViewID);
         }
@@ -68,7 +69,7 @@ public class Plateable : MonoBehaviourPunCallbacks
             Dish d = PhotonView.Find(id).GetComponent<Dish>();
             if (d != null) {
                 d.connectedItems.Remove(_view.ViewID);
-                Debug.LogError("Removed view " + _view.ViewID + " from " + d.connectedItems);
+                Debug.LogError("Removed view " + _view.ViewID + " from " + d.connectedItems.ToString());
             }
             
         }
@@ -108,7 +109,7 @@ public class Plateable : MonoBehaviourPunCallbacks
                     Dish d = target.GetComponent<Dish>();
                     if (d != null) {
                         d.connectedItems.Add(_view.ViewID);
-                        Debug.LogError("New dish contents: " + d.connectedItems);
+                        Debug.LogError("New dish contents: " + d.connectedItems.ToString());
                     }
                     break;
                 }
