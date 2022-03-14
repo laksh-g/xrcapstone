@@ -1,9 +1,11 @@
+//using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -152,6 +154,11 @@ public class GameManager : MonoBehaviour
         }
         newTicket.GetComponent<Printable>().orderNum = orderNum;
         newTicket.GetComponent<Printable>().orderString = comments;
+        GameObject desc = newTicket.transform.Find("order desc").gameObject;
+        if (desc != null && desc.TryGetComponent(out TextMeshPro textMesh))
+        {
+            textMesh.alignment = TextAlignmentOptions.TopLeft;
+        }
         newTicket.tag = "feedback";
     }
 
@@ -242,24 +249,25 @@ public class GameManager : MonoBehaviour
 
     public (float, string) EvaluateOrder(HashSet<Dish> plates, int orderNum) {
         if (!openOrders.ContainsKey(orderNum)) {
-            return (0f, "Comments: Old order sent, wasted food");
+            return (0f, "Feedback: Old order sent, wasted food");
         }
         Order order = (Order)openOrders[orderNum];
         Debug.Log("Received order" + order);
         float total = 0;
-        string orderComments = "Comments: ";
+        string orderComments = "Feedback: \n";
         float maxScore;
         string matchComments = "";
         string plateComments = "";
         float currScore;
         HashSet<Orderable> remainingCovers = new HashSet<Orderable>(order.contents);
         Orderable closestMatch;
+        int extraPlates = 0;
+
         foreach (Dish p in plates) {
             closestMatch = null;
             maxScore = 0;
             foreach (Orderable o in remainingCovers)
             {
-               
                 if (o is SteakFritesOrder && p.dishID == "steakfrites")
                 {
                     (currScore, plateComments) = ((SteakFritesOrder)o).Evaluate(p);
@@ -271,15 +279,18 @@ public class GameManager : MonoBehaviour
                     (currScore, plateComments) = ((CrabCakeOrder)o).Evaluate(p);
                 } else if (o is RoastChickenOrder && p.dishID == "roastchicken") {
                     (currScore, plateComments) = ((RoastChickenOrder)o).Evaluate(p);
+                } else { 
+                    currScore = 0; plateComments = "Wrong order :("; 
                 }
-                else { currScore = 0; plateComments = "Wrong order :("; }
-                maxScore = Mathf.Max(maxScore, currScore);
-                if (maxScore == currScore)
+
+                // maxScore = Mathf.Max(maxScore, currScore);
+                if (currScore > maxScore)
                 {
                     closestMatch = o;
                     matchComments = plateComments;
+                    maxScore = currScore;
                 }
-                if (maxScore == 5f)
+                if (maxScore >= 5f)
                 {
                     break;
                 }
@@ -293,8 +304,12 @@ public class GameManager : MonoBehaviour
             else
             {
                 total += 0;
-                plateComments += "Don't know who one dish was meant for, ";
+                extraPlates++;
             }
+        }
+        if (extraPlates > 0)
+        {
+            orderComments += extraPlates + " extra dishes were sent in\n";
         }
         total /= order.partySize;
         score = (score + total) / 2;
@@ -405,7 +420,8 @@ public class GameManager : MonoBehaviour
         public (float, string) Evaluate(Dish p) {
             float total = 0;
             bool foundBread = false;
-            string comments = "Onion soup: ";
+            string comments = "French onion soup: ";
+            List<string> commentList = new List<string>();
 
             // evaluate bread
             foreach (int id in p.connectedItems) {
@@ -419,7 +435,7 @@ public class GameManager : MonoBehaviour
                 total += 5;
             } else {
                 total += 0;
-                comments += foundBread ? "didn't leave out bread, " : "forgot bread, ";
+                commentList.Add(foundBread ? "didn't leave out bread" : "forgot bread");
             }
 
             // evaluate cheese and parsley
@@ -431,13 +447,13 @@ public class GameManager : MonoBehaviour
                     total += 5;
                 } else {
                     total += 2;
-                    comments += "not enough cheese, ";
+                    commentList.Add("not enough cheese");
                 }
                 if (s.parsley >= 2) {
                     total += 5;
                 } else {
                     total += 2;
-                    comments += "not enough parsley, ";
+                    commentList.Add("not enough parsley");
                 }
             }
 
@@ -450,10 +466,10 @@ public class GameManager : MonoBehaviour
                     total += 5;
                 } else if (p.tag == "french onion soup" && l.currentVolume < 500 && l.currentVolume > 0) {
                     total += 3;
-                    comments += "not enough soup, ";
+                    commentList.Add("not enough soup");
                 } else {
                     total += 0;
-                    comments += "wrong or missing soup, ";
+                    commentList.Add("wrong or missing soup");
                 }
             }
 
@@ -463,9 +479,10 @@ public class GameManager : MonoBehaviour
                 total += 5;
             } else {
                 total += 2;
-                comments += "not toasted enough, ";
+                commentList.Add("not toasted enough");
             }
 
+            comments += (commentList.Count > 0 ? string.Join(", ", commentList.ToArray()) : "no comments, perfectly cooked!") + '\n';
             return (total / 4, comments);
         }
     }
@@ -495,7 +512,9 @@ public class GameManager : MonoBehaviour
             Steak steak = null;
             Fries fry = null;
             LiquidContainer bearnaise = null;
-        
+            List<string> commentList = new List<string>();
+            List<string> missingList = new List<string>();
+
             float tempVal = 0;
             string tempString = "";
             foreach (int id in p.connectedItems) {
@@ -513,31 +532,34 @@ public class GameManager : MonoBehaviour
             {
                 (tempVal, tempString) = s.Evaluate(steak);
                 total += tempVal;
-                comments += tempString;
+                commentList.Add(tempString);
             } else {
                 total += 0;
-                comments += "missing steak, ";
+                missingList.Add("missing steak");
             }
 
             if (fry != null) {
                 (tempVal, tempString) = f.Evaluate(fry);
                 total += tempVal;
-                comments += tempString;
+                commentList.Add(tempString);
             } else {
                 total += 0;
-                comments += "missing fries, ";
+                missingList.Add("missing fries");
             }
 
             if (bearnaise != null) {
                 (tempVal, tempString) = b.Evaluate(bearnaise);
                 total += tempVal;
-                comments += tempString;
+                commentList.Add(tempString);
             } else if (!hasSauce) {
                 total += 5;
             } else {
                 total += 0;
-                comments += "forgot sauce, ";
+                missingList.Add("missing bearnaise");
             }
+
+            comments += string.Join(", ", missingList.ToArray()) + '\n';
+            comments += string.Join("", commentList.ToArray());
             return ((total / 3), comments);
         }
 
@@ -562,46 +584,48 @@ public class GameManager : MonoBehaviour
         {
             int result = 5;
             string comments = "Steak notes: ";
+            List<string> commentList = new List<string>();
             int doneness = s.GetDonenessValue();
             if (doneness == -1)
             {
                 result = 0;
-                comments = "steak was still mooin ";
+                comments += "steak was still mooin\n";
                 return (result, comments);
             }
             if (doneness != expectedDoneness)
             {
                 result -= 2;
-                comments += "expected " + Steak.donenessLabels[expectedDoneness] + " received " + s.GetDonenessLabel() + ", ";
+                commentList.Add("expected " + Steak.donenessLabels[expectedDoneness] + " received " + s.GetDonenessLabel());
             }
 
             if (s.searTime < 30)
             {
                 result -= 1;
-                comments += "not seared enough, ";
+                commentList.Add("not seared enough");
             }
             if (s.searTime > 45)
             {
                 result -= 1;
-                comments += "burnt exterior, ";
+                commentList.Add("burnt exterior");
             }
             if (s.restTime < 45)
             {
                 result -= 1;
-                comments += "not rested long enough, ";
+                commentList.Add("not rested long enough");
             }
             if (Mathf.Abs(s.seasoning.salt - 7) > 2)
             {
                 result -= 1;
-                comments += s.seasoning.salt > 7 ? "too much salt, " : "not enough salt, ";
+                commentList.Add(s.seasoning.salt > 7 ? "too much salt" : "not enough salt");
             }
 
             if (Mathf.Abs(s.seasoning.pepper - 5) > 2)
             {
                 result -= 1;
-                comments += s.seasoning.pepper > 5 ? "too much pepper, " : "not enough pepper, ";
+                commentList.Add(s.seasoning.pepper > 5 ? "too much pepper" : "not enough pepper");
             }
 
+            comments += (commentList.Count > 0 ? string.Join(", ", commentList.ToArray()) : "no comments, perfectly cooked!") + '\n';
             return (Mathf.Max(result, 0f), comments);
 
 
@@ -637,46 +661,48 @@ public class GameManager : MonoBehaviour
         public (float, string) Evaluate(Fries f)
         {
             string comments = "Fries notes: ";
+            List<string> commentList = new List<string>();
             float total = 5;
 
             if (f.temp.maxTemp > 190 * 1.15f) {
                 if(!extraCrispy) {
                     total -= 1;
-                    comments += "overcooked, ";
+                    commentList.Add("overcooked");
                 }
             }
             if (f.temp.maxTemp < 190)
             {
                 total -= 2;
-                comments += "undercooked, ";
+                commentList.Add("undercooked");
             }
             if (f.seasoning.parsley < 4f && !noParsley)
             {
                 total -= .5f;
-                comments += "not enough parsley, ";
+                commentList.Add("not enough parsley");
             }
             else if (f.seasoning.parsley > 0f && noParsley)
             {
                 total -= .5f;
-                comments += "parsley allergy ignored, ";
+                commentList.Add("parsley allergy ignored");
             }
             if (f.seasoning.salt < 4f && !noSalt)
             {
                 total -= .5f;
-                comments += "under salted, ";
+                commentList.Add("under salted");
             }
             else if (f.seasoning.salt > 8f && !noSalt)
             {
                 total -= .5f;
-                comments += "too salty, ";
+                commentList.Add("too salty");
             }
             else if (f.seasoning.salt > 0f && noSalt)
             {
                 total -= .5f;
-                comments += "no salt request was ignored ";
+                commentList.Add("no salt request was ignored");
             }
-            return (Mathf.Max(0f, total), comments);
 
+            comments += (commentList.Count > 0 ? string.Join(", ", commentList.ToArray()) : "no comments, perfectly cooked!") + '\n';
+            return (Mathf.Max(0f, total), comments);
         }
 
         public override string ToString()
@@ -703,7 +729,8 @@ public class GameManager : MonoBehaviour
         public (float, string) Evaluate(Dish p) {
         
             float total = 0;
-            string comments = "Crab cakes notes: ";
+            string comments = "Crab Cakes: ";
+            List<string> commentList = new List<string>();
             int crabCakesFound = 0;
             bool foundSprouts = false;
             foreach (int id in p.connectedItems) {
@@ -714,18 +741,18 @@ public class GameManager : MonoBehaviour
                     Cookable c = target.GetComponent<Cookable>();
                     Temperature temp = target.GetComponent<Temperature>();
                     if (c.searTime < c.desiredSearTime) {
-                        comments += "under seared, ";
+                        commentList.Add("under seared");
                         itemTotal -= 1;
                     } else if (c.searTime > c.desiredSearTime * 1.5) {
-                        comments += "over seared, ";
+                        commentList.Add("over seared");
                         itemTotal -= 1;
                     }
 
                     if (temp.maxTemp < c.cookedTemp) {
-                        comments += "under cooked, ";
+                        commentList.Add("under cooked");
                         itemTotal -= 2;
                     } else if (temp.maxTemp > c.cookedTemp * 1.33) {
-                        comments += "overcooked, ";
+                        commentList.Add("overcooked");
                         itemTotal -= 3;
                     }
                     total += itemTotal;
@@ -736,22 +763,23 @@ public class GameManager : MonoBehaviour
             }
 
             if (!foundSprouts) {
-                comments += "missing sprouts, ";
+                commentList.Add("missing sprouts");
             }
 
             if (crabCakesFound < 2) {
-                comments += "missing crab cake(s), ";
+                commentList.Add("missing crab cake (there should be 2)");
             }
 
             LiquidContainer l = p.GetComponent<LiquidContainer>();
-            if (l.currentVolume == 0) {
-                comments += "missing sauce, ";
+            if (l.currentVolume <= 0) {
+                commentList.Add("missing sauce");
             } else if (l.tag == "bearnaise") {
                 total += 5;
             } else {
                 // wrong sauce tag
-                comments += "incorrect sauce, ";
-            }   
+                commentList.Add("incorrect sauce");
+            }
+            comments += (commentList.Count > 0 ? string.Join(", ", commentList.ToArray()) : "no comments, perfectly cooked!") + '\n';
             return (total / 4, comments);
         }
 
@@ -769,7 +797,8 @@ public class GameManager : MonoBehaviour
 
         public (float, string) Evaluate(Dish p) {
             float total = 0;
-            string comments = "Table Bread notes: ";
+            string comments = "Table Bread: ";
+            List<string> commentList = new List<string>();
             bool foundBread = false;
             bool foundOil = false;
             foreach (int id in p.connectedItems) {
@@ -780,10 +809,10 @@ public class GameManager : MonoBehaviour
                     Temperature temp = target.gameObject.GetComponent<Temperature>();
                     if (temp.maxTemp < c.cookedTemp) {
                         total += 3;
-                        comments += "bread was cold, ";
+                        commentList.Add("bread was cold");
                     } else if (temp.maxTemp > c.cookedTemp * 1.33) {
                         total += 2;
-                        comments += "bread was too hot, ";
+                        commentList.Add("bread was too hot");
                     } else {
                         total += 5;
                     }
@@ -794,13 +823,14 @@ public class GameManager : MonoBehaviour
             }
 
             if (!foundBread) {
-                comments += "missing bread, ";
+                commentList.Add("missing bread");
             }
             
             if (!foundOil) {
-                comments += "missing olive oil, ";
+                commentList.Add("missing olive oil");
             }
 
+            comments += (commentList.Count > 0 ? string.Join(", ", commentList.ToArray()) : "no comments, perfectly cooked!") + '\n';
             return (total / 2, comments);
         }
     }
@@ -813,7 +843,8 @@ public class GameManager : MonoBehaviour
 
         public (float, string) Evaluate(Dish p) {
             float total = 0;
-            string comments = "Roast Chicken notes: ";
+            string comments = "Roast Chicken w/ Vegetables: ";
+            List<string> commentList = new List<string>();
             bool breastFound = false;
             int wingCount = 0;
             bool vegFound = false;
@@ -826,17 +857,17 @@ public class GameManager : MonoBehaviour
                     Temperature temp = target.gameObject.GetComponent<Temperature>();
                     if (temp.maxTemp < c.cookedTemp) {
                         total += 0;
-                        comments += "chicken breast undercooked, ";
+                        commentList.Add("chicken breast undercooked");
                         break;
                     } else if (temp.maxTemp > c.cookedTemp * 1.33) {
                         itemTotal -= 2;
-                        comments += "chicken breast overcooked, ";
+                        commentList.Add("chicken breast overcooked");
                     }
 
                     Seasonable s = target.gameObject.GetComponent<Seasonable>();
-                    if (s.salt == 0 || s.pepper == 0 || s.parsley == 0) {
+                    if (s.salt <= 0 || s.pepper <= 0 || s.parsley <= 0) {
                         itemTotal -= 2;
-                        comments += "chicken breast seasoning was off, ";
+                        commentList.Add("chicken breast seasoning was off");
                     }
                     total += itemTotal;
                 } else if (target.tag == "wing") {
@@ -846,17 +877,17 @@ public class GameManager : MonoBehaviour
                     Temperature temp = target.GetComponent<Temperature>();
                     if (temp.maxTemp < c.cookedTemp) {
                         total += 0;
-                        comments += "wing undercooked, ";
+                        commentList.Add("wing undercooked");
                         break;
                     } else if (temp.maxTemp > c.cookedTemp * 1.33) {
                         itemTotal -= 2;
-                        comments += "wing overcooked, ";
+                        commentList.Add("wing overcooked");
                     }
 
                     Seasonable s = target.GetComponent<Seasonable>();
-                    if (s.salt == 0 || s.pepper == 0 || s.parsley == 0) {
+                    if (s.salt <= 0 || s.pepper <= 0 || s.parsley <= 0) {
                         itemTotal -= 2;
-                        comments += "wing seasoning was off, ";
+                        commentList.Add("wing seasoning was off");
                     }
                     total += itemTotal;
                 } else if (target.tag == "vegetables") {
@@ -866,37 +897,38 @@ public class GameManager : MonoBehaviour
                     Temperature temp = target.GetComponent<Temperature>();
                     if (temp.maxTemp < c.cookedTemp) {
                         total += 0;
-                        comments += "vegetables undercooked, ";
+                        commentList.Add("vegetables undercooked");
                         break;
                     }
 
                     Seasonable s = target.GetComponent<Seasonable>();
-                    if (s.salt == 0 || s.pepper == 0 || s.parsley == 0) {
+                    if (s.salt <= 0 || s.pepper <= 0 || s.parsley <= 0) {
                         itemTotal -= 2;
-                        comments += "vegetable seasoning was off, ";
+                        commentList.Add("vegetable seasoning was off");
                     }
                     total += itemTotal;
                 }
             }
             if (!vegFound) {
-                comments += "missing vegetables, ";
+                commentList.Add("missing vegetables");
             }
             if (!breastFound) {
-                comments += "missing chicken breast, ";
+                commentList.Add("missing chicken breast");
             }
             if (wingCount < 2) {
-                comments += "missing wing(s), ";
+                commentList.Add("missing wing (there should be 2)");
             }
             LiquidContainer l = p.GetComponent<LiquidContainer>();
-            if (l.currentVolume == 0) {
-                comments += "forgot sauce, ";
+            if (l.currentVolume <= 0) {
+                commentList.Add("forgot sauce");
             } else if (l.tag == "pan sauce") {
                 total += 5;
             } else {
                 total += 1;
-                comments += "wrong sauce, ";
+                commentList.Add("wrong sauce");
             }
 
+            comments += (commentList.Count > 0 ? string.Join(", ", commentList.ToArray()) : "no comments, perfectly cooked!") + '\n';
             return (total / 5, comments);
 
         }
