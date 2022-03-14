@@ -29,7 +29,7 @@ public class TextInformation : MonoBehaviour
         { "fry", new List<string> { "salt", "parsley" } },
         { "breast", new List<string> { "salt", "pepper", "parsley" } },
         { "wing", new List<string> { "salt", "pepper", "parsley" } },
-        { "vegetables", new List<string> { "salt", "pepper" } },
+        { "vegetables", new List<string> { "salt", "pepper", "parsley" } },
         { "french onion soup", new List<string> { "parsley" } }
     };
 
