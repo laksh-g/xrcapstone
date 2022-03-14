@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
 
 public class Drawer : MonoBehaviour
 {
@@ -14,6 +15,11 @@ public class Drawer : MonoBehaviour
     private float startingPercentage = 0.0f;
     private float currentPercentage = 0.0f;
 
+    private PhotonView _view;
+
+    void Awake() {
+        _view = GetComponent<PhotonView>();
+    }
     protected virtual void OnEnable() {
         handle.selectEntered.AddListener(StoreGrabInfo);
     }
@@ -48,12 +54,13 @@ public class Drawer : MonoBehaviour
     void Update()
     {
         if(handle.isSelected) {
-            UpdateDrawer();
+            float newPercentage = startingPercentage + FindPercentageDifference();
+            _view.RPC("UpdateDrawer", RpcTarget.All, newPercentage);
         }
     }
 
-    private void UpdateDrawer() {
-        float newPercentage = startingPercentage + FindPercentageDifference();
+    [PunRPC]
+    void UpdateDrawer(float newPercentage) {
         mover.MoveTo(Vector3.Lerp(start.position, end.position, newPercentage));
         currentPercentage = Mathf.Clamp01(newPercentage);
     }
