@@ -147,7 +147,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         //################################
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 10;
-        roomOptions.IsVisible = true;  // possible to join randomly
+        roomOptions.IsVisible = false;  // possible to join randomly
         roomOptions.IsOpen = true;  // let others join
 
         // Set text
