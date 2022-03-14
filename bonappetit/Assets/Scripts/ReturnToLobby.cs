@@ -24,8 +24,8 @@ public class ReturnToLobby : MonoBehaviourPunCallbacks, IInRoomCallbacks
 
     public override void OnPlayerLeftRoom(Player otherPlayer)
     {
-        ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
-        if((int)ht["HeadChefRole"] == otherPlayer.ActorNumber){
+        ExitGames.Client.Photon.Hashtable ht = otherPlayer.CustomProperties;
+        if((string)ht["role"] == "HeadChefRole"){
             PhotonNetwork.Disconnect();
             PhotonNetwork.LoadLevel(0);
             Debug.LogError("Master Client Disconnected");
