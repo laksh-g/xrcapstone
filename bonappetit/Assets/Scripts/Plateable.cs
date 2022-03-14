@@ -43,7 +43,12 @@ public class Plateable : MonoBehaviourPunCallbacks
             if (plateTemp != null && _temp != null) {
                 _temp.heater = plateTemp.heater;
             }
-            _transform.SetPositionAndRotation(point.position, point.rotation);
+            if (_transform == null)
+                Debug.Log("plateable transform null");
+            else if (point == null)
+                Debug.Log("plateable point is null");
+            else
+                _transform.SetPositionAndRotation(point.position, point.rotation);
         }
     }
 
