@@ -43,7 +43,7 @@ public class Spawner : MonoBehaviour
             _view.RPC("ReleaseObject", RpcTarget.AllViaServer, otherview.ViewID);
             if (onlyAllowOneActiveCopy && oldActive != null) {
                 oldActive.gameObject.layer = 3;
-                oldActive.SetPositionAndRotation(spawnPosition, spawnRotation);
+                _view.RPC("Teleport", RpcTarget.AllViaServer, oldActive.GetComponent<PhotonView>().ViewID);
                 initialSpawnedObject = oldActive.gameObject;
                 LiquidContainer l = initialSpawnedObject.GetComponent<LiquidContainer>();
                 if (l != null) {
@@ -73,5 +73,12 @@ public class Spawner : MonoBehaviour
         }
         target.layer = prefab.layer;
         initialSpawnedObject = null;
+    }
+
+    [PunRPC] 
+    void Teleport(int viewID) {
+        PhotonView view = PhotonView.Find(viewID);
+        view.gameObject.layer = 3;
+        view.gameObject.transform.SetPositionAndRotation(spawnPosition, spawnRotation);
     }
 }
