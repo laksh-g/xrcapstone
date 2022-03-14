@@ -30,24 +30,24 @@ public class Temperature : MonoBehaviour, IPunObservable
     }
 
     void Update() {
-        if(_view.IsMine) {
-            if (isResting && restTime < 10f) {
-                restTime += Time.deltaTime;
-            } else {
+        if (isResting && restTime < 10f) {
+            restTime += Time.deltaTime;
+        } else {
+            isResting = false;
+            restTime = 0;
+        }
+
+        if (heater != null && heater.s != null) {
+            if (heater.s.val == 0 && cachedVal > 0) {
+                isResting = true;
+            } else if (isResting && heater.s.val > 0) {
                 isResting = false;
                 restTime = 0;
             }
-
-            if (heater != null && heater.s != null) {
-                if (heater.s.val == 0 && cachedVal > 0) {
-                    isResting = true;
-                } else if (isResting && heater.s.val > 0) {
-                    isResting = false;
-                    restTime = 0;
-                }
-                cachedVal = heater.s.val;
-            }
-            tempDelta = SetDelta();
+            cachedVal = heater.s.val;
+        }
+        tempDelta = SetDelta();
+        if (_view.IsMine) {
             temp += tempDelta * Time.deltaTime;
             maxTemp = System.Math.Max(maxTemp, temp); 
         }
@@ -96,20 +96,30 @@ public class Temperature : MonoBehaviour, IPunObservable
     private float restDelta() {
         return delta(maxTemp + 5);
     }
+
     void OnTriggerEnter(Collider other) {
-        if (_view.IsMine && other.tag == "heater") {
+        if (other.tag == "heater") {
             heater = other.GetComponent<HeatingElement>();
             if (heater != null && (heater.s == null || heater.s.val != 0)) {
                 isResting = false;
                 restTime = 0;
             }
         }
-        Debug.Log("entered area " + other.tag);
+    }
+
+    void OnTriggerStay(Collider other) {
+        if (heater == null && other.tag == "heater") {
+            heater = other.GetComponent<HeatingElement>();
+            if (heater != null && (heater.s == null || heater.s.val != 0)) {
+                isResting = false;
+                restTime = 0;
+            }
+        }
     }
 
     void OnTriggerExit(Collider other)
     {
-        if (_view.IsMine && heater != null && other.gameObject == heater.gameObject) {
+        if (heater != null && other.gameObject == heater.gameObject) {
             isResting = true;
             heater = null;
         }

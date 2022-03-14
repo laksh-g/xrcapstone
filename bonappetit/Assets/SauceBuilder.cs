@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 
-public class SauceBuilder : MonoBehaviourPunCallbacks, IPunObservable
+public class SauceBuilder : MonoBehaviourPunCallbacks
 {
     [SerializeField]
     public bool hasDrippings = false;
@@ -38,7 +38,7 @@ public class SauceBuilder : MonoBehaviourPunCallbacks, IPunObservable
             hasWine = true;
         }
         
-        if (!hasShallots && shallotTransform.tag == "occupied" && _temp.maxTemp > 60 && hasDrippings) {
+        if (!hasShallots && shallotTransform.tag == "occupied" && _temp.temp > 60 && hasDrippings) {
             foreach (int id in _dish.connectedItems) {
                 PhotonView view = PhotonView.Find(id);
                 if (view.tag == "shallots") {
@@ -61,6 +61,7 @@ public class SauceBuilder : MonoBehaviourPunCallbacks, IPunObservable
         
     }
 
+/*
 public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -76,4 +77,5 @@ public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
             hasWine = (bool)stream.ReceiveNext();
         }
     }
+    */
 }

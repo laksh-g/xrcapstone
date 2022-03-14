@@ -1635,7 +1635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2014999940060672870}
   - component: {fileID: 2014999940060672868}
-  - component: {fileID: 2014999940060672869}
+  - component: {fileID: 7229883259407781668}
   m_Layer: 0
   m_Name: Handle (2)
   m_TagString: Untagged
@@ -1670,7 +1670,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2014999940060672869
+--- !u!114 &7229883259407781668
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1758,7 +1758,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2014999940531722015}
   - component: {fileID: 2014999940531722013}
-  - component: {fileID: 2014999940531722014}
+  - component: {fileID: 762174619123609274}
   m_Layer: 0
   m_Name: Handle (1)
   m_TagString: Untagged
@@ -1793,7 +1793,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2014999940531722014
+--- !u!114 &762174619123609274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1911,7 +1911,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2014999941273336019}
   - component: {fileID: 2014999941273336017}
-  - component: {fileID: 2014999941273336018}
+  - component: {fileID: 1773608255809564119}
   m_Layer: 0
   m_Name: Handle
   m_TagString: Untagged
@@ -1946,7 +1946,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &2014999941273336018
+--- !u!114 &1773608255809564119
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2182,7 +2182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af444d3371368941a335cc81d397ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handle: {fileID: 2014999940531722014}
+  handle: {fileID: 762174619123609274}
   mover: {fileID: 2014999941245597291}
   start: {fileID: 2014999941132941404}
   end: {fileID: 2014999941743704168}
@@ -2201,7 +2201,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
@@ -2341,7 +2341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af444d3371368941a335cc81d397ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handle: {fileID: 2014999941273336018}
+  handle: {fileID: 1773608255809564119}
   mover: {fileID: 2014999940137427815}
   start: {fileID: 2014999941132941404}
   end: {fileID: 2014999941743704168}
@@ -2372,7 +2372,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
@@ -2524,7 +2524,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1af444d3371368941a335cc81d397ee8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handle: {fileID: 2014999940060672869}
+  handle: {fileID: 7229883259407781668}
   mover: {fileID: 2014999941678842552}
   start: {fileID: 2014999941132941404}
   end: {fileID: 2014999941743704168}
@@ -2543,7 +2543,7 @@ MonoBehaviour:
   ObservedComponentsFoldoutOpen: 1
   Group: 0
   prefixField: -1
-  Synchronization: 3
+  Synchronization: 2
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:

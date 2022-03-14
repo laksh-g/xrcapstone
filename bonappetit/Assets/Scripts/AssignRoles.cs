@@ -5,6 +5,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class AssignRoles : MonoBehaviourPunCallbacks
 {
@@ -17,20 +18,62 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     public Button RoomSettings;
     private bool buttonActivated;
 
+    private PhotonView _view;
+
+    [SerializeField]
+    public Dictionary<int, int> RoleMap = new Dictionary<int, int>();
+    public Dictionary<string, Dictionary<int, int>> RoomMap = new Dictionary<string, Dictionary<int, int>>();
+    void Awake(){
+        RoleMap[0] = -1;
+        RoleMap[1] = -1;
+        RoleMap[2] = -1;
+        RoleMap[3] = -1;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         StartGame.interactable = false;
         RoomSettings.interactable = false;
         buttonActivated = false;
+        _view = GetComponent<PhotonView>();
 
-        InvokeRepeating("updateButtons", 0.1f, 0.4f);
+        InvokeRepeating("UpdateLastButton", 0.1f, 5f);
+    }
+
+    void OnEnable(){
+        RoleMap[0] = -1;
+        RoleMap[1] = -1;
+        RoleMap[2] = -1;
+        RoleMap[3] = -1;
+        updateButtons();
+    }
+
+    void OnLeftRoom() {
+        base.OnLeftRoom();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log(otherPlayer.ActorNumber + "Left the room");
+        List<int> updates = new List<int>();
+        foreach(int role in RoleMap.Keys){
+            if(RoleMap[role] == otherPlayer.ActorNumber){
+                updates.Add(role);
+                //RoleMap[role] = -1;
+            }
+        }
+
+        foreach(int up in updates){
+            RoleMap[up] = -1;
+        }
+        updateButtons();
+        base.OnPlayerLeftRoom(otherPlayer);
     }
 
     // private IEnumerator SetCustomProperties()
@@ -38,7 +81,7 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     //     yield return new WaitForSeconds(1.5f);
     // }
 
-    public void updateButtons(){
+    public void UpdateLastButton(){
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
             if(!buttonActivated){
@@ -49,31 +92,36 @@ public class AssignRoles : MonoBehaviourPunCallbacks
                     SousButton.gameObject.SetActive(false);
                 }
             }
+        }
+    }
+
+    public void updateButtons(){
+        if (PhotonNetwork.CurrentRoom != null) {
             
-            if(ht.ContainsKey("RotisseurRole") && (int)ht["RotisseurRole"] != -1){
+            if(RoleMap[0] != -1){
                 RotisseurButton.interactable = false;
-                RotisseurButton.GetComponentInChildren<TMP_Text>().text = ((int)ht["RotisseurRole"]).ToString();
+                RotisseurButton.GetComponentInChildren<TMP_Text>().text = (RoleMap[0]).ToString();
             } else {
                 RotisseurButton.interactable = true;
                 RotisseurButton.GetComponentInChildren<TMP_Text>().text = "Rotisseur";
             }
-            if(ht.ContainsKey("SaucierRole") && (int)ht["SaucierRole"] != -1){
+            if(RoleMap[1] != -1){
                 SaucierButton.interactable = false;
-                SaucierButton.GetComponentInChildren<TMP_Text>().text = ((int)ht["SaucierRole"]).ToString();
+                SaucierButton.GetComponentInChildren<TMP_Text>().text = (RoleMap[1]).ToString();
             } else {
                 SaucierButton.interactable = true;
                 SaucierButton.GetComponentInChildren<TMP_Text>().text = "Saucier";
             }
-            if(ht.ContainsKey("HeadChefRole") && (int)ht["HeadChefRole"] != -1){
+            if(RoleMap[2] != -1){
                 HeadChefButton.interactable = false;
-                HeadChefButton.GetComponentInChildren<TMP_Text>().text = ((int)ht["HeadChefRole"]).ToString();
+                HeadChefButton.GetComponentInChildren<TMP_Text>().text = (RoleMap[2]).ToString();
             } else {
                 HeadChefButton.interactable = true;
                 HeadChefButton.GetComponentInChildren<TMP_Text>().text = "Head Chef";
             }
-            if(ht.ContainsKey("SousChefRole") && (int)ht["SousChefRole"] != -1){
+            if(RoleMap[3] != -1){
                 SousButton.interactable = false;
-                SousButton.GetComponentInChildren<TMP_Text>().text = ((int)ht["SousChefRole"]).ToString();
+                SousButton.GetComponentInChildren<TMP_Text>().text = (RoleMap[3]).ToString();
             } else {
                 SousButton.interactable = true;
                 SousButton.GetComponentInChildren<TMP_Text>().text = "Sous Chef";
@@ -85,36 +133,55 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     {
         Debug.Log("Selected role" + role);
         if (PhotonNetwork.CurrentRoom != null) {
-            ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
-            ht[role] = PhotonNetwork.LocalPlayer.ActorNumber;
-        
-            string[] roles = {"RotisseurRole", "SaucierRole", "HeadChefRole", "SousChefRole"};
-            
-            foreach(string name in roles)
-            {
-                if(name != role) {
-                    if(ht.ContainsKey(name) && (int) ht[name] == PhotonNetwork.LocalPlayer.ActorNumber) {
-                        Debug.Log(string.Format("Removed role {0} with player actor number {1}.", name, ht[name]));
-                        //ht.Remove(name);
-                        ht[name] = -1;
-                    }
-                }
-            }
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-
-            ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
-            playerCustomProps["role"] = role;
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProps);
-
-            if(role == "HeadChefRole"){
-                StartGame.interactable = true;
-                RoomSettings.interactable = true;
-                PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
-            }else{
+            if(role == "DefaultRole"){
+                _view.RPC("SendRoleUpdates", RpcTarget.AllBufferedViaServer, -1, PhotonNetwork.LocalPlayer.ActorNumber);
                 StartGame.interactable = false;
                 RoomSettings.interactable = false;
-                //StartGame.interactable = true;
+            }else{
+                string[] roles = {"RotisseurRole", "SaucierRole", "HeadChefRole", "SousChefRole"};
+
+                int index = Array.IndexOf(roles, role);
+
+
+                _view.RPC("SendRoleUpdates", RpcTarget.AllBufferedViaServer, index, PhotonNetwork.LocalPlayer.ActorNumber);
+
+
+                ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
+                playerCustomProps["role"] = role;
+                PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProps);
+
+                if(role == "HeadChefRole"){
+                    StartGame.interactable = true;
+                    RoomSettings.interactable = true;
+                    PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+                }else{
+                    StartGame.interactable = false;
+                    RoomSettings.interactable = false;
+                    //StartGame.interactable = true;
+                }
             }
         }
+    }
+
+    [PunRPC]
+    public void SendRoleUpdates(int roleID, int playerID) {
+        List<int> updates = new List<int>();
+        foreach(int role in RoleMap.Keys){
+            if(RoleMap[role] == playerID){
+                updates.Add(role);
+                //RoleMap[role] = -1;
+            }
+        }
+
+        foreach(int up in updates){
+            RoleMap[up] = -1;
+        }
+
+        if(roleID != -1){
+            if(RoleMap[roleID] == -1){
+                RoleMap[roleID] = playerID;
+            }
+        }
+        updateButtons();
     }
 }
