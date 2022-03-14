@@ -766,7 +766,7 @@ GameObject:
   - component: {fileID: 2332883958007039901}
   m_Layer: 0
   m_Name: ElementRight
-  m_TagString: Untagged
+  m_TagString: heater
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -861,6 +861,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   s: {fileID: 2332883959166913844}
   isOvenlike: 0
+  isCooler: 0
   temperatureSettings: []
 --- !u!1 &2332883959553538811
 GameObject:
@@ -877,7 +878,7 @@ GameObject:
   - component: {fileID: 2332883959553538789}
   m_Layer: 0
   m_Name: ElementLeft
-  m_TagString: Untagged
+  m_TagString: heater
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -972,6 +973,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   s: {fileID: 2332883959440251146}
   isOvenlike: 0
+  isCooler: 0
   temperatureSettings: []
 --- !u!1 &3074510364312160007
 GameObject:
@@ -2013,11 +2015,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ada4b28775106834a913d0bc12dbb032, type: 3}
---- !u!4 &535472785894781507 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5708277210525325139, guid: ada4b28775106834a913d0bc12dbb032, type: 3}
-  m_PrefabInstance: {fileID: 5213407262033601808}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5840315871197637753 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1825442323400214889, guid: ada4b28775106834a913d0bc12dbb032, type: 3}
@@ -2029,3 +2026,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33a0f3ae1965e7f4ab38eddf1bb454a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &535472785894781507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5708277210525325139, guid: ada4b28775106834a913d0bc12dbb032, type: 3}
+  m_PrefabInstance: {fileID: 5213407262033601808}
+  m_PrefabAsset: {fileID: 0}

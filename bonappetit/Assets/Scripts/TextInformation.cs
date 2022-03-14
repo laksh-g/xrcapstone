@@ -46,14 +46,15 @@ public class TextInformation : MonoBehaviour
         text.text = "";
         if (tutorialText != null)
         {
-            text.text += tutorialText + '\n' + '\n';
+            text.text += tutorialText + "\n-------\n";
         }
         if (debugText != null)
         {
-            text.text += debugText + '\n' + '\n';
+            text.text += debugText + "\n-------\n";
         }
         if (selectedObject != null) 
         {
+            text.text += "Object Information:\n";
             UpdateText();
         }
         else
@@ -176,10 +177,14 @@ public class TextInformation : MonoBehaviour
             }
 
             // missing seasonings check
-            var seasonables = selectedObject.GetComponentsInChildren<Seasonable>();
-            foreach (var s in seasonables)
+            // PhotonView view = selectedObject.GetComponent<PhotonView>();
+            Dish d = PhotonView.Find(view.ViewID).GetComponent<Dish>();
+            var items = d.connectedItems;
+            items.Add(view.ViewID);
+            foreach (int id in items)
             {
-                if (foodSeasonings.TryGetValue(s.tag, out List<string> seasoning))
+                GameObject target = PhotonView.Find(id).gameObject;
+                if (foodSeasonings.TryGetValue(target.tag, out List<string> seasoning) && target.TryGetComponent(out Seasonable s))
                 {
                     List<string> missingSeasoning = new List<string>();
                     foreach (var str in seasoning)
@@ -231,16 +236,21 @@ public class TextInformation : MonoBehaviour
             }*/
 
             var cook = selectedObject.GetComponent<Cookable>();
-            if (cook != null && cook.isSearable)
+            if (cook != null)
             {
                 text.text += "Cook Status: " + cook.GetStatus() + '\n';
+                if (cook.isSearable)
+                {
+                    text.text += "Sear Status: " + cook.GetSearStatus() + '\n';
+                    text.text += "Sear Time: " + cook.searTime.ToString("F0") + " s" + '\n';
+                }
             }
 
             var steak = selectedObject.GetComponent<Steak>();
             if (steak != null)
             {
                 text.text += "Sear Time: " + steak.searTime.ToString("F0") + " s" + '\n';
-                text.text += "Rest time: " + steak.restTime.ToString("F0") + " s" + '\n';
+                text.text += "Rest Time: " + steak.restTime.ToString("F0") + " s" + '\n';
                 text.text += "Doneness: " + steak.GetDonenessLabel() + '\n';
                 // text.text += "Salt: " + steak.seasoning.salt.ToString("F1") + " g" + '\n';
                 // text.text += "Pepper: " + steak.seasoning.pepper.ToString("F1") + " g" + '\n';
