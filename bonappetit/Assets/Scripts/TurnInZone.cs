@@ -57,8 +57,6 @@ public class TurnInZone : MonoBehaviour
             contents.Remove(child);
             foreach (int id in child.connectedItems) {
                 GameObject g = PhotonView.Find(id).gameObject;
-                Plateable p = g.GetComponent<Plateable>();
-                p.Unstick(child.viewID);
                 PhotonNetwork.Destroy(g);
             }
             PhotonNetwork.Destroy(child.gameObject);
