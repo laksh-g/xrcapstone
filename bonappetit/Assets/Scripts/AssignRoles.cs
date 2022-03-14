@@ -23,6 +23,13 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     [SerializeField]
     public Dictionary<int, int> RoleMap = new Dictionary<int, int>();
 
+    void Awake(){
+        RoleMap[0] = -1;
+        RoleMap[1] = -1;
+        RoleMap[2] = -1;
+        RoleMap[3] = -1;
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -30,10 +37,6 @@ public class AssignRoles : MonoBehaviourPunCallbacks
         RoomSettings.interactable = false;
         buttonActivated = false;
         _view = GetComponent<PhotonView>();
-        RoleMap[0] = -1;
-        RoleMap[1] = -1;
-        RoleMap[2] = -1;
-        RoleMap[3] = -1;
 
         updateButtons();
         InvokeRepeating("UpdateLastButton", 0.1f, 5f);
