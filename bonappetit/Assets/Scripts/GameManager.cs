@@ -380,7 +380,8 @@ public class GameManager : MonoBehaviour
             if (menu[4] == '1') {
                 dishPool.Add(new TableBreadOrder());
             }
-            return dishPool[Random.Range(0,dishPool.Count - 1)];
+            if (dishPool.Count == 0) { return new TableBreadOrder();}
+            return dishPool[Random.Range(0,dishPool.Count)];
         }
 
         public override string ToString()
