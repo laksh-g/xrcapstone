@@ -427,7 +427,7 @@ public class GameManager : MonoBehaviour
             if (s == null) {
                 Debug.Log("Couldn't find seasonable on french onion soup");
             } else {
-                if (s.gruyere >= 10) {
+                if (s.gruyere >= 5) {
                     total += 5;
                 } else {
                     total += 2;
