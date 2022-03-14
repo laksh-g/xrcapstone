@@ -95,6 +95,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 522918068892868218, guid: b0ec9f2fdd41f634bb10d996f8ac0dfe, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7311030423109604890, guid: b0ec9f2fdd41f634bb10d996f8ac0dfe, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -159,6 +163,7 @@ PrefabInstance:
     - {fileID: -1504582160035009853, guid: b0ec9f2fdd41f634bb10d996f8ac0dfe, type: 3}
     - {fileID: 522918068892868218, guid: b0ec9f2fdd41f634bb10d996f8ac0dfe, type: 3}
     - {fileID: 3328475360555337077, guid: b0ec9f2fdd41f634bb10d996f8ac0dfe, type: 3}
+    - {fileID: -7873829052722081085, guid: b0ec9f2fdd41f634bb10d996f8ac0dfe, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b0ec9f2fdd41f634bb10d996f8ac0dfe, type: 3}
 --- !u!1 &6303063772770865305 stripped
 GameObject:

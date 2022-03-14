@@ -159,6 +159,8 @@ PrefabInstance:
     - {fileID: 8481119413183328929, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
     - {fileID: 8414354900845569667, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
     - {fileID: 6837140465639966629, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
+    - {fileID: 6105698940275537246, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
+    - {fileID: -5792535439141899585, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
 --- !u!1001 &6487571554052465729
 PrefabInstance:
@@ -278,6 +280,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4862414718464636005, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5010351151384128034, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -374,6 +380,8 @@ PrefabInstance:
     - {fileID: 8481119413183328929, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
     - {fileID: 8414354900845569667, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
     - {fileID: 6837140465639966629, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
+    - {fileID: 6105698940275537246, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
+    - {fileID: -5792535439141899585, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d30574a9abc02854aa6cb863313cb85a, type: 3}
 --- !u!1 &3179814904830814897 stripped
 GameObject:

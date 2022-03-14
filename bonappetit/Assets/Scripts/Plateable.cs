@@ -4,6 +4,7 @@ using UnityEngine;
 using Photon.Pun;
 using UnityEngine.XR.Interaction.Toolkit;
 
+[RequireComponent(typeof(PhotonView))]
 public class Plateable : MonoBehaviourPunCallbacks
 {
 

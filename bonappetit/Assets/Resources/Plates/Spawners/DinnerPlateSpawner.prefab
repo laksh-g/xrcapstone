@@ -154,6 +154,10 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
+    - target: {fileID: 1593436252253992799, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8402543456078930194, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -218,6 +222,8 @@ PrefabInstance:
     - {fileID: 8027449224047589893, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
     - {fileID: 3098127701020364994, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
     - {fileID: 1593436252253992799, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
+    - {fileID: -8644079914711717140, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
+    - {fileID: 6706312177938860363, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
 --- !u!1 &1474069499713300561 stripped
 GameObject:
@@ -267,6 +273,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onlyAllowOneActiveCopy: 0
   initialSpawnedObject: {fileID: 1474069498676322333}
   prefab: {fileID: 9209866107122252712, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
 --- !u!1001 &7756594989543312148
@@ -384,4 +391,6 @@ PrefabInstance:
     - {fileID: 8027449224047589893, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
     - {fileID: 3098127701020364994, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
     - {fileID: 1593436252253992799, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
+    - {fileID: 6706312177938860363, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
+    - {fileID: -8644079914711717140, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ef967ec914b0c27479ae6c402b48b20a, type: 3}
