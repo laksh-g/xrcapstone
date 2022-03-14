@@ -258,7 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f0e6caba6cb40ee4ba75aea201b9092e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cookedTemp: 0
+  cookedTemp: 74
   isSearable: 0
   side1: {fileID: 0}
   side2: {fileID: 0}
@@ -314,6 +314,7 @@ MonoBehaviour:
   pepper: 0
   parsley: 0
   gruyere: 0
+  view: {fileID: 0}
 --- !u!1001 &2752313650181081894
 PrefabInstance:
   m_ObjectHideFlags: 0

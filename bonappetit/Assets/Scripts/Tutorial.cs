@@ -4,6 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.XR.Interaction.Toolkit;
+using Photon.Pun;
 
 public class Tutorial : MonoBehaviour
 {
@@ -23,13 +24,22 @@ public class Tutorial : MonoBehaviour
 
     GameObject leftSelect;
     GameObject rightSelect;
+
+    GameObject table;
     GameObject steak;
     GameObject fries;
     GameObject ramekin;
     GameObject saucePan;
     GameObject knob;
+    GameObject breast;
     GameObject crab;
     Dictionary<string, GameObject> plates;
+
+    bool press = false;
+    GameObject ticket;
+    GameObject feedback;
+    GameObject frenchonion;
+    GameObject crabcake;
 
     public enum TutorialType
     {
@@ -45,6 +55,7 @@ public class Tutorial : MonoBehaviour
     {
         textInfo = GameObject.Find("ObjectInformation").GetComponent<TextInformation>();
         plates = new Dictionary<string, GameObject>();
+        table = GameObject.Find("Prop_KitchenTable_01");
 
         highlightObjs = new List<GameObject[]>();
 
@@ -83,13 +94,13 @@ public class Tutorial : MonoBehaviour
                 "Step 1: Cook a steak! Get a steak from the fridge. \n\nTIP: Press and hold the grip button to grab objects. Grab and pull the fridge handle to open the fridge.",
                 "Step 2: Place the steak on the cutting board and season it with 7g of salt and 5g of pepper. \n\nTIP: Salt and pepper come out from the top of the shakers.",
                 "Step 3: Place the steak on the griller and turn knob to highest setting to sear the steak. \n\nTIP: While pointing at a knob, press and release the grip button to turn the knob.",
-                "Step 4: Let the steak sear for 30s, then turn knob to medium setting and cook until steak is at the desired doneness. \n\nTIP: Hover over the steak with the left controller to check its doneness in the object information panel.",
-                "Step 5: Let the steak rest for 45s and plate it up. \n\nTIP: The rotisseur role is in charge of cooking steaks. The saucier role is in charge fries and bearnaise sauce.",
+                "Step 4: Let the steak sear for 30s, then turn knob to medium setting and cook until steak is at the desired doneness. Pick up the steak when it is done cooking. \n\nTIP: Hover over the steak with the left controller to check its doneness in the object information panel.",
+                "Step 5: Plate it up and let the steak rest for 45s while you prepare the fries and sauce! \n\nTIP: The rotisseur role is in charge of cooking steaks. The saucier role is in charge fries and bearnaise sauce.",
                 "Step 6: Cook some fries! Grab a fry basket. \n\nTIP: The station for fries is on the other side of the kitchen",
                 "Step 7: Grab some fries out of the kitchen cabinet and place them in the fry basket.",
                 "Step 8: Place the fry basket back in the frier and click the knob to cook the fries. \n\nTIP: Some knobs are on a timer. Wait for the timer to finish for fully cooked fries!",
-                "Step 9: When the timer goes off, pour the fries out of the fry basket and garnish with 4g of salt and 4g of parsley. \n\nTIP: Fries cannot be grabbed out of the fry basket. Instead, tilt the fry basket to pour the fries out.",
-                "Step 10: Plate the fries with the steak. \n\nTIP: When turning in an order, all the components have to be on the same plate.",
+                "Step 9: When the timer goes off, pour the fries out of the fry basket and garnish with 4g of salt and 4g of parsley. \n\nTIP: Tilt the fry basket to pour the fries out.",
+                "Step 10: Plate the fries with the steak. \n\nTIP: When turning in a dish, all the components have to be on the same plate.",
                 "Step 11: Plate the bearnaise sauce! Grab a ramekin and a ladle. \n\nTIP: Additional cooking tools can be found in drawers.",
                 "Step 12: Sauce is located in the left side of the heater. Ladle ~150mL of bearnaise sauce into a ramekin.",
                 "Step 13: Plate the bearnaise with the steak and fries.",
@@ -115,17 +126,20 @@ public class Tutorial : MonoBehaviour
                 GameObject.Find("Prop_KitchenTable_06 (1)").transform.Find("Prop_KitchenTable_06_p02").gameObject });
             highlightObjs.Add(new GameObject[] { null });
             highlightObjs.Add(new GameObject[] { GameObject.Find("Torch") });
+            highlightObjs.Add(new GameObject[] { GameObject.Find("SpiceSpawner (2)").transform.Find("Spice Box (1)").gameObject,
+                GameObject.Find("SpiceSpawner (2)").transform.Find("Parsley Variant").gameObject });
             highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_01") });
 
             tutorialText = new string[]
             {
                 "Step 1: Let's cook some french onion soup! Grab a bowl from the dishes table and a ladle from the drawer in the right side of the kitchen. \n\nTIP: Press and hold the grip button to grab objects. Grab and pull the drawer handle to open the drawer.",
-                "Step 2: Soup is located in the right side of the heater. Ladle the soup into the bowl until full, about 450mL. \n\nTIP: Hover over the soup bowl with the left controller to see the missing elements in the object information panel.",
+                "Step 2: Soup is located in the right side of the heater. Ladle the soup into the bowl until full, about 500mL. \n\nTIP: Hover over the soup bowl with the left controller to see the missing elements in the object information panel.",
                 "Step 3: Grab a piece of bread from the kitchen cabinet and drop it in the soup bowl.",
                 "Step 4: Place the bowl down on the counter. Grab a grater from the drawer and cheese from the fridge on the other side of the kitchen.",
                 "Step 5: Grate the cheese over the bowl of soup. To grate, hold the grater steady and gently rub the cheese along the top of the grater. Grate the cheese until it becomes visible in the soup. \n\nTIP: Grating the cheese gently is key.",
-                "Step 6: Grab the torch and torch the bowl of french onion soup until the cheese melts. \n\nTIP: The cheese should visibly flatten when melted.",
-                "Step 7: To serve the dish, place it on the flashing table.",
+                "Step 6: Grab the torch and torch the bowl of french onion soup until the cheese melts. \n\nTIP: While holding the torch, press and hold the trigger button to activate it. \nTIP 2: The cheese should visibly flatten when melted.",
+                "Step 7: Garnish with ~2g parsley.",
+                "Step 8: To serve the dish, place it on the flashing table.",
                 "Congratulations! \nYou have successfully cooked french onion soup! \n\nTIP: You can press the left menu button to return to the lobby."
             };
 
@@ -165,11 +179,11 @@ public class Tutorial : MonoBehaviour
             {
                 "Step 1: Roast the chicken and vegetables! Grab a roasting pan. \n\nTIP: Press and hold the grip button to grab objects.",
                 "Step 2: Add 1 chicken breast, 2 chicken wings, and an order of vegetables to the roasting pan. \n\nTIP: Grab and pull the fridge handle to open the fridge.",
-                "Step 3: Season everything with salt and pepper, and add about 75mL of olive oil to the pan.",
+                "Step 3: Season everything with salt and pepper, and add about 75mL of olive oil to the pan. \n\nTIP: Be thorough with seasoning. Make sure every component has some salt and pepper on it!",
                 "Step 4: Place the roasting pan in the 425° oven and activate the chicken timer. \n\nTIP: Activate the timer by pressing the CHICKEN button.",
-                "Step 5: Once the timer goes off, take the roasting pan out. Grab a dinner plate and plate the food. Save the roasting liquid in the pan. \n\nTIP: Taking the roasting pan out of the oven early will not let the food cook properly!",
-                "Step 6: Garnish the plate with parsley. \n\nTIP: Hover over an object with the left controller to get more information.",
-                "Step 7: Let's make the pan sauce! Take the roasting liquid from before and pour all of it to a sauce pan.",
+                "Step 5: Once the timer goes off, take the roasting pan out. Grab a dinner plate and plate the food. Save the roasting liquid in the pan. \n\nTIP: Plated objects cannot be grabbed. Tilt the roasting pan to pour the contents out onto a dinner plate.",
+                "Step 6: Garnish the plate with parsley. Make sure every wing and breast has parsley on it. \n\nTIP: Hover over an object with the left controller to get more information.",
+                "Step 7: Let's make the pan sauce! Take the roasting liquid from before and pour 100mL of it to a sauce pan.",
                 "Step 8: Add shallots to the pan. Shallots are located in the kitchen cabinet.",
                 "Step 9: Using the stove, cook shallots over high heat until the shallots melt. Turn the knob on the stove to adjust the heat level. \n\nTIP: While pointing at a knob, press and release the grip button to turn the knob. \nTIP 2: Hover over the pan with the left controller to check its cooking temperature in the object information panel. The shallots will melt at 140°F.",
                 "Step 10: Reduce heat and add 150mL of chardonnay white wine to deglaze.",
@@ -208,7 +222,7 @@ public class Tutorial : MonoBehaviour
                 "Step 5: Sear crab cakes on high heat for 20s.",
                 "Step 6: Reduce heat to medium and cook until internal temperature reaches 165°F. \n\nTIP: Hover over the crab cakes with the left controller to check its internal temperature in the object information panel.",
                 "Step 7: Grab an appetizer plate and plate the crab cakes. \n\nTIP: Tilt the pan to pour out the crab cakes onto a plate.",
-                "Step 8: Ladle 150mL of bearnaise sauce over the plate. Ladles are located in drawers and the bearnaise sauce is located in the heater. \n\nTIP: Grab and pull the drawer handle to open the drawer.",
+                "Step 8: Ladle bearnaise sauce over the plate. Ladles are located in drawers and the bearnaise sauce is located in the heater. \n\nTIP: Grab and pull the drawer handle to open the drawer.",
                 "Step 9: Garnish with fresh sprouts. Sprouts are located in the head chef station, next to the spice box.",
                 "Step 10: To serve the dish, place it on the flashing table.",
                 "Congratulations! \nYou have successfully cooked crab cakes! \n\nTIP: You can press the left menu button to return to the lobby."
@@ -218,9 +232,33 @@ public class Tutorial : MonoBehaviour
         }
         else if (tutorialType.Equals(TutorialType.headChef))
         {
+            frenchonion = GameObject.Find("FrenchOnion");
+            crabcake = GameObject.Find("CrabCake");
+            highlightObjs.Add(new GameObject[] { GameObject.Find("TicketMachine") });
+            highlightObjs.Add(new GameObject[] { null });
+            highlightObjs.Add(new GameObject[] { frenchonion,
+                GameObject.Find("Torch"),
+                GameObject.Find("SpiceSpawner (2)").transform.Find("Spice Box (1)").gameObject,
+                GameObject.Find("SpiceSpawner (2)").transform.Find("Parsley Variant").gameObject });
+            highlightObjs.Add(new GameObject[] { crabcake,
+                GameObject.Find("SproutSpawner") });
+            highlightObjs.Add(new GameObject[] { GameObject.Find("Prop_KitchenTable_01") });
+            highlightObjs.Add(new GameObject[] { null });
+            highlightObjs.Add(new GameObject[] { GameObject.Find("TicketMachine") });
             highlightObjs.Add(new GameObject[] { null });
 
-            tutorialText = new string[] { "This tutorial is not available yet.\nPress the left menu button to return to the lobby." };
+            tutorialText = new string[] 
+            {
+                "Head chefs receive tickets with orders from the ticketing machine. \n\nTIP: Press the trigger button on the right controller to move on to the next step.",
+                "In a real game, this is where you would read out directions for your line cooks. Be careful to look for any order modifications that customers have requested (no bread for french onion soup) \n\nTIP: Press the trigger button on the right controller to move on to the next step.",
+                "Looks like this dish (french onion soup) is almost complete! Just torch it and add parsley. \n\nTIP: Press and hold the grip button to grab objects. \nTIP 2: While holding the torch, press and hold the trigger button to activate it. \nTIP 3: Hover over the bowl of french onion soup with the left controller to check its status in the object information panel.",
+                "Looks like this dish (crab cakes) is almost complete! Just add the fresh sprouts to garnish. The head chef is responsible for quality assurance and garnishing for all dishes.",
+                "Once you're done, take the dishes and place them in the staging area.",
+                "Once everything for an order is in the staging area, simply place the ticket in the staging area to send it away.",
+                "After submitting an order, feedback will be printed by the machine so you can see how you did! \n\nTIP: Press the trigger button on the right controller to move on to the next step.",
+                "On the ticket machine, there are buttons you can press to reprint tickets. These are currently disabled, but in a real game they can be used to reprint lost tickets! \n\nTIP: Press the trigger button on the right controller to move on to the next step.",
+                "Congratulations! \nYou have successfully completed the head chef tutorial! \n\nTIP: You can press the left menu button to return to the lobby. This works in a multiplayer game as well!"
+            };
             header = "Head Chef Tutorial\n";
         }
         else
@@ -279,6 +317,9 @@ public class Tutorial : MonoBehaviour
                 case TutorialType.crabCakes:
                     UpdateCrabCakes();
                     break;
+                case TutorialType.headChef:
+                    UpdateHeadChef();
+                    break;
             }
 
         }
@@ -304,7 +345,7 @@ public class Tutorial : MonoBehaviour
             (step == 7 && IsHolding("Prop_Frier_p04")) ||
             (step == 8 && fries != null && fries.GetComponent<Fries>().seasoning.salt > 0f && fries.GetComponent<Fries>().seasoning.parsley > 0f) ||
             (step == 9 && IsPlated(plate, "Fries")) ||
-            (step == 10 && IsHolding("ladle", true) && IsHolding("ramekin", true)) ||
+            (step == 10 && IsHolding("ladle", true) && IsHolding("Ramekin")) ||
             (step == 11 && ramekin.GetComponent<LiquidContainer>().currentVolume >= 140) ||
             (step == 12 && IsPlated(plate, "Sauce")))
         {
@@ -312,7 +353,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (step == 13)
         {
-            var table = GameObject.Find("Prop_KitchenTable_01");
+            //var table = GameObject.Find("Prop_KitchenTable_01");
             if (plate.transform.position.z <= table.transform.position.z + 0.5 && plate.transform.position.z >= table.transform.position.z - 0.5 && !IsHolding("plate", true))
             {
                 UpdateStep();
@@ -328,13 +369,14 @@ public class Tutorial : MonoBehaviour
             (step == 2 && hasPlate && IsPlated(plate, "Bread")) ||
             (step == 3 && IsHolding("grater", true) && IsHolding("gruyere", true)) ||
             (step == 4 && hasPlate && plate.TryGetComponent(out Seasonable seasonable) && seasonable.gruyere >= 5) ||
-            (step == 5 && hasPlate && plate.GetComponentInChildren<Cheese>() != null && plate.GetComponentInChildren<Cheese>().toastingTime >= 10))
+            (step == 5 && hasPlate && plate.GetComponentInChildren<Cheese>() != null && plate.GetComponentInChildren<Cheese>().toastingTime >= 10) ||
+            (step == 6 && hasPlate && plate.TryGetComponent(out Seasonable s) && s.parsley > 0))
         {
             UpdateStep();
         }
-        else if (step == 6)
+        else if (step == 7)
         {
-            var table = GameObject.Find("Prop_KitchenTable_01");
+            //var table = GameObject.Find("Prop_KitchenTable_01");
             if (plate.transform.position.z <= table.transform.position.z + 0.5 && plate.transform.position.z >= table.transform.position.z - 0.5 && !IsHolding("plate", true))
             {
                 UpdateStep();
@@ -351,7 +393,7 @@ public class Tutorial : MonoBehaviour
             (step == 2 && pan.TryGetComponent(out LiquidContainer liquid) && liquid.currentVolume >= 75) ||
             (step == 3 && IsHolding("Button")) ||
             (step == 4 && IsPlated(plate, "Vegetables") && IsPlated(plate, "Wing1") && IsPlated(plate, "Wing2") && IsPlated(plate, "Breast")) ||
-            (step == 5 && plate.GetComponentInChildren<Seasonable>() != null && plate.GetComponentInChildren<Seasonable>().parsley > 0) ||
+            (step == 5 && HasParsley(plate)) ||
             (step == 6 && saucePan != null && saucePan.TryGetComponent(out LiquidContainer liquid2) && liquid2.currentVolume >= 20) ||
             (step == 7 && IsPlated(saucePan, "Shallots")) ||
             (step == 8 && saucePan.TryGetComponent(out Temperature temp) && temp.temp >= 60) ||
@@ -362,7 +404,7 @@ public class Tutorial : MonoBehaviour
         }
         else if (step == 11)
         {
-            var table = GameObject.Find("Prop_KitchenTable_01");
+            //var table = GameObject.Find("Prop_KitchenTable_01");
             if (plate.transform.position.z <= table.transform.position.z + 0.5 && plate.transform.position.z >= table.transform.position.z - 0.5 && !IsHolding("plate", true))
             {
                 UpdateStep();
@@ -380,16 +422,66 @@ public class Tutorial : MonoBehaviour
             (step == 4 && crab != null && crab.TryGetComponent(out Cookable c) && c.searTime >= 20) || // inconsistent with cookable and recipe
             (step == 5 && saucePan.TryGetComponent(out Temperature t) && t.tempInF() >= 165) ||
             (step == 6 && hasPlate && IsPlated(plate, "Crab") && IsPlated(plate, "Crab2")) ||
-            (step == 7 && hasPlate && plate.TryGetComponent(out LiquidContainer l) && l.currentVolume > 150) ||
+            (step == 7 && hasPlate && plate.TryGetComponent(out LiquidContainer l) && l.currentVolume > 10) ||
             (step == 8 && hasPlate && IsPlated(plate, "SproutLoc")))
         {
             UpdateStep();
         }
         else if (step == 9)
         {
-            var table = GameObject.Find("Prop_KitchenTable_01");
+            //var table = GameObject.Find("Prop_KitchenTable_01");
             if (plate.transform.position.z <= table.transform.position.z + 0.5 && plate.transform.position.z >= table.transform.position.z - 0.5 && !IsHolding("plate", true))
             {
+                UpdateStep();
+            }
+        }
+    }
+
+    void UpdateHeadChef()
+    {
+        if (ticket == null)
+        {
+            ticket = GameObject.FindGameObjectWithTag("order");
+            if (ticket != null)
+            {
+                int[] indices = { 1, 5 };
+                foreach (int i in indices)
+                {
+                    highlightObjs[i][highlightObjs[i].Length - 1] = ticket;
+                }
+            }
+
+        }
+        if (step < 5 && (frenchonion == null || crabcake == null))
+        {
+            step = 5;
+        }
+        if ((step == 0 && press) ||
+            (step == 1 && press) ||
+            (step == 2 && frenchonion.GetComponentInChildren<Cheese>() != null && frenchonion.GetComponentInChildren<Cheese>().toastingTime >= 10 && 
+                frenchonion.TryGetComponent(out Seasonable s) && s.parsley > 0) ||
+            (step == 3 && IsPlated(crabcake, "SproutLoc")) ||
+            (step == 6 && press) ||
+            (step == 7 && press))
+        {
+            press = false;
+            UpdateStep();
+        } 
+        else if (step == 4)
+        {
+            bool frenchTabled = frenchonion != null && frenchonion.transform.position.z <= table.transform.position.z + 0.5 && frenchonion.transform.position.z >= table.transform.position.z - 0.5 && !IsHolding("FrenchOnion", true);
+            bool crabTabled = crabcake != null && crabcake.transform.position.z <= table.transform.position.z + 0.5 && crabcake.transform.position.z >= table.transform.position.z - 0.5 && !IsHolding("CrabCake", true);
+            if (frenchTabled && crabTabled)
+            {
+                UpdateStep();
+            }
+        }
+        else if (step == 5)
+        {
+            feedback = GameObject.FindGameObjectWithTag("feedback");
+            if (feedback != null)
+            {
+                highlightObjs[6][highlightObjs[6].Length - 1] = feedback;
                 UpdateStep();
             }
         }
@@ -446,6 +538,25 @@ public class Tutorial : MonoBehaviour
             return p.GetComponent<Seasonable>().gruyere >= 5;
         }
 
+        return false;
+    }
+
+    bool HasParsley(GameObject p)
+    {
+        if (p != null && p.TryGetComponent(out PhotonView view))
+        {
+            float parsley = 0;
+            Dish d = PhotonView.Find(view.ViewID).GetComponent<Dish>();
+            foreach (int id in d.connectedItems)
+            {
+                GameObject target = PhotonView.Find(id).gameObject;
+                if (target.TryGetComponent(out Seasonable s))
+                {
+                    parsley += s.parsley;
+                }
+            }
+            return parsley > 0;
+        }
         return false;
     }
 
@@ -528,7 +639,7 @@ public class Tutorial : MonoBehaviour
                 UpdatePlate(interactableObj);
             }
         }
-        else if (interactableObj.tag.Equals("ramekin"))
+        else if (interactableObj.name.Contains("Ramekin"))
         {
             ramekin = interactableObj;
         }
@@ -543,6 +654,10 @@ public class Tutorial : MonoBehaviour
         else if (interactableObj.tag.Equals("crab_cake"))
         {
             crab = interactableObj;
+        }
+        else if (interactorObj.tag.Equals("breast"))
+        {
+            breast = interactableObj;
         }
     }
 
@@ -596,5 +711,10 @@ public class Tutorial : MonoBehaviour
             //highlightObjs[i] = new GameObject[] { p };
         }
 
+    }
+
+    public void OnPress()
+    {
+        press = true;
     }
 }
