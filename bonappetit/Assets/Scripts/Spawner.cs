@@ -9,6 +9,7 @@ public class Spawner : MonoBehaviour
 {
     public bool onlyAllowOneActiveCopy = false;
     private Vector3 spawnPosition;
+    private int copies;
 
     private Quaternion spawnRotation;
 
@@ -35,6 +36,7 @@ public class Spawner : MonoBehaviour
     void OnTriggerExit(Collider other) {
         Debug.Log (tag + " left the spawner");
         PhotonView otherview = other.gameObject.GetComponent<PhotonView>();
+        if (copies > 50) { return;} // prevents infinite spawn from happening
         if (other.gameObject == initialSpawnedObject && otherview.IsMine) {
             Transform oldActive = activeCopy;
             activeCopy = initialSpawnedObject.transform;
@@ -52,6 +54,7 @@ public class Spawner : MonoBehaviour
             } else {
                 initialSpawnedObject = PhotonNetwork.Instantiate(prefab.name, spawnPosition, spawnRotation);
                 initialSpawnedObject.layer = 3;
+                copies++;
             }
             _view.RPC("SetupObject", RpcTarget.AllViaServer, initialSpawnedObject.GetComponent<PhotonView>().ViewID);
             
