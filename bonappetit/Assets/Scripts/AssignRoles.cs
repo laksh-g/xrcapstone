@@ -39,6 +39,14 @@ public class AssignRoles : MonoBehaviourPunCallbacks
         InvokeRepeating("UpdateLastButton", 0.1f, 5f);
     }
 
+    void OnLeftRoom() {
+        RoleMap[0] = -1;
+        RoleMap[1] = -1;
+        RoleMap[2] = -1;
+        RoleMap[3] = -1;
+        base.OnLeftRoom();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -101,14 +109,14 @@ public class AssignRoles : MonoBehaviourPunCallbacks
         Debug.Log("Selected role" + role);
         if (PhotonNetwork.CurrentRoom != null) {
             if(role == "DefaultRole"){
-                _view.RPC("SendRoleUpdates", RpcTarget.AllViaServer, -1, PhotonNetwork.LocalPlayer.ActorNumber);
+                _view.RPC("SendRoleUpdates", RpcTarget.AllBufferedViaServer, -1, PhotonNetwork.LocalPlayer.ActorNumber);
             }else{
                 string[] roles = {"RotisseurRole", "SaucierRole", "HeadChefRole", "SousChefRole"};
 
                 int index = Array.IndexOf(roles, role);
 
 
-                _view.RPC("SendRoleUpdates", RpcTarget.AllViaServer, index, PhotonNetwork.LocalPlayer.ActorNumber);
+                _view.RPC("SendRoleUpdates", RpcTarget.AllBufferedViaServer, index, PhotonNetwork.LocalPlayer.ActorNumber);
 
 
                 ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
