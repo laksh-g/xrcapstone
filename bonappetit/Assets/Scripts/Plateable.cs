@@ -47,7 +47,7 @@ public class Plateable : MonoBehaviourPunCallbacks
     }
     void OnTriggerEnter (Collider other) {
         if(!connected && _view.IsMine && other.gameObject.tag == "plate" 
-        && CalculatePlateAngle(other.transform) < 10 && other.transform.parent.gameObject.layer != 3) {
+        && CalculatePlateAngle(other.transform) < 10 && other.transform.parent != null && other.transform.parent.gameObject.layer != 3) {
             connected = true;
             PhotonView view = other.GetComponentInParent<PhotonView>();
             _view.RPC("StickTo", RpcTarget.AllViaServer, view.ViewID);

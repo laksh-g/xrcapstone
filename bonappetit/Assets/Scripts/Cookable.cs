@@ -81,7 +81,7 @@ public class Cookable : MonoBehaviour, IPunObservable
         }
 
         if (isSearable) {
-            if (temp.heater != null && temp.heater.s.val == temp.heater.s.numSettings - 1) {
+            if (_view.IsMine && temp.heater != null && temp.heater.s.val == temp.heater.s.numSettings - 1) {
                 searTime += Time.deltaTime;
             }
             if (searTime > desiredSearTime * 1.5) {
@@ -119,7 +119,7 @@ public class Cookable : MonoBehaviour, IPunObservable
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
-        if (stream.IsWriting && _view.IsMine)
+        if (stream.IsWriting)
         {
             stream.SendNext(searTime);
         }
