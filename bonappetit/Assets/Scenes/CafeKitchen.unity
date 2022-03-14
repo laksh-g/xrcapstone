@@ -12019,8 +12019,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   logLevel: 3
   ignoreGlobalLogLevel: 0
-  boostValue: 7
-  amplificationFactor: 7
+  boostValue: 0
+  amplificationFactor: 13
 --- !u!1 &111774864859794239
 GameObject:
   m_ObjectHideFlags: 0
