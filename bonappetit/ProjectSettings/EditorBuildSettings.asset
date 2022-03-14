@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewLobby.unity
     guid: 72b5d3d49ee4c65488cc6b233fe19d6c
   - enabled: 1
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/FineDiningKitchen.unity
     guid: 801ac96c2fac0d240b92c5f2ad1c9b7e
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NewEndgame.unity
     guid: 78f324240e49941489c74f24667e7758
   - enabled: 0
@@ -32,6 +32,9 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/CrabTutorial.unity
     guid: faebaf685bd114a1491b1df5e495a2a1
+  - enabled: 0
+    path: Assets/Scenes/HeadChefTutorial.unity
+    guid: e5fe1d352d23c4c209fa9022f542cc26
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: fa1f197d61378174a82d904ceb13df6c, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: f8e6118ce0a9e6c4b8e7248ec58b6811, type: 2}
