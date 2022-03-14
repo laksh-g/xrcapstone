@@ -100,29 +100,30 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     {
         Debug.Log("Selected role" + role);
         if (PhotonNetwork.CurrentRoom != null) {
-            //ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
-            //ht[role] = PhotonNetwork.LocalPlayer.ActorNumber;
-        
-            string[] roles = {"RotisseurRole", "SaucierRole", "HeadChefRole", "SousChefRole"};
-
-            int index = Array.IndexOf(roles, role);
-
-
-            _view.RPC("SendRoleUpdates", RpcTarget.AllViaServer, index, PhotonNetwork.LocalPlayer.ActorNumber);
-
-
-            ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
-            playerCustomProps["role"] = role;
-            PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProps);
-
-            if(role == "HeadChefRole"){
-                StartGame.interactable = true;
-                RoomSettings.interactable = true;
-                PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+            if(role == "DefaultRole"){
+                _view.RPC("SendRoleUpdates", RpcTarget.AllViaServer, -1, PhotonNetwork.LocalPlayer.ActorNumber);
             }else{
-                StartGame.interactable = false;
-                RoomSettings.interactable = false;
-                //StartGame.interactable = true;
+                string[] roles = {"RotisseurRole", "SaucierRole", "HeadChefRole", "SousChefRole"};
+
+                int index = Array.IndexOf(roles, role);
+
+
+                _view.RPC("SendRoleUpdates", RpcTarget.AllViaServer, index, PhotonNetwork.LocalPlayer.ActorNumber);
+
+
+                ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
+                playerCustomProps["role"] = role;
+                PhotonNetwork.LocalPlayer.SetCustomProperties(playerCustomProps);
+
+                if(role == "HeadChefRole"){
+                    StartGame.interactable = true;
+                    RoomSettings.interactable = true;
+                    PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
+                }else{
+                    StartGame.interactable = false;
+                    RoomSettings.interactable = false;
+                    //StartGame.interactable = true;
+                }
             }
         }
     }
@@ -141,27 +142,11 @@ public class AssignRoles : MonoBehaviourPunCallbacks
             RoleMap[up] = -1;
         }
 
-        if(RoleMap[roleID] == -1){
-            RoleMap[roleID] = playerID;
+        if(roleID != -1){
+            if(RoleMap[roleID] == -1){
+                RoleMap[roleID] = playerID;
+            }
         }
-
         updateButtons();
-        // if (connected && id == plateID) {
-        //     connected = false;
-        //     point.tag = tag; // reset tag
-        //     point = null;
-        //     //Destroy(_joint);
-        //     //_joint = null;
-        //     gameObject.layer = 9; // set back to food layer
-        //     //_transform.parent = null;
-        //     _rb.isKinematic = false;
-        //     plateID = -1;
-        //     Dish d = PhotonView.Find(id).GetComponent<Dish>();
-        //     if (d != null) {
-        //         d.connectedItems.Remove(_view.ViewID);
-        //         Debug.LogError("Removed view " + _view.ViewID + " from " + d.connectedItems.ToString());
-        //     }
-            
-        // }
     }
 }
