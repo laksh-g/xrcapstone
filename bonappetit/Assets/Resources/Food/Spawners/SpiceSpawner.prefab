@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyAllowOneActiveCopy: 0
+  onlyAllowOneActiveCopy: 1
   initialSpawnedObject: {fileID: 7965258734377478965}
   prefab: {fileID: 8601388132012798836, guid: 8678bafae7bd5dc49a822fe2b8afde58, type: 3}
 --- !u!114 &357491371419852321
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyAllowOneActiveCopy: 0
+  onlyAllowOneActiveCopy: 1
   initialSpawnedObject: {fileID: 955465351574067116}
   prefab: {fileID: 3076193224301785251, guid: 8d76e82ae309f834385eb55006ab035f, type: 3}
 --- !u!114 &1567735183695394825
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9835bc9d10b0ff740bd33277d784df9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  onlyAllowOneActiveCopy: 0
+  onlyAllowOneActiveCopy: 1
   initialSpawnedObject: {fileID: 7091164379185928438}
   prefab: {fileID: 3953333319949414555, guid: 45bd3eeebe764e948a5cd6d8659674b6, type: 3}
 --- !u!114 &5966660697661293668
