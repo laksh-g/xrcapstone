@@ -35,9 +35,13 @@ public class Shaker : MonoBehaviour
                 if (isPouring) {
                     a.PlayOneShot(shakeSound);
                     print("Pouring!");
+                    if (p != null) {
                     p.Play();
+                    }
                 } else {
-                    p.Stop();
+                    if (p != null) {
+                        p.Stop();
+                    }
                     target = null;
                 }
             }
@@ -74,11 +78,13 @@ public class Shaker : MonoBehaviour
         RaycastHit hit;
         Ray ray = new Ray(p.transform.position, Vector3.down);
         Physics.Raycast(ray, out hit, 10.0f, layerMask);
-        Seasonable s = hit.collider.GetComponent<Seasonable>();
-        if (s != null) {
-            target = s;
-        } else {
-            target = null;
+        if (hit.collider != null) {
+            Seasonable s = hit.collider.GetComponent<Seasonable>();
+            if (s != null) {
+                target = s;
+            } else {
+                target = null;
+            }
         }
     }
 }
