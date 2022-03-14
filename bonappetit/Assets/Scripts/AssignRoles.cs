@@ -62,13 +62,15 @@ public class AssignRoles : MonoBehaviourPunCallbacks
     // }
 
     public void UpdateLastButton(){
-        ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
-        if(!buttonActivated){
-            if((string)ht["difficulty"] == "Fine Dining Kitchen"){
-                SousButton.gameObject.SetActive(true);
-                buttonActivated = true;
-            }else{
-                SousButton.gameObject.SetActive(false);
+        if (PhotonNetwork.CurrentRoom != null) {
+            ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
+            if(!buttonActivated){
+                if((string)ht["difficulty"] == "Fine Dining Kitchen"){
+                    SousButton.gameObject.SetActive(true);
+                    buttonActivated = true;
+                }else{
+                    SousButton.gameObject.SetActive(false);
+                }
             }
         }
     }
