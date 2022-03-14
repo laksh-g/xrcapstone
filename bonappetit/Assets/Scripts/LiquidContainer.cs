@@ -5,7 +5,7 @@ using Photon.Pun;
 
 [RequireComponent(typeof(PhotonView))]
 [RequireComponent(typeof(Temperature))]
-public class LiquidContainer : MonoBehaviour, IPunObservable
+public class LiquidContainer : MonoBehaviour
 {
     [SerializeField]
     public float currentVolume = 0; // in mL
@@ -13,6 +13,7 @@ public class LiquidContainer : MonoBehaviour, IPunObservable
     public bool isFillable = false;
     public bool isPourable = false;
     public Material liquidMaterial = null;
+
     public GameObject liquid = null;
     [Header("Fillable Settings")]
     public Transform liquidStart = null;
@@ -53,24 +54,45 @@ public class LiquidContainer : MonoBehaviour, IPunObservable
         _view = GetComponent<PhotonView>();
     }
 
+    [PunRPC]
+    void Pour(bool hastarget, int targetid, float amount) {
+        currentVolume = Mathf.Max(0f, currentVolume - amount);
+        if (hastarget) {
+            PhotonView view = PhotonView.Find(targetid);
+            LiquidContainer container = view.GetComponent<LiquidContainer>();
+            container.liquidMaterial = liquidMaterial; // inherit material
+            container.gameObject.tag = tag; // inherit tag
+            container.temperature.temp = (temperature.temp + container.temperature.temp) / 2;
+            container.currentVolume = Mathf.Min(container.currentVolume + amount, container.capacity);
+        }
+    }
+
+    [PunRPC]
+    void Scoop(int scooperid) {
+        PhotonView view = PhotonView.Find(scooperid);
+        LiquidContainer scoop = view.GetComponent<LiquidContainer>();
+        currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
+        scoop.currentVolume = Mathf.Min(scoop.currentVolume + scoopRate, scoop.capacity);
+        scoop.gameObject.tag = tag; // inherit tag
+        scoop.temperature.temp = (temperature.temp + scoop.temperature.temp) / 2;
+        scoop.liquidMaterial = liquidMaterial;
+    }
     void FixedUpdate() {
         if (_view.IsMine && isPourable && isPouring) {
             float pourRate = CalculatePourRate();
             currentVolume = Mathf.Max(0f, currentVolume - pourRate);
             if (stream.container != null && stream.container.currentVolume < stream.container.capacity) {
-                stream.container.liquidMaterial = liquidMaterial; // inherit material
-                stream.container.gameObject.tag = tag; // inherit tag
-                stream.container.temperature.temp = (temperature.temp + stream.container.temperature.temp) / 2;
-                stream.container.currentVolume = Mathf.Min(stream.container.currentVolume + pourRate, stream.container.capacity);
+                Pour(true, stream.container._view.ViewID, pourRate);
+                _view.RPC("Pour", RpcTarget.Others, true, stream.container._view.ViewID, pourRate);
+            } else {
+                Pour(false, -1, pourRate);
+                _view.RPC("Pour", RpcTarget.Others, false, -1, pourRate);
             }
         }
 
         if (scooper != null && currentVolume > 0f && scooper.currentVolume < scooper.capacity) {
-            scooper.liquidMaterial = liquidMaterial; // inherit material
-            currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
-            scooper.currentVolume = Mathf.Min(scooper.currentVolume + scoopRate, scooper.capacity);
-            scooper.gameObject.tag = tag; // inherit tag
-            scooper.temperature.temp = (temperature.temp + scooper.temperature.temp) / 2;
+            Scoop(scooper._view.ViewID);
+            _view.RPC("scoop", RpcTarget.Others, scooper._view.ViewID);
         }
     }
 
@@ -97,10 +119,9 @@ public class LiquidContainer : MonoBehaviour, IPunObservable
 
         }
 
-        if (liquidMesh != null && liquidMaterial != null && liquidMesh.material != liquidMaterial) {
+        if (liquidMesh != null && liquidMesh.material != liquidMaterial) {
             liquidMesh.material = liquidMaterial;
         }
-
         if(isFillable) {
             if (getPercentage() > 0.1) {
                 liquidMesh.enabled = true;
@@ -112,6 +133,7 @@ public class LiquidContainer : MonoBehaviour, IPunObservable
             if (automaticRefill && getPercentage() < .75) {
                 Refill();
             }
+
         }
     }
 
@@ -154,6 +176,7 @@ public class LiquidContainer : MonoBehaviour, IPunObservable
         currentVolume = capacity;
     }
 
+/*
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -167,4 +190,5 @@ public class LiquidContainer : MonoBehaviour, IPunObservable
             tag = (string)stream.ReceiveNext();
         }
     }
+    */
 }
