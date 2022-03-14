@@ -11,8 +11,10 @@ public class Dish : MonoBehaviourPunCallbacks
     public HashSet<int> connectedItems = new HashSet<int>();
     private PhotonView _view = null;
 
+    public int viewID;
     void Awake() {
         _view = GetComponent<PhotonView>();
+        viewID = _view.ViewID;
     }
 
 

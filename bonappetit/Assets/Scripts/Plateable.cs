@@ -37,9 +37,9 @@ public class Plateable : MonoBehaviourPunCallbacks
     }
 
     void Update() {
-        if (_view.IsMine && point != null && CalculatePlateAngle(point.parent.parent) > 60) {
+        if (_view.IsMine && connected && point != null && CalculatePlateAngle(point.parent.parent) > 60) {
             _view.RPC("Unstick", RpcTarget.AllViaServer, plateID);
-        } else if (connected) {
+        } else if (connected && point != null && _transform != null) {
             if (plateTemp != null && _temp != null) {
                 _temp.heater = plateTemp.heater;
             }
@@ -70,10 +70,7 @@ public class Plateable : MonoBehaviourPunCallbacks
             connected = false;
             point.tag = tag; // reset tag
             point = null;
-            //Destroy(_joint);
-            //_joint = null;
             gameObject.layer = 9; // set back to food layer
-            //_transform.parent = null;
             _rb.isKinematic = false;
             plateID = -1;
             Dish d = PhotonView.Find(id).GetComponent<Dish>();
@@ -82,6 +79,8 @@ public class Plateable : MonoBehaviourPunCallbacks
                 Debug.LogError("Removed view " + _view.ViewID + " from " + d.connectedItems.ToString());
             }
             
+        } else {
+            Debug.LogError("Unstick called for unplated object or wrong plate");
         }
     }
 
@@ -105,17 +104,12 @@ public class Plateable : MonoBehaviourPunCallbacks
                 Debug.Log("found hook for " + t.tag);
                 if (t.CompareTag(tag)) {
                     _transform.SetPositionAndRotation(t.position, t.rotation);
-                    //_joint = gameObject.AddComponent<FixedJoint>();
-                    //_joint.connectedBody = target.GetComponent<Rigidbody>();
-                    //_joint.breakForce = Mathf.Infinity;
-                    //_joint.enableCollision = false;
                     _rb.isKinematic = true;
                     gameObject.layer = 10; // set to plated layer to disable collisions
                     connected = true;
                     point = t;
                     t.tag = "occupied"; // set the tag so other objects don't try to stick here
                     plateTemp = target.GetComponent<Temperature>();
-                    //_transform.parent = target.transform;
                     Dish d = target.GetComponent<Dish>();
                     if (d != null) {
                         d.connectedItems.Add(_view.ViewID);
@@ -124,7 +118,7 @@ public class Plateable : MonoBehaviourPunCallbacks
                     break;
                 }
             }
-            Debug.Log(tag + " failed to find appropriate plate hook");
+            Debug.LogError(tag + " failed to find appropriate plate hook");
     }
 
 }

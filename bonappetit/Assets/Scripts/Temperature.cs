@@ -119,7 +119,7 @@ public class Temperature : MonoBehaviour, IPunObservable
 
     void OnTriggerExit(Collider other)
     {
-        if (heater != null && other.gameObject == heater.gameObject) {
+        if (heater != null && other.gameObject.tag == "heater") {
             isResting = true;
             heater = null;
         }
