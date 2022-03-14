@@ -9607,7 +9607,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &995238143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10790,7 +10790,6 @@ MonoBehaviour:
   dishManager: {fileID: 0}
   coversCompleted: 0
   ticketSpawn: {fileID: 1250633386}
-  ticketMachine: {fileID: 195030571}
   ticketPrefab: {fileID: 3568234082089902276, guid: cb9df8e8ede834137b71f5fd5f8839bc, type: 3}
   startButton: {fileID: 87619664}
   im: {fileID: 1776733260}
