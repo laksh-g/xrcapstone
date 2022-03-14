@@ -174,9 +174,9 @@ public class GameManager : MonoBehaviour
             Vector3 startPos = ticket.gObj.transform.position;
 
             Vector3 endPos = new Vector3(
-                ticket.gObj.transform.position.x - .3f,
+                ticket.gObj.transform.position.x + (.3f * Mathf.Cos(ticketSpawn.eulerAngles.y * (float)System.Math.PI / -180f)),
                 ticket.gObj.transform.position.y,
-                ticket.gObj.transform.position.z
+                ticket.gObj.transform.position.z + (.3f * Mathf.Sin(ticketSpawn.eulerAngles.y * (float)System.Math.PI / -180f))
             );
 
             // Update Order Receipt Transform Property
@@ -214,9 +214,9 @@ public class GameManager : MonoBehaviour
             Order ticket = (Order) openOrders[arr[i]];
 
             ticket.gObj.transform.position = new Vector3(
-                ticketSpawn.position.x - (.3f * (index - 1 - i)),
+                ticketSpawn.position.x + (.3f * (index - 1 - i) * Mathf.Cos(ticketSpawn.eulerAngles.y * (float)System.Math.PI / -180f)),
                 ticketSpawn.position.y,
-                ticketSpawn.position.z
+                ticketSpawn.position.z + (.3f * (index - 1 - i) * Mathf.Sin(ticketSpawn.eulerAngles.y * (float)System.Math.PI / -180f))
             );
 
             ticket.gObj.transform.rotation = ticketSpawn.rotation;
