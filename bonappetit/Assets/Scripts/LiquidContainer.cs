@@ -71,7 +71,7 @@ public class LiquidContainer : MonoBehaviour
     void Scoop(int scooperid) {
         PhotonView view = PhotonView.Find(scooperid);
         LiquidContainer scoop = view.GetComponent<LiquidContainer>();
-        if (!isFillable) {
+        if (isFillable) {
             currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
         }
         scoop.currentVolume = Mathf.Min(scoop.currentVolume + scoopRate, scoop.capacity);

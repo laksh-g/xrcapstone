@@ -13,9 +13,8 @@ public class DishManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       steakFrites.gameObject.SetActive(true); 
        ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
-       if(ht.ContainsKey("FoodDisplay")) {
+       if(ht != null && ht.ContainsKey("FoodDisplay")) {
            SetupScene((string)ht["FoodDisplay"]);
        }
     }

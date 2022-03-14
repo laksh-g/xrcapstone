@@ -123,7 +123,6 @@ public class Temperature : MonoBehaviour, IPunObservable
             isResting = true;
             heater = null;
         }
-        Debug.Log("left area " + other.tag);
     }
 
     // Following Newton's law of cooling

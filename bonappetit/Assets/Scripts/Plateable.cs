@@ -118,12 +118,12 @@ public class Plateable : MonoBehaviourPunCallbacks
                     Dish d = target.GetComponent<Dish>();
                     if (d != null) {
                         d.connectedItems.Add(_view.ViewID);
-                        Debug.LogError("New dish contents: " + d.connectedItems.ToString());
+                        Debug.Log("New dish contents: " + d.connectedItems.ToString());
                     }
                     break;
                 }
             }
-            Debug.LogError(tag + " failed to find appropriate plate hook");
+            Debug.Log(tag + " failed to find appropriate plate hook");
     }
 
 }
