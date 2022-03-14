@@ -53,9 +53,7 @@ MonoBehaviour:
   - PourInto
   - Scoop
   - GrateObject
-  - Pour
-  - UpdateDrawer
-  - Teleport
+  - SendRoleUpdates
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

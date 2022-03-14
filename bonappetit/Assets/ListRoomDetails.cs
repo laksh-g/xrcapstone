@@ -34,7 +34,7 @@ public class ListRoomDetails : MonoBehaviour
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
             if(!ht.ContainsKey("difficulty")){
-                ht["difficulty"] = "Beginner";
+                ht["difficulty"] = "Cafe Kitchen";
             }
             if(!ht.ContainsKey("time")){
                 ht["time"] = "4:00";
