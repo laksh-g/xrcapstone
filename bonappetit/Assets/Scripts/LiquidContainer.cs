@@ -71,7 +71,9 @@ public class LiquidContainer : MonoBehaviour
     void Scoop(int scooperid) {
         PhotonView view = PhotonView.Find(scooperid);
         LiquidContainer scoop = view.GetComponent<LiquidContainer>();
-        currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
+        if (!isFillable) {
+            currentVolume = Mathf.Max(currentVolume - scoopRate, 0f);
+        }
         scoop.currentVolume = Mathf.Min(scoop.currentVolume + scoopRate, scoop.capacity);
         scoop.gameObject.tag = tag; // inherit tag
         scoop.temperature.temp = (temperature.temp + scoop.temperature.temp) / 2;
@@ -128,9 +130,6 @@ public class LiquidContainer : MonoBehaviour
                 liquid.transform.position = Vector3.Lerp(liquidStart.position, liquidEnd.position, getPercentage());
             } else {
                 liquidMesh.enabled = false;
-            }
-            if (automaticRefill && getPercentage() < .75) {
-                Refill();
             }
 
         }
