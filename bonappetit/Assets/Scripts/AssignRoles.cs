@@ -115,6 +115,8 @@ public class AssignRoles : MonoBehaviourPunCallbacks
         if (PhotonNetwork.CurrentRoom != null) {
             if(role == "DefaultRole"){
                 _view.RPC("SendRoleUpdates", RpcTarget.AllBufferedViaServer, -1, PhotonNetwork.LocalPlayer.ActorNumber);
+                StartGame.interactable = false;
+                RoomSettings.interactable = false;
             }else{
                 string[] roles = {"RotisseurRole", "SaucierRole", "HeadChefRole", "SousChefRole"};
 
