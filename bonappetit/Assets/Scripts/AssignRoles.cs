@@ -22,7 +22,7 @@ public class AssignRoles : MonoBehaviourPunCallbacks
 
     [SerializeField]
     public Dictionary<int, int> RoleMap = new Dictionary<int, int>();
-
+    public Dictionary<string, Dictionary<int, int>> RoomMap = new Dictionary<string, Dictionary<int, int>>();
     void Awake(){
         RoleMap[0] = -1;
         RoleMap[1] = -1;
@@ -38,22 +38,42 @@ public class AssignRoles : MonoBehaviourPunCallbacks
         buttonActivated = false;
         _view = GetComponent<PhotonView>();
 
-        updateButtons();
         InvokeRepeating("UpdateLastButton", 0.1f, 5f);
     }
 
-    void OnLeftRoom() {
+    void OnEnable(){
         RoleMap[0] = -1;
         RoleMap[1] = -1;
         RoleMap[2] = -1;
         RoleMap[3] = -1;
+        updateButtons();
+    }
+
+    void OnLeftRoom() {
         base.OnLeftRoom();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+    }
+
+    public override void OnPlayerLeftRoom(Player otherPlayer)
+    {
+        Debug.Log(otherPlayer.ActorNumber + "Left the room");
+        List<int> updates = new List<int>();
+        foreach(int role in RoleMap.Keys){
+            if(RoleMap[role] == otherPlayer.ActorNumber){
+                updates.Add(role);
+                //RoleMap[role] = -1;
+            }
+        }
+
+        foreach(int up in updates){
+            RoleMap[up] = -1;
+        }
+        updateButtons();
+        base.OnPlayerLeftRoom(otherPlayer);
     }
 
     // private IEnumerator SetCustomProperties()
