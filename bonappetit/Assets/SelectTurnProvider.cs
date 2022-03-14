@@ -14,16 +14,13 @@ public class SelectTurnProvider : MonoBehaviourPunCallbacks
         var continuousTurn = XROrigin.GetComponent<ActionBasedContinuousTurnProvider>();
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable playerCustomProps = PhotonNetwork.LocalPlayer.CustomProperties;
-            if(!playerCustomProps.ContainsKey("turnOption")){
-                continuousTurn.enabled = true;
+            float turnOption = PlayerPrefs.GetFloat("TurnSetting");
+            int val = (int) turnOption;
+            Debug.Log("slider value: " + val);
+            if(val == 1){
+                continuousTurn.enabled = false;
             }else{
-                int val = (int) playerCustomProps["turnOption"];
-                Debug.Log("slider value: " + val);
-                if(val == 1){
-                    continuousTurn.enabled = false;
-                }else{
-                    continuousTurn.enabled = true;
-                }
+                continuousTurn.enabled = true;
             }
         }
     }

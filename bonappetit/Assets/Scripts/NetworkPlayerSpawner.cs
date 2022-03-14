@@ -83,22 +83,22 @@ public class NetworkPlayerSpawner : MonoBehaviourPunCallbacks
         if ((string) playerCustomProps["role"] == "SaucierRole"){
             rig.MoveCameraToWorldLocation(STransform.position);
             rig.RotateAroundCameraUsingOriginUp(90);
-            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", STransform.position, STransform.rotation);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network PlayerSS", STransform.position, STransform.rotation);
 
         }else if ((string) playerCustomProps["role"] == "RotisseurRole"){
             rig.MoveCameraToWorldLocation(RTransform.position);
             rig.RotateAroundCameraUsingOriginUp(-90);
-            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", RTransform.position, RTransform.rotation);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network PlayerRS", RTransform.position, RTransform.rotation);
         }else if ((string) playerCustomProps["role"] == "SousChefRole"){
             rig.MoveCameraToWorldLocation(SousTransform.position);
             rig.RotateAroundCameraUsingOriginUp(90);
-            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", SousTransform.position, SousTransform.rotation);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network PlayerSC", SousTransform.position, SousTransform.rotation);
         }else {
             PhotonNetwork.SetMasterClient(PhotonNetwork.LocalPlayer);
             
             rig.MoveCameraToWorldLocation(HCTransform.position);
             rig.RotateAroundCameraUsingOriginUp(180);
-            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network Player", HCTransform.position, HCTransform.rotation);
+            spawnedPlayerPrefab = PhotonNetwork.Instantiate("Network PlayerHC", HCTransform.position, HCTransform.rotation);
         }
     }
 

@@ -42,6 +42,8 @@ public class SauceBuilder : MonoBehaviourPunCallbacks, IPunObservable
             foreach (int id in _dish.connectedItems) {
                 PhotonView view = PhotonView.Find(id);
                 if (view.tag == "shallots") {
+                    Plateable p = view.GetComponent<Plateable>();
+                    p.Unstick(view.ViewID);
                     if (view.IsMine) {
                         PhotonNetwork.Destroy(view);
                     }

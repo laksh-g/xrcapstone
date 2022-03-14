@@ -38,8 +38,8 @@ public class Dish : MonoBehaviourPunCallbacks
 
     public void TransferFoodOwnership() {
         if (!_view.IsMine) {
-            PhotonView[] views = GetComponentsInChildren<PhotonView>();
-            foreach (PhotonView view in views) {
+            foreach (int id in connectedItems) {
+                PhotonView view = PhotonView.Find(id);
                 view.RequestOwnership();
             }
         }
