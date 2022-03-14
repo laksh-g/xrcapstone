@@ -80,7 +80,6 @@ public class LiquidContainer : MonoBehaviour
     void FixedUpdate() {
         if (_view.IsMine && isPourable && isPouring) {
             float pourRate = CalculatePourRate();
-            currentVolume = Mathf.Max(0f, currentVolume - pourRate);
             if (stream.container != null && stream.container.currentVolume < stream.container.capacity) {
                 Pour(true, stream.container._view.ViewID, pourRate);
                 _view.RPC("Pour", RpcTarget.Others, true, stream.container._view.ViewID, pourRate);
@@ -92,7 +91,7 @@ public class LiquidContainer : MonoBehaviour
 
         if (scooper != null && currentVolume > 0f && scooper.currentVolume < scooper.capacity) {
             Scoop(scooper._view.ViewID);
-            _view.RPC("scoop", RpcTarget.Others, scooper._view.ViewID);
+            _view.RPC("Scoop", RpcTarget.Others, scooper._view.ViewID);
         }
     }
 
