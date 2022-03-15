@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 112000000, guid: 31841f95ccf1dbb4c8d752be1c53442e, type: 2}
+  m_LightingDataAsset: {fileID: 112000000, guid: 8a222bbc57ff5ff488558fbc015d1159, type: 2}
   m_LightingSettings: {fileID: 4890085278179872738, guid: 3727c2d68d1bb804382894d0ea4a5f8d, type: 2}
 --- !u!196 &4
 NavMeshSettings:
@@ -2850,6 +2850,10 @@ PrefabInstance:
       propertyPath: sceneViewId
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 6240056459364713766, guid: 4a4eb1016f1d0a0439e0c82c520ebe9e, type: 3}
+      propertyPath: sceneViewId
+      value: 68
+      objectReference: {fileID: 0}
     - target: {fileID: 6487571554604225936, guid: 4a4eb1016f1d0a0439e0c82c520ebe9e, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4038,6 +4042,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1506280977}
     m_Modifications:
+    - target: {fileID: -8043625528972812449, guid: d46a1363b9f779f48b9d24f41abb0b06, type: 3}
+      propertyPath: sceneViewId
+      value: 67
+      objectReference: {fileID: 0}
     - target: {fileID: 7756594988459648005, guid: d46a1363b9f779f48b9d24f41abb0b06, type: 3}
       propertyPath: m_Name
       value: DinnerPlateSpawner
@@ -4806,6 +4814,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 767120381}
     m_Modifications:
+    - target: {fileID: -4012355249968491392, guid: 29d5309a5d5c4fc4da2232c4c295ca76, type: 3}
+      propertyPath: sceneViewId
+      value: 61
+      objectReference: {fileID: 0}
     - target: {fileID: 4127220135033547268, guid: 29d5309a5d5c4fc4da2232c4c295ca76, type: 3}
       propertyPath: m_Name
       value: RamekinSpawner
@@ -8988,6 +9000,10 @@ PrefabInstance:
     - target: {fileID: 312388657872252880, guid: 68b0ec0b339e71441bb66df0ae951242, type: 3}
       propertyPath: sceneViewId
       value: 103
+      objectReference: {fileID: 0}
+    - target: {fileID: 1977551134835640096, guid: 68b0ec0b339e71441bb66df0ae951242, type: 3}
+      propertyPath: sceneViewId
+      value: 37
       objectReference: {fileID: 0}
     - target: {fileID: 6672092708847427958, guid: 68b0ec0b339e71441bb66df0ae951242, type: 3}
       propertyPath: m_RootOrder

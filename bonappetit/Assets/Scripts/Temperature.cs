@@ -68,10 +68,8 @@ public class Temperature : MonoBehaviour, IPunObservable
             return 4f;
         }
         if (heater.s.val == 0) {
-            Debug.Log("registering ambient");
             return ambientDelta();
         } else if(heater.isOvenlike) {
-            Debug.Log("registering oven with setting " + 1);
             return delta(heater.temperatureSettings[heater.s.val]);
         } else if (heater.s.numSettings == 4) {
             switch(heater.s.val) {

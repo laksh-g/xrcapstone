@@ -36,15 +36,17 @@ public class TurnInZone : MonoBehaviour
     void OnTriggerEnter(Collider other) {
         Dish d = other.gameObject.GetComponent<Dish>();
         if (d != null) {
+            d.TransferFoodOwnership();
             contents.Add(d);
-        }
-        if (other.tag == "order") {
+        } else if (other.tag == "order") {
             if (contents.Count > 0) {
                 TurnIn(other.gameObject.GetComponent<Printable>().orderNum);
                 PhotonNetwork.Destroy(other.gameObject);
             } else {
                 StartCoroutine(flashRed());
             }
+        } else {
+            StartCoroutine(flashRed());
         }
     }
 
@@ -55,9 +57,17 @@ public class TurnInZone : MonoBehaviour
         print(score + " " + comments);
         foreach (Dish child in contents.ToList()) {
             contents.Remove(child);
-            foreach (int id in child.connectedItems) {
-                GameObject g = PhotonView.Find(id).gameObject;
-                PhotonNetwork.Destroy(g);
+            foreach (int id in child.connectedItems.ToList()) {
+                child.connectedItems.Remove(id);
+                PhotonView p = PhotonView.Find(id);
+                if (p != null && p.IsMine) {
+                    PhotonNetwork.Destroy(p.gameObject);
+                } else if (p != null && p.gameObject.transform != null) {
+                    // uh just move it I guess
+                    p.gameObject.transform.position = new Vector3(p.gameObject.transform.position.x, -5, p.gameObject.transform.position.z);
+                } else {
+                    Debug.LogError("Found a ghost");
+                }
             }
             PhotonNetwork.Destroy(child.gameObject);
         }
