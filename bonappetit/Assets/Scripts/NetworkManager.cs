@@ -119,7 +119,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
         }else{
             PreGameLobby.SetActive(true);
             RoomSettings.SetActive(false);
-            FoodDisplay.SetActive(false);
+            FoodDisplay.SetActive(true);
         }
         createdRoomCode.text = "<b>Room Code:</b> " + PhotonNetwork.CurrentRoom.Name;
         base.OnJoinedRoom();
@@ -174,6 +174,7 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     public void LeaveRoom()
     {
         Debug.Log("Leaving room.");
+        FoodDisplay.SetActive(false);
         PhotonNetwork.LeaveRoom();
     }
 

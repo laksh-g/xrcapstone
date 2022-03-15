@@ -67,10 +67,11 @@ public class FoodDisplay : MonoBehaviourPunCallbacks
         ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
         ht["FoodDisplay"] = "00000";
         PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+        InvokeRepeating("UpdateFood", 0.1f, 0.5f);
     }
 
     // Update is called once per frame
-    void Update()
+    void UpdateFood()
     {
         if (PhotonNetwork.CurrentRoom != null) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
