@@ -32,13 +32,13 @@ public class SauceBuilder : MonoBehaviour, IPunObservable
     // Update is called once per frame
     void Update()
     {
-        if (!hasDrippings && tag == "pan drippings") {
+        if (_view.IsMine && !hasDrippings && tag == "pan drippings") {
             hasDrippings = true;
-        } else if (!hasWine && tag == "chardonnay") {
+        } else if (_view.IsMine && !hasWine && tag == "chardonnay") {
             hasWine = true;
         }
         
-        if (!hasShallots && shallotTransform.tag == "occupied" && _temp.temp > 60 && hasDrippings) {
+        if (_view.IsMine && !hasShallots && shallotTransform.tag == "occupied" && _temp.temp > 60 && hasDrippings) {
             foreach (int id in _dish.connectedItems) {
                 PhotonView view = PhotonView.Find(id);
                 if (view != null && view.tag == "shallots") {

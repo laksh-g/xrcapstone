@@ -15,20 +15,17 @@ public class Plateable : MonoBehaviourPunCallbacks
     private bool connected = false;
 
     public Transform point = null;
-    private FixedJoint _joint = null;
     private Transform _transform;
     private Rigidbody _rb;
 
     private PhotonView _view;
 
-    private XRGrabNetworkInteractable _grab;
 
     private int plateID = -1;
 
     void Awake() {
         _transform = GetComponent<Transform>();
         _rb = GetComponent<Rigidbody>();
-        _grab = GetComponent<XRGrabNetworkInteractable>();
         _temp = GetComponent<Temperature>();
     }
 

@@ -328,6 +328,7 @@ MonoBehaviour:
   pepper: 0
   parsley: 0
   gruyere: 0
+  view: {fileID: 0}
 --- !u!65 &994197961452226840
 BoxCollider:
   m_ObjectHideFlags: 0

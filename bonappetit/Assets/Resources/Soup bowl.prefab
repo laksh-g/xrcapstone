@@ -1095,6 +1095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishID: onionsoup
   itemFolder: {fileID: 0}
+  viewID: 0
 --- !u!114 &5238003760996203860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1140,7 +1141,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3894347935762229601}
   m_Layer: 8
-  m_Name: Bread
+  m_Name: Bread Slice
   m_TagString: bread
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -139,7 +139,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4381066696313610017}
   m_Layer: 8
-  m_Name: Breast
+  m_Name: Chicken Breast
   m_TagString: breast
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,7 +580,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2702477639161987412}
   m_Layer: 8
-  m_Name: Wing1
+  m_Name: Chicken Wing 1
   m_TagString: wing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,7 +691,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6111764014443900233}
   m_Layer: 8
-  m_Name: Wing2
+  m_Name: Chicken Wing 2
   m_TagString: wing
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

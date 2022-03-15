@@ -15,12 +15,12 @@ public class TextInformation : MonoBehaviour
 
     readonly Dictionary<string, List<string>> hookNames = new Dictionary<string, List<string>> 
     { 
-        { "Stone Plate", new List<string> { "Sauce", "Fries", "Steak" } },
-        { "Soup Bowl", new List<string> { "Bread" } },
-        { "Appetizer Plate", new List<string> { "Crab", "Crab2", "SproutLoc" } },
-        { "Dinner Plate 2", new List<string> { "Vegetables", "Breast", "Wing2", "Wing1" } },
-        { "Bread Board", new List<string> { "Bread", "Oil" } },
-        { "Roasting Pan", new List<string> { "Veggies", "Breast", "Wing2", "Wing1" } }
+        { "Stone Plate", new List<string> { "Bearnaise", "Fries", "Steak" } },
+        { "Soup Bowl", new List<string> { "Bread Slice" } },
+        { "Appetizer Plate", new List<string> { "Crab Cake 1", "Crab Cake 2", "Sprouts" } },
+        { "Dinner Plate 2", new List<string> { "Vegetables", "Chicken Breast", "Chicken Wing", "Chicken Wing 2" } },
+        { "Bread Board", new List<string> { "French Bread", "Olive Oil" } },
+        { "Roasting Pan", new List<string> { "Veggies", "Chicken Breast", "Chicken Wing 1", "Chicken Wing 2" } }
     };
     readonly List<string> liquidNames = new List<string> { "Sauce", "Soup" };
     readonly Dictionary<string, List<string>> foodSeasonings = new Dictionary<string, List<string>>

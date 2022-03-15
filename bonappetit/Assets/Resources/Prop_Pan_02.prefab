@@ -719,6 +719,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1725186017721985247}
   - {fileID: 234753141}
+  - {fileID: 8850053312881370710}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -786,6 +787,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishID: ' SaucePan'
   itemFolder: {fileID: 0}
+  viewID: 0
 --- !u!114 &6556062136332773263
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1238,7 +1240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1292948816165728348}
   m_Layer: 9
-  m_Name: Crab2
+  m_Name: Crab Cake 2
   m_TagString: crab_cake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1363,7 +1365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8863548441479596985}
   m_Layer: 9
-  m_Name: Crab1
+  m_Name: Crab Cake 1
   m_TagString: crab_cake
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

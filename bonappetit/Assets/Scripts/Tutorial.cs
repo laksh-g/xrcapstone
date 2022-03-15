@@ -347,7 +347,7 @@ public class Tutorial : MonoBehaviour
             (step == 9 && IsPlated(plate, "Fries")) ||
             (step == 10 && IsHolding("ladle", true) && IsHolding("Ramekin")) ||
             (step == 11 && ramekin.GetComponent<LiquidContainer>().currentVolume >= 140) ||
-            (step == 12 && IsPlated(plate, "Sauce")))
+            (step == 12 && IsPlated(plate, "Bearnaise")))
         {
             UpdateStep();
         }
@@ -366,7 +366,7 @@ public class Tutorial : MonoBehaviour
         bool hasPlate = plates.TryGetValue("Soup Bowl", out GameObject plate);
         if ((step == 0 && IsHolding("ladle", true) && IsHolding("Soup bowl")) ||
             (step == 1 && hasPlate && plate.TryGetComponent(out LiquidContainer liquid) && liquid.currentVolume >= 300) ||
-            (step == 2 && hasPlate && IsPlated(plate, "Bread")) ||
+            (step == 2 && hasPlate && IsPlated(plate, "Bread Slice")) ||
             (step == 3 && IsHolding("grater", true) && IsHolding("gruyere", true)) ||
             (step == 4 && hasPlate && plate.TryGetComponent(out Seasonable seasonable) && seasonable.gruyere >= 5) ||
             (step == 5 && hasPlate && plate.GetComponentInChildren<Cheese>() != null && plate.GetComponentInChildren<Cheese>().toastingTime >= 10) ||
@@ -389,10 +389,10 @@ public class Tutorial : MonoBehaviour
         bool hasPan = plates.TryGetValue("Roasting Pan", out GameObject pan);
         bool hasPlate = plates.TryGetValue("Dinner Plate 2", out GameObject plate);
         if ((step == 0 && IsHolding("Roasting Pan")) ||
-            (step == 1 && IsPlated(pan, "Veggies") && IsPlated(pan, "Wing1") && IsPlated(pan, "Wing2") && IsPlated(pan, "Breast")) ||
+            (step == 1 && IsPlated(pan, "Veggies") && IsPlated(pan, "Chicken Wing 1") && IsPlated(pan, "Chicken Wing 2") && IsPlated(pan, "Chicken Breast")) ||
             (step == 2 && pan.TryGetComponent(out LiquidContainer liquid) && liquid.currentVolume >= 75) ||
             (step == 3 && IsHolding("Button")) ||
-            (step == 4 && IsPlated(plate, "Vegetables") && IsPlated(plate, "Wing1") && IsPlated(plate, "Wing2") && IsPlated(plate, "Breast")) ||
+            (step == 4 && IsPlated(plate, "Vegetables") && IsPlated(plate, "Chicken Wing") && IsPlated(plate, "Chicken Wing 2") && IsPlated(plate, "Chicken Breast")) ||
             (step == 5 && HasParsley(plate)) ||
             (step == 6 && saucePan != null && saucePan.TryGetComponent(out LiquidContainer liquid2) && liquid2.currentVolume >= 20) ||
             (step == 7 && IsPlated(saucePan, "Shallots")) ||
@@ -418,12 +418,12 @@ public class Tutorial : MonoBehaviour
         if ((step == 0 && saucePan != null) ||
             (step == 1 && saucePan.TryGetComponent(out LiquidContainer liquid) && liquid.currentVolume >= 50) ||
             (step == 2 && knob != null && knob.TryGetComponent(out Knob k) && k.getLabel().Equals("High")) ||
-            (step == 3 && IsPlated(saucePan, "Crab1") && IsPlated(saucePan, "Crab2")) ||
+            (step == 3 && IsPlated(saucePan, "Crab Cake 1") && IsPlated(saucePan, "Crab Cake 2")) ||
             (step == 4 && crab != null && crab.TryGetComponent(out Cookable c) && c.searTime >= 20) || // inconsistent with cookable and recipe
             (step == 5 && saucePan.TryGetComponent(out Temperature t) && t.tempInF() >= 165) ||
-            (step == 6 && hasPlate && IsPlated(plate, "Crab") && IsPlated(plate, "Crab2")) ||
+            (step == 6 && hasPlate && IsPlated(plate, "Crab Cake 1") && IsPlated(plate, "Crab Cake 2")) ||
             (step == 7 && hasPlate && plate.TryGetComponent(out LiquidContainer l) && l.currentVolume > 10) ||
-            (step == 8 && hasPlate && IsPlated(plate, "SproutLoc")))
+            (step == 8 && hasPlate && IsPlated(plate, "Sprouts")))
         {
             UpdateStep();
         }
@@ -460,7 +460,7 @@ public class Tutorial : MonoBehaviour
             (step == 1 && press) ||
             (step == 2 && frenchonion.GetComponentInChildren<Cheese>() != null && frenchonion.GetComponentInChildren<Cheese>().toastingTime >= 10 && 
                 frenchonion.TryGetComponent(out Seasonable s) && s.parsley > 0) ||
-            (step == 3 && IsPlated(crabcake, "SproutLoc")) ||
+            (step == 3 && IsPlated(crabcake, "Sprouts")) ||
             (step == 6 && press) ||
             (step == 7 && press))
         {

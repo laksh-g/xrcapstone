@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1383971222}
   m_Layer: 8
-  m_Name: Oil
+  m_Name: Olive Oil
   m_TagString: olive oil
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1492257413}
   m_Layer: 8
-  m_Name: Bread
+  m_Name: French Bread
   m_TagString: bread
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -470,3 +470,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishID: tablebread
   itemFolder: {fileID: 0}
+  viewID: 0

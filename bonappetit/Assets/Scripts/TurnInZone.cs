@@ -45,8 +45,6 @@ public class TurnInZone : MonoBehaviour
             } else {
                 StartCoroutine(flashRed());
             }
-        } else {
-            StartCoroutine(flashRed());
         }
     }
 

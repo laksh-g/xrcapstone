@@ -57,7 +57,7 @@ GameObject:
   m_Component:
   - component: {fileID: 633655411271689846}
   m_Layer: 8
-  m_Name: Sauce
+  m_Name: Bearnaise
   m_TagString: bearnaise
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -435,6 +435,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dishID: steakfrites
   itemFolder: {fileID: 0}
+  viewID: 0
 --- !u!1 &7541072012951659185
 GameObject:
   m_ObjectHideFlags: 0
