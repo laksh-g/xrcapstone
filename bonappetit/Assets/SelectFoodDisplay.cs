@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using Photon.Pun;
-
+using Photon.Realtime;
 public class SelectFoodDisplay : XRSimpleInteractable
 {
     private bool selected;
@@ -31,7 +31,7 @@ public class SelectFoodDisplay : XRSimpleInteractable
     override protected void OnSelectEntering(SelectEnterEventArgs interactor)
     {
         selected = !selected;
-        if (PhotonNetwork.CurrentRoom != null) {
+        if (PhotonNetwork.CurrentRoom != null && PhotonNetwork.LocalPlayer.IsMasterClient) {
             ExitGames.Client.Photon.Hashtable ht = PhotonNetwork.CurrentRoom.CustomProperties;
             // Set correct property
             //ht["ticketOption"] = (int) mainSlider.value;
